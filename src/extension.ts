@@ -13,18 +13,28 @@ export function activate(context: vscode.ExtensionContext)
 				vscode.ViewColumn.Two,
 				{
 					enableScripts: true,
-					localResourceRoots: [
-						vscode.Uri.joinPath(context.extensionUri,'src','videos'),
-					],
 				}
 			);
+			const webview = panel.webview;
+			const uri = context.extensionUri;
+
+			const allSigns = ['H', 'E', 'L', 'L', 'O'];
 			
-			panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
+			let videos = [];
+			for (let sign of allSigns) {
+				videos.push({
+					sign: sign,
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
+				});
+			}
+			webview.postMessage({videos});
+
+			webview.html = getWebviewContent(webview, uri);
 		})
 	);
 }
 
-function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri): string
+function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 {	
 	const allCss = [
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','css','fontawesome.css')),
@@ -47,12 +57,13 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri): string
 	`;
 
 	for (let css of allCss) {
-		html += `<link rel="stylesheet" href="${css}">`;
+		html += `<link href="${css}" rel="stylesheet">`;
 	}
 
 	html += `
 	</head>
 	<body>
+		<h1 id="teste"></h1>
 		<div id="videoContainer"></div>
 		<div id="infoContainer">
 			<div id="currentTime"></div>
@@ -76,7 +87,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri): string
 				<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
 			</button>
 		</div>
-  	`;
+	`;
 
 	for (let js of allJs) {
 		html += `<script src="${js}"></script>`;
