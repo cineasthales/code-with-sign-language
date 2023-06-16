@@ -1,11 +1,11 @@
 $(() => {
 
     let videos = [
-        {sign: 'H', file: 'videos/h.mp4'},
-        {sign: 'E', file: 'videos/e.mp4'},
-        {sign: 'L', file: 'videos/l.mp4'},
-        {sign: 'L', file: 'videos/l.mp4'},
-        {sign: 'O', file: 'videos/o.mp4'},
+        {sign: 'H', file: 'h'},
+        {sign: 'E', file: 'e'},
+        {sign: 'L', file: 'l'},
+        {sign: 'L', file: 'l'},
+        {sign: 'O', file: 'o'},
     ];
 
     let currentIndex = 0, totalDuration = 0, numberOfDigits = 0;
@@ -14,7 +14,7 @@ $(() => {
     for (let i = 0; i < videos.length; i++) {
         $('#videoContainer').append(
             '<video width="600" height="320" type="video/mp4" muted '
-            + 'id="video_' + i + '" src="' + videos[i].file + '"></video>'
+            + 'id="video_' + i + '" src="../videos/' + videos[i].file + '.mp4"></video>'
         );
 
         if (i > 0) {
@@ -62,7 +62,7 @@ $(() => {
 
     $('#autoRepeat').on('click', () => {
         autoRepeat = !autoRepeat;
-        $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'black');
+        $('#autoRepeatIcon').css('color', autoRepeat ? 'lightgreen' : 'white');
     });
 
     function play() {
@@ -95,7 +95,7 @@ $(() => {
             totalDuration = Math.floor(totalDuration);
             numberOfDigits = totalDuration.toString().length;
             $('#totalDuration').text(totalDuration + 's');
-            $('#infoContainer').css('color', 'black');
+            $('#infoContainer').css('color', 'white');
             hasTotalDuration = true;
         }
 

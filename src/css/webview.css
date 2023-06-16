@@ -7,34 +7,15 @@
     font-family: monospace;
 }
 
-body {
-    background-color: #b3b3b3
-}
-
-h1 {
-    font-size: 5rem;
-}
-
 button {
     font-size: 5rem;
-    color: black;
+    color: white;
     background-color: transparent;
 }
 
 button:hover, button:active {
-    color: green;
+    color: lightgreen;
     cursor: pointer;
-}
-
-video {
-    border-radius: 0.5rem;
-}
-
-#container {
-    max-width: 50rem;
-    margin: 0 auto;
-    border: 0.25rem solid black;
-    border-radius: 0.5rem;
 }
 
 #videoContainer {
@@ -42,8 +23,6 @@ video {
     justify-content: center;
     align-items: center;
     height: 30rem;
-    border-bottom: 0.25rem solid black;
-    background-color: #404040;
 }
 
 #infoContainer {
@@ -51,10 +30,7 @@ video {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    border-bottom: 0.25rem solid black;
     font-size: 2rem;
-    background-color: #e4e6eb;
-    color: #e4e6eb;
 }
 
 #currentSign {
@@ -67,8 +43,7 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #e4e6eb;
+    padding: 2rem 12rem;
 }
 
 #playPause {
@@ -76,5 +51,5 @@ video {
 }
 
 #autoRepeatIcon {
-    color: green;
+    color: lightgreen;
 }

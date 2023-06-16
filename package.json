@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-with-sign-language.helloWorld",
-        "title": "Hello World"
+        "command": "code-with-sign-language.start",
+        "title": "Code with Sign Language"
       }
     ]
   },
