@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext)
 {
+	// TODO: copy media to client extension path if it was not copied yet
+	
 	context.subscriptions.push(
 		vscode.commands.registerCommand('code-with-sign-language.start', () =>
 		{
@@ -11,7 +13,9 @@ export function activate(context: vscode.ExtensionContext)
 				vscode.ViewColumn.Two,
 				{
 					enableScripts: true,
-					// TODO: include videos path access
+					localResourceRoots: [
+						vscode.Uri.joinPath(context.extensionUri,'src','videos'),
+					],
 				}
 			);
 			
@@ -86,4 +90,6 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri): string
 	return html;
 }
 
-export function deactivate() {}
+export function deactivate() {
+	// TODO: clean up media from client extension path
+}
