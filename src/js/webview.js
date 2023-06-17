@@ -8,7 +8,7 @@ $(() => {
 
         for (let i = 0; i < videos.length; i++) {
             $('#videoContainer').append(
-                '<video width="700" height="420" type="video/mp4" muted '
+                '<video width="550" height="270" type="video/mp4" muted '
                 + 'id="video_' + i + '" src="' + videos[i].file.scheme
                 + '://' + videos[i].file.authority
                 + videos[i].file.path + '"></video>'
@@ -59,7 +59,7 @@ $(() => {
 
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
-            $('#autoRepeatIcon').css('color', autoRepeat ? 'lightgreen' : 'white');
+            $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'white');
         });
 
         function play() {

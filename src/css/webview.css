@@ -8,13 +8,13 @@
 }
 
 button {
-    font-size: 5rem;
+    font-size: 3rem;
     color: white;
     background-color: transparent;
 }
 
 button:hover, button:active {
-    color: lightgreen;
+    color: green;
     cursor: pointer;
 }
 
@@ -22,19 +22,19 @@ button:hover, button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30rem;
+    max-height: 20rem;
 }
 
 #infoContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1.5rem;
     font-size: 2rem;
 }
 
 #currentSign {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-family: sans-serif;
     font-weight: bold;
 }
@@ -43,13 +43,13 @@ button:hover, button:active {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 12rem;
+    padding: 1.5rem;
 }
 
 #playPause {
-    font-size: 8rem;
+    font-size: 5rem;
 }
 
 #autoRepeatIcon {
-    color: lightgreen;
+    color: green;
 }
