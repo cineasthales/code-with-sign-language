@@ -3,18 +3,33 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext)
 {
 	// TODO: copy media to client extension path if it was not copied yet
-	
+
+	let panel: vscode.WebviewPanel | undefined = undefined;
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand('code-with-sign-language.start', () =>
 		{
-			const panel = vscode.window.createWebviewPanel(
+			if (panel) {
+				vscode.window.showInformationMessage('Sign language tab already opened.');
+				return;
+			}
+
+			panel = vscode.window.createWebviewPanel(
 				'sign-videos',
 				'Code with Sign Language',
 				vscode.ViewColumn.Two,
 				{
 					enableScripts: true,
+					retainContextWhenHidden: true
 				}
 			);
+
+			panel.onDidDispose(
+				() => { panel = undefined; },
+				null,
+				context.subscriptions
+			);
+			
 			const webview = panel.webview;
 			const uri = context.extensionUri;
 
