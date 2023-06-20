@@ -5,8 +5,9 @@ $(() => {
 
         let currentIndex = 0, totalDuration = 0, numberOfDigits = 0;
         let autoRepeat = true, stopped = false, hasTotalDuration = false;
+        const numberOfVideos = videos.length;
 
-        for (let i = 0; i < videos.length; i++) {
+        for (let i = 0; i < numberOfVideos; i++) {
             $('#videoContainer').append(
                 '<video width="550" height="270" type="video/mp4" muted '
                 + 'id="video_' + i + '" src="' + videos[i].file.scheme
@@ -21,7 +22,7 @@ $(() => {
             }
 
             $('#video_' + i).on('ended', () => {
-                if (i < videos.length - 1) {
+                if (i < numberOfVideos - 1) {
                     changeCurrentVideo(i + 1, true);
                 } else if (autoRepeat) {
                     changeCurrentVideo(0, true);
@@ -53,7 +54,7 @@ $(() => {
         });
 
         $('#forward').on('click', () => {
-            let newIndex = currentIndex === videos.length - 1 ? currentIndex : currentIndex + 1;
+            let newIndex = currentIndex === numberOfVideos - 1 ? currentIndex : currentIndex + 1;
             changeCurrentVideo(newIndex, false);
         });
 
@@ -86,7 +87,7 @@ $(() => {
 
         function updateCurrentTime() {
             if (!hasTotalDuration) {
-                for (let i = 0; i < videos.length; i++) {
+                for (let i = 0; i < numberOfVideos; i++) {
                     totalDuration += $('#video_' + i).prop('duration');
                 }
                 totalDuration = Math.floor(totalDuration);
