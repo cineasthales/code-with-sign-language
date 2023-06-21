@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext)
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand('code-with-sign-language.start', () =>
-		{
+		{			
 			if (panel) {
 				vscode.window.showInformationMessage('Sign language tab already opened.');
 				return;
@@ -78,7 +78,6 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	html += `
 	</head>
 	<body>
-		<h1 id="teste"></h1>
 		<div id="videoContainer"></div>
 		<div id="infoContainer">
 			<div id="currentTime"></div>
