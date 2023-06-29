@@ -63,6 +63,35 @@ $(() => {
             $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'white');
         });
 
+        $('body').on('keypress', (event) => {
+            if (event.keyCode === 32) {
+                $('#playPause').trigger('click');
+            }
+        });
+
+        $('body').on('keydown', (event) => {
+            switch (event.key) {
+                case 'Home':
+                case 'End':
+                case 'Backspace':
+                    $('#rewind').trigger('click');
+                    break;
+                case 'ArrowLeft':
+                case 'PageDown':
+                    $('#backward').trigger('click');
+                    break;
+                case 'ArrowRight':
+                case 'PageUp':
+                    $('#forward').trigger('click');
+                    break;
+                case 'A':
+                case 'a':
+                case 'R':
+                case 'r':
+                    $('#autoRepeat').trigger('click');
+            }
+        });
+
         function play() {
             stopped = false;
             $('#playPauseIcon').removeClass('fa-circle-play');
@@ -106,6 +135,8 @@ $(() => {
             }
         }
         setInterval(updateCurrentTime, 200);
+
+
 
     });
 });
