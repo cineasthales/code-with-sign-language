@@ -16,10 +16,11 @@
       {
         "command": "code-with-sign-language.start",
         "title": "Code with Sign Language",
+        "when": "editorIsOpen && editorHasSelection && editorLangId == javascript",
         "icon": {
           "light": "src/icons/svgs/solid/hands.svg",
           "dark": "src/icons/svgs/regular/hands.svg"
-        }
+        },
       }
     ]
   },
