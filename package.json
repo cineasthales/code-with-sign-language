@@ -15,7 +15,11 @@
     "commands": [
       {
         "command": "code-with-sign-language.start",
-        "title": "Code with Sign Language"
+        "title": "Code with Sign Language",
+        "icon": {
+          "light": "src/icons/svgs/solid/hands.svg",
+          "dark": "src/icons/svgs/regular/hands.svg"
+        }
       }
     ]
   },
