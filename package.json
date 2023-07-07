@@ -22,7 +22,7 @@
       "editor/title": [
         {
           "command": "code-with-sign-language.start",
-          "group": "navigation",
+          "group": "navigation@1",
           "when": "editorIsOpen && editorHasSelection && editorLangId == javascript",
           "icon": {
             "light": "icons/svgs/solid/hands.svg",
