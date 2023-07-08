@@ -119,11 +119,15 @@ $(() => {
                 for (let i = 0; i < numberOfVideos; i++) {
                     totalDuration += $('#video_' + i).prop('duration');
                 }
-                totalDuration = Math.floor(totalDuration);
-                numberOfDigits = totalDuration.toString().length;
-                $('#totalDuration').text(totalDuration + 's');
-                $('#infoContainer').css('color', 'white');
-                hasTotalDuration = true;
+                if (!isNaN(totalDuration)) {
+                    totalDuration = Math.floor(totalDuration);
+                    numberOfDigits = totalDuration.toString().length;
+                    $('#totalDuration').text(totalDuration + 's');
+                    $('#infoContainer').css('color', 'white');
+                    hasTotalDuration = true;
+                } else {
+                    totalDuration = 0;
+                }
             }
 
             let currentTime = $('#video_' + currentIndex).prop('currentTime');
