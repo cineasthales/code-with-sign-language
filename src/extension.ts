@@ -8,10 +8,9 @@ export function activate(context: vscode.ExtensionContext)
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand('code-with-sign-language.start', () =>
-		{			
+		{
 			if (panel) {
-				vscode.window.showInformationMessage('Sign language tab already opened.');
-				return;
+				panel.dispose();
 			}
 
 			panel = vscode.window.createWebviewPanel(
@@ -29,11 +28,23 @@ export function activate(context: vscode.ExtensionContext)
 				null,
 				context.subscriptions
 			);
-			
+
 			const webview = panel.webview;
 			const uri = context.extensionUri;
 
-			const allSigns = ['H', 'E', 'L', 'L', 'O'];
+			const editor = vscode.window.activeTextEditor;
+
+			let allSelectedCode = '';
+
+			if (editor && editor.selections) {
+				for (let selection of editor.selections) {
+					const selectionRange = new vscode.Range(selection.start, selection.end);
+					const selectionCode = editor.document.getText(selectionRange).replace(/(\r\n|\n|\r)/gm, '');
+					allSelectedCode += selectionCode;
+				}
+			}
+
+			const allSigns = allSelectedCode.split('');
 			
 			let videos = [];
 			for (let sign of allSigns) {
