@@ -52,9 +52,9 @@ export function activate(context: vscode.ExtensionContext)
 function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 {
 	const allCss = [
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','css','fontawesome.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','css','regular.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','css','solid.css')),
+		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','solid.css')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','webview.css')),
 	];
 

@@ -15,7 +15,11 @@
     "commands": [
       {
         "command": "code-with-sign-language.start",
-        "title": "Code with Sign Language"
+        "title": "Traduzir para Libras",
+        "icon": {
+          "dark": "./src/icons/hands-dark.svg",
+          "light": "./src/icons/hands-light.svg"
+        }
       }
     ],
     "menus": {
@@ -23,11 +27,7 @@
         {
           "command": "code-with-sign-language.start",
           "group": "navigation@1",
-          "when": "editorIsOpen && editorHasSelection && editorLangId == javascript",
-          "icon": {
-            "light": "icons/svgs/solid/hands.svg",
-            "dark": "icons/svgs/regular/hands.svg"
-          }
+          "when": "editorIsOpen && editorHasSelection && editorLangId == javascript"
         }
       ]
     }

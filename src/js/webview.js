@@ -135,8 +135,5 @@ $(() => {
             }
         }
         setInterval(updateCurrentTime, 200);
-
-
-
     });
 });
