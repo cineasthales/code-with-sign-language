@@ -31,23 +31,34 @@ export function activate(context: vscode.ExtensionContext)
 
 			const webview = panel.webview;
 			const uri = context.extensionUri;
-
 			const editor = vscode.window.activeTextEditor;
 
-			let allSelectedCode = '';
+			let signs = [], videos = [];
 
 			if (editor && editor.selections) {
 				for (let selection of editor.selections) {
-					const selectionRange = new vscode.Range(selection.start, selection.end);
-					const selectionCode = editor.document.getText(selectionRange).replace(/(\r\n|\n|\r)/gm, '');
-					allSelectedCode += selectionCode;
+					const range = new vscode.Range(selection.start, selection.end);
+					const selected = editor.document.getText(range)
+						.trim()
+						.replace(/\s+/g, ' ')
+						.toLowerCase()
+						.split(' ');
+					for (let expression of selected) {
+						if (reserved.includes(expression)) {
+							signs.push(expression);
+						} else {
+							const characters = expression.split('');
+							for (let character in characters) {
+								if (character.match(/[a-z0-9]/)) {
+									signs.push(character);
+								}
+							}
+						}
+					}
 				}
 			}
 
-			const allSigns = allSelectedCode.split('');
-			
-			let videos = [];
-			for (let sign of allSigns) {
+			for (let sign of signs) {
 				videos.push({
 					sign: sign,
 					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
@@ -129,3 +140,78 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 export function deactivate() {
 	// TODO: clean up media from client extension path
 }
+
+const reserved = [
+    'abstract',
+    'arguments',
+    'as',
+    'async',
+    'await',
+    'boolean',
+    'break',
+    'byte',
+    'case',
+    'catch',
+    'char',
+    'class',
+    'const',
+    'continue',
+    'debugger',
+    'default',
+    'delete',
+    'do',
+    'double',
+    'else',
+    'enum',
+    'eval',
+    'export',
+    'extends',
+    'false',
+    'false',
+    'final',
+    'finally',
+    'float',
+    'for',
+    'from',
+    'function',
+    'get',
+    'goto',
+    'if',
+    'implements',
+    'import',
+    'in',
+    'instanceof',
+    'int',
+    'interface',
+    'let',
+    'long',
+    'native',
+    'new',
+    'null',
+    'of',
+    'package',
+    'private',
+    'protected',
+    'public',
+    'return',
+    'set',
+    'short',
+    'static',
+    'super',
+    'switch',
+    'synchronized',
+    'this',
+    'throw',
+    'throws',
+    'transient',
+    'true',
+    'true',
+    'try',
+    'typeof',
+    'var',
+    'void',
+    'volatile',
+    'while',
+    'with',
+    'yield',
+];
