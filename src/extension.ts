@@ -44,16 +44,18 @@ export function activate(context: vscode.ExtensionContext)
 						.toLowerCase()
 						.split(' ');
 					for (let expression of selected) {
+						/*
 						if (reserved.includes(expression)) {
 							signs.push(expression);
 						} else {
+						*/
 							const characters = expression.split('');
-							for (let character in characters) {
+							for (let character of characters) {
 								if (character.match(/[a-z0-9]/)) {
 									signs.push(character);
 								}
 							}
-						}
+						// }
 					}
 				}
 			}
