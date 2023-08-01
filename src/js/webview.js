@@ -15,7 +15,7 @@ $(() => {
                 + videos[i].file.path + '"></video>'
             );
 
-            i > 0 ? $('#video_' + i).hide(); : $('#currentSign').text(videos[0].sign);
+            i > 0 ? $('#video_' + i).hide() : $('#currentSign').text(videos[0].sign);
 
             $('#video_' + i).on('ended', () => {
                 if (i < numberOfVideos - 1) {
@@ -61,15 +61,17 @@ $(() => {
 
         $('#slower').on('click', () => {
             if (currentSpeed > 0.25) {
-                currentSpeed -= 0.25
+                currentSpeed -= 0.25;
                 $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSpeed').text(currentSpeed + 'x');
             }
         });
         
         $('#faster').on('click', () => {
             if (currentSpeed < 2) {
-                currentSpeed += 0.25
+                currentSpeed += 0.25;
                 $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSpeed').text(currentSpeed + 'x');
             }
         });
 
@@ -81,6 +83,12 @@ $(() => {
 
         $('body').on('keydown', (event) => {
             switch (event.key) {
+                case 'ArrowDown':
+                    $('#slower').trigger('click');
+                    break;
+                case 'ArrowUp':
+                    $('#faster').trigger('click');
+                    break;
                 case 'Home':
                 case 'End':
                 case 'Backspace':
