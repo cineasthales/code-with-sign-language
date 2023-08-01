@@ -60,13 +60,17 @@ $(() => {
         });
 
         $('#slower').on('click', () => {
-            currentSpeed = currentSpeed === 0.25 ? 0.25 : currentSpeed - 0.25;
-            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+            if (currentSpeed > 0.25) {
+                currentSpeed -= 0.25
+                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+            }
         });
         
         $('#faster').on('click', () => {
-            currentSpeed = currentSpeed === 3 ? 3 : currentSpeed + 0.25;
-            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+            if (currentSpeed < 2) {
+                currentSpeed += 0.25
+                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+            }
         });
 
         $('body').on('keypress', (event) => {
