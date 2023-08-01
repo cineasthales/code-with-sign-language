@@ -3,7 +3,7 @@ $(() => {
         
         const videos = event.data.videos;
 
-        let currentIndex = 0, totalDuration = 0, numberOfDigits = 0;
+        let currentIndex = 0, totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
         let autoRepeat = true, stopped = false, hasTotalDuration = false;
         const numberOfVideos = videos.length;
 
@@ -15,11 +15,7 @@ $(() => {
                 + videos[i].file.path + '"></video>'
             );
 
-            if (i > 0) {
-                $('#video_' + i).hide();
-            } else {
-                $('#currentSign').text(videos[0].sign);
-            }
+            i > 0 ? $('#video_' + i).hide(); : $('#currentSign').text(videos[0].sign);
 
             $('#video_' + i).on('ended', () => {
                 if (i < numberOfVideos - 1) {
@@ -61,6 +57,16 @@ $(() => {
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
             $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'white');
+        });
+
+        $('#slower').on('click', () => {
+            currentSpeed = currentSpeed === 0.25 ? 0.25 : currentSpeed - 0.25;
+            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+        });
+        
+        $('#faster').on('click', () => {
+            currentSpeed = currentSpeed === 3 ? 3 : currentSpeed + 0.25;
+            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
         });
 
         $('body').on('keypress', (event) => {
@@ -110,6 +116,7 @@ $(() => {
             $('#video_' + currentIndex)[0].load();
             currentIndex = newIndex;
             $('#video_' + currentIndex).show();
+            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
             $('#currentSign').text(videos[currentIndex].sign);
             playNew ? play() : pause();
         }
