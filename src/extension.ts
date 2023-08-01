@@ -105,8 +105,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		<div id="videoContainer"></div>
 		<div id="infoContainer">
 			<div id="currentTime"></div>
+   			<button id="slower">
+				<i class="fa-solid fa-backward" id="slowerIcon"></i>
+			</button>
 			<div id="currentSign"></div>
-			<div id="totalDuration"></div>
+			<button id="faster">
+				<i class="fa-solid fa-forward" id="fasterIcon"></i>
+			</button>
+   			<div id="totalDuration"></div>
 		</div>
 		<div id="playerContainer">
 			<button id="rewind">
