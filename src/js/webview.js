@@ -1,4 +1,6 @@
 $(() => {
+    const vscode = acquireVsCodeApi();
+
     window.addEventListener('message', event => {
         
         const videos = event.data.videos;
@@ -73,6 +75,10 @@ $(() => {
                 $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
                 $('#currentSpeed').text(currentSpeed + 'x');
             }
+        });
+
+        $('#addToCode').on('click', () => {
+            vscode.postMessage({ text: 'Mensagem enviada.' });
         });
 
         $('body').on('keypress', (event) => {
