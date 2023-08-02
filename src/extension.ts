@@ -144,6 +144,12 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
 			</button>
 		</div>
+  		<div>
+			<button id="addToCode">
+				<i class="fa-solid fa-right-long" id="addToCodeIconArrow"></i>
+    				<i class="fa-regular fa-file-code" id="addToCodeIconFile"></i>
+			</button>
+    		</div>
 	`;
 
 	for (let js of allJs) {
