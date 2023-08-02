@@ -32,8 +32,8 @@ export function activate(context: vscode.ExtensionContext)
 			const webview = panel.webview;
 
 			webview.onDidReceiveMessage(
-				message => {
-					vscode.window.showErrorMessage("Mensagem da webview";);
+				(message) => {
+					vscode.window.showErrorMessage(message.text);
 					return;
 				},
 				undefined,
