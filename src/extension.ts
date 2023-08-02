@@ -30,11 +30,21 @@ export function activate(context: vscode.ExtensionContext)
 			);
 
 			const webview = panel.webview;
+
+			webview.onDidReceiveMessage(
+				message => {
+					vscode.window.showErrorMessage("Mensagem da webview";);
+					return;
+				},
+				undefined,
+				context.subscriptions
+			);
+
 			const uri = context.extensionUri;
 			const editor = vscode.window.activeTextEditor;
 
 			let signs = [], videos = [];
-
+	
 			if (editor && editor.selections) {
 				for (let selection of editor.selections) {
 					const range = new vscode.Range(selection.start, selection.end);
