@@ -78,7 +78,7 @@ $(() => {
         });
 
         $('#addToCode').on('click', () => {
-            vscode.postMessage({ text: 'Mensagem enviada.' });
+            vscode.postMessage({ text: 'Mensagem enviada!!!' });
         });
 
         $('body').on('keypress', (event) => {
@@ -89,10 +89,10 @@ $(() => {
 
         $('body').on('keydown', (event) => {
             switch (event.key) {
-                case 'ArrowDown':
+                case 'PageDown':
                     $('#slower').trigger('click');
                     break;
-                case 'ArrowUp':
+                case 'PageUp':
                     $('#faster').trigger('click');
                     break;
                 case 'Home':
@@ -101,11 +101,9 @@ $(() => {
                     $('#rewind').trigger('click');
                     break;
                 case 'ArrowLeft':
-                case 'PageDown':
                     $('#backward').trigger('click');
                     break;
                 case 'ArrowRight':
-                case 'PageUp':
                     $('#forward').trigger('click');
                     break;
                 case 'A':
