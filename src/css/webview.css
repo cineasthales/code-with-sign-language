@@ -18,6 +18,14 @@ button:hover, button:active {
     cursor: pointer;
 }
 
+#tabSignToCode {
+	border-bottom: 0;
+}
+
+#tabCodeToSign {
+	border-bottom: 0.5rem solid green;
+}
+
 #videoContainer {
     display: flex;
     justify-content: center;
