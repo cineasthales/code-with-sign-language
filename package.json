@@ -15,7 +15,7 @@
     "commands": [
       {
         "command": "code-with-sign-language.start",
-        "title": "Traduzir para Libras",
+        "title": "Libras",
         "icon": {
           "dark": "./src/icons/hands-dark.svg",
           "light": "./src/icons/hands-light.svg"
