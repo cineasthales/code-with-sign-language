@@ -119,6 +119,18 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	html += `
 	</head>
 	<body>
+ 		<div id="tabsContainer">
+			<button id="tabCodeToSign">
+   				<i class="fa-regular fa-file-code"></i>
+				<i class="fa-solid fa-arrow-right"></i>
+				<i class="fa-solid fa-hands"></i>
+			</button>
+   			<button id="tabSignToCode">
+				<i class="fa-solid fa-hands"></i>
+				<i class="fa-solid fa-arrow-right"></i>
+				<i class="fa-regular fa-file-code"></i>
+			</button>
+		</div>
 		<div id="infoContainer">
 			<div id="currentTime"></div>
 			<div id="currentSpeed">1x</div>
@@ -154,8 +166,6 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		<div id="addToCodeContainer">
 			<button id="addToCode">
 				<i class="fa-regular fa-keyboard"></i>
-				<i class="fa-solid fa-arrow-right"></i>
-				<i class="fa-regular fa-file-code"></i>
 			</button>
 		</div>
 	`;
