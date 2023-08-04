@@ -1,5 +1,16 @@
-$(() => {
+$(() =>
+{
     const vscode = acquireVsCodeApi();
+
+    $('#tabCodeToSign').on('click', () => {
+        $('#tabSignToCode').css('border-bottom', '0');
+        $('#tabCodeToSign').css('border-bottom', '0.5rem solid green'); 
+    });
+
+    $('#tabSignToCode').on('click', () => {
+        $('#tabCodeToSign').css('border-bottom', '0');
+        $('#tabSignToCode').css('border-bottom', '0.5rem solid green');
+    });
 
     window.addEventListener('message', event => {
         
