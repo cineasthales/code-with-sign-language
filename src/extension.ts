@@ -25,26 +25,21 @@ export function activate(context: vscode.ExtensionContext)
 
 			panel.onDidDispose(
 				() => { panel = undefined; },
-				null,
-				context.subscriptions
-			);
-
-			const webview = panel.webview;
-
-			webview.onDidReceiveMessage(
-				(message) => {
-					vscode.window.showErrorMessage(message.text);
-					return;
-				},
 				undefined,
 				context.subscriptions
 			);
 
-			const uri = context.extensionUri;
+			const webview = panel.webview;
 			const editor = vscode.window.activeTextEditor;
-
+			const uri = context.extensionUri;
 			let signs = [], videos = [];
-	
+
+			webview.onDidReceiveMessage(
+				addToCode(message, editor),
+				undefined,
+				context.subscriptions
+			);
+
 			if (editor && editor.selections) {
 				for (let selection of editor.selections) {
 					const range = new vscode.Range(selection.start, selection.end);
@@ -81,6 +76,18 @@ export function activate(context: vscode.ExtensionContext)
 			webview.html = getWebviewContent(webview, uri);
 		})
 	);
+}
+
+function addToCode(message: string, editor: vscode.TextEditor) : void
+{
+	if (editor && editor.selections) {
+		for (let selection of editor.selections) {
+			const position = new vscode.Position(selection.end + 1);
+			editor.edit((editor, position, message) => {
+				editor.insert(position, message.text);
+			});
+		}
+	}
 }
 
 function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
