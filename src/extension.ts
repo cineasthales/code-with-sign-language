@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext)
 
 			panel = vscode.window.createWebviewPanel(
 				'sign-videos',
-				'Code with Sign Language',
+				'Libras',
 				vscode.ViewColumn.Two,
 				{
 					enableScripts: true,
