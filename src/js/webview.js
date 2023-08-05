@@ -116,7 +116,7 @@ $(() => {
         });
 
         $('#addToCode').on('click', () => {
-            vscode.postMessage({ text: 'TESTE!' });
+            vscode.postMessage({ text: videos[currentIndex].sign });
         });
 
         $('body').on('keypress', (event) => {
