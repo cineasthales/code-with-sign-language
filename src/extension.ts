@@ -35,7 +35,12 @@ export function activate(context: vscode.ExtensionContext)
 			let signs = [], videos = [];
 
 			webview.onDidReceiveMessage(
-				addToCode(message, editor),
+				message => {
+					if (editor) {
+						let position = editor.selection.active;
+						editor.edit(builder => { builder.insert(position, message.text); });
+					}
+				},
 				undefined,
 				context.subscriptions
 			);
@@ -78,18 +83,6 @@ export function activate(context: vscode.ExtensionContext)
 	);
 }
 
-function addToCode(message: string, editor: vscode.TextEditor) : void
-{
-	if (editor && editor.selections) {
-		for (let selection of editor.selections) {
-			const position = new vscode.Position(selection.end + 1);
-			editor.edit((editor, position, message) => {
-				editor.insert(position, message.text);
-			});
-		}
-	}
-}
-
 function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 {
 	const allCss = [
@@ -119,16 +112,13 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	html += `
 	</head>
 	<body>
- 		<div id="tabsContainer">
+		<div id="tabsContainer">
 			<button id="tabCodeToSign">
-   				<i class="fa-regular fa-file-code"></i>
-				<i class="fa-solid fa-arrow-right"></i>
-				<i class="fa-solid fa-hands"></i>
+				<i class="fa-regular fa-file-code"></i><i class="fa-solid fa-arrow-right" id="tabCodeToSignArrowIcon"></i><i class="fa-solid fa-hands"></i>
 			</button>
-   			<button id="tabSignToCode">
-				<i class="fa-solid fa-hands"></i>
-				<i class="fa-solid fa-arrow-right"></i>
-				<i class="fa-regular fa-file-code"></i>
+			<div id="verticalLine"></div>
+			<button id="tabSignToCode">
+				<i class="fa-solid fa-hands"></i><i class="fa-solid fa-arrow-right" id="tabSignToCodeArrowIcon"></i><i class="fa-regular fa-file-code"></i>
 			</button>
 		</div>
 		<div id="infoContainer">
@@ -165,7 +155,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		</div>
 		<div id="addToCodeContainer">
 			<button id="addToCode">
-				<i class="fa-regular fa-keyboard"></i>
+				<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
 			</button>
 		</div>
 	`;
