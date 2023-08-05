@@ -113,48 +113,53 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	</head>
 	<body>
 		<div id="tabsContainer">
-			<button id="tabCodeToSign">
-				<i class="fa-regular fa-file-code"></i><i class="fa-solid fa-arrow-right" id="tabCodeToSignArrowIcon"></i><i class="fa-solid fa-hands"></i>
+			<button id="tabCodeToSign" class="infoToggle">
+				<i class="fa-regular fa-file-code codeToSignIcon"></i><i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i><i class="fa-solid fa-hands codeToSignIcon"></i>
 			</button>
 			<div id="verticalLine"></div>
-			<button id="tabSignToCode">
-				<i class="fa-solid fa-hands"></i><i class="fa-solid fa-arrow-right" id="tabSignToCodeArrowIcon"></i><i class="fa-regular fa-file-code"></i>
+			<button id="tabSignToCode" class="infoToggle">
+				<i class="fa-solid fa-hands signToCodeIcon"></i><i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i><i class="fa-regular fa-file-code signToCodeIcon"></i>
 			</button>
 		</div>
-		<div id="infoContainer">
-			<div id="currentTime"></div>
-			<div id="currentSpeed">1x</div>
-			<div id="totalDuration"></div>
+		<div id="timeContainer">
+			<div id="currentTime" class="infoTimeToggle"></div>
+			<div id="speedContainer">
+				<button id="slower" class="infoToggle">
+					<i class="fa-solid fa-backward" id="slowerIcon"></i>
+				</button>
+				<span id="currentSpeed" class="infoTimeToggle">1x</span>
+				<button id="faster" class="infoToggle">
+					<i class="fa-solid fa-forward" id="fasterIcon"></i>
+				</button>
+			</div>
+			<div id="totalDuration" class="infoTimeToggle"></div>
 		</div>		
 		<div id="videoContainer"></div>
-		<div id="playerTopContainer">
-			<button id="slower">
-				<i class="fa-solid fa-backward" id="slowerIcon"></i>
-			</button>
-			<div id="currentSign"></div>
-			<button id="faster">
-				<i class="fa-solid fa-forward" id="fasterIcon"></i>
-			</button>
-		</div>
-		<div id="playerBottomContainer">
-			<button id="rewind">
+		<div id="playerMainContainer">
+			<button id="rewind" class="infoToggle">
 				<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
 			</button>
-			<button id="backward">
+			<button id="backward" class="infoToggle">
 				<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
 			</button>
 			<button id="playPause">
 				<i class="fa-regular fa-circle-play" id="playPauseIcon"></i>
 			</button>
-			<button id="forward">
+			<button id="forward" class="infoToggle">
 				<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 			</button>
-			<button id="autoRepeat">
+			<button id="autoRepeat" class="infoToggle">
 				<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
 			</button>
 		</div>
+		<div id="playerInfoContainer">
+			<div id="currentSign"></div>
+			<button id="info">
+				<i class="fa-solid fa-circle-question" id="infoIcon"></i>
+			</button>
+		</div>
 		<div id="addToCodeContainer">
-			<button id="addToCode">
+			<button id="addToCode" class="infoToggle">
 				<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
 			</button>
 		</div>

@@ -1,38 +1,40 @@
-$(() =>
-{
+$(() => {
+
     const vscode = acquireVsCodeApi();
+    let secondTabActive = false;
 
     $('#tabCodeToSign').on('click', () => {
         $('#tabSignToCode').css('color', 'white');
         $('#tabCodeToSign').css('color', 'green');
-        $('#playerBottomContainer').css('border-bottom', '0');
+        $('#playerInfoContainer').css('border-bottom', '0.1rem solid transparent');
         $('#addToCode').hide();
+        secondTabActive = false;
     });
 
     $('#tabSignToCode').on('click', () => {
         $('#tabCodeToSign').css('color', 'white');
         $('#tabSignToCode').css('color', 'green');
-        $('#playerBottomContainer').css('border-bottom', '0.1rem solid white');
+        $('#playerInfoContainer').css('border-bottom', '0.1rem solid white');
         $('#addToCode').show();
+        secondTabActive = true;
     });
 
     window.addEventListener('message', event => {
-        
-        const videos = event.data.videos;
 
+        const videos = event.data.videos;
+        const numberOfVideos = videos.length;
         let currentIndex = 0, totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
         let autoRepeat = true, stopped = false, hasTotalDuration = false;
-        const numberOfVideos = videos.length;
 
         for (let i = 0; i < numberOfVideos; i++) {
             $('#videoContainer').append(
-                '<video width="550" height="270" type="video/mp4" muted '
+                '<video type="video/mp4" muted '
                 + 'id="video_' + i + '" src="' + videos[i].file.scheme
                 + '://' + videos[i].file.authority
                 + videos[i].file.path + '"></video>'
             );
 
-            i > 0 ? $('#video_' + i).hide() : $('#currentSign').text(videos[0].sign);
+            i > 0 ? $('#video_' + i).hide() : $('#currentSign').text(videos[0].sign.toUpperCase());
 
             $('#video_' + i).on('ended', () => {
                 if (i < numberOfVideos - 1) {
@@ -45,6 +47,48 @@ $(() =>
                 }
             });
         }
+
+        $('#slower').on('click', () => {
+            if (currentSpeed > 0.25) {
+                currentSpeed -= 0.25;
+                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSpeed').text(currentSpeed + 'x');
+            }
+        });
+        
+        $('#faster').on('click', () => {
+            if (currentSpeed < 2) {
+                currentSpeed += 0.25;
+                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSpeed').text(currentSpeed + 'x');
+            }
+        });
+
+        $('#info').on('click', () => {
+            if ($('#infoIcon').hasClass('fa-circle-question')) {
+                $('#infoIcon').removeClass('fa-circle-question');
+                $('#infoIcon').addClass('fa-circle-check');
+                $('#tabsContainer').css('border-bottom', '0.1rem solid transparent');
+                $('#verticalLine').css('border-left', '0.1rem solid transparent');
+                $('#playerInfoContainer').css('border-bottom', '0.1rem solid transparent');
+                $('.infoToggle').css('opacity', '0');
+                $('.infoToggle').css('cursor', 'default');
+                $('.infoToggle').prop('disabled', true);
+                $('.infoTimeToggle').css('opacity', '0');
+            } else {
+                $('#infoIcon').removeClass('fa-circle-check');
+                $('#infoIcon').addClass('fa-circle-question');
+                $('#tabsContainer').css('border-bottom', '0.1rem solid white');
+                $('#verticalLine').css('border-left', '0.1rem solid white');
+                if (secondTabActive) {
+                    $('#playerInfoContainer').css('border-bottom', '0.1rem solid white');
+                }
+                $('.infoToggle').css('opacity', '1');
+                $('.infoToggle').css('cursor', 'pointer');
+                $('.infoToggle').prop('disabled', false);
+                $('.infoTimeToggle').css('opacity', '1');
+            }
+        });
 
         $('#rewind').on('click', () => {
             changeCurrentVideo(0, false);
@@ -74,22 +118,6 @@ $(() =>
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
             $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'white');
-        });
-
-        $('#slower').on('click', () => {
-            if (currentSpeed > 0.25) {
-                currentSpeed -= 0.25;
-                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-                $('#currentSpeed').text(currentSpeed + 'x');
-            }
-        });
-        
-        $('#faster').on('click', () => {
-            if (currentSpeed < 2) {
-                currentSpeed += 0.25;
-                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-                $('#currentSpeed').text(currentSpeed + 'x');
-            }
         });
 
         $('#addToCode').on('click', () => {
@@ -148,7 +176,7 @@ $(() =>
             currentIndex = newIndex;
             $('#video_' + currentIndex).show();
             $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-            $('#currentSign').text(videos[currentIndex].sign);
+            $('#currentSign').text(videos[currentIndex].sign.toUpperCase());
             playNew ? play() : pause();
         }
 
@@ -161,7 +189,7 @@ $(() =>
                     totalDuration = Math.floor(totalDuration);
                     numberOfDigits = totalDuration.toString().length;
                     $('#totalDuration').text(totalDuration + 's');
-                    $('#infoContainer').css('color', 'white');
+                    $('#timeContainer').css('color', 'white');
                     hasTotalDuration = true;
                 } else {
                     totalDuration = 0;
