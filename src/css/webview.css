@@ -11,6 +11,7 @@ button {
     font-size: 3rem;
     color: white;
     background-color: transparent;
+    padding: 0.25rem;
 }
 
 button:hover, button:active {
@@ -18,19 +19,25 @@ button:hover, button:active {
     cursor: pointer;
 }
 
-#tabSignToCode {
-	border-bottom: 0;
+#tabsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 0.1rem solid white;
 }
 
 #tabCodeToSign {
-	border-bottom: 0.5rem solid green;
+    color: green;
 }
 
-#videoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 20rem;
+#tabCodeToSignArrowIcon, #tabSignToCodeArrowIcon {
+    padding: 0.85rem;
+}
+
+#verticalLine {
+    border-left: 0.1px solid white;
+    height: 4.5rem;
 }
 
 #infoContainer {
@@ -41,11 +48,25 @@ button:hover, button:active {
     font-size: 2rem;
 }
 
+#videoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #playerTopContainer, #playerBottomContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
+}
+
+#playerBottomContainer {
+    border-top: 0.1rem solid white;
+}
+
+#slower, #faster {
+    font-size: 2rem;
 }
 
 #currentSign {
@@ -55,7 +76,7 @@ button:hover, button:active {
 }
 
 #playPause {
-    font-size: 5rem;
+    font-size: 6rem;
 }
 
 #autoRepeatIcon {
@@ -69,5 +90,7 @@ button:hover, button:active {
 }
 
 #addToCode {
-    padding: 0.5rem 1rem;
+    
+    display: none;
+    font-size: 5rem;
 }

@@ -3,13 +3,17 @@ $(() =>
     const vscode = acquireVsCodeApi();
 
     $('#tabCodeToSign').on('click', () => {
-        $('#tabSignToCode').css('border-bottom', '0');
-        $('#tabCodeToSign').css('border-bottom', '0.5rem solid green'); 
+        $('#tabSignToCode').css('color', 'white');
+        $('#tabCodeToSign').css('color', 'green');
+        $('#playerBottomContainer').css('border-bottom', '0');
+        $('#addToCode').hide();
     });
 
     $('#tabSignToCode').on('click', () => {
-        $('#tabCodeToSign').css('border-bottom', '0');
-        $('#tabSignToCode').css('border-bottom', '0.5rem solid green');
+        $('#tabCodeToSign').css('color', 'white');
+        $('#tabSignToCode').css('color', 'green');
+        $('#playerBottomContainer').css('border-bottom', '0.1rem solid white');
+        $('#addToCode').show();
     });
 
     window.addEventListener('message', event => {
@@ -89,7 +93,7 @@ $(() =>
         });
 
         $('#addToCode').on('click', () => {
-            vscode.postMessage({ text: 'Mensagem enviada!!!' });
+            vscode.postMessage({ text: 'TESTE' });
         });
 
         $('body').on('keypress', (event) => {
