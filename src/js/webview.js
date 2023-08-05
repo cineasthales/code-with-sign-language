@@ -1,22 +1,21 @@
 $(() => {
 
     const vscode = acquireVsCodeApi();
-    let secondTabActive = false;
 
     $('#tabCodeToSign').on('click', () => {
         $('#tabSignToCode').css('color', 'white');
         $('#tabCodeToSign').css('color', 'green');
-        $('#playerInfoContainer').css('border-bottom', '0.1rem solid transparent');
-        $('#addToCode').hide();
-        secondTabActive = false;
+        $('#addToCode').css('opacity', '0');
+        $('#addToCode').css('cursor', 'default');
+        $('#addToCode').prop('disabled', true);
     });
 
     $('#tabSignToCode').on('click', () => {
         $('#tabCodeToSign').css('color', 'white');
         $('#tabSignToCode').css('color', 'green');
-        $('#playerInfoContainer').css('border-bottom', '0.1rem solid white');
-        $('#addToCode').show();
-        secondTabActive = true;
+        $('#addToCode').css('opacity', '1');
+        $('#addToCode').css('cursor', 'pointer');
+        $('#addToCode').prop('disabled', false);
     });
 
     window.addEventListener('message', event => {
@@ -70,7 +69,6 @@ $(() => {
                 $('#infoIcon').addClass('fa-circle-check');
                 $('#tabsContainer').css('border-bottom', '0.1rem solid transparent');
                 $('#verticalLine').css('border-left', '0.1rem solid transparent');
-                $('#playerInfoContainer').css('border-bottom', '0.1rem solid transparent');
                 $('.infoToggle').css('opacity', '0');
                 $('.infoToggle').css('cursor', 'default');
                 $('.infoToggle').prop('disabled', true);
@@ -80,9 +78,6 @@ $(() => {
                 $('#infoIcon').addClass('fa-circle-question');
                 $('#tabsContainer').css('border-bottom', '0.1rem solid white');
                 $('#verticalLine').css('border-left', '0.1rem solid white');
-                if (secondTabActive) {
-                    $('#playerInfoContainer').css('border-bottom', '0.1rem solid white');
-                }
                 $('.infoToggle').css('opacity', '1');
                 $('.infoToggle').css('cursor', 'pointer');
                 $('.infoToggle').prop('disabled', false);
@@ -121,7 +116,7 @@ $(() => {
         });
 
         $('#addToCode').on('click', () => {
-            vscode.postMessage({ text: 'TESTE' });
+            vscode.postMessage({ text: 'TESTE!' });
         });
 
         $('body').on('keypress', (event) => {
@@ -154,6 +149,10 @@ $(() => {
                 case 'R':
                 case 'r':
                     $('#autoRepeat').trigger('click');
+                    break;
+                case 'i':
+                case 'I':
+                    $('#info').trigger('click');
             }
         });
 
@@ -171,12 +170,14 @@ $(() => {
         }
 
         function changeCurrentVideo(newIndex, playNew) {
-            $('#video_' + currentIndex).hide();
-            $('#video_' + currentIndex)[0].load();
-            currentIndex = newIndex;
-            $('#video_' + currentIndex).show();
-            $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-            $('#currentSign').text(videos[currentIndex].sign.toUpperCase());
+            if (numberOfVideos > 1) {
+                $('#video_' + currentIndex).hide();
+                $('#video_' + currentIndex)[0].load();
+                currentIndex = newIndex;
+                $('#video_' + currentIndex).show();
+                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSign').text(videos[currentIndex].sign.toUpperCase());
+            }
             playNew ? play() : pause();
         }
 

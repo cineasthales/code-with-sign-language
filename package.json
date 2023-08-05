@@ -27,7 +27,7 @@
         {
           "command": "code-with-sign-language.start",
           "group": "navigation@1",
-          "when": "editorIsOpen && editorHasSelection && editorLangId == javascript"
+          "when": "editorLangId == javascript"
         }
       ]
     }

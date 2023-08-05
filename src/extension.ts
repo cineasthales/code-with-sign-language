@@ -68,14 +68,21 @@ export function activate(context: vscode.ExtensionContext)
 						// }
 					}
 				}
+				if (!signs.length) {
+					videos.push({
+						sign: '',
+						file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','oi.mp4')),
+					});
+				} else {
+					for (let sign of signs) {
+						videos.push({
+							sign: sign,
+							file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
+						});
+					}
+				}
 			}
 
-			for (let sign of signs) {
-				videos.push({
-					sign: sign,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
-				});
-			}
 			webview.postMessage({videos});
 
 			webview.html = getWebviewContent(webview, uri);
@@ -154,14 +161,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		</div>
 		<div id="playerInfoContainer">
 			<div id="currentSign"></div>
-			<button id="info">
-				<i class="fa-solid fa-circle-question" id="infoIcon"></i>
-			</button>
-		</div>
-		<div id="addToCodeContainer">
-			<button id="addToCode" class="infoToggle">
-				<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
-			</button>
+			<div id="otherActionsContainer">
+				<button id="addToCode" disabled>
+					<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
+				</button>
+				<button id="info">
+					<i class="fa-regular fa-circle-question" id="infoIcon"></i>
+				</button>
+			</div>
 		</div>
 	`;
 
