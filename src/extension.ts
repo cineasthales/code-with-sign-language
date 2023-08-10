@@ -267,7 +267,7 @@ const dictionary = [
 	},
 	{
 		category: 'Valores',
-		signs: ['true', 'false', 'null', 'undefined', 'NaN'],
+		signs: ['true', 'false', 'null', 'undefined'],
 	},
 	{
 		category: 'Estruturas de Condição',
