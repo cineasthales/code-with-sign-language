@@ -37,6 +37,11 @@ video {
 
 #tabCodeToSign, #tabSignToCode {
     font-size: 2.5rem;
+    display: flex;
+}
+
+#tabCodeToSign i, #tabSignToCode i {
+    display: inline-block;
 }
 
 #codeToSignArrow, #signToCodeArrow {
