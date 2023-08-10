@@ -56,7 +56,10 @@ export function activate(context: vscode.ExtensionContext)
 						.toLowerCase()
 						.split(' ');
 					for (let expression of selected) {
-						/* if (reserved.includes(expression) || futureReserved.includes(expression)) {
+						/* if (reserved.includes(expression)
+      							|| simpleReserved.includes(expression)
+      							|| futureReserved.includes(expression)
+	     					) {
 							signs.push(expression);
 						} else { */
 							const characters = expression.split('');
@@ -194,14 +197,12 @@ export function deactivate() {
 
 const reserved = [
 	'arguments',
-	'as',
 	'async',
 	'await',
 	'break',
 	'case',
 	'catch',
 	'class',
-	'const',
 	'constructor',
 	'continue',
 	'debugger',
@@ -220,13 +221,9 @@ const reserved = [
 	'get',
 	'if',
 	'import',
-	'in',
 	'instanceof',
-	'let',
-	'NaN',
 	'new',
 	'null',
-	'of',
 	'return',
 	'set',
 	'static',
@@ -243,6 +240,14 @@ const reserved = [
 	'while',
 	'with',
 	'yield',
+];
+
+const simpleReserved = [
+	'as',
+	'const',
+	'in',
+	'let',
+	'of',
 ];
 
 const futureReserved = [
