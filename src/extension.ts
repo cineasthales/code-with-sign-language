@@ -57,9 +57,9 @@ export function activate(context: vscode.ExtensionContext)
 						.split(' ');
 					for (let expression of selected) {
 						/* if (reserved.includes(expression)
-      							|| simpleReserved.includes(expression)
-      							|| futureReserved.includes(expression)
-	     					) {
+							|| simpleReserved.includes(expression)
+							|| futureReserved.includes(expression)
+						) {
 							signs.push(expression);
 						} else { */
 							const characters = expression.split('');
@@ -125,13 +125,13 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		<div id="tabsContainer">
 			<button id="tabCodeToSign" class="infoToggle">
 				<i class="fa-regular fa-file-code codeToSignIcon"></i>
-    				<i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i>
+				<i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands codeToSignIcon"></i>
 			</button>
 			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle">
 				<i class="fa-solid fa-hands signToCodeIcon"></i>
-    				<i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i>
+				<i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code signToCodeIcon"></i>
 			</button>
 		</div>
