@@ -37,8 +37,10 @@ export function activate(context: vscode.ExtensionContext)
 			webview.onDidReceiveMessage(
 				message => {
 					if (editor) {
-						let position = editor.selection.active;
-						editor.edit(builder => { builder.insert(position, message.text); });
+						const position = editor.selection.active;
+						editor.edit(builder => {
+							builder.insert(position, message.text);
+						});
 					}
 				},
 				undefined,
@@ -54,11 +56,9 @@ export function activate(context: vscode.ExtensionContext)
 						.toLowerCase()
 						.split(' ');
 					for (let expression of selected) {
-						/*
-						if (reserved.includes(expression)) {
+						/* if (reserved.includes(expression) || futureReserved.includes(expression)) {
 							signs.push(expression);
-						} else {
-						*/
+						} else { */
 							const characters = expression.split('');
 							for (let character of characters) {
 								if (character.match(/[a-z0-9]/)) {
@@ -121,11 +121,15 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	<body>
 		<div id="tabsContainer">
 			<button id="tabCodeToSign" class="infoToggle">
-				<i class="fa-regular fa-file-code codeToSignIcon"></i><i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i><i class="fa-solid fa-hands codeToSignIcon"></i>
+				<i class="fa-regular fa-file-code codeToSignIcon"></i>
+    				<i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i>
+				<i class="fa-solid fa-hands codeToSignIcon"></i>
 			</button>
 			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle">
-				<i class="fa-solid fa-hands signToCodeIcon"></i><i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i><i class="fa-regular fa-file-code signToCodeIcon"></i>
+				<i class="fa-solid fa-hands signToCodeIcon"></i>
+    				<i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i>
+				<i class="fa-regular fa-file-code signToCodeIcon"></i>
 			</button>
 		</div>
 		<div id="timeContainer">
@@ -189,17 +193,72 @@ export function deactivate() {
 }
 
 const reserved = [
-	// TODO: declare in alphabetical order
+	'arguments',
+	'as',
+	'async',
+	'await',
+	'break',
+	'case',
+	'catch',
+	'class',
+	'const',
+	'constructor',
+	'continue',
+	'debugger',
+	'default',
+	'delete',
+	'do',
+	'else',
+	'eval',
+	'export',
+	'extends',
+	'false',
+	'finally',
+	'for',
+	'from',
+	'function',
+	'get',
+	'if',
+	'import',
+	'in',
+	'instanceof',
+	'let',
+	'NaN',
+	'new',
+	'null',
+	'of',
+	'return',
+	'set',
+	'static',
+	'super',
+	'switch',
+	'this',
+	'throw',
+	'true',
+	'try',
+	'typeof',
+	'undefined',
+	'var',
+	'void',
+	'while',
+	'with',
+	'yield',
+];
+
+const futureReserved = [
+	'enum',
+	'implements',
+	'interface',
+	'package',
+	'private',
+	'protected',
+	'public',
 ];
 
 const dictionary = [
 	{
 		category: 'Variáveis e Constantes',
-		signs: ['var', 'let', 'const'],
-	},
-	{
-		category: 'Tipos de Dados',
-		signs: ['boolean', 'char', 'byte', 'short', 'int', 'long', 'float', 'double', 'typeof'],
+		signs: ['var', 'let', 'const', 'typeof'],
 	},
 	{
 		category: 'Valores',
@@ -211,53 +270,34 @@ const dictionary = [
 	},
 	{
 		category: 'Estruturas de Repetição',
-		signs: ['while', 'do', 'break', 'continue', 'for', 'in', 'of'],
+		signs: ['while', 'do', 'break', 'continue', 'for', 'of', 'in'],
 	},
 	{
 		category: 'Tratamento de Exceção',
-		signs: ['try', 'catch', 'finally', 'throw', 'throws'],
+		signs: ['try', 'catch', 'finally', 'throw'],
 	},
 	{
 		category: 'Funções e Métodos',
-		signs: ['function', 'void', 'return', 'static', 'arguments', 'yield', 'eval'],
+		signs: ['function', 'void', 'return', 'arguments', 'eval', 'yield'],
 	},
 	{
 		category: 'Classes',
-		signs: ['class', 'constructor', 'get', 'set', 'extends', 'abstract'],
+		signs: ['class', 'constructor', 'get', 'set', 'extends', 'static'],
 	},
 	{
 		category: 'Objetos',
-		signs: ['new', 'this', 'super', 'instanceof'],
-	},
-	{
-		category: 'Interfaces',
-		signs: ['interface', 'implements'],
-	},
-	{
-		category: 'Escopos',
-		signs: ['public', 'private', 'protected'],
+		signs: ['new', 'this', 'super', 'instanceof', 'delete'],
 	},
 	{
 		category: 'Programação Assíncrona',
 		signs: ['async', 'await'],
 	},
 	{
-		category: 'Pacotes',
-		signs: ['package', 'import', 'export'],
+		category: 'Módulos',
+		signs: ['import', 'export', 'from', 'as'],
+	},
+	{
+		category: 'Depuração',
+		signs: ['debugger'],
 	},
 ];
-
-/*
-'as',
-'debugger',
-'delete',
-'enum',
-'final',
-'from',
-'goto',
-'native',
-'synchronized',
-'transient',
-'volatile',
-'with',
-*/
