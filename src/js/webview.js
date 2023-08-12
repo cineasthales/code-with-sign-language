@@ -3,16 +3,16 @@ $(() => {
     const vscode = acquireVsCodeApi();
 
     $('#tabCodeToSign').on('click', () => {
-        $('#tabSignToCode').css('color', 'white');
-        $('#tabCodeToSign').css('color', 'green');
+        $('#tabCodeToSign').css('border-bottom-color', '#137BCD');
+        $('#tabSignToCode').css('border-bottom-color', 'transparent');
         $('#addToCode').css('opacity', '0');
         $('#addToCode').css('cursor', 'default');
         $('#addToCode').prop('disabled', true);
     });
 
     $('#tabSignToCode').on('click', () => {
-        $('#tabCodeToSign').css('color', 'white');
-        $('#tabSignToCode').css('color', 'green');
+        $('#tabSignToCode').css('border-bottom-color', '#137BCD');
+        $('#tabCodeToSign').css('border-bottom-color', 'transparent');
         $('#addToCode').css('opacity', '1');
         $('#addToCode').css('cursor', 'pointer');
         $('#addToCode').prop('disabled', false);
@@ -67,17 +67,15 @@ $(() => {
             if ($('#infoIcon').hasClass('fa-circle-question')) {
                 $('#infoIcon').removeClass('fa-circle-question');
                 $('#infoIcon').addClass('fa-circle-check');
-                $('#tabsContainer').css('border-bottom', '0.1rem solid transparent');
-                $('#verticalLine').css('border-left', '0.1rem solid transparent');
-                $('.infoToggle').css('opacity', '0');
-                $('.infoToggle').css('cursor', 'default');
+                $('#infoIcon').prop('title', 'Ok');
+                $('.infoToggle').css('opacity', '0.1');
+                $('.infoToggle').css('cursor', 'not-allowed');
                 $('.infoToggle').prop('disabled', true);
-                $('.infoTimeToggle').css('opacity', '0');
+                $('.infoTimeToggle').css('opacity', '0.1');
             } else {
                 $('#infoIcon').removeClass('fa-circle-check');
                 $('#infoIcon').addClass('fa-circle-question');
-                $('#tabsContainer').css('border-bottom', '0.1rem solid white');
-                $('#verticalLine').css('border-left', '0.1rem solid white');
+                $('#infoIcon').prop('title', 'O que é isto?');
                 $('.infoToggle').css('opacity', '1');
                 $('.infoToggle').css('cursor', 'pointer');
                 $('.infoToggle').prop('disabled', false);
@@ -112,7 +110,7 @@ $(() => {
 
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
-            $('#autoRepeatIcon').css('color', autoRepeat ? 'green' : 'white');
+            $('#autoRepeatIcon').css('border-bottom-color', autoRepeat ? '#137BCD' : 'transparent');
         });
 
         $('#addToCode').on('click', () => {
@@ -160,12 +158,14 @@ $(() => {
             stopped = false;
             $('#playPauseIcon').removeClass('fa-circle-play');
             $('#playPauseIcon').addClass('fa-circle-pause');
+            $('#playPauseIcon').prop('title', 'Pausar vídeo');
             $('#video_' + currentIndex).trigger('play');
         }
 
         function pause() {
             $('#playPauseIcon').removeClass('fa-circle-pause');
             $('#playPauseIcon').addClass('fa-circle-play');
+            $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
             $('#video_' + currentIndex).trigger('pause');
         }
 
@@ -190,7 +190,6 @@ $(() => {
                     totalDuration = Math.floor(totalDuration);
                     numberOfDigits = totalDuration.toString().length;
                     $('#totalDuration').text(totalDuration + 's');
-                    $('#timeContainer').css('color', 'white');
                     hasTotalDuration = true;
                 } else {
                     totalDuration = 0;

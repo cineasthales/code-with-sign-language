@@ -122,61 +122,63 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	html += `
 	</head>
 	<body>
-		<div id="tabsContainer">
-			<button id="tabCodeToSign" class="infoToggle">
+		<nav id="tabsContainer">
+			<button id="tabCodeToSign" class="infoToggle" title="Tradutor de código para Libras">
 				<i class="fa-regular fa-file-code codeToSignIcon"></i>
 				<i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands codeToSignIcon"></i>
 			</button>
 			<div id="verticalLine"></div>
-			<button id="tabSignToCode" class="infoToggle">
+			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands signToCodeIcon"></i>
 				<i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code signToCodeIcon"></i>
 			</button>
-		</div>
-		<div id="timeContainer">
-			<div id="currentTime" class="infoTimeToggle"></div>
-			<div id="speedContainer">
-				<button id="slower" class="infoToggle">
-					<i class="fa-solid fa-backward" id="slowerIcon"></i>
+		</nav>
+		<main>
+			<section id="timeContainer">
+				<div id="currentTime" class="infoTimeToggle"></div>
+				<div id="speedContainer">
+					<button id="slower" class="infoToggle" title="Diminuir velocidade">
+						<i class="fa-solid fa-backward" id="slowerIcon"></i>
+					</button>
+					<span id="currentSpeed" class="infoTimeToggle">1x</span>
+					<button id="faster" class="infoToggle" title="Aumentar velocidade">
+						<i class="fa-solid fa-forward" id="fasterIcon"></i>
+					</button>
+				</div>
+				<div id="totalDuration" class="infoTimeToggle"></div>
+			</section>
+			<section id="videoContainer"></section>
+			<section id="playerMainContainer">
+				<button id="rewind" class="infoToggle" title="Retornar ao início">
+					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
 				</button>
-				<span id="currentSpeed" class="infoTimeToggle">1x</span>
-				<button id="faster" class="infoToggle">
-					<i class="fa-solid fa-forward" id="fasterIcon"></i>
+				<button id="backward" class="infoToggle" title="Sinal anterior">
+					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
 				</button>
-			</div>
-			<div id="totalDuration" class="infoTimeToggle"></div>
-		</div>		
-		<div id="videoContainer"></div>
-		<div id="playerMainContainer">
-			<button id="rewind" class="infoToggle">
-				<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
-			</button>
-			<button id="backward" class="infoToggle">
-				<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
-			</button>
-			<button id="playPause">
-				<i class="fa-regular fa-circle-play" id="playPauseIcon"></i>
-			</button>
-			<button id="forward" class="infoToggle">
-				<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
-			</button>
-			<button id="autoRepeat" class="infoToggle">
-				<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
-			</button>
-		</div>
-		<div id="playerInfoContainer">
-			<div id="currentSign"></div>
-			<div id="otherActionsContainer">
-				<button id="addToCode" disabled>
-					<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
+				<button id="playPause" title="Reproduzir vídeo">
+					<i class="fa-regular fa-circle-play" id="playPauseIcon"></i>
 				</button>
-				<button id="info">
-					<i class="fa-regular fa-circle-question" id="infoIcon"></i>
+				<button id="forward" class="infoToggle" title="Próximo sinal">
+					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 				</button>
-			</div>
-		</div>
+				<button id="autoRepeat" class="infoToggle" title="Repetir automaticamente">
+					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
+				</button>
+			</section>
+			<section id="playerInfoContainer">
+				<div id="currentSign"></div>
+				<div id="otherActionsContainer">
+					<button id="addToCode" disabled title="Adicionar ao código">
+						<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
+					</button>
+					<button id="info" title="O que é isto?">
+						<i class="fa-regular fa-circle-question" id="infoIcon"></i>
+					</button>
+				</div>
+			</section>
+		</main>
 	`;
 
 	for (let js of allJs) {
