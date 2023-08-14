@@ -1,8 +1,8 @@
 :root {
     --primaryColor: #137BCD;
-    --lightThemeBorder: 0.1rem solid black;
-    --darkThemeBorder: 0.1rem solid white;
-    --highContrastThemeBorder: 0.1rem solid red;
+    --lightThemeBorder: 0.1rem solid rgba(0, 0, 0, .3);
+    --darkThemeBorder: 0.1rem solid rgba(255, 255, 255, .3);
+    --highContrastThemeBorder: 0.1rem solid rgba(255, 0, 0, .3);
 }
 
 * {
@@ -128,9 +128,9 @@ body.vscode-light button { color: black; }
 body.vscode-dark button { color: white; }
 body.vscode-high-contrast button { color: red; }
 
-body.vscode-light button:hover, body.vscode-light button:active,
-body.vscode-dark button:hover, body.vscode-dark button:active,
-body.vscode-high-contrast button:hover, body.vscode-high-contrast button:active {
+body.vscode-light button:hover:enabled, body.vscode-light button:active:enabled,
+body.vscode-dark button:hover:enabled, body.vscode-dark button:active:enabled,
+body.vscode-high-contrast button:hover:enabled, body.vscode-high-contrast button:active:enabled {
     color: var(--primaryColor);
     cursor: pointer;
 }

@@ -67,19 +67,28 @@ $(() => {
             if ($('#infoIcon').hasClass('fa-circle-question')) {
                 $('#infoIcon').removeClass('fa-circle-question');
                 $('#infoIcon').addClass('fa-circle-check');
-                $('#infoIcon').prop('title', 'Ok');
+                $('#info').prop('title', 'Ok');
+                $('.infoTimeToggle').css('opacity', '0.1');
                 $('.infoToggle').css('opacity', '0.1');
                 $('.infoToggle').css('cursor', 'not-allowed');
                 $('.infoToggle').prop('disabled', true);
-                $('.infoTimeToggle').css('opacity', '0.1');
+                $('.infoToggle').prop('title', '');
             } else {
                 $('#infoIcon').removeClass('fa-circle-check');
                 $('#infoIcon').addClass('fa-circle-question');
-                $('#infoIcon').prop('title', 'O que é isto?');
+                $('#info').prop('title', 'O que é isto?');
+                $('.infoTimeToggle').css('opacity', '1');
                 $('.infoToggle').css('opacity', '1');
                 $('.infoToggle').css('cursor', 'pointer');
                 $('.infoToggle').prop('disabled', false);
-                $('.infoTimeToggle').css('opacity', '1');
+                $('#tabCodeToSign').prop('title', 'Tradutor de código para Libras');
+                $('#tabSignToCode').prop('title', 'Tradutor de Libras para código');
+                $('#slower').prop('title', 'Diminuir velocidade');
+                $('#faster').prop('title', 'Aumentar velocidade');
+                $('#rewind').prop('title', 'Retornar ao início');
+                $('#backward').prop('title', 'Sinal anterior');
+                $('#forward').prop('title', 'Próximo sinal');
+                $('#autoRepeat').prop('title', 'Repetir automaticamente');
             }
         });
 
