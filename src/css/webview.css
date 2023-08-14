@@ -20,6 +20,13 @@ button {
     padding: 0.25rem;
 }
 
+button:hover:enabled,
+button:focus:enabled,
+button:active:enabled {
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
 video {
     max-width: 100%;
 }
@@ -127,13 +134,6 @@ video {
 body.vscode-light button { color: black; }
 body.vscode-dark button { color: white; }
 body.vscode-high-contrast button { color: red; }
-
-body.vscode-light button:hover:enabled, body.vscode-light button:active:enabled,
-body.vscode-dark button:hover:enabled, body.vscode-dark button:active:enabled,
-body.vscode-high-contrast button:hover:enabled, body.vscode-high-contrast button:active:enabled {
-    color: var(--primaryColor);
-    cursor: pointer;
-}
 
 body.vscode-light #tabsContainer { border-bottom: var(--lightThemeBorder) }
 body.vscode-dark #tabsContainer { border-bottom: var(--darkThemeBorder) }
