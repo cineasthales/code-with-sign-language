@@ -56,7 +56,7 @@ $(() => {
         const videos = event.data.videos;
         const numberOfVideos = videos.length;
         let currentIndex = 0, totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
-        let currentCategory = 0, numberOfCategories = 10;
+        let currentCategory = 0, numberOfCategories = 11;
         let autoRepeat = true, stopped = false, hasTotalDuration = false, filtered = false;
 
         for (let i = 0; i < numberOfVideos; i++) {
@@ -88,7 +88,6 @@ $(() => {
                 $('#currentSpeed').text(currentSpeed + 'x');
             }
         });
-        
         $('#faster').on('click', () => {
             if (currentSpeed < 2) {
                 currentSpeed += 0.25;
