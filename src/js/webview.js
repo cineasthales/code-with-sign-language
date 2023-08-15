@@ -98,7 +98,7 @@ $(() => {
 
         $('#filter').on('click', () => {
             filtered = !filtered;
-            $('#filterIcon').css('border-bottom-color', filtered ? '#137BCD' : 'transparent');
+            $('#filter').css('border-bottom-color', filtered ? '#137BCD' : 'transparent');
         });
 
         $('#rewind').on('click', () => {
@@ -128,7 +128,7 @@ $(() => {
 
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
-            $('#autoRepeatIcon').css('border-bottom-color', autoRepeat ? '#137BCD' : 'transparent');
+            $('#autoRepeat').css('border-bottom-color', autoRepeat ? '#137BCD' : 'transparent');
         });
 
         $('#addToCode').on('click', () => {
