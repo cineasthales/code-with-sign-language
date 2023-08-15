@@ -181,8 +181,9 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 			<section id="playerInfoContainer">
 				<div id="currentSign"></div>
 				<div id="otherActionsContainer">
-					<button id="addToCode" disabled title="Adicionar ao código">
-						<i class="fa-regular fa-keyboard" id="addToCodeIcon"></i>
+					<button id="addToCode" disabled title="Escrever palavra no código">
+      						<i class="fa-solid fa-file-code addToCodeIcon"></i>
+						<i class="fa-solid fa-pen addToCodeIcon" id="addToCodePen"></i>
 					</button>
 					<button id="info" title="O que é isto?">
 						<i class="fa-regular fa-circle-question" id="infoIcon"></i>
