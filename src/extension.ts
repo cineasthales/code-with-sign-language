@@ -149,6 +149,17 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				</div>
 				<div id="totalDuration" class="infoTimeToggle"></div>
 			</section>
+   			<section id="filterContainer">
+				<button id="filterPrevious" class="infoToggle">
+					<i class="fa-solid fa-chevron-left" id="filterPreviousIcon"></i>
+				</button>
+				<button id="filter" class="infoToggle" title="Filtrar">
+					<i class="fa-solid fa-filter" id="filterIcon"></i>
+				</button>
+				<button id="filterNext" class="infoToggle">
+					<i class="fa-solid fa-chevron-right" id="filterNextIcon"></i>
+				</button>
+			</section>
 			<section id="videoContainer"></section>
 			<section id="playerMainContainer">
 				<button id="rewind" class="infoToggle" title="Retornar ao início">
