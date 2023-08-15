@@ -56,6 +56,7 @@ $(() => {
         const videos = event.data.videos;
         const numberOfVideos = videos.length;
         let currentIndex = 0, totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
+        let currentCategory = 0, numberOfCategories = 10;
         let autoRepeat = true, stopped = false, hasTotalDuration = false, filtered = false;
 
         for (let i = 0; i < numberOfVideos; i++) {
@@ -95,21 +96,25 @@ $(() => {
                 $('#currentSpeed').text(currentSpeed + 'x');
             }
         });
-
+        
+        $('#filterPrevious').on('click', () => {
+            let newCategory = currentCategory === 0 ? numberOfCategories - 1 : currentCategory - 1;
+        });
         $('#filter').on('click', () => {
             filtered = !filtered;
             $('#filter').css('border-bottom-color', filtered ? '#137BCD' : 'transparent');
+        });
+        $('#filterNext').on('click', () => {
+            let newCategory = currentCategory === numberOfCategories - 1 ? 0 : currentCategory + 1;
         });
 
         $('#rewind').on('click', () => {
             changeCurrentVideo(0, false);
         });
-
         $('#backward').on('click', () => {
             let newIndex = currentIndex === 0 ? 0 : currentIndex - 1;
             changeCurrentVideo(newIndex, false);
         });
-
         $('#playPause').on('click', () => {
             if ($('#playPauseIcon').hasClass('fa-circle-play')) {
                 if (stopped) {
@@ -120,12 +125,10 @@ $(() => {
                 pause();
             }
         });
-
         $('#forward').on('click', () => {
             let newIndex = currentIndex === numberOfVideos - 1 ? currentIndex : currentIndex + 1;
             changeCurrentVideo(newIndex, false);
         });
-
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
             $('#autoRepeat').css('border-bottom-color', autoRepeat ? '#137BCD' : 'transparent');
@@ -140,7 +143,6 @@ $(() => {
                 $('#playPause').trigger('click');
             }
         });
-
         $('body').on('keydown', event => {
             switch (event.key) {
                 case 'PageDown':
