@@ -124,15 +124,15 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 	<body>
 		<nav id="tabsContainer">
 			<button id="tabCodeToSign" class="infoToggle" title="Tradutor de código para Libras">
-				<i class="fa-regular fa-file-code codeToSignIcon"></i>
-				<i class="fa-solid fa-arrow-right codeToSignIcon" id="codeToSignArrow"></i>
-				<i class="fa-solid fa-hands codeToSignIcon"></i>
+				<i class="fa-regular fa-file-code"></i>
+				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
+				<i class="fa-solid fa-hands"></i>
 			</button>
 			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
-				<i class="fa-solid fa-hands signToCodeIcon"></i>
-				<i class="fa-solid fa-arrow-right signToCodeIcon" id="signToCodeArrow"></i>
-				<i class="fa-regular fa-file-code signToCodeIcon"></i>
+				<i class="fa-solid fa-hands"></i>
+				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
+				<i class="fa-regular fa-file-code"></i>
 			</button>
 		</nav>
 		<main>
@@ -182,8 +182,8 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<div id="currentSign"></div>
 				<div id="otherActionsContainer">
 					<button id="addToCode" disabled title="Escrever palavra no código">
-      						<i class="fa-solid fa-file-code addToCodeIcon"></i>
-						<i class="fa-solid fa-pen addToCodeIcon" id="addToCodePen"></i>
+      						<i class="fa-solid fa-file-code"></i>
+						<i class="fa-solid fa-pen" id="addToCodePen"></i>
 					</button>
 					<button id="info" title="O que é isto?">
 						<i class="fa-regular fa-circle-question" id="infoIcon"></i>
