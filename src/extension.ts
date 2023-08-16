@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext)
 			const webview = panel.webview;
 			const editor = vscode.window.activeTextEditor;
 			const uri = context.extensionUri;
-			let signs = [], videos = [];
+			let videos = [];
 
 			webview.onDidReceiveMessage(
 				message => {
@@ -48,42 +48,7 @@ export function activate(context: vscode.ExtensionContext)
 			);
 
 			if (editor && editor.selections) {
-				for (let selection of editor.selections) {
-					const range = new vscode.Range(selection.start, selection.end);
-					const selected = editor.document.getText(range)
-						.trim()
-						.replace(/\s+/g, ' ')
-						.toLowerCase()
-						.split(' ');
-					for (let expression of selected) {
-						/* if (reserved.includes(expression)
-							|| simpleReserved.includes(expression)
-							|| futureReserved.includes(expression)
-						) {
-							signs.push(expression);
-						} else { */
-							const characters = expression.split('');
-							for (let character of characters) {
-								if (character.match(/[a-z0-9]/)) {
-									signs.push(character);
-								}
-							}
-						// }
-					}
-				}
-				if (!signs.length) {
-					videos.push({
-						sign: '',
-						file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','oi.mp4')),
-					});
-				} else {
-					for (let sign of signs) {
-						videos.push({
-							sign: sign,
-							file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
-						});
-					}
-				}
+				videos = fetchVideos(editor);
 			}
 
 			webview.postMessage({videos});
@@ -91,6 +56,44 @@ export function activate(context: vscode.ExtensionContext)
 			webview.html = getWebviewContent(webview, uri);
 		})
 	);
+}
+
+function fetchVideos(editor: vscode.Window) : array
+{
+	let videos = [];
+	for (let selection of editor.selections) {
+		const range = new vscode.Range(selection.start, selection.end);
+		const expressions = editor.document.getText(range)
+			.trim()
+			.replace(/\s+/g, ' ')
+			.split(' ');
+		for (let expression of expressions) {
+			for (let i = 0; i < expression.length; i++) {
+				let notReserved = true;
+				for (let word of reserved) {
+					if (expression.indexOf(word, i) === i) {
+						videos.push({
+							sign: word,
+							file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',word+'.mp4')),
+						});
+						i += word.length;
+						notReserved = false;
+						break;
+					}
+				}
+				if (notReserved) {
+					signs.push(expression[i]);
+				}
+			}
+		}
+	}
+	if (!videos.length) {
+		videos.push({
+			sign: '',
+			file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','oi.mp4')),
+		});
+	}
+	return videos;
 }
 
 function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
@@ -253,24 +256,17 @@ const reserved = [
 	'while',
 	'with',
 	'yield',
-];
-
-const simpleReserved = [
-	'as',
-	'const',
-	'in',
-	'let',
-	'of',
-];
-
-const futureReserved = [
-	'enum',
-	'implements',
-	'interface',
-	'package',
-	'private',
-	'protected',
-	'public',
+	'enum', 	// future reserved word
+	'implements',	// future reserved word
+	'package',	// future reserved word
+	'private',	// future reserved word
+	'protected',	// future reserved word
+	'public',	// future reserved word
+	//'as',		// substring of another reserved word
+	//'const',	// substring of another reserved word
+	//'in',		// substring of another reserved word
+	//'let',	// substring of another reserved word
+	//'of',		// substring of another reserved word
 ];
 
 const dictionary = [
