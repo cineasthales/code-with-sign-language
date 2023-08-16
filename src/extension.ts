@@ -149,40 +149,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				</div>
 				<div id="totalDuration" class="infoTimeToggle"></div>
 			</section>
-			<section id="categoriesContainer">
-				<button id="categoryVar" class="infoToggle" title="#">
-					<i class="fa-solid fa-tags" id="categoryVarIcon"></i>
-				</button>
-    				<button id="categoryValue" class="infoToggle" title="#">
-					<i class="fa-solid fa-database" id="categoryValueIcon"></i>
-				</button>
-    				<button id="categoryCondition" class="infoToggle" title="#">
-					<i class="fa-solid fa-flag" id="categoryConditionIcon"></i>
-				</button>
-    				<button id="categoryRepetition" class="infoToggle" title="#">
-					<i class="fa-solid fa-rotate-left" id="categoryRepetitionIcon"></i>
-				</button>
-    				<button id="categoryException" class="infoToggle" title="#">
-					<i class="fa-solid fa-circle-xmark" id="categoryExceptionIcon"></i>
-				</button>
-    				<button id="categoryFunction" class="infoToggle" title="#">
-					<i class="fa-solid fa-gears" id="categoryFunctionIcon"></i>
-				</button>
-    				<button id="categoryClass" class="infoToggle" title="#">
-					<i class="fa-solid fa-sitemap" id="categoryClassIcon"></i>
-				</button>
-    				<button id="categoryObject" class="infoToggle" title="#">
-					<i class="fa-solid fa-cube" id="categoryObjectIcon"></i>
-				</button>
-    				<button id="categoryAsync" class="infoToggle" title="#">
-					<i class="fa-solid fa-diagram-project" id="categoryAsyncIcon"></i>
-				</button>
-    				<button id="categoryModule" class="infoToggle" title="#">
-					<i class="fa-solid fa-cubes" id="categoryModuleIcon"></i>
-				</button>
-    				<button id="categoryDebug" class="infoToggle" title="#">
-					<i class="fa-solid fa-bug-slash" id="categoryDebugIcon"></i>
-				</button>
+			<section id="categoriesContainer">`
+   			for (let category of dictionary) {
+				html += `
+				<button id="category${category.id}" class="infoToggle" title="${category.title}">
+					<i class="fa-solid fa-${category.icon}" id="category${category.id}Icon"></i>
+				</button>`
+			}
+	html += `
 			</section>
 			<div id="videoContainer"></div>
 			<section id="playerMainContainer">
@@ -299,47 +273,69 @@ const futureReserved = [
 
 const dictionary = [
 	{
-		category: 'Variáveis e Constantes',
+		title: 'Variáveis e Constantes',
+		id: 'Var',
+		icon: 'tags',
 		signs: ['var', 'let', 'const', 'typeof'],
 	},
 	{
-		category: 'Valores',
+		title: 'Valores',
+		id: 'Value',
+		icon: 'database',
 		signs: ['true', 'false', 'null', 'undefined'],
 	},
 	{
-		category: 'Estruturas de Condição',
+		title: 'Estruturas de Condição',
+		id: 'Condition',
+		icon: 'flag',
 		signs: ['if', 'else', 'switch', 'case', 'default'],
 	},
 	{
-		category: 'Estruturas de Repetição',
+		title: 'Estruturas de Repetição',
+		id: 'Repetition',
+		icon: 'rotate-left',
 		signs: ['while', 'do', 'break', 'continue', 'for', 'of', 'in'],
 	},
 	{
-		category: 'Tratamento de Exceção',
+		title: 'Tratamento de Exceção',
+		id: 'Exception',
+		icon: 'circle-xmark',
 		signs: ['try', 'catch', 'finally', 'throw'],
 	},
 	{
-		category: 'Funções e Métodos',
+		title: 'Funções e Métodos',
+		id: 'Function',
+		icon: 'gears',
 		signs: ['function', 'void', 'return', 'arguments', 'eval', 'yield'],
 	},
 	{
-		category: 'Classes',
+		title: 'Classes',
+		id: 'Class',
+		icon: 'sitemap',
 		signs: ['class', 'constructor', 'get', 'set', 'extends', 'static'],
 	},
 	{
-		category: 'Objetos',
+		title: 'Objetos',
+		id: 'Object',
+		icon: 'cube',
 		signs: ['new', 'this', 'super', 'instanceof', 'delete'],
 	},
 	{
-		category: 'Programação Assíncrona',
+		title: 'Programação Assíncrona',
+		id: 'Async',
+		icon: 'diagram-project',
 		signs: ['async', 'await'],
 	},
 	{
-		category: 'Módulos',
+		title: 'Módulos',
+		id: 'Module',
+		icon: 'cubes',
 		signs: ['import', 'export', 'from', 'as'],
 	},
 	{
-		category: 'Depuração',
+		title: 'Depuração',
+		id: 'Debug',
+		icon: 'bug-slash',
 		signs: ['debugger'],
 	},
 ];
