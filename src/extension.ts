@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext)
 			const webview = panel.webview;
 			const editor = vscode.window.activeTextEditor;
 			const uri = context.extensionUri;
-			let videos = [];
+			let signs, videos = [];
 
 			webview.onDidReceiveMessage(
 				message => {
@@ -48,7 +48,14 @@ export function activate(context: vscode.ExtensionContext)
 			);
 
 			if (editor && editor.selections) {
-				videos = fetchVideos(editor);
+				signs = fetchSigns(editor);
+				
+				for (let sign of signs) {
+					videos.push({
+						sign: sign,
+						file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
+					});
+				}
 			}
 
 			webview.postMessage({videos});
@@ -58,42 +65,42 @@ export function activate(context: vscode.ExtensionContext)
 	);
 }
 
-function fetchVideos(editor: vscode.Window) : array
+function fetchSigns(editor: vscode.TextEditor) : string[]
 {
-	let videos = [];
+	let signs = [];
+
 	for (let selection of editor.selections) {
+
 		const range = new vscode.Range(selection.start, selection.end);
 		const expressions = editor.document.getText(range)
 			.trim()
 			.replace(/\s+/g, ' ')
 			.split(' ');
+
 		for (let expression of expressions) {
 			for (let i = 0; i < expression.length; i++) {
+
 				let notReserved = true;
+
 				for (let word of reserved) {
 					if (expression.indexOf(word, i) === i) {
-						videos.push({
-							sign: word,
-							file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',word+'.mp4')),
-						});
+						signs.push(word);
 						i += word.length;
 						notReserved = false;
 						break;
 					}
 				}
+
 				if (notReserved) {
 					signs.push(expression[i]);
 				}
 			}
 		}
 	}
-	if (!videos.length) {
-		videos.push({
-			sign: '',
-			file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','oi.mp4')),
-		});
-	}
-	return videos;
+
+	if (!signs.length) { signs.push("oi"); }
+
+	return signs;
 }
 
 function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
@@ -152,15 +159,15 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 						<i class="fa-solid fa-forward" id="fasterIcon"></i>
 					</button>
 				</div>
-				<div id="totalDuration" class="infoTimeToggle"></div>
-			</section>
-			<section id="categoriesContainer">`
-   			for (let category of dictionary) {
-				html += `
-				<button id="category${category.id}" class="infoToggle" title="${category.title}">
-					<i class="fa-solid fa-${category.icon}" id="category${category.id}Icon"></i>
-				</button>`
-			}
+				<div id="totalDuration" class="infoTimeToggle"></div>`;
+
+				for (let category of categories) {
+					html += `
+					<button id="category${category.id}" class="infoToggle" title="${category.title}">
+						<i class="fa-solid fa-${category.icon}" id="category${category.id}Icon"></i>
+					</button>`;
+				}
+
 			html += `
 			</section>
 			<div id="videoContainer"></div>
@@ -256,20 +263,20 @@ const reserved = [
 	'while',
 	'with',
 	'yield',
-	'enum', 	// future reserved word
-	'implements',	// future reserved word
-	'package',	// future reserved word
-	'private',	// future reserved word
-	'protected',	// future reserved word
-	'public',	// future reserved word
-	//'as',		// substring of another reserved word
-	//'const',	// substring of another reserved word
-	//'in',		// substring of another reserved word
-	//'let',	// substring of another reserved word
-	//'of',		// substring of another reserved word
+	'as',				// substring of other reserved word(s)
+	'const',			// substring of other reserved word(s)
+	'let',				// substring of other reserved word(s)
+	'of',				// substring of other reserved word(s)
+	'in',				// substring of other reserved word(s)
+	'enum', 			// future reserved word
+	'implements',		// future reserved word
+	'package',			// future reserved word
+	'private',			// future reserved word
+	'protected',		// future reserved word
+	'public',			// future reserved word
 ];
 
-const dictionary = [
+const categories = [
 	{
 		title: 'Variáveis e Constantes',
 		id: 'Var',
