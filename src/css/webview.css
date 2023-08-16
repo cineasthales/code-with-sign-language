@@ -21,7 +21,6 @@ button {
 }
 
 button:hover:enabled,
-button:focus:enabled,
 button:active:enabled {
     color: var(--primaryColor);
     cursor: pointer;

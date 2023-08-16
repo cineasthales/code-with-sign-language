@@ -159,7 +159,9 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 						<i class="fa-solid fa-forward" id="fasterIcon"></i>
 					</button>
 				</div>
-				<div id="totalDuration" class="infoTimeToggle"></div>`;
+				<div id="totalDuration" class="infoTimeToggle"></div>
+			</section>
+			<section id="categoriesContainer">`;
 
 				for (let category of categories) {
 					html += `
