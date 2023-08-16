@@ -149,15 +149,39 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				</div>
 				<div id="totalDuration" class="infoTimeToggle"></div>
 			</section>
-			<section id="filterContainer">
-				<button id="filterPrevious" class="infoToggle">
-					<i class="fa-solid fa-chevron-left" id="filterPreviousIcon"></i>
+			<section id="categoriesContainer">
+				<button id="categoryVar" class="infoToggle" title="#">
+					<i class="fa-solid fa-tags" id="categoryVarIcon"></i>
 				</button>
-				<button id="filter" class="infoToggle" title="Filtrar">
-					<i class="fa-solid fa-filter" id="filterIcon"></i>
+    				<button id="categoryValue" class="infoToggle" title="#">
+					<i class="fa-solid fa-database" id="categoryValueIcon"></i>
 				</button>
-				<button id="filterNext" class="infoToggle">
-					<i class="fa-solid fa-chevron-right" id="filterNextIcon"></i>
+    				<button id="categoryCondition" class="infoToggle" title="#">
+					<i class="fa-solid fa-flag" id="categoryConditionIcon"></i>
+				</button>
+    				<button id="categoryRepetition" class="infoToggle" title="#">
+					<i class="fa-solid fa-rotate-left" id="categoryRepetitionIcon"></i>
+				</button>
+    				<button id="categoryException" class="infoToggle" title="#">
+					<i class="fa-solid fa-circle-xmark" id="categoryExceptionIcon"></i>
+				</button>
+    				<button id="categoryFunction" class="infoToggle" title="#">
+					<i class="fa-solid fa-gears" id="categoryFunctionIcon"></i>
+				</button>
+    				<button id="categoryClass" class="infoToggle" title="#">
+					<i class="fa-solid fa-sitemap" id="categoryClassIcon"></i>
+				</button>
+    				<button id="categoryObject" class="infoToggle" title="#">
+					<i class="fa-solid fa-cube" id="categoryObjectIcon"></i>
+				</button>
+    				<button id="categoryAsync" class="infoToggle" title="#">
+					<i class="fa-solid fa-diagram-project" id="categoryAsyncIcon"></i>
+				</button>
+    				<button id="categoryModule" class="infoToggle" title="#">
+					<i class="fa-solid fa-cubes" id="categoryModuleIcon"></i>
+				</button>
+    				<button id="categoryDebug" class="infoToggle" title="#">
+					<i class="fa-solid fa-bug-slash" id="categoryDebugIcon"></i>
 				</button>
 			</section>
 			<div id="videoContainer"></div>
