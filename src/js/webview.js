@@ -2,7 +2,7 @@ $(() => {
 
     const vscode = acquireVsCodeApi();
 
-    $('#filterContainer').hide();
+    $('#categoriesContainer').hide();
 
     $('#tabCodeToSign').on('click', () => {
         $('#tabCodeToSign').css('border-bottom-color', '#137BCD');
@@ -10,7 +10,7 @@ $(() => {
         $('#addToCode').css('opacity', '0');
         $('#addToCode').css('cursor', 'default');
         $('#addToCode').prop('disabled', true);
-        $('#filterContainer').hide();
+        $('#categoriesContainer').hide();
         $('#timeContainer').show();
     });
 
@@ -21,7 +21,7 @@ $(() => {
         $('#addToCode').css('cursor', 'pointer');
         $('#addToCode').prop('disabled', false);
         $('#timeContainer').hide();
-        $('#filterContainer').show();
+        $('#categoriesContainer').show();
     });
 
     $('#info').on('click', () => {
@@ -57,9 +57,9 @@ $(() => {
 
         const videos = event.data.videos;
         const numberOfVideos = videos.length;
-        let currentIndex = 0, totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
-        let currentCategory = 0, numberOfCategories = 11;
-        let autoRepeat = true, stopped = false, hasTotalDuration = false, filtered = false;
+        let currentIndex = 0, currentCategory = 0;
+        let totalDuration = 0, numberOfDigits = 0, currentSpeed = 1;
+        let autoRepeat = true, stopped = false, hasTotalDuration = false;
 
         for (let i = 0; i < numberOfVideos; i++) {
             $('#videoContainer').append(
@@ -96,17 +96,6 @@ $(() => {
                 $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
                 $('#currentSpeed').text(currentSpeed + 'x');
             }
-        });
-        
-        $('#filterPrevious').on('click', () => {
-            let newCategory = currentCategory === 0 ? numberOfCategories - 1 : currentCategory - 1;
-        });
-        $('#filter').on('click', () => {
-            filtered = !filtered;
-            $('#filter').css('border-bottom-color', filtered ? '#137BCD' : 'transparent');
-        });
-        $('#filterNext').on('click', () => {
-            let newCategory = currentCategory === numberOfCategories - 1 ? 0 : currentCategory + 1;
         });
 
         $('#rewind').on('click', () => {
