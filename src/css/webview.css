@@ -50,7 +50,7 @@ video {
     display: inline-block;
 }
 
-#timeContainer, #filterContainer {
+#timeContainer, #categoriesContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -109,7 +109,10 @@ video {
     border-bottom: 0.3rem dashed var(--primaryColor);
 }
 
-#tabSignToCode, #filter {
+#tabSignToCode, #categoryVar, #categoryValue,
+#categoryCondition, #categoryRepetition, #categoryException,
+#categoryFunction, #categoryClass, #categoryObject,
+#categoryAsync, #categoryModule, #categoryDebug {
     padding-bottom: 0.75rem;
     border-bottom: 0.3rem dashed transparent;
 }
