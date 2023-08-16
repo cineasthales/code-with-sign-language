@@ -2,6 +2,8 @@ $(() => {
 
     const vscode = acquireVsCodeApi();
 
+    $('#filterContainer').hide();
+
     $('#tabCodeToSign').on('click', () => {
         $('#tabCodeToSign').css('border-bottom-color', '#137BCD');
         $('#tabSignToCode').css('border-bottom-color', 'transparent');
@@ -51,7 +53,7 @@ $(() => {
         }
     });
 
-    $(window).on('message', event => {
+    window.addEventListener('message', event => {
 
         const videos = event.data.videos;
         const numberOfVideos = videos.length;

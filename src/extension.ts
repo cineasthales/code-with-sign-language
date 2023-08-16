@@ -149,7 +149,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				</div>
 				<div id="totalDuration" class="infoTimeToggle"></div>
 			</section>
-   			<section id="filterContainer">
+			<section id="filterContainer">
 				<button id="filterPrevious" class="infoToggle">
 					<i class="fa-solid fa-chevron-left" id="filterPreviousIcon"></i>
 				</button>
@@ -160,7 +160,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 					<i class="fa-solid fa-chevron-right" id="filterNextIcon"></i>
 				</button>
 			</section>
-			<section id="videoContainer"></section>
+			<div id="videoContainer"></div>
 			<section id="playerMainContainer">
 				<button id="rewind" class="infoToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
@@ -182,8 +182,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<div id="currentSign"></div>
 				<div id="otherActionsContainer">
 					<button id="addToCode" disabled title="Escrever palavra no código">
-      						<i class="fa-solid fa-file-code"></i>
-						<i class="fa-solid fa-pen" id="addToCodePen"></i>
+						<i class="fa-solid fa-file-pen" id="addToCodeIcon"></i>
 					</button>
 					<button id="info" title="O que é isto?">
 						<i class="fa-regular fa-circle-question" id="infoIcon"></i>
