@@ -83,27 +83,29 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 
 			for (let i = 0; i < expressionLength; i++) {
 
-				let notReserved = true;
+				if (expression[i].match(/a-z/)) {
 
-				for (let word of reserved) {
-
-					const wordLength = word.length;
-					
-					if (expression[i].match(/a-z/)
-					    	&& expression.indexOf(word, i) === i
-						&& (i === 0 || !expression[i-1].match(/a-zA-Z0-9_$/)
-						&& (i+wordLength === expressionLength ||
-						    !expression[i+wordLength+1].match(/a-zA-Z0-9_$/))
-					{
-						signs.push(word);
-						i += wordLength;
-						notReserved = false;
-						break;
+					let notReservedWord = true;
+	
+					for (let word of reservedWords) {
+	
+						const wordLength = word.length;
+						
+						if (expression.indexOf(word, i) === i
+							&& (i === 0 || !expression[i-1].match(/a-zA-Z0-9_$/)
+							&& (i+wordLength === expressionLength ||
+							    !expression[i+wordLength+1].match(/a-zA-Z0-9_$/))
+						{
+							signs.push(word);
+							i += wordLength;
+							notReservedWord = false;
+							break;
+						}
 					}
-				}
-
-				if (notReserved) {
-					signs.push(expression[i]);
+	
+					if (notReservedWord) {
+						signs.push(expression[i]);
+					}
 				}
 			}
 		}
@@ -231,7 +233,7 @@ export function deactivate() {
 	// TODO: clean up media from client extension path
 }
 
-const reserved = [
+const reservedWords = [
 	'arguments',
 	'async',
 	'await',
