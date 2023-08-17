@@ -78,14 +78,25 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 			.split(' ');
 
 		for (let expression of expressions) {
-			for (let i = 0; i < expression.length; i++) {
+
+			const expressionLength = expression.length;
+
+			for (let i = 0; i < expressionLength; i++) {
 
 				let notReserved = true;
 
 				for (let word of reserved) {
-					if (expression.indexOf(word, i) === i) {
+
+					const wordLength = word.length;
+					
+					if (expression[i].match(/a-z/)
+					    	&& expression.indexOf(word, i) === i
+						&& (i === 0 || !expression[i-1].match(/a-zA-Z0-9_$/)
+						&& (i+wordLength === expressionLength ||
+						    !expression[i+wordLength+1].match(/a-zA-Z0-9_$/))
+					{
 						signs.push(word);
-						i += word.length;
+						i += wordLength;
 						notReserved = false;
 						break;
 					}
@@ -271,10 +282,10 @@ const reserved = [
 	'of',				// substring of other reserved word(s)
 	'in',				// substring of other reserved word(s)
 	'enum', 			// future reserved word
-	'implements',		// future reserved word
+	'implements',			// future reserved word
 	'package',			// future reserved word
 	'private',			// future reserved word
-	'protected',		// future reserved word
+	'protected',			// future reserved word
 	'public',			// future reserved word
 ];
 
