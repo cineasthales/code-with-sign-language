@@ -9,9 +9,7 @@ export function activate(context: vscode.ExtensionContext)
 	context.subscriptions.push(
 		vscode.commands.registerCommand('code-with-sign-language.start', () =>
 		{
-			if (panel) {
-				panel.dispose();
-			}
+			if (panel) { panel.dispose(); }
 
 			panel = vscode.window.createWebviewPanel(
 				'sign-videos',
@@ -36,7 +34,8 @@ export function activate(context: vscode.ExtensionContext)
 
 			webview.onDidReceiveMessage(
 				message => {
-					if (editor) {
+					if (editor)
+					{
 						const position = editor.selection.active;
 						editor.edit(builder => {
 							builder.insert(position, message.text);
@@ -47,10 +46,12 @@ export function activate(context: vscode.ExtensionContext)
 				context.subscriptions
 			);
 
-			if (editor && editor.selections) {
+			if (editor && editor.selections)
+			{
 				signs = fetchSigns(editor);
 				
-				for (let sign of signs) {
+				for (let sign of signs)
+				{
 					videos.push({
 						sign: sign,
 						file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',sign+'.mp4')),
@@ -69,44 +70,73 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 {
 	let signs = [];
 
-	for (let selection of editor.selections) {
-
+	for (let selection of editor.selections)
+	{
 		const range = new vscode.Range(selection.start, selection.end);
-		const expressions = editor.document.getText(range)
-			.trim()
-			.replace(/\s+/g, ' ')
-			.split(' ');
+		const text = editor.document.getText(range).trim().replace(/\t\v\f[ ]+/g, ' ');
+		const textLength = text.length;
 
-		for (let expression of expressions) {
-
-			const expressionLength = expression.length;
-
-			for (let i = 0; i < expressionLength; i++) {
-
-				if (expression[i].match(/a-z/)) {
-
-					let notReservedWord = true;
-	
-					for (let word of reservedWords) {
-	
-						const wordLength = word.length;
-						
-						if (expression.indexOf(word, i) === i
-							&& (i === 0 || !expression[i-1].match(/a-zA-Z0-9_$/)
-							&& (i+wordLength === expressionLength ||
-							    !expression[i+wordLength+1].match(/a-zA-Z0-9_$/))
-						{
-							signs.push(word);
-							i += wordLength;
-							notReservedWord = false;
-							break;
-						}
-					}
-	
-					if (notReservedWord) {
-						signs.push(expression[i]);
+		for (let i = 0; i < textLength; i++)
+		{
+			if (text[i].match(/\s/)) {
+				continue;
+			}
+			if (text[i].match(/a-gilopnr-wy/))
+			{
+				let noMatch = true;
+				
+				for (let word of reservedWords)
+				{
+					const wordLength = word.length;
+					
+					if (text.indexOf(word, i) === i
+						&& (i === 0 || !text[i-1].match(/\w_$/)
+						&& (i+wordLength === textLength ||
+						    !text[i+wordLength].match(/\w_$/))
+					{
+						signs.push(word);
+						noMatch = false;
+						i += wordLength-1;
+						break;
 					}
 				}
+
+				if (noMatch) { signs.push(text[i]); }
+			}
+			else if (text[i].match(/"''/))
+			{
+				const regex = new RegExp(text[i]);
+				signs.push('string');
+				do { i++; signs.push(text[i]); }
+				while (!(text[i].match(charRegExp));
+			}
+			else if (text[i] === '`')
+			{
+				const regex = new RegExp(text[i]);
+				signs.push('string');
+				do { i++; signs.push(text[i]); }
+				while (text[i] !== '`');
+			}
+			else if (text[i] === '/')
+			{
+				if (i+1 < textLength)
+				{
+					if (text[i+1] === '/')
+					{
+						signs.push(text[i]);
+						do { i++; signs.push(text[i]); }
+						while (!(text[i].match(/\r\n/));
+					}
+					else if (text[i+1] === '*')
+					{
+						signs.push(text[i]);
+						do { i++; signs.push(text[i]); }
+						while (!(text[i]));
+					}
+				}
+			}
+			else {
+				signs.push(text[i]);
 			}
 		}
 	}
@@ -280,9 +310,9 @@ const reservedWords = [
 	'yield',
 	'as',				// substring of other reserved word(s)
 	'const',			// substring of other reserved word(s)
+	'in',				// substring of other reserved word(s)
 	'let',				// substring of other reserved word(s)
 	'of',				// substring of other reserved word(s)
-	'in',				// substring of other reserved word(s)
 	'enum', 			// future reserved word
 	'implements',			// future reserved word
 	'package',			// future reserved word
