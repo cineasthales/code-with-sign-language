@@ -75,136 +75,107 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 		const range = new vscode.Range(selection.start, selection.end);
 		const text = editor.document.getText(range).trim().replace(/\t\v\f[ ]+/g, ' ');
 		const textLength = text.length;
+		let closure = '';
 
 		for (let i = 0; i < textLength; i++)
 		{
-			/*
-			se char é espaço
-				continuar
+			if (text[i] == ' ') { continue; }
 
-			se char é \r\n
-				se closure é \r\n
-					closure vira vazio
-				continuar
-
-			se char é aspa, apóstrofo ou acento grave
-				se closure é vazio
-					closure vira o char
-					adiciona "string.start" no signs
-					continuar
-				se closure é o char
-					closure vira vazio
-					adiciona "string.end" no signs
-					continuar
-
-			senão se char é asterisco e char seguinte é barra e closure é * /
-			closure vira vazio
-			adiciona "comment.end" no signs
-			i++
-			continuar
-
-			senão se char é sustenido e char seguinte é exclamação e closure é vazio
-			closure vira \r\n
-			adiciona "comment.hashbang" no signs
-			i++
-			continuar
-
-			senão se char é barra
-			se closure é vazio
-				se char seguinte é barra
-					closure vira \r\n
-					adiciona "comment.single" no signs
-					i++
-				senão se char seguinte é asterisco
-					closure vira * /
-					adiciona "comment.start" no signs
-					i++
-				senão
-					closure vira barra
-					adiciona "regex.start" no signs
-				continuar
-			se closure é barra
-				closure vira vazio
-				adiciona "regex.end" no signs
-				continuar
-
-			senão se closure é vazio e se char é início de palavra reservada e se não tiver \w_$ antes dele
-			faz substring dessa palavra até o próximo char não letra minúscula
-			se esta substring conter nas palavras reservadas e depois dela não tem \w_$
-				adiciona palavra reservada em signs
-				i avança até o último char da palavra
-				continuar
-
-			adiciona char em signs
-			*/
-
-			///////////////////////////////////////////////////////////////////////
-
-			/*
-			if (text[i].match(/\s/)) {
+			if (text[i].match(/\r\n/))
+			{
+				if (closure == '\n') { closure = ''; }
 				continue;
 			}
 
-			if (text[i].match(/a-gilopnr-wy/))
+			if (text[i].match(/"'`/))
 			{
-				let noMatch = true;
-				
-				for (let word of reservedWords)
+				if (closure == '')
 				{
-					const wordLength = word.length;
-					
-					if (text.indexOf(word, i) === i
-						&& (i === 0 || !text[i-1].match(/\w_$/))
-						&& (i+wordLength === textLength ||
-							!text[i+wordLength].match(/\w_$/)))
+					closure = text[i];
+					signs.push('string.start');
+					continue;
+				}
+				if (closure == text[i])
+				{
+					closure = '';
+					signs.push('string.end');
+					continue;
+				}
+			}
+			else if (text[i] == '/')
+			{
+				if (closure == '')
+				{
+					if (text[i+1] == '/')
 					{
+						closure = '\n';
+						signs.push('comment.single');
+						i++;
+					}
+					if (text[i+1] == '*')
+					{
+						closure = '*/';
+						signs.push('comment.start');
+						i++;
+					}
+					else {
+						closure = '/';
+						signs.push('regex.start');
+					}
+					continue;
+				}
+				if (closure == '/')
+				{
+					closure = '';
+					signs.push('regex.end');
+					continue;
+				}
+			}
+			else if (i+1 < textLength)
+			{
+				else if (text[i] == '*' && text[i+1] == '/' && closure = '*/')
+				{
+					closure = '';
+					signs.push('comment.end');
+					i++;
+					continue;
+				}
+				else if (text[i] == '#' && text[i+1] == '!' && closure == '')
+				{
+					closure = '\n';
+					signs.push('comment.hashbang');
+					i++;
+					continue;
+				}
+			}
+			else if (closure == '' && text[i].match(/a-gilopnr-wy/)
+					 && (i === 0 || !text[i-1].match(/\w_$/))
+			{
+				/*
+				faz substring dessa palavra até o próximo char não letra minúscula
+				se esta substring conter nas palavras reservadas e depois dela não tem \w_$
+					adiciona palavra reservada em signs
+					i avança até o último char da palavra
+					continuar
+
+				///////////////
+ 
+				let noMatch = true;
+				for (let word of reservedWords) {
+					const wordLength = word.length;
+					if (text.indexOf(word, i) === i
+						&& (i+wordLength === textLength || !text[i+wordLength].match(/\w_$/))) {
 						signs.push(word);
 						noMatch = false;
 						i += wordLength-1;
 						break;
 					}
 				}
-
 				if (noMatch) { signs.push(text[i]); }
+				*/
 			}
-			else if (text[i].match(/'"/))
-			{
-				const character = text[i];
-				signs.push('string');
-				do { i++; signs.push(text[i]); }
-				while (text[i] != character);
-			}
-			else if (text[i].match(/`/))
-			{
-				const character = text[i];
-				signs.push('templateString');
-				do { i++; signs.push(text[i]); }
-				while (text[i] != character);
-			}
-			else if (text[i] === '/')
-			{
-				if (i+1 < textLength)
-				{
-					i++;
-					if (text[i] === '/')
-					{
-						signs.push('singleLineComment');
-						do { i++; signs.push(text[i]); }
-						while (!(text[i].match(/\r\n/)));
-					}
-					else if (text[i] === '*')
-					{
-						signs.push('multipleLinesComment');
-						do { i++; signs.push(text[i]); }
-						while (!(text[i] === '*' && text[i+1] === '/'));
-						i++;
-					}
-				}
-			}
-			else {
-				signs.push(text[i]);
-			}
-			*/
+
+			signs.push(text[i]);
 		}
 	}
 
