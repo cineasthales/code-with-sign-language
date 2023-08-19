@@ -154,3 +154,16 @@ body.vscode-high-contrast #verticalLine { border-left: var(--highContrastThemeBo
 body.vscode-light #playerInfoContainer { border-top: var(--lightThemeBorder) }
 body.vscode-dark #playerInfoContainer { border-top: var(--darkThemeBorder) }
 body.vscode-high-contrast #playerInfoContainer { border-top: var(--highContrastThemeBorder) }
+
+body.vscode-light .ui-tooltip,
+body.vscode-dark .ui-tooltip,
+body.vscode-high-contrast .ui-tooltip {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 0;
+}
+body.vscode-light .ui-tooltip video { border: var(--lightThemeBorder) }
+body.vscode-dark .ui-tooltip video { border: var(--darkThemeBorder) }
+body.vscode-high-contrast .ui-tooltip video { border: var(--highContrastThemeBorder) }
