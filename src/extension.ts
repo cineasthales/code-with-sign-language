@@ -73,46 +73,69 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 	for (let selection of editor.selections)
 	{
 		const range = new vscode.Range(selection.start, selection.end);
-		const text = editor.document.getText(range).trim().replace(/\t\v\f[ ]+/g, ' ');
+		const text = editor.document.getText(range).trim().replace(/[\t\v\f ]+/g, ' ');
 		const textLength = text.length;
 		let closure = '';
 
 		for (let i = 0; i < textLength; i++)
 		{
-			if (text[i] == ' ') { continue; }
+			// Spaces
+			if (text[i] === ' ') { continue; }
 
-			if (text[i].match(/\r\n/))
+			// New lines
+			if (text[i].match(/[\r\n]/))
 			{
-				if (closure == '\n') { closure = ''; }
+				if (closure === '\n') { closure = ''; }
 				continue;
 			}
 
-			if (text[i].match(/"'`/))
+			// Arrays
+			if (text[i] === '[')
 			{
-				if (closure == '')
+				if (closure === '') {
+					closure = ']';
+					signs.push('array.start');
+					continue;
+				}
+			}
+			else if (text[i] === ']')
+			{
+				if (closure === ']') {
+					closure = '';
+					signs.push('array.end');
+					continue;
+				}
+			}
+
+			// Strings
+			else if (text[i].match(/["'`]/))
+			{
+				if (closure === '')
 				{
 					closure = text[i];
 					signs.push('string.start');
 					continue;
 				}
-				if (closure == text[i])
+				if (closure === text[i])
 				{
 					closure = '';
 					signs.push('string.end');
 					continue;
 				}
 			}
-			else if (text[i] == '/')
+
+			// Comments and RegEx
+			else if (text[i] === '/')
 			{
-				if (closure == '')
+				if (closure === '')
 				{
-					if (text[i+1] == '/')
+					if (i+1 < textLength && text[i+1] === '/')
 					{
 						closure = '\n';
 						signs.push('comment.single');
 						i++;
 					}
-					if (text[i+1] == '*')
+					if (i+1 < textLength && text[i+1] === '*')
 					{
 						closure = '*/';
 						signs.push('comment.start');
@@ -124,23 +147,25 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					}
 					continue;
 				}
-				if (closure == '/')
+				if (closure === '/')
 				{
 					closure = '';
 					signs.push('regex.end');
 					continue;
 				}
 			}
+
+			// More comments
 			else if (i+1 < textLength)
 			{
-				else if (text[i] == '*' && text[i+1] == '/' && closure = '*/')
+				if (text[i] === '*' && text[i+1] === '/' && closure === '*/')
 				{
 					closure = '';
 					signs.push('comment.end');
 					i++;
 					continue;
 				}
-				else if (text[i] == '#' && text[i+1] == '!' && closure == '')
+				else if (text[i] === '#' && text[i+1] === '!' && closure === '')
 				{
 					closure = '\n';
 					signs.push('comment.hashbang');
@@ -148,38 +173,30 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 			}
-			else if (closure == '' && text[i].match(/a-gilopnr-wy/)
-					 && (i === 0 || !text[i-1].match(/\w_$/))
-			{
-				/*
-				faz substring dessa palavra até o próximo char não letra minúscula
-				se esta substring conter nas palavras reservadas e depois dela não tem \w_$
-					adiciona palavra reservada em signs
-					i avança até o último char da palavra
-					continuar
 
-				///////////////
- 
-				let noMatch = true;
-				for (let word of reservedWords) {
-					const wordLength = word.length;
-					if (text.indexOf(word, i) === i
-						&& (i+wordLength === textLength || !text[i+wordLength].match(/\w_$/))) {
-						signs.push(word);
-						noMatch = false;
-						i += wordLength-1;
-						break;
+			// Reserved words
+			else if (closure === '' && text[i].match(/[a-gilopnr-wy]/)
+				&& (i === 0 || !text[i-1].match(/[\w$]/)))
+			{
+				const firstWord = text.substring(i).match(/\w+\b/);
+
+				if (firstWord && firstWord.length > 0 && !firstWord[0].match(/[\d_$]+/)
+					&& firstWord[0] === firstWord[0].toLowerCase())
+				{
+					const found = reservedWords.find((element) => element === firstWord[0]);
+					if (found) {
+						signs.push(found);
+						i += found.length-1;
+						continue;
 					}
 				}
-				if (noMatch) { signs.push(text[i]); }
-				*/
 			}
 
 			signs.push(text[i]);
 		}
 	}
 
-	if (!signs.length) { signs.push("oi"); }
+	if (!signs.length) { signs.push('oi'); }
 
 	return signs;
 }
@@ -352,10 +369,10 @@ const reservedWords = [
 	'let',				// substring of other reserved word(s)
 	'of',				// substring of other reserved word(s)
 	'enum', 			// future reserved word
-	'implements',			// future reserved word
+	'implements',		// future reserved word
 	'package',			// future reserved word
 	'private',			// future reserved word
-	'protected',			// future reserved word
+	'protected',		// future reserved word
 	'public',			// future reserved word
 ];
 
