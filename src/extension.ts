@@ -89,135 +89,137 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 		const range = new vscode.Range(selection.start, selection.end);
 		const text = editor.document.getText(range).trim().replace(/[\t\v\f ]+/g, ' ');
 		const textLength = text.length;
-		let closure = '';
+		let i = 0, closure = '';
 
-		for (let i = 0; i < textLength; i++)
+		// Hashbang comment
+		if (selection == editor.selections[0] && selection.start === 0
+			&& text[0] === '#' && textLength > 1 && text[1] === '!')
 		{
-			// Spaces
+			closure = '\n';
+			signs.push('comment.hashbang');
+			i = 2;
+		}
+
+		for (i; i < textLength; i++)
+		{
+			// Space
 			if (text[i] === ' ') { continue; }
 
-			// New lines
+			// New line
 			if (text[i].match(/[\r\n]/))
 			{
 				if (closure === '\n') { closure = ''; }
 				continue;
 			}
 
-			// Arrays
-			if (text[i] === '[')
+			// If it's not in a special block
+			if (closure === '')
 			{
-				if (closure === '') {
-					closure = ']';
-					signs.push('array.start');
-					continue;
-				}
-			}
-			else if (text[i] === ']')
-			{
-				if (closure === ']') {
-					closure = '';
-					signs.push('array.end');
-					continue;
-				}
-			}
-
-			// Strings
-			else if (text[i].match(/["'`]/))
-			{
-				if (closure === '')
+				// String
+				if (text[i].match(/["'`]/))
 				{
 					closure = text[i];
 					signs.push('string.start');
 					continue;
 				}
-				if (closure === text[i])
+
+				// Array
+				if (text[i] === '[')
+				{
+					closure = ']';
+					signs.push('array.start');
+					continue;
+				}
+
+				// Comment or RegEx
+				if (text[i] === '/')
+				{
+					if (i+1 < textLength)
+					{
+						if (text[i+1] === '/')
+						{
+							closure = '\n';
+							signs.push('comment.single');
+							i++;
+							continue;
+						}
+						if (text[i+1] === '*')
+						{
+							closure = '*/';
+							signs.push('comment.start');
+							i++;
+							continue;
+						}
+					}
+					closure = '/';
+					signs.push('regex.start');
+					continue;
+				}
+
+				// Reserved word
+				if (text[i].match(/[a-gilopnr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
+				{
+					const firstWord = text.substring(i).match(/\w+\b/);
+	
+					if (firstWord && firstWord.length > 0 && !firstWord[0].match(/[\d_$]+/)
+						&& firstWord[0] === firstWord[0].toLowerCase())
+					{
+						const found = reservedWords.find(word => word === firstWord[0]);
+						if (found) {
+							if (found !== 'function') {
+								signs.push(found);
+								i += found.length-1;
+								continue;
+							}
+							if (i+1 < textLength && text[i+1] === '*') {
+								signs.push('function.generator');
+								i += found.length;
+								continue;
+							}
+							if (i+2 < textLength && text[i+1] === ' ' && text[i+2] === '*') {
+								signs.push('function.generator');
+								i += found.length+1;
+								continue;
+							}
+							signs.push('function');
+							i += found.length-1;
+							continue;
+						}
+					}
+				}
+			}
+			else
+			{
+				// String
+				if (closure === text[i] && text[i].match(/["'`]/))
 				{
 					closure = '';
 					signs.push('string.end');
 					continue;
 				}
-			}
 
-			// Comments and RegEx
-			else if (text[i] === '/')
-			{
-				if (closure === '')
-				{
-					if (i+1 < textLength && text[i+1] === '/')
-					{
-						closure = '\n';
-						signs.push('comment.single');
-						i++;
-					}
-					if (i+1 < textLength && text[i+1] === '*')
-					{
-						closure = '*/';
-						signs.push('comment.start');
-						i++;
-					}
-					else {
-						closure = '/';
-						signs.push('regex.start');
-					}
+				// Array
+				if (closure === ']' && text[i] === ']') {
+					closure = '';
+					signs.push('array.end');
 					continue;
 				}
-				if (closure === '/')
+
+				// RegEx
+				if (closure === '/' && text[i] === '/')
 				{
 					closure = '';
 					signs.push('regex.end');
 					continue;
 				}
-			}
 
-			// More comments
-			else if (i+1 < textLength)
-			{
-				if (text[i] === '*' && text[i+1] === '/' && closure === '*/')
+				// Comment block
+				if (closure === '*/' && text[i] === '*' && i+1 < textLength && text[i+1] === '/')
 				{
 					closure = '';
 					signs.push('comment.end');
 					i++;
 					continue;
-				}
-				else if (text[i] === '#' && text[i+1] === '!' && closure === '')
-				{
-					closure = '\n';
-					signs.push('comment.hashbang');
-					i++;
-					continue;
-				}
-			}
-
-			// Reserved words
-			else if (closure === '' && text[i].match(/[a-gilopnr-wy]/)
-				&& (i === 0 || !text[i-1].match(/[\w$]/)))
-			{
-				const firstWord = text.substring(i).match(/\w+\b/);
-
-				if (firstWord && firstWord.length > 0 && !firstWord[0].match(/[\d_$]+/)
-					&& firstWord[0] === firstWord[0].toLowerCase())
-				{
-					const found = reservedWords.find((element) => element === firstWord[0]);
-					if (found) {
-						if (found !== 'function') {
-							signs.push(found);
-							i += found.length-1;
-							continue;
-						}
-						if (i+1 < textLength && text[i+1] === '*') {
-							signs.push('function.generator');
-							i += found.length;
-							continue;
-						}
-						if (i+2 < textLength && text[i+2] === '*') {
-							signs.push('function.generator');
-							i += found.length+1;
-							continue;
-						}
-						signs.push('function');
-						i += found.length-1;
-						continue;
-					}
 				}
 			}
 
