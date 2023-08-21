@@ -156,6 +156,19 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
+				// Increment
+				if (text[i] === '+' && i+1 < textLength && text[i+1] === '+') {
+					signs.push('increment');
+					i++;
+					continue;
+				}
+				// Decrement
+				if (text[i] === '-' && i+1 < textLength && text[i+1] === '-') {
+					signs.push('decrement');
+					i++;
+					continue;
+				}
+
 				// Reserved word
 				if (text[i].match(/[a-gilopnr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 				{
