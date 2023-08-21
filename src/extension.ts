@@ -199,7 +199,22 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 				{
 					const found = reservedWords.find((element) => element === firstWord[0]);
 					if (found) {
-						signs.push(found);
+						if (found !== 'function') {
+							signs.push(found);
+							i += found.length-1;
+							continue;
+						}
+						if (i+1 < textLength && text[i+1] === '*') {
+							signs.push('function.generator');
+							i += found.length;
+							continue;
+						}
+						if (i+2 < textLength && text[i+2] === '*') {
+							signs.push('function.generator');
+							i += found.length+1;
+							continue;
+						}
+						signs.push('function');
 						i += found.length-1;
 						continue;
 					}
