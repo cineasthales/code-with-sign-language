@@ -179,22 +179,22 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					{
 						const found = reservedWords.find(word => word === firstWord[0]);
 						if (found) {
-							if (found !== 'function') {
+							if (found !== 'function' && found !== 'yield') {
 								signs.push(found);
 								i += found.length-1;
 								continue;
 							}
 							if (i+1 < textLength && text[i+1] === '*') {
-								signs.push('function.generator');
+								signs.push(found + '.generator');
 								i += found.length;
 								continue;
 							}
 							if (i+2 < textLength && text[i+1] === ' ' && text[i+2] === '*') {
-								signs.push('function.generator');
+								signs.push(found + '.generator');
 								i += found.length+1;
 								continue;
 							}
-							signs.push('function');
+							signs.push(found);
 							i += found.length-1;
 							continue;
 						}
