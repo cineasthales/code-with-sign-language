@@ -205,7 +205,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 			{
 				// String
 				if (closure === text[i] && text[i].match(/["'`]/)
-					&& text[i-1] !== '/')
+					&& text[i-1] !== '\')
 				{
 					closure = '';
 					signs.push('string.end');
