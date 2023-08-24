@@ -60,17 +60,17 @@ export function activate(context: vscode.ExtensionContext)
 			}
 
 			const tooltips = [
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','0.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','1.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','2.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','3.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','4.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','5.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','6.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','7.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','8.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','9.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','a.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip1.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip2.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip3.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip4.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip5.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip6.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip7.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip8.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip9.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip10.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip11.mp4'))},
 			];
 
 			webview.postMessage({videos, tooltips});
@@ -237,7 +237,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 				}
 			}
 
-			signs.push(text[i]);
+			if (text[i].match(/[a-zA-Z0-9]/) {
+				signs.push(text[i]);
+			}
 		}
 	}
 
