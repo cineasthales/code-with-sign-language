@@ -253,6 +253,18 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
+				if (text[i] == '*') {
+					// Potência
+					if (text[i+1] == '*') {
+						signs.push('math.power');
+						i++;
+						continue;
+					}
+					// Multiplicação
+					signs.push('math.times');
+					continue;
+				}
+
 				if (text[i] == '=') {
 					if (text[i+1] == '=') {
 						if (text[i+2] == '=') {
@@ -266,6 +278,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 						i++;
 						continue;
 					}
+					// Atribuição
+					signs.push('assignment');
+					continue;
 				}
 
 				if (text[i] === '>') {
