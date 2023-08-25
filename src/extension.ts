@@ -91,9 +91,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 		const textLength = text.length;
 		let i = 0, closure = '';
 
-		// Hashbang comment
+		// Comentário hashbang
 		if (selection == editor.selections[0] && selection.start === 0
-			&& text[0] === '#' && textLength > 1 && text[1] === '!')
+			&& text[0] === '#' && text[1] === '!')
 		{
 			closure = '\n';
 			signs.push('comment.hashbang');
@@ -102,17 +102,17 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 
 		for (i; i < textLength; i++)
 		{
-			// Space
+			// Espaço em branco
 			if (text[i] === ' ') { continue; }
 
-			// New line
+			// Nova linha
 			if (text[i].match(/[\r\n]/))
 			{
 				if (closure === '\n') { closure = ''; }
 				continue;
 			}
 
-			// If it's not in a special block
+			// Não estando em um bloco especial
 			if (closure === '')
 			{
 				// String
@@ -123,7 +123,31 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				// Array
+				if (text[i] === '/')
+				{
+					// Comentário em linha única
+					if (text[i+1] === '/')
+					{
+						closure = '\n';
+						signs.push('comment.single');
+						i++;
+						continue;
+					}
+					// Comentário em bloco
+					if (text[i+1] === '*')
+					{
+						closure = '*/';
+						signs.push('comment.start');
+						i++;
+						continue;
+					}
+					// Expressão Regular
+					closure = '/';
+					signs.push('regex.start');
+					continue;
+				}
+
+				// Vetor
 				if (text[i] === '[')
 				{
 					closure = ']';
@@ -131,45 +155,162 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				// Comment or RegEx
-				if (text[i] === '/')
-				{
-					if (i+1 < textLength)
-					{
-						if (text[i+1] === '/')
-						{
-							closure = '\n';
-							signs.push('comment.single');
-							i++;
-							continue;
-						}
-						if (text[i+1] === '*')
-						{
-							closure = '*/';
-							signs.push('comment.start');
-							i++;
-							continue;
-						}
-					}
-					closure = '/';
-					signs.push('regex.start');
-					continue;
-				}
-
-				// Increment
-				if (text[i] === '+' && i+1 < textLength && text[i+1] === '+') {
+				// Incremento
+				if (text[i] === '+' && text[i+1] === '+') {
 					signs.push('increment');
 					i++;
 					continue;
 				}
-				// Decrement
-				if (text[i] === '-' && i+1 < textLength && text[i+1] === '-') {
+
+				// Decremento
+				if (text[i] === '-' && text[i+1] === '-') {
 					signs.push('decrement');
 					i++;
 					continue;
 				}
 
-				// Reserved word
+				if (text[i] === '?') {
+					if (text[i+1] === '?') {
+						// Atribuição em coalescência nula
+						if (text[i+2] === '=') {
+							signs.push('assign.nullcoalesc');
+							i += 2;
+							continue;
+						}
+						// Coalescência nula
+						signs.push('nullcoalesc');
+						i++;
+						continue;
+					}
+					// Cadeia opcional
+					if (text[i+1] === '.') {
+						signs.push('chain.optional');
+						i++;
+						continue;
+					}
+					// If ternário
+					signs.push('ternary.if');
+					continue;
+				}
+
+				// Else ternário
+				if (text[i] === ':') {
+					signs.push('ternary.else');
+					continue;
+				}
+
+				// Cadeia
+				if (text[i] === '.') {
+					signs.push('chain');
+					continue;
+				}
+
+				if (text[i] == '!') {
+					if (text[i+1] == '=') {
+						// Estritamente diferente
+						if (text[i+2] == '=') {
+							signs.push('different.strict');
+							i += 2;
+							continue;
+						}
+						// Diferente
+						signs.push('different');
+						i++;
+						continue;
+					}
+					// Operador lógico NOT
+					signs.push('logical.not');
+					continue;
+				}
+
+				if (text[i] == '&') {
+					// Operador lógico AND
+					if (text[i+1] == '&') {
+						signs.push('logical.and');
+						i++;
+						continue;
+					}
+					// Bitwise AND
+					signs.push('bitwise.and');
+					continue;
+				}
+
+				if (text[i] == '|') {
+					// Operador lógico OR
+					if (text[i+1] == '|') {
+						signs.push('logical.or');
+						i++;
+						continue;
+					}
+					// Bitwise OR
+					signs.push('bitwise.or');
+					continue;
+				}
+
+				// Bitwise XOR
+				if (text[i] == '^') {
+					signs.push('bitwise.xor');
+					continue;
+				}
+
+				if (text[i] == '=') {
+					if (text[i+1] == '=') {
+						if (text[i+2] == '=') {
+							// Estritamente igual
+							signs.push('equals.strict');
+							i += 2;
+							continue;
+						}
+						// Igual
+						signs.push('equals');
+						i++;
+						continue;
+					}
+				}
+
+				if (text[i] === '>') {
+					// Maior ou igual
+					if (text[i+1] === '=') {
+						signs.push('greater.equal');
+						i++;
+						continue;
+					}
+					if (text[i+1] === '>') {
+						// Troca bitwise à direita sem sinal
+						if (text[i+1] === '>') {
+							signs.push('bitwise.shift.unsigned');
+							i += 2;
+							continue;
+						}
+						// Troca bitwise à direita
+						signs.push('bitwise.shift.right');
+						i++;
+						continue;
+					}
+					// Maior
+					signs.push('greater');
+					continue;
+				}
+
+				if (text[i] === '<') {
+					// Menor ou igual
+					if (text[i+1] === '=') {
+						signs.push('lesser.equal');
+						i++;
+						continue;
+					}
+					// Troca bitwise à esquerda
+					if (text[i+1] === '<') {
+						signs.push('bitwise.shift.left');
+						i++;
+						continue;
+					}
+					// Menor
+					signs.push('lesser');
+					continue;
+				}
+
+				// Palavras reservadas
 				if (text[i].match(/[a-gilopnr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 				{
 					const firstWord = text.substring(i).match(/\w+\b/);
@@ -184,16 +325,19 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 								i += found.length-1;
 								continue;
 							}
-							if (i+1 < textLength && text[i+1] === '*') {
+							// Gerador function ou yield
+							if (text[i+1] === '*') {
 								signs.push(found + '.generator');
 								i += found.length;
 								continue;
 							}
-							if (i+2 < textLength && text[i+1] === ' ' && text[i+2] === '*') {
+							// Gerador function ou yield
+							if (text[i+1] === ' ' && text[i+2] === '*') {
 								signs.push(found + '.generator');
 								i += found.length+1;
 								continue;
 							}
+							// Function ou yield
 							signs.push(found);
 							i += found.length-1;
 							continue;
@@ -203,7 +347,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 			}
 			else
 			{
-				// String
+				// String (fechamento)
 				if (closure === text[i] && text[i].match(/["'`]/)
 					&& text[i-1] !== '\')
 				{
@@ -212,14 +356,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				// Array
-				if (closure === ']' && text[i] === ']') {
-					closure = '';
-					signs.push('array.end');
-					continue;
-				}
-
-				// RegEx
+				// Comentário em linha única (fechamento)
 				if (closure === '/' && text[i] === '/')
 				{
 					closure = '';
@@ -227,16 +364,24 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				// Comment block
-				if (closure === '*/' && text[i] === '*' && i+1 < textLength && text[i+1] === '/')
+				// Comentário em bloco (fechamento)
+				if (closure === '*/' && text[i] === '*' && text[i+1] === '/')
 				{
 					closure = '';
 					signs.push('comment.end');
 					i++;
 					continue;
 				}
+
+				// Vetor (fechamento)
+				if (closure === ']' && text[i] === ']') {
+					closure = '';
+					signs.push('array.end');
+					continue;
+				}
 			}
 
+			// Sendo caractere alfanumérico
 			if (text[i].match(/[a-zA-Z0-9]/) {
 				signs.push(text[i]);
 			}
