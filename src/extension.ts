@@ -92,7 +92,8 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 		let i = 0, closure = '';
 
 		// Comentário hashbang
-		if (selection == editor.selections[0] && selection.start === 0
+		if (selection === editor.selections[0]
+			&& selection.start.isEqual(new vscode.Position(0, 0))
 			&& text[0] === '#' && text[1] === '!')
 		{
 			closure = '\n';
@@ -205,10 +206,10 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				if (text[i] == '!') {
-					if (text[i+1] == '=') {
+				if (text[i] === '!') {
+					if (text[i+1] === '=') {
 						// Estritamente diferente
-						if (text[i+2] == '=') {
+						if (text[i+2] === '=') {
 							signs.push('different.strict');
 							i += 2;
 							continue;
@@ -223,9 +224,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				if (text[i] == '&') {
+				if (text[i] === '&') {
 					// Operador lógico AND
-					if (text[i+1] == '&') {
+					if (text[i+1] === '&') {
 						signs.push('logical.and');
 						i++;
 						continue;
@@ -235,9 +236,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				if (text[i] == '|') {
+				if (text[i] === '|') {
 					// Operador lógico OR
-					if (text[i+1] == '|') {
+					if (text[i+1] === '|') {
 						signs.push('logical.or');
 						i++;
 						continue;
@@ -248,14 +249,14 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 				}
 
 				// Bitwise XOR
-				if (text[i] == '^') {
+				if (text[i] === '^') {
 					signs.push('bitwise.xor');
 					continue;
 				}
 
-				if (text[i] == '*') {
+				if (text[i] === '*') {
 					// Potência
-					if (text[i+1] == '*') {
+					if (text[i+1] === '*') {
 						signs.push('math.power');
 						i++;
 						continue;
@@ -265,9 +266,9 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				if (text[i] == '=') {
-					if (text[i+1] == '=') {
-						if (text[i+2] == '=') {
+				if (text[i] === '=') {
+					if (text[i+1] === '=') {
+						if (text[i+2] === '=') {
 							// Estritamente igual
 							signs.push('equals.strict');
 							i += 2;
@@ -364,7 +365,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 			{
 				// String (fechamento)
 				if (closure === text[i] && text[i].match(/["'`]/)
-					&& text[i-1] !== '\')
+					&& text[i-1] !== '\\')
 				{
 					closure = '';
 					signs.push('string.end');
@@ -397,9 +398,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 			}
 
 			// Sendo caractere alfanumérico
-			if (text[i].match(/[a-zA-Z0-9]/) {
-				signs.push(text[i]);
-			}
+			if (text[i].match(/[a-zA-Z0-9]/)) { signs.push(text[i]); }
 		}
 	}
 
