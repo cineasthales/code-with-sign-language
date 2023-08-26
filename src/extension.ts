@@ -84,6 +84,10 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 {
 	let signs = [];
 
+	if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
+		signs.push('oi');
+	}
+
 	for (let selection of editor.selections)
 	{
 		const range = new vscode.Range(selection.start, selection.end);
