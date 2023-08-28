@@ -283,6 +283,12 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 						i++;
 						continue;
 					}
+					if (text[i+1] === '>') {
+						// Função Seta
+						signs.push('function.arrow');
+						i++;
+						continue;
+					}
 					// Atribuição
 					signs.push('assignment');
 					continue;
