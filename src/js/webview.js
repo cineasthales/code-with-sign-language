@@ -217,60 +217,20 @@ $(() => {
         }
         setInterval(updateCurrentTime, 200);
 
-        $('#tabCodeToSign').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[0].file.scheme
-            + '://' + tooltips[0].file.authority + tooltips[0].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#tabSignToCode').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[1].file.scheme
-            + '://' + tooltips[1].file.authority + tooltips[1].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#slower').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[2].file.scheme
-            + '://' + tooltips[2].file.authority + tooltips[2].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#faster').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[3].file.scheme
-            + '://' + tooltips[3].file.authority + tooltips[3].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#rewind').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[4].file.scheme
-            + '://' + tooltips[4].file.authority + tooltips[4].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#backward').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[5].file.scheme
-            + '://' + tooltips[5].file.authority + tooltips[5].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#playPause').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[6].file.scheme
-            + '://' + tooltips[6].file.authority + tooltips[6].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#forward').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[7].file.scheme
-            + '://' + tooltips[7].file.authority + tooltips[7].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#autoRepeat').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[8].file.scheme
-            + '://' + tooltips[8].file.authority + tooltips[8].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#addToCode').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[9].file.scheme
-            + '://' + tooltips[9].file.authority + tooltips[9].file.path + '"></video>',
-            show: {delay:500},
-        });
-        $('#info').tooltip({
-            content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[10].file.scheme
-            + '://' + tooltips[10].file.authority + tooltips[10].file.path + '"></video>',
-            show: {delay:500},
-        });
+        const componentIds = [
+            'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward',
+            'playPause', 'forward', 'autoRepeat', 'addToCode', 'info ',
+        ];
+        const numberOfComponents = componentIds.length;
+
+        for (let i = 0; i < numberOfComponents; i++) {
+            $('#' + componentIds[i]).tooltip({
+                content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].file.scheme
+                + '://' + tooltips[i].file.authority + tooltips[i].file.path + '"></video>',
+                show: {delay:500},
+            });
+        }
     });
 });
+
+
