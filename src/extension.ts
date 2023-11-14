@@ -495,7 +495,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
 				</button>
 				<button id="playPause" title="Reproduzir vídeo">
-					<i class="fa-regular fa-circle-play" id="playPauseIcon"></i>
+					<i class="fa-solid fa-play" id="playPauseIcon"></i>
 				</button>
 				<button id="forward" class="infoToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
@@ -511,7 +511,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 						<i class="fa-solid fa-file-pen" id="addToCodeIcon"></i>
 					</button>
 					<button id="info" title="O que é isto?">
-						<i class="fa-regular fa-circle-question" id="infoIcon"></i>
+						<i class="fa-solid fa-question" id="infoIcon"></i>
 					</button>
 				</div>
 			</section>
@@ -620,7 +620,7 @@ const categories = [
 	{
 		title: 'Tratamento de Exceção',
 		id: 'Exception',
-		icon: 'circle-xmark',
+		icon: 'xmark',
 		signs: ['try', 'catch', 'finally', 'throw'],
 	},
 	{
