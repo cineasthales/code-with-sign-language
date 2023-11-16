@@ -487,6 +487,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 			html += `
 			</section>
 			<div id="videoContainer"></div>
+   			<div id="sliderContainer"></div>
 			<section id="playerMainContainer">
 				<button id="rewind" class="infoToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
