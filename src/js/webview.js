@@ -12,6 +12,7 @@ $(() => {
         $('#addToCode').prop('disabled', true);
         $('#categoriesContainer').hide();
         $('#timeContainer').show();
+        $('#sliderContainer').show();
     });
 
     $('#tabSignToCode').on('click', () => {
@@ -21,6 +22,7 @@ $(() => {
         $('#addToCode').css('cursor', 'pointer');
         $('#addToCode').prop('disabled', false);
         $('#timeContainer').hide();
+        $('#sliderContainer').hide();
         $('#categoriesContainer').show();
     });
 
