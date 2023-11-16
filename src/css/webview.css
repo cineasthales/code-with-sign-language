@@ -157,12 +157,25 @@ body.vscode-high-contrast #playerInfoContainer { border-top: var(--highContrastT
 
 body.vscode-light .ui-tooltip,
 body.vscode-dark .ui-tooltip,
-body.vscode-high-contrast .ui-tooltip {
+body.vscode-high-contrast .ui-tooltip,
+body.vscode-light .ui-slider,
+body.vscode-dark .ui-slider,
+body.vscode-high-contrast .ui-slider,
+body.vscode-light .ui-slider .ui-slider-handle,
+body.vscode-dark .ui-slider .ui-slider-handle,
+body.vscode-high-contrast .ui-slider .ui-slider-handle
+{
     background-color: transparent;
-    margin: 0;
-    padding: 0;
-    border: 0;
     box-shadow: 0 0 0;
+}
+body.vscode-light .ui-slider, body.vscode-light .ui-slider .ui-slider-handle {
+    border: var(--lightThemeBorder)
+}
+body.vscode-dark .ui-slider, body.vscode-dark .ui-slider .ui-slider-handle {
+    border: var(--darkThemeBorder)
+}
+body.vscode-high-contrast .ui-slider, body.vscode-high-contrast .ui-slider .ui-slider-handle {
+    border: var(--highContrastThemeBorder)
 }
 body.vscode-light .ui-tooltip video { border: var(--lightThemeBorder) }
 body.vscode-dark .ui-tooltip video { border: var(--darkThemeBorder) }
