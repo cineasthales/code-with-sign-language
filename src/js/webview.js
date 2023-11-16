@@ -99,6 +99,14 @@ $(() => {
             }
         });
 
+        $('#sliderContainer').slider({
+            animate: 'slow',
+            max: numberOfVideos - 1,
+            stop: (event, ui) => {
+                changeCurrentVideo(ui.value, false);
+            }
+        });
+
         $('#rewind').on('click', () => {
             changeCurrentVideo(0, false);
         });
@@ -187,6 +195,7 @@ $(() => {
                 currentIndex = newIndex;
                 $('#video_' + currentIndex).show();
                 $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#sliderContainer').slider('value', currentIndex);
                 $('#currentSign').text(videos[currentIndex].sign.toUpperCase());
             }
             playNew ? play() : pause();
