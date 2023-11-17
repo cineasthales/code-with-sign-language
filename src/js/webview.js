@@ -27,9 +27,9 @@ $(() => {
     });
 
     $('#info').on('click', () => {
-        if ($('#infoIcon').hasClass('fa-circle-question')) {
-            $('#infoIcon').removeClass('fa-circle-question');
-            $('#infoIcon').addClass('fa-circle-check');
+        if ($('#infoIcon').hasClass('fa-question')) {
+            $('#infoIcon').removeClass('fa-question');
+            $('#infoIcon').addClass('fa-check');
             $('#info').prop('title', 'Ok');
             $('.infoTimeToggle').css('opacity', '0.1');
             $('.infoToggle').css('opacity', '0.1');
@@ -37,8 +37,8 @@ $(() => {
             $('.infoToggle').prop('disabled', true);
             $('.infoToggle').prop('title', '');
         } else {
-            $('#infoIcon').removeClass('fa-circle-check');
-            $('#infoIcon').addClass('fa-circle-question');
+            $('#infoIcon').removeClass('fa-check');
+            $('#infoIcon').addClass('fa-question');
             $('#info').prop('title', 'O que é isto?');
             $('.infoTimeToggle').css('opacity', '1');
             $('.infoToggle').css('opacity', '1');
@@ -102,10 +102,17 @@ $(() => {
         });
 
         $('#sliderContainer').slider({
-            animate: 'slow',
+            animate: 'fast',
             max: numberOfVideos - 1,
+            start: (event, ui) => {
+                if (ui.value !== currentIndex) {
+                    pause();
+                }
+            },
             stop: (event, ui) => {
-                changeCurrentVideo(ui.value, false);
+                if (ui.value !== currentIndex) {
+                    changeCurrentVideo(ui.value, false);
+                }
             }
         });
 
@@ -117,7 +124,7 @@ $(() => {
             changeCurrentVideo(newIndex, false);
         });
         $('#playPause').on('click', () => {
-            if ($('#playPauseIcon').hasClass('fa-circle-play')) {
+            if ($('#playPauseIcon').hasClass('fa-play')) {
                 if (stopped) {
                     $('#rewind').trigger('click');
                 }
@@ -177,15 +184,15 @@ $(() => {
 
         function play() {
             stopped = false;
-            $('#playPauseIcon').removeClass('fa-circle-play');
-            $('#playPauseIcon').addClass('fa-circle-pause');
+            $('#playPauseIcon').removeClass('fa-play');
+            $('#playPauseIcon').addClass('fa-pause');
             $('#playPauseIcon').prop('title', 'Pausar vídeo');
             $('#video_' + currentIndex).trigger('play');
         }
 
         function pause() {
-            $('#playPauseIcon').removeClass('fa-circle-pause');
-            $('#playPauseIcon').addClass('fa-circle-play');
+            $('#playPauseIcon').removeClass('fa-pause');
+            $('#playPauseIcon').addClass('fa-play');
             $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
             $('#video_' + currentIndex).trigger('pause');
         }

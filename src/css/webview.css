@@ -1,5 +1,8 @@
 :root {
     --primaryColor: #137BCD;
+    --lightThemeColor: #000000;
+    --darkThemeColor:  #FFFFFF;
+    --highContrastThemeColor: #FF0000;
     --lightThemeBorder: 0.1rem solid rgba(0, 0, 0, .3);
     --darkThemeBorder: 0.1rem solid rgba(255, 255, 255, .3);
     --highContrastThemeBorder: 0.1rem solid rgba(255, 0, 0, .3);
@@ -17,7 +20,7 @@
 button {
     font-size: 3rem;
     background-color: transparent;
-    padding: 0.25rem;
+    padding: 0.5rem 1rem;
 }
 
 button:hover:enabled,
@@ -63,6 +66,10 @@ video {
 
 #verticalLine {
     height: 4.5rem;
+}
+
+#sliderContainer {
+    margin: 2rem 0 0 0;
 }
 
 #timeContainer {
@@ -155,27 +162,37 @@ body.vscode-light #playerInfoContainer { border-top: var(--lightThemeBorder) }
 body.vscode-dark #playerInfoContainer { border-top: var(--darkThemeBorder) }
 body.vscode-high-contrast #playerInfoContainer { border-top: var(--highContrastThemeBorder) }
 
+body.vscode-light .ui-slider {
+    background-color: transparent;
+    border: var(--lightThemeBorder);
+}
+body.vscode-dark .ui-slider {
+    background-color: transparent;
+    border: var(--darkThemeBorder);
+}
+body.vscode-high-contrast .ui-slider {
+    background-color: transparent;
+    border: var(--highContrastThemeBorder);
+}
+body.vscode-light .ui-slider .ui-slider-handle {
+    border: 0;
+    background-color: var(--lightThemeColor)
+}
+body.vscode-dark .ui-slider .ui-slider-handle {
+    border: 0;
+    background-color: var(--darkThemeColor);
+}
+body.vscode-high-contrast .ui-slider .ui-slider-handle {
+    border: 0;
+    background-color: var(--highContrastThemeColor);
+}
+
 body.vscode-light .ui-tooltip,
 body.vscode-dark .ui-tooltip,
-body.vscode-high-contrast .ui-tooltip,
-body.vscode-light .ui-slider,
-body.vscode-dark .ui-slider,
-body.vscode-high-contrast .ui-slider,
-body.vscode-light .ui-slider .ui-slider-handle,
-body.vscode-dark .ui-slider .ui-slider-handle,
-body.vscode-high-contrast .ui-slider .ui-slider-handle
+body.vscode-high-contrast .ui-tooltip
 {
     background-color: transparent;
     box-shadow: 0 0 0;
-}
-body.vscode-light .ui-slider, body.vscode-light .ui-slider .ui-slider-handle {
-    border: var(--lightThemeBorder)
-}
-body.vscode-dark .ui-slider, body.vscode-dark .ui-slider .ui-slider-handle {
-    border: var(--darkThemeBorder)
-}
-body.vscode-high-contrast .ui-slider, body.vscode-high-contrast .ui-slider .ui-slider-handle {
-    border: var(--highContrastThemeBorder)
 }
 body.vscode-light .ui-tooltip video { border: var(--lightThemeBorder) }
 body.vscode-dark .ui-tooltip video { border: var(--darkThemeBorder) }

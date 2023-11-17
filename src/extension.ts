@@ -454,7 +454,6 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands"></i>
 			</button>
-			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
@@ -487,7 +486,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 			html += `
 			</section>
 			<div id="videoContainer"></div>
-   			<div id="sliderContainer"></div>
+			<div id="sliderContainer"></div>
 			<section id="playerMainContainer">
 				<button id="rewind" class="infoToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
