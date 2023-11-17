@@ -114,7 +114,7 @@ $(() => {
                     changeCurrentVideo(ui.value, false);
                 }
             }
-        });
+        }).slider('pips', { first: 'pip', last: 'pip' });
 
         $('#rewind').on('click', () => {
             changeCurrentVideo(0, false);
