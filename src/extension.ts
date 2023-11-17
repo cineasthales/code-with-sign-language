@@ -455,14 +455,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<i class="fa-regular fa-file-code"></i>
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands"></i>
-    				<i class="fa-solid fa-circle" id="codeToSignOnIcon"></i>
+    				<sup><i class="fa-solid fa-circle" id="codeToSignOnIcon"></i></sup>
 			</button>
    			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code"></i>
-   				<i class="fa-solid fa-circle" id="signToCodeOnIcon"></i>
+   				<sup><i class="fa-solid fa-circle" id="signToCodeOnIcon"></i></sup>
 			</button>
 		</nav>
 		<main>
@@ -507,7 +507,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				</button>
 				<button id="autoRepeat" class="infoToggle" title="Repetir automaticamente">
 					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
-					<i class="fa-solid fa-circle" id="autoRepeatOnIcon"></i>
+					<sup><i class="fa-solid fa-circle" id="autoRepeatOnIcon"></i></sup>
 				</button>
 			</section>
 			<section id="playerInfoContainer">
