@@ -424,12 +424,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','regular.css')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','solid.css')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','jquery-ui.css')),
+		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','jquery-ui-slider-pips.css')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','webview.css')),
 	];
 
 	const allJs = [
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery.js')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery-ui.js')),
+		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery-ui-slider-pips.js')),
 		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','webview.js')),
 	];
 
