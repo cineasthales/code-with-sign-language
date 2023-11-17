@@ -33,6 +33,10 @@ video {
     max-width: 100%;
 }
 
+#codeToSignOnIcon, #signToCodeOnIcon, #autoRepeatOnIcon {
+    color: var(--primaryColor);
+}
+
 #tabsContainer {
     display: flex;
     justify-content: space-around;
