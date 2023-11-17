@@ -455,11 +455,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<i class="fa-regular fa-file-code"></i>
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands"></i>
+    				<i class="fa-solid fa-circle" id="codeToSignOnIcon"></i>
 			</button>
+   			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code"></i>
+   				<i class="fa-solid fa-circle" id="signToCodeOnIcon"></i>
 			</button>
 		</nav>
 		<main>
@@ -497,13 +500,14 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
 				</button>
 				<button id="playPause" title="Reproduzir vídeo">
-					<i class="fa-solid fa-play" id="playPauseIcon"></i>
+					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
 				</button>
 				<button id="forward" class="infoToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 				</button>
 				<button id="autoRepeat" class="infoToggle" title="Repetir automaticamente">
 					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
+					<i class="fa-solid fa-circle" id="autoRepeatOnIcon"></i>
 				</button>
 			</section>
 			<section id="playerInfoContainer">
