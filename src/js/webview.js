@@ -5,8 +5,8 @@ $(() => {
     $('#categoriesContainer').hide();
 
     $('#tabCodeToSign').on('click', () => {
-        $('#tabCodeToSign').css('border-bottom-color', '#137BCD');
-        $('#tabSignToCode').css('border-bottom-color', 'transparent');
+        $('#tabSignToCodeOnIcon').css('opacity', '0');
+        $('#tabCodeToSignOnIcon').css('opacity', '1');
         $('#addToCode').css('opacity', '0');
         $('#addToCode').css('cursor', 'default');
         $('#addToCode').prop('disabled', true);
@@ -16,8 +16,8 @@ $(() => {
     });
 
     $('#tabSignToCode').on('click', () => {
-        $('#tabSignToCode').css('border-bottom-color', '#137BCD');
-        $('#tabCodeToSign').css('border-bottom-color', 'transparent');
+        $('#tabCodeToSignOnIcon').css('opacity', '0');
+        $('#tabSignToCodeOnIcon').css('opacity', '1');
         $('#addToCode').css('opacity', '1');
         $('#addToCode').css('cursor', 'pointer');
         $('#addToCode').prop('disabled', false);
@@ -124,7 +124,7 @@ $(() => {
             changeCurrentVideo(newIndex, false);
         });
         $('#playPause').on('click', () => {
-            if ($('#playPauseIcon').hasClass('fa-play')) {
+            if ($('#playPauseIcon').hasClass('fa-circle-play')) {
                 if (stopped) {
                     $('#rewind').trigger('click');
                 }
@@ -139,7 +139,7 @@ $(() => {
         });
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
-            $('#autoRepeat').css('border-bottom-color', autoRepeat ? '#137BCD' : 'transparent');
+            $('#autoRepeat').css('opacity', autoRepeat ? '1' : '0');
         });
 
         $('#addToCode').on('click', () => {
@@ -184,15 +184,15 @@ $(() => {
 
         function play() {
             stopped = false;
-            $('#playPauseIcon').removeClass('fa-play');
-            $('#playPauseIcon').addClass('fa-pause');
+            $('#playPauseIcon').removeClass('fa-circle-play');
+            $('#playPauseIcon').addClass('fa-circle-pause');
             $('#playPauseIcon').prop('title', 'Pausar vídeo');
             $('#video_' + currentIndex).trigger('play');
         }
 
         function pause() {
-            $('#playPauseIcon').removeClass('fa-pause');
-            $('#playPauseIcon').addClass('fa-play');
+            $('#playPauseIcon').removeClass('fa-circle-pause');
+            $('#playPauseIcon').addClass('fa-circle-play');
             $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
             $('#video_' + currentIndex).trigger('pause');
         }
@@ -235,14 +235,14 @@ $(() => {
         }
         setInterval(updateCurrentTime, 200);
 
-        const componentIds = [
+        const componentsIds = [
             'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward',
-            'playPause', 'forward', 'autoRepeat', 'addToCode', 'info ',
+            'playPause', 'forward', 'autoRepeat', 'addToCode', 'info',
         ];
-        const numberOfComponents = componentIds.length;
+        const numberOfComponents = componentsIds.length;
 
         for (let i = 0; i < numberOfComponents; i++) {
-            $('#' + componentIds[i]).tooltip({
+            $('#' + componentsIds[i]).tooltip({
                 content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].file.scheme
                 + '://' + tooltips[i].file.authority + tooltips[i].file.path + '"></video>',
                 show: {delay:500},
