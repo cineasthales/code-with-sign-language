@@ -1,8 +1,8 @@
 :root {
-    --primaryColor: #137BCD;
-    --lightThemeColor: #000000;
-    --darkThemeColor:  #FFFFFF;
-    --highContrastThemeColor: #FF0000;
+    --primaryColor: rgb(19, 123, 205);
+    --lightThemeColor: rgb(0, 0, 0);
+    --darkThemeColor:  rgb(255, 255, 255);
+    --highContrastThemeColor: rgb(255, 0, 0);
     --lightThemeBorder: 0.1rem solid rgba(0, 0, 0, .3);
     --darkThemeBorder: 0.1rem solid rgba(255, 255, 255, .3);
     --highContrastThemeBorder: 0.1rem solid rgba(255, 0, 0, .3);
@@ -42,9 +42,6 @@ video {
 
 #tabCodeToSign, #tabSignToCode {
     display: flex;
-}
-
-#tabCodeToSign, #tabSignToCode {
     font-size: 2.5rem;
 }
 
@@ -110,12 +107,7 @@ video {
     font-size: 5.5rem;
 }
 
-#tabCodeToSign, #autoRepeat {
-    padding-bottom: 0.75rem;
-    border-bottom: 0.3rem dashed var(--primaryColor);
-}
-
-#tabSignToCode, #categoryVar, #categoryValue,
+#tabCodeToSign, #tabSignToCode, #autoRepeat, #categoryVar, #categoryValue,
 #categoryCondition, #categoryRepetition, #categoryException,
 #categoryFunction, #categoryClass, #categoryObject,
 #categoryAsync, #categoryModule, #categoryDebug {
@@ -146,54 +138,52 @@ video {
     cursor: default;
 }
 
-body.vscode-light button { color: black; }
-body.vscode-dark button { color: white; }
-body.vscode-high-contrast button { color: red; }
+body.vscode-light button { color: var(--lightThemeColor); }
+body.vscode-dark button { color: var(--darkThemeColor); }
+body.vscode-high-contrast button { color: var(--highContrastThemeColor); }
 
-body.vscode-light #tabsContainer { border-bottom: var(--lightThemeBorder) }
-body.vscode-dark #tabsContainer { border-bottom: var(--darkThemeBorder) }
-body.vscode-high-contrast #tabsContainer { border-bottom: var(--highContrastThemeBorder) }
+body.vscode-light #tabsContainer { border-bottom: var(--lightThemeBorder); }
+body.vscode-dark #tabsContainer { border-bottom: var(--darkThemeBorder); }
+body.vscode-high-contrast #tabsContainer { border-bottom: var(--highContrastThemeBorder); }
 
-body.vscode-light #verticalLine { border-left: var(--lightThemeBorder) }
-body.vscode-dark #verticalLine { border-left: var(--darkThemeBorder) }
-body.vscode-high-contrast #verticalLine { border-left: var(--highContrastThemeBorder) }
+body.vscode-light #verticalLine { border-left: var(--lightThemeBorder); }
+body.vscode-dark #verticalLine { border-left: var(--darkThemeBorder); }
+body.vscode-high-contrast #verticalLine { border-left: var(--highContrastThemeBorder); }
 
-body.vscode-light #playerInfoContainer { border-top: var(--lightThemeBorder) }
-body.vscode-dark #playerInfoContainer { border-top: var(--darkThemeBorder) }
-body.vscode-high-contrast #playerInfoContainer { border-top: var(--highContrastThemeBorder) }
-
-body.vscode-light .ui-slider {
-    background-color: transparent;
-    border: var(--lightThemeBorder);
-}
-body.vscode-dark .ui-slider {
-    background-color: transparent;
-    border: var(--darkThemeBorder);
-}
-body.vscode-high-contrast .ui-slider {
-    background-color: transparent;
-    border: var(--highContrastThemeBorder);
-}
-body.vscode-light .ui-slider .ui-slider-handle {
-    border: 0;
-    background-color: var(--lightThemeColor)
-}
-body.vscode-dark .ui-slider .ui-slider-handle {
-    border: 0;
-    background-color: var(--darkThemeColor);
-}
-body.vscode-high-contrast .ui-slider .ui-slider-handle {
-    border: 0;
-    background-color: var(--highContrastThemeColor);
-}
+body.vscode-light #playerInfoContainer { border-top: var(--lightThemeBorder); }
+body.vscode-dark #playerInfoContainer { border-top: var(--darkThemeBorder); }
+body.vscode-high-contrast #playerInfoContainer { border-top: var(--highContrastThemeBorder); }
 
 body.vscode-light .ui-tooltip,
 body.vscode-dark .ui-tooltip,
-body.vscode-high-contrast .ui-tooltip
-{
+body.vscode-high-contrast .ui-tooltip {
     background-color: transparent;
     box-shadow: 0 0 0;
 }
-body.vscode-light .ui-tooltip video { border: var(--lightThemeBorder) }
-body.vscode-dark .ui-tooltip video { border: var(--darkThemeBorder) }
-body.vscode-high-contrast .ui-tooltip video { border: var(--highContrastThemeBorder) }
+body.vscode-light .ui-tooltip video { border: var(--lightThemeBorder); }
+body.vscode-dark .ui-tooltip video { border: var(--darkThemeBorder); }
+body.vscode-high-contrast .ui-tooltip video { border: var(--highContrastThemeBorder); }
+
+body.vscode-light .ui-slider,
+body.vscode-dark .ui-slider,
+body.vscode-high-contrast .ui-slider {
+    background-color: transparent;
+}
+body.vscode-light .ui-slider { border: var(--lightThemeBorder); }
+body.vscode-dark .ui-slider { border: var(--darkThemeBorder); }
+body.vscode-high-contrast .ui-slider { border: var(--highContrastThemeBorder); }
+
+body.vscode-light .ui-slider .ui-slider-handle,
+body.vscode-dark .ui-slider .ui-slider-handle,
+body.vscode-high-contrast .ui-slider .ui-slider-handle {
+    border: 0;
+}
+body.vscode-light .ui-slider .ui-slider-handle {
+    background-color: var(--lightThemeColor);
+}
+body.vscode-dark .ui-slider .ui-slider-handle {
+    background-color: var(--darkThemeColor);
+}
+body.vscode-high-contrast .ui-slider .ui-slider-handle {
+    background-color: var(--highContrastThemeColor);
+}
