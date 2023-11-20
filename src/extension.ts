@@ -73,7 +73,7 @@ export function activate(context: vscode.ExtensionContext)
 				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','tooltip11.mp4'))},
 			];
 
-			webview.postMessage({videos, tooltips});
+			webview.postMessage({videos, tooltips, categories});
 
 			webview.html = getWebviewContent(webview, uri);
 		})
@@ -134,7 +134,7 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					if (text[i+1] === '/')
 					{
 						closure = '\n';
-						signs.push('comment.single');
+						signs.push('comment.single.start');
 						i++;
 						continue;
 					}
@@ -382,11 +382,19 @@ function fetchSigns(editor: vscode.TextEditor) : string[]
 					continue;
 				}
 
-				// Comentário em linha única (fechamento)
+				// Expressão Regular (fechamento)
 				if (closure === '/' && text[i] === '/')
 				{
 					closure = '';
 					signs.push('regex.end');
+					continue;
+				}
+
+				// Comentário em linha única (fechamento)
+				if (closure === '\n' && text[i] === '\n')
+				{
+					closure = '';
+					signs.push('comment.single.end');
 					continue;
 				}
 
@@ -587,17 +595,17 @@ const reservedWords = [
 	'while',
 	'with',
 	'yield',
-	'as',				// substring of other reserved word(s)
-	'const',			// substring of other reserved word(s)
-	'in',				// substring of other reserved word(s)
-	'let',				// substring of other reserved word(s)
-	'of',				// substring of other reserved word(s)
-	'enum', 			// future reserved word
+	'as',			// substring of other reserved word(s)
+	'const',		// substring of other reserved word(s)
+	'in',			// substring of other reserved word(s)
+	'let',			// substring of other reserved word(s)
+	'of',			// substring of other reserved word(s)
+	'enum',			// future reserved word
 	'implements',		// future reserved word
-	'package',			// future reserved word
-	'private',			// future reserved word
+	'package',		// future reserved word
+	'private',		// future reserved word
 	'protected',		// future reserved word
-	'public',			// future reserved word
+	'public',		// future reserved word
 ];
 
 const categories = [
