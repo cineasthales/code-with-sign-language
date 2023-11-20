@@ -62,6 +62,13 @@ $(() => {
         }
     });
 
+    // $('.categories').on('click', () => {
+    //     $('.categories').css('background-color', 'transparent');
+    //     $(this).css('background-color', primaryColor);
+    //     //$(this).css('cssText', 'background-color: ' + primaryColor + ' !important;');
+    //     changeCurrentVideo
+    // });
+
     window.addEventListener('message', event => {
 
         const tooltips = event.data.tooltips;
