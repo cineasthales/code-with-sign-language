@@ -455,14 +455,11 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 				<i class="fa-regular fa-file-code"></i>
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands"></i>
-    				<sup><i class="fa-solid fa-circle" id="codeToSignOnIcon"></i></sup>
 			</button>
-   			<div id="verticalLine"></div>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code"></i>
-   				<sup><i class="fa-solid fa-circle" id="signToCodeOnIcon"></i></sup>
 			</button>
 		</nav>
 		<main>
@@ -483,7 +480,7 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 
 				for (let category of categories) {
 					html += `
-					<button id="category${category.id}" class="infoToggle" title="${category.title}">
+					<button id="category${category.id}" class="infoToggle categories" title="${category.title}">
 						<i class="fa-solid fa-${category.icon}" id="category${category.id}Icon"></i>
 					</button>`;
 				}
@@ -493,21 +490,26 @@ function getWebviewContent(webview: vscode.Webview, uri: vscode.Uri) : string
 			<div id="videoContainer"></div>
 			<div id="sliderContainer"></div>
 			<section id="playerMainContainer">
-				<button id="rewind" class="infoToggle" title="Retornar ao início">
+				<button id="rewind" class="infoToggle codeToSignToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
 				</button>
-				<button id="backward" class="infoToggle" title="Sinal anterior">
+				<button id="backward" class="infoToggle codeToSignToggle" title="Sinal anterior">
 					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
+				</button>
+				<button id="previousInCategory" class="infoToggle signToCodeToggle" title="Sinal anterior da categoria">
+					<i class="fa-solid fa-angle-left" id="previousInCategoryIcon"></i>
 				</button>
 				<button id="playPause" title="Reproduzir vídeo">
 					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
 				</button>
-				<button id="forward" class="infoToggle" title="Próximo sinal">
+				<button id="nextInCategory" class="infoToggle signToCodeToggle" title="Próximo sinal da categoria">
+					<i class="fa-solid fa-angle-right" id="nextInCategoryIcon"></i>
+				</button>
+				<button id="forward" class="infoToggle codeToSignToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 				</button>
-				<button id="autoRepeat" class="infoToggle" title="Repetir automaticamente">
+				<button id="autoRepeat" class="infoToggle codeToSignToggle" title="Repetir automaticamente">
 					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
-					<sup><i class="fa-solid fa-circle" id="autoRepeatOnIcon"></i></sup>
 				</button>
 			</section>
 			<section id="playerInfoContainer">
@@ -608,13 +610,13 @@ const categories = [
 	{
 		title: 'Valores',
 		id: 'Value',
-		icon: 'database',
+		icon: 'flag',
 		signs: ['true', 'false', 'null', 'undefined'],
 	},
 	{
 		title: 'Estruturas de Condição',
 		id: 'Condition',
-		icon: 'flag',
+		icon: 'arrows-split-up-and-left',
 		signs: ['if', 'else', 'switch', 'case', 'default'],
 	},
 	{
@@ -626,7 +628,7 @@ const categories = [
 	{
 		title: 'Tratamento de Exceção',
 		id: 'Exception',
-		icon: 'xmark',
+		icon: 'triangle-exclamation',
 		signs: ['try', 'catch', 'finally', 'throw'],
 	},
 	{
@@ -644,13 +646,13 @@ const categories = [
 	{
 		title: 'Objetos',
 		id: 'Object',
-		icon: 'cube',
+		icon: 'icons',
 		signs: ['new', 'this', 'super', 'instanceof', 'delete'],
 	},
 	{
 		title: 'Programação Assíncrona',
 		id: 'Async',
-		icon: 'diagram-project',
+		icon: 'arrows-turn-right',
 		signs: ['async', 'await'],
 	},
 	{

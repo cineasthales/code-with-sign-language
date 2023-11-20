@@ -1,28 +1,33 @@
 $(() => {
 
     const vscode = acquireVsCodeApi();
+    const primaryColor = 'rgb(19, 123, 205)';
 
     $('#categoriesContainer').hide();
 
     $('#tabCodeToSign').on('click', () => {
-        $('#tabSignToCodeOnIcon').css('opacity', '0');
-        $('#tabCodeToSignOnIcon').css('opacity', '1');
+        $('#tabSignToCode').css('background-color', 'transparent');
+        $('#tabCodeToSign').css('background-color', primaryColor);
         $('#addToCode').css('opacity', '0');
         $('#addToCode').css('cursor', 'default');
         $('#addToCode').prop('disabled', true);
         $('#categoriesContainer').hide();
+        $('.signToCodeToggle').hide();
+        $('.codeToSignToggle').show();
         $('#timeContainer').show();
         $('#sliderContainer').show();
     });
 
     $('#tabSignToCode').on('click', () => {
-        $('#tabCodeToSignOnIcon').css('opacity', '0');
-        $('#tabSignToCodeOnIcon').css('opacity', '1');
+        $('#tabCodeToSign').css('background-color', 'transparent');
+        $('#tabSignToCode').css('background-color', primaryColor);
         $('#addToCode').css('opacity', '1');
         $('#addToCode').css('cursor', 'pointer');
         $('#addToCode').prop('disabled', false);
         $('#timeContainer').hide();
         $('#sliderContainer').hide();
+        $('.codeToSignToggle').hide();
+        $('.signToCodeToggle').show();
         $('#categoriesContainer').show();
     });
 
@@ -36,6 +41,7 @@ $(() => {
             $('.infoToggle').css('cursor', 'not-allowed');
             $('.infoToggle').prop('disabled', true);
             $('.infoToggle').prop('title', '');
+            $('#sliderContainer').slider('disable');
         } else {
             $('#infoIcon').removeClass('fa-check');
             $('#infoIcon').addClass('fa-question');
@@ -52,6 +58,7 @@ $(() => {
             $('#backward').prop('title', 'Sinal anterior');
             $('#forward').prop('title', 'Próximo sinal');
             $('#autoRepeat').prop('title', 'Repetir automaticamente');
+            $('#sliderContainer').slider('enable');
         }
     });
 
@@ -139,7 +146,7 @@ $(() => {
         });
         $('#autoRepeat').on('click', () => {
             autoRepeat = !autoRepeat;
-            $('#autoRepeat').css('opacity', autoRepeat ? '1' : '0');
+            $('#autoRepeat').css('background-color', autoRepeat ? primaryColor : 'transparent');
         });
 
         $('#addToCode').on('click', () => {
@@ -245,7 +252,7 @@ $(() => {
             $('#' + componentsIds[i]).tooltip({
                 content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].file.scheme
                 + '://' + tooltips[i].file.authority + tooltips[i].file.path + '"></video>',
-                show: {delay:500},
+                show: {delay:750},
             });
         }
     });
