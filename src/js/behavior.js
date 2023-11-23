@@ -4,6 +4,8 @@ $(() => {
     const primaryColor = 'rgb(19, 123, 205)';
 
     $('#categoriesContainer').hide();
+    $('#previousInCategory').hide();
+    $('#nextInCategory').hide();
 
     $('#tabCodeToSign').on('click', () => {
         $('#tabSignToCode').css('background-color', 'transparent');
