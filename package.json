@@ -1,7 +1,7 @@
 {
   "name": "code-with-sign-language",
   "displayName": "Code with Sign Language",
-  "description": "Translate code to a sign language.",
+  "description": "Translate code to or from a sign language.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
