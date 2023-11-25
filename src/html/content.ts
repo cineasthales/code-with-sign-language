@@ -1,22 +1,22 @@
-import * as vscode from 'vscode';
-import * as extension from '../extension';
+import { Webview, Uri } from 'vscode';
+import { ICategory } from '../extension';
 
-export function getHtml(webview: vscode.Webview, uri: vscode.Uri, categories: extension.ICategory[]) : string
+export function getHtml(webview: Webview, uri: Uri, categories: ICategory[]) : string
 {
 	const allCss = [
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','fontawesome.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','regular.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','icons','fontawesome','css','solid.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','jquery-ui.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','jquery-ui-slider-pips.css')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','css','style.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','solid.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','css','jquery-ui.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','css','jquery-ui-slider-pips.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','css','style.css')),
 	];
 
 	const allJs = [
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery.js')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery-ui.js')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','jquery-ui-slider-pips.js')),
-		webview.asWebviewUri(vscode.Uri.joinPath(uri,'src','js','behavior.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','js','behavior.js')),
 	];
 
 	let html = `
@@ -36,19 +36,19 @@ export function getHtml(webview: vscode.Webview, uri: vscode.Uri, categories: ex
 	<body>
 		<nav id="tabsContainer">
 			<button id="tabCodeToSign" class="infoToggle" title="Tradutor de código para Libras">
-				<i class="fa-regular fa-file-code"></i>
+				<i class="fa-regular fa-file-code" id="codeToSignFirstIcon"></i>
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
-				<i class="fa-solid fa-hands"></i>
+				<i class="fa-solid fa-hands" id="codeToSignLastIcon"></i>
 			</button>
 			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
-				<i class="fa-solid fa-hands"></i>
+				<i class="fa-solid fa-hands" id="signToCodeFirstIcon"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
-				<i class="fa-regular fa-file-code"></i>
+				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
 		</nav>
 		<main>
-			<section id="timeContainer">
-				<div id="currentTime" class="infoTimeToggle"></div>
+			<section id="timeContainer" class="codeToSignToggle">
+				<span id="currentTime" class="infoTimeToggle"></span>
 				<div id="speedContainer">
 					<button id="slower" class="infoToggle" title="Diminuir velocidade">
 						<i class="fa-solid fa-backward" id="slowerIcon"></i>
@@ -58,9 +58,9 @@ export function getHtml(webview: vscode.Webview, uri: vscode.Uri, categories: ex
 						<i class="fa-solid fa-forward" id="fasterIcon"></i>
 					</button>
 				</div>
-				<div id="totalDuration" class="infoTimeToggle"></div>
+				<span id="totalDuration" class="infoTimeToggle"></span>
 			</section>
-			<section id="categoriesContainer">`;
+			<section id="categoriesContainer" class="signToCodeToggle">`;
 
 				for (let category of categories) {
 					html += `
@@ -72,8 +72,8 @@ export function getHtml(webview: vscode.Webview, uri: vscode.Uri, categories: ex
 			html += `
 			</section>
 			<div id="videoContainer"></div>
-			<div id="sliderContainer"></div>
-			<section id="playerMainContainer">
+			<div id="sliderContainer" class="codeToSignToggle"></div>
+			<section id="playerContainer">
 				<button id="rewind" class="infoToggle codeToSignToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
 				</button>
@@ -96,14 +96,19 @@ export function getHtml(webview: vscode.Webview, uri: vscode.Uri, categories: ex
 					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
 				</button>
 			</section>
-			<section id="playerInfoContainer">
-				<div id="currentSign"></div>
-				<div id="otherActionsContainer">
-					<button id="addToCode" disabled title="Escrever palavra no código">
-						<i class="fa-solid fa-file-pen" id="addToCodeIcon"></i>
-					</button>
-					<button id="info" title="O que é isto?">
+			<section id="actionsContainer">
+				<div id="infoContainer">
+					<span id="currentSign"></span>
+					<button id="info" title="O que é esta palavra?">
 						<i class="fa-solid fa-question" id="infoIcon"></i>
+					</button>
+				</div>
+				<div id="mainActionsContainer">
+					<button id="readCode" class="infoToggle codeToSignToggle" title="Ler código selecionado">
+						<i class="fa-solid fa-glasses" id="readCodeIcon"></i>
+					</button>
+					<button id="writeCode" class="infoToggle signToCodeToggle" title="Escrever palavra no código">
+						<i class="fa-solid fa-pen" id="writeCodeIcon"></i>
 					</button>
 				</div>
 			</section>

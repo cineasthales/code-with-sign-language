@@ -69,17 +69,20 @@ export function activate(context: vscode.ExtensionContext)
 			}
 
 			const tooltips = [
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip1.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip2.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip3.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip4.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip5.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip6.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip7.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip8.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip9.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip10.mp4'))},
-				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip11.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
+				{sign: '', file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip.mp4'))},
 			];
 
 			webview.postMessage({videos, tooltips, categories});

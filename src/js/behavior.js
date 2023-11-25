@@ -2,66 +2,24 @@ $(() => {
 
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
+    let currentTab = 1;
 
-    $('#categoriesContainer').hide();
-    $('#previousInCategory').hide();
-    $('#nextInCategory').hide();
+    $('.signToCodeToggle').hide();
 
     $('#tabCodeToSign').on('click', () => {
         $('#tabSignToCode').css('background-color', 'transparent');
         $('#tabCodeToSign').css('background-color', primaryColor);
-        $('#addToCode').css('opacity', '0');
-        $('#addToCode').css('cursor', 'default');
-        $('#addToCode').prop('disabled', true);
-        $('#categoriesContainer').hide();
         $('.signToCodeToggle').hide();
         $('.codeToSignToggle').show();
-        $('#timeContainer').show();
-        $('#sliderContainer').show();
+        currentTab = 1;
     });
 
     $('#tabSignToCode').on('click', () => {
         $('#tabCodeToSign').css('background-color', 'transparent');
         $('#tabSignToCode').css('background-color', primaryColor);
-        $('#addToCode').css('opacity', '1');
-        $('#addToCode').css('cursor', 'pointer');
-        $('#addToCode').prop('disabled', false);
-        $('#timeContainer').hide();
-        $('#sliderContainer').hide();
         $('.codeToSignToggle').hide();
         $('.signToCodeToggle').show();
-        $('#categoriesContainer').show();
-    });
-
-    $('#info').on('click', () => {
-        if ($('#infoIcon').hasClass('fa-question')) {
-            $('#infoIcon').removeClass('fa-question');
-            $('#infoIcon').addClass('fa-check');
-            $('#info').prop('title', 'Ok');
-            $('.infoTimeToggle').css('opacity', '0.1');
-            $('.infoToggle').css('opacity', '0.1');
-            $('.infoToggle').css('cursor', 'not-allowed');
-            $('.infoToggle').prop('disabled', true);
-            $('.infoToggle').prop('title', '');
-            $('#sliderContainer').slider('disable');
-        } else {
-            $('#infoIcon').removeClass('fa-check');
-            $('#infoIcon').addClass('fa-question');
-            $('#info').prop('title', 'O que é isto?');
-            $('.infoTimeToggle').css('opacity', '1');
-            $('.infoToggle').css('opacity', '1');
-            $('.infoToggle').css('cursor', 'pointer');
-            $('.infoToggle').prop('disabled', false);
-            $('#tabCodeToSign').prop('title', 'Tradutor de código para Libras');
-            $('#tabSignToCode').prop('title', 'Tradutor de Libras para código');
-            $('#slower').prop('title', 'Diminuir velocidade');
-            $('#faster').prop('title', 'Aumentar velocidade');
-            $('#rewind').prop('title', 'Retornar ao início');
-            $('#backward').prop('title', 'Sinal anterior');
-            $('#forward').prop('title', 'Próximo sinal');
-            $('#autoRepeat').prop('title', 'Repetir automaticamente');
-            $('#sliderContainer').slider('enable');
-        }
+        currentTab = 2;
     });
 
     // $('.categories').on('click', () => {
@@ -136,7 +94,7 @@ $(() => {
             changeCurrentVideo(0, false);
         });
         $('#backward').on('click', () => {
-            let newIndex = currentIndex === 0 ? 0 : currentIndex - 1;
+            const newIndex = currentIndex === 0 ? 0 : currentIndex - 1;
             changeCurrentVideo(newIndex, false);
         });
         $('#playPause').on('click', () => {
@@ -150,7 +108,7 @@ $(() => {
             }
         });
         $('#forward').on('click', () => {
-            let newIndex = currentIndex === numberOfVideos - 1 ? currentIndex : currentIndex + 1;
+            const newIndex = currentIndex === numberOfVideos - 1 ? currentIndex : currentIndex + 1;
             changeCurrentVideo(newIndex, false);
         });
         $('#autoRepeat').on('click', () => {
@@ -158,8 +116,34 @@ $(() => {
             $('#autoRepeat').css('background-color', autoRepeat ? primaryColor : 'transparent');
         });
 
-        $('#addToCode').on('click', () => {
-            vscode.postMessage({ text: videos[currentIndex].sign });
+        $('#info').on('click', () => {
+            pause();
+            if ($('#infoIcon').hasClass('fa-question')) {
+                $('#infoIcon').removeClass('fa-question');
+                $('#infoIcon').addClass('fa-check');
+                $('#info').prop('title', 'Ok');
+                $('.infoTimeToggle').css('opacity', '0.1');
+                $('.infoToggle').css('opacity', '0.1');
+                $('.infoToggle').css('cursor', 'not-allowed');
+                $('.infoToggle').prop('disabled', true);
+                $('#sliderContainer').slider('disable');
+            } else {
+                $('#infoIcon').removeClass('fa-check');
+                $('#infoIcon').addClass('fa-question');
+                $('#info').prop('title', 'O que é esta palavra?');
+                $('.infoTimeToggle').css('opacity', '1');
+                $('.infoToggle').css('opacity', '1');
+                $('.infoToggle').css('cursor', 'pointer');
+                $('.infoToggle').prop('disabled', false);
+                $('#sliderContainer').slider('enable');
+            }
+        });
+
+        $('#readCode').on('click', () => {
+            vscode.postMessage({ type: 'read' });
+        });
+        $('#writeCode').on('click', () => {
+            vscode.postMessage({ type: 'write', text: videos[currentIndex].sign });
         });
 
         $('body').on('keypress', event => {
@@ -168,33 +152,47 @@ $(() => {
             }
         });
         $('body').on('keydown', event => {
-            switch (event.key) {
-                case 'PageDown':
-                    $('#slower').trigger('click');
-                    break;
-                case 'PageUp':
-                    $('#faster').trigger('click');
-                    break;
-                case 'Home':
-                case 'End':
-                case 'Backspace':
-                    $('#rewind').trigger('click');
-                    break;
-                case 'ArrowLeft':
-                    $('#backward').trigger('click');
-                    break;
-                case 'ArrowRight':
-                    $('#forward').trigger('click');
-                    break;
-                case 'A':
-                case 'a':
-                case 'R':
-                case 'r':
-                    $('#autoRepeat').trigger('click');
-                    break;
-                case 'i':
-                case 'I':
-                    $('#info').trigger('click');
+            if (event.key === 'i' || event.key === 'I') {
+                $('#info').trigger('click');
+            } else if (currentTab === 1) {
+                switch (event.key) {
+                    case 'PageDown':
+                        $('#slower').trigger('click');
+                        break;
+                    case 'PageUp':
+                        $('#faster').trigger('click');
+                        break;
+                    case 'Home':
+                    case 'End':
+                    case 'Backspace':
+                        $('#rewind').trigger('click');
+                        break;
+                    case 'ArrowLeft':
+                        $('#backward').trigger('click');
+                        break;
+                    case 'ArrowRight':
+                        $('#forward').trigger('click');
+                        break;
+                    case 'a':
+                    case 'A':
+                        $('#autoRepeat').trigger('click');
+                        break;
+                    case 'r':
+                    case 'R':
+                        $('#readCode').trigger('click');
+                }
+            } else if (currentTab === 2) {
+                switch (event.key) {
+                    case 'ArrowLeft':
+                        $('#previousInCategory').trigger('click');
+                        break;
+                    case 'ArrowRight':
+                        $('#nextInCategory').trigger('click');
+                        break;
+                    case 'w':
+                    case 'W':
+                        $('#writeCode').trigger('click');
+                }
             }
         });
 
@@ -252,8 +250,8 @@ $(() => {
         setInterval(updateCurrentTime, 200);
 
         const componentsIds = [
-            'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward',
-            'playPause', 'forward', 'autoRepeat', 'addToCode', 'info',
+            'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward', 'previousInCategory',
+            'playPause', 'nextInCategory', 'forward', 'autoRepeat', 'info', 'readCode', 'writeCode',
         ];
         const numberOfComponents = componentsIds.length;
 
@@ -261,10 +259,11 @@ $(() => {
             $('#' + componentsIds[i]).tooltip({
                 content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].file.scheme
                 + '://' + tooltips[i].file.authority + tooltips[i].file.path + '"></video>',
-                show: {delay:750},
+                show: {delay:1000},
             });
         }
     });
+
 });
 
 
