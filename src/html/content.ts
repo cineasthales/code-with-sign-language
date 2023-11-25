@@ -1,25 +1,25 @@
 import { Webview, Uri } from 'vscode';
-import { ICategory } from '../extension';
+import { ICategory } from '../util/interfaces';
 
-export function getHtml(webview: Webview, uri: Uri, categories: ICategory[]) : string
+export function getHtml(webview: Webview, extensionUri: Uri, categories: ICategory[]): string
 {
-	const allCss = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','fontawesome.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','regular.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','icons','fontawesome','css','solid.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','css','jquery-ui.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','css','jquery-ui-slider-pips.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','css','style.css')),
+	const allCss: Uri[] = [
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','solid.css')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','jquery-ui.css')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','jquery-ui-slider-pips.css')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','style.css')),
 	];
 
-	const allJs = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery-ui.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','js','jquery-ui-slider-pips.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','js','behavior.js')),
+	const allJs: Uri[] = [
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','behavior.js')),
 	];
 
-	let html = `
+	let html: string = `
 	<!DOCTYPE html>
 	<html>
 	<head>
