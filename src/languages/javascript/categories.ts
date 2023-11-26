@@ -1,4 +1,4 @@
-import { ICategory } from "../../extension";
+import { ICategory } from '../../utils/interfaces';
 
 export const categories: ICategory[]  = [
 	{

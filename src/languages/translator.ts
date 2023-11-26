@@ -1,17 +1,31 @@
 import * as vscode from 'vscode';
-import * as analyser from './javascript/analyser';
+import * as javascriptCodeChecker from './javascript/codeChecker';
+import { IVideo } from '../utils/interfaces';
 
-export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri)
+export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri) : IVideo[]
 {
-	const signs: string[] = analyser.getSigns(editor);
-	const videos: object[] = [];
-	for (let sign of signs) {
-		videos.push({
-			sign: sign,
-			file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', 'libras', 'code', sign + '.mp4')),
-			info: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', 'libras', 'info', sign + '.mp4')),
-		});
+	let signs: string[];
+	const videos: IVideo[] = [];
+
+	switch (editor.document.languageId) {
+		case 'javascript':
+			signs = javascriptCodeChecker.getSigns(editor);
+			break;
+		default:
+			return videos;
 	}
+
+	if (signs) {
+		for (let sign of signs) {
+			videos.push({
+				sign: sign,
+				file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','code',sign+'.mp4')),
+				info: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','info',sign+'.mp4')),
+			});
+		}
+	}
+
+	return videos;
 }
 
 export function writeCode(editor: vscode.TextEditor, text: string)

@@ -1,5 +1,5 @@
 import { Webview, Uri } from 'vscode';
-import { ICategory } from '../util/interfaces';
+import { ICategory } from '../utils/interfaces';
 
 export function getHtml(webview: Webview, extensionUri: Uri, categories: ICategory[]): string
 {

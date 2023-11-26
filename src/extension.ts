@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import * as content from './html/content';
 import * as translator from './languages/translator';
+import { IVideo } from './utils/interfaces';
+import { messagesIds , tooltipsIds } from './utils/constants';
 import { categories } from './languages/javascript/categories';
 
 export function activate(context: vscode.ExtensionContext)
@@ -34,11 +36,24 @@ export function activate(context: vscode.ExtensionContext)
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
+			const messages: (vscode.Uri)[] = [];
+			const tooltips: (vscode.Uri)[] = [];
+			for (let message of messagesIds) {
+				messages.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltips',message+'.mp4')));
+			}
+			for (let tooltip of tooltipsIds) {
+				tooltips.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltips',tooltip+'.mp4')));
+			}
+			webview.postMessage({messages, tooltips});
+
 			webview.onDidReceiveMessage(
 				(message: any) => {
 					if (editor) {
 						if (message.type === 'read' && editor.selections) {
-							translator.readCode(editor, webview, uri);
+							const videos: IVideo[] = translator.readCode(editor, webview, uri);
+							if (videos) {
+								webview.postMessage({videos});
+							}
 						} else if (message.type === 'write' && message.text) {
 							translator.writeCode(editor, message.text);
 						}
@@ -47,21 +62,6 @@ export function activate(context: vscode.ExtensionContext)
 				undefined,
 				context.subscriptions
 			);
-
-			const messages = [
-				webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','messages','welcome.mp4')),
-			];
-
-			const tooltips: (vscode.Uri)[] = [];
-			const buttons: string[] = [
-				'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward', 'previousInCategory',
-				'playPause', 'nextInCategory', 'forward', 'autoRepeat', 'info', 'readCode', 'writeCode',
-			];
-			for (let button of buttons) {
-				tooltips.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltips',button+'.mp4')));
-			}
-
-			webview.postMessage({messages, tooltips});
 
 			webview.html = content.getHtml(webview, uri, categories);
 		})
