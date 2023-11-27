@@ -39,16 +39,16 @@ export function activate(context: vscode.ExtensionContext)
 			const messages: (vscode.Uri)[] = [];
 			const tooltips: (vscode.Uri)[] = [];
 			for (let message of messagesIds) {
-				messages.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltips',message+'.mp4')));
+				messages.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','message',message+'.mp4')));
 			}
 			for (let tooltip of tooltipsIds) {
-				tooltips.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltips',tooltip+'.mp4')));
+				tooltips.push(webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','tooltip',tooltip+'.mp4')));
 			}
 			webview.postMessage({messages, tooltips});
 
 			webview.onDidReceiveMessage(
 				(message: any) => {
-					if (editor) {
+					if (editor && message.type) {
 						if (message.type === 'read' && editor.selections) {
 							const videos: IVideo[] = translator.readCode(editor, webview, uri);
 							if (videos) {

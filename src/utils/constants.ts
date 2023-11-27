@@ -1,10 +1,8 @@
-export const messagesIds: string[] =
-[
+export const messagesIds: string[] = [
     'welcome',
 ];
 
-export const tooltipsIds: string[] =
-[
+export const tooltipsIds: string[] = [
     'tabCodeToSign',
     'tabSignToCode',
     'slower',

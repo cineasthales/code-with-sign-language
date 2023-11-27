@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
-import { IVideo } from '../utils/interfaces';
+import { IResult, IVideo } from '../utils/interfaces';
 
 export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri) : IVideo[]
 {
-	let signs: string[];
+	let results: IResult[] = [];
 	const videos: IVideo[] = [];
 
 	if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
@@ -13,18 +13,18 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 
 	switch (editor.document.languageId) {
 		case 'javascript':
-			signs = javascriptCodeChecker.getSigns(editor);
+			results = javascriptCodeChecker.getResults(editor);
 			break;
 		default:
 			return videos;
 	}
 
-	if (signs) {
-		for (let sign of signs) {
+	if (results) {
+		for (let result of results) {
 			videos.push({
-				sign: sign,
-				file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','code',sign+'.mp4')),
-				info: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','info',sign+'.mp4')),
+				token: result.token,
+				sign: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','sign',result.sign+'.mp4')),
+				info: result.info ? webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos','libras','info',result.info+'.mp4')) : undefined,
 			});
 		}
 	}

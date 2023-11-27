@@ -1,9 +1,10 @@
 import * as vscode from "vscode";
-import { reservedWords } from './reservedWords';
+import { reservedWords } from './sintax';
+import { IResult } from '../../utils/interfaces';
 
-export function getSigns(editor: vscode.TextEditor) : string[]
+export function getResults(editor: vscode.TextEditor) : IResult[]
 {
-	const signs = [];
+	const results: IResult[] = [];
 
 	for (let selection of editor.selections)
 	{
@@ -13,248 +14,209 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 		let i: number = 0;
 		let closure: string = '';
 
-		// Comentário hashbang
 		if (selection === editor.selections[0]
 			&& selection.start.isEqual(new vscode.Position(0, 0))
 			&& text[0] === '#' && text[1] === '!')
 		{
+			results.push({token:'#!',sign:'comment.hashbang',info:'comment.hashbang'});
 			closure = '\n';
-			signs.push('comment.hashbang');
 			i = 2;
 		}
 
 		for (i; i < textLength; i++)
 		{
-			// Espaço em branco
 			if (text[i] === ' ') { continue; }
 
-			// Nova linha
 			if (text[i].match(/[\r\n]/))
 			{
 				if (closure === '\n') { closure = ''; }
 				continue;
 			}
 
-			// Não estando em um bloco especial
 			if (closure === '')
 			{
-				// String
 				if (text[i].match(/["'`]/))
 				{
+					results.push({token:text[i],sign:'string.begin',info:'string'});
 					closure = text[i];
-					signs.push('string.begin');
 					continue;
 				}
 
 				if (text[i] === '/')
 				{
-					// Comentário em linha única
 					if (text[i+1] === '/')
 					{
+						results.push({token:'//',sign:'comment.single.begin',info:'comment.single'});
 						closure = '\n';
-						signs.push('comment.single.begin');
 						i++;
 						continue;
 					}
-					// Comentário em bloco
 					if (text[i+1] === '*')
 					{
+						results.push({token:'/*',sign:'comment.block.begin',info:'comment.block'});
 						closure = '*/';
-						signs.push('comment.block.begin');
 						i++;
 						continue;
 					}
-					// Expressão Regular
+					results.push({token:'/',sign:'regex.begin',info:'regex'});
 					closure = '/';
-					signs.push('regex.begin');
 					continue;
 				}
 
-				// Vetor
 				if (text[i] === '[')
 				{
+					results.push({token:'[',sign:'array.begin',info:'array'});
 					closure = ']';
-					signs.push('array.begin');
 					continue;
 				}
 
-				// Incremento
 				if (text[i] === '+' && text[i+1] === '+') {
-					signs.push('math.increment');
+					results.push({token:'++',sign:'math.increment',info:'math.increment'});
 					i++;
 					continue;
 				}
 
-				// Decremento
 				if (text[i] === '-' && text[i+1] === '-') {
-					signs.push('math.decrement');
+					results.push({token:'--',sign:'math.decrement',info:'math.decrement'});
 					i++;
 					continue;
 				}
 
 				if (text[i] === '?') {
 					if (text[i+1] === '?') {
-						// Atribuição em coalescência nula
 						if (text[i+2] === '=') {
-							signs.push('nullcoalesc.assignment');
+							results.push({token:'??=',sign:'nullcoalesc.assignment',info:'nullcoalesc.assignment'});
 							i += 2;
 							continue;
 						}
-						// Coalescência nula
-						signs.push('nullcoalesc');
+						results.push({token:'??',sign:'nullcoalesc',info:'nullcoalesc'});
 						i++;
 						continue;
 					}
-					// Cadeia opcional
 					if (text[i+1] === '.') {
-						signs.push('chain.optional');
+						results.push({token:'?.',sign:'chain.optional',info:'chain.optional'});
 						i++;
 						continue;
 					}
-					// If ternário
-					signs.push('ternary.if');
+					results.push({token:'?',sign:'ternary.if',info:'ternary'});
 					continue;
 				}
 
-				// Else ternário
 				if (text[i] === ':') {
-					signs.push('ternary.else');
+					results.push({token:':',sign:'ternary.else',info:'ternary'});
 					continue;
 				}
 
-				// Cadeia
 				if (text[i] === '.') {
-					signs.push('chain');
+					results.push({token:'.',sign:'chain',info:'chain'});
 					continue;
 				}
 
 				if (text[i] === '!') {
 					if (text[i+1] === '=') {
-						// Estritamente diferente
 						if (text[i+2] === '=') {
-							signs.push('different.strict');
+							results.push({token:'!==',sign:'different.strict',info:'different.strict'});
 							i += 2;
 							continue;
 						}
-						// Diferente
-						signs.push('different');
+						results.push({token:'!=',sign:'different',info:'different'});
 						i++;
 						continue;
 					}
-					// Operador lógico NOT
-					signs.push('logical.not');
+					results.push({token:'!',sign:'logical.not',info:'logical.not'});
 					continue;
 				}
 
 				if (text[i] === '&') {
-					// Operador lógico AND
 					if (text[i+1] === '&') {
-						signs.push('logical.and');
+						results.push({token:'&&',sign:'logical.and',info:'logical.and'});
 						i++;
 						continue;
 					}
-					// Bitwise AND
-					signs.push('bitwise.and');
+					results.push({token:'&',sign:'bitwise.and',info:'bitwise.and'});
 					continue;
 				}
 
 				if (text[i] === '|') {
-					// Operador lógico OR
 					if (text[i+1] === '|') {
-						signs.push('logical.or');
+						results.push({token:'||',sign:'logical.or',info:'logical.or'});
 						i++;
 						continue;
 					}
-					// Bitwise OR
-					signs.push('bitwise.or');
+					results.push({token:'|',sign:'bitwise.or',info:'bitwise.or'});
 					continue;
 				}
 
-				// Bitwise XOR
 				if (text[i] === '^') {
-					signs.push('bitwise.xor');
+					results.push({token:'^',sign:'bitwise.xor',info:'bitwise.xor'});
 					continue;
 				}
 
 				if (text[i] === '*') {
-					// Potência
 					if (text[i+1] === '*') {
-						signs.push('math.power');
+						results.push({token:'**',sign:'math.power',info:'math.power'});
 						i++;
 						continue;
 					}
-					// Multiplicação
-					signs.push('math.times');
+					results.push({token:'*',sign:'math.times',info:'math.times'});
 					continue;
 				}
 
 				if (text[i] === '=') {
 					if (text[i+1] === '=') {
 						if (text[i+2] === '=') {
-							// Estritamente igual
-							signs.push('equals.strict');
+							results.push({token:'===',sign:'equals.strict',info:'equals.strict'});
 							i += 2;
 							continue;
 						}
-						// Igual
-						signs.push('equals');
+						results.push({token:'==',sign:'equals',info:'equals'});
 						i++;
 						continue;
 					}
 					if (text[i+1] === '>') {
-						// Função Seta
-						signs.push('function.arrow');
+						results.push({token:'=>',sign:'function.arrow',info:'function.arrow'});
 						i++;
 						continue;
 					}
-					// Atribuição
-					signs.push('assignment');
+					results.push({token:'=',sign:'assignment',info:'assignment'});
 					continue;
 				}
 
 				if (text[i] === '>') {
-					// Maior ou igual
 					if (text[i+1] === '=') {
-						signs.push('greater.equal');
+						results.push({token:'>=',sign:'greater.equal',info:'greater.equal'});
 						i++;
 						continue;
 					}
 					if (text[i+1] === '>') {
-						// Troca bitwise à direita sem sinal
 						if (text[i+1] === '>') {
-							signs.push('bitwise.shift.unsigned');
+							results.push({token:'>>>',sign:'bitwise.shift.unsigned',info:'bitwise.shift.unsigned'});
 							i += 2;
 							continue;
 						}
-						// Troca bitwise à direita
-						signs.push('bitwise.shift.right');
+						results.push({token:'>>',sign:'bitwise.shift.right',info:'bitwise.shift.right'});
 						i++;
 						continue;
 					}
-					// Maior
-					signs.push('greater');
+					results.push({token:'>',sign:'greater',info:'greater'});
 					continue;
 				}
 
 				if (text[i] === '<') {
-					// Menor ou igual
 					if (text[i+1] === '=') {
-						signs.push('lesser.equal');
+						results.push({token:'<=',sign:'lesser.equal',info:'lesser.equal'});
 						i++;
 						continue;
 					}
-					// Troca bitwise à esquerda
 					if (text[i+1] === '<') {
-						signs.push('bitwise.shift.left');
+						results.push({token:'<<',sign:'bitwise.shift.left',info:'bitwise.shift.left'});
 						i++;
 						continue;
 					}
-					// Menor
-					signs.push('lesser');
+					results.push({token:'<',sign:'lesser',info:'lesser'});
 					continue;
 				}
 
-				// Palavras reservadas
 				if (text[i].match(/[a-gilopnr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 				{
 					const firstWord = text.substring(i).match(/\w+\b/);
@@ -265,24 +227,21 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 						const found = reservedWords.find(word => word === firstWord[0]);
 						if (found) {
 							if (found !== 'function' && found !== 'yield') {
-								signs.push(found);
+								results.push({token:found,sign:found,info:found});
 								i += found.length-1;
 								continue;
 							}
-							// Gerador function ou yield
 							if (text[i+1] === '*') {
-								signs.push(found + '.generator');
+								results.push({token:found+'*',sign:found+'.generator',info:found+'.generator'});
 								i += found.length;
 								continue;
 							}
-							// Gerador function ou yield
 							if (text[i+1] === ' ' && text[i+2] === '*') {
-								signs.push(found + '.generator');
+								results.push({token:found+' *',sign:found+'.generator',info:found+'.generator'});
 								i += found.length+1;
 								continue;
 							}
-							// Function ou yield
-							signs.push(found);
+							results.push({token:found,sign:found,info:found});
 							i += found.length-1;
 							continue;
 						}
@@ -291,52 +250,45 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 			}
 			else
 			{
-				// String (fechamento)
-				if (closure === text[i] && text[i].match(/["'`]/)
-					&& text[i-1] !== '\\')
+				if (closure === text[i] && text[i].match(/["'`]/) && text[i-1] !== '\\')
 				{
+					results.push({token:text[i],sign:'string.end',info:'string'});
 					closure = '';
-					signs.push('string.end');
 					continue;
 				}
 
-				// Expressão Regular (fechamento)
 				if (closure === '/' && text[i] === '/')
 				{
+					results.push({token:'/',sign:'regex.end',info:'regex'});
 					closure = '';
-					signs.push('regex.end');
 					continue;
 				}
 
-				// Comentário em linha única (fechamento)
 				if (closure === '\n' && text[i] === '\n')
 				{
+					results.push({token:'',sign:'comment.single.end',info:'comment.single'});
 					closure = '';
-					signs.push('comment.single.end');
 					continue;
 				}
 
-				// Comentário em bloco (fechamento)
 				if (closure === '*/' && text[i] === '*' && text[i+1] === '/')
 				{
+					results.push({token:'*/',sign:'comment.block.end',info:'comment.block'});
 					closure = '';
-					signs.push('comment.block.end');
 					i++;
 					continue;
 				}
 
-				// Vetor (fechamento)
 				if (closure === ']' && text[i] === ']') {
 					closure = '';
-					signs.push('array.end');
+					results.push({token:']',sign:'array.end',info:'array'});
 					continue;
 				}
 			}
 
-			// Sendo caractere alfanumérico
-			if (text[i].match(/[a-zA-Z0-9]/)) { signs.push(text[i]); }
+			if (text[i].match(/[a-zA-Z0-9]/)) { results.push({token:text[i],sign:text[i],info:''}); }
 		}
 	}
 
-	return signs;
+	return results;
 }

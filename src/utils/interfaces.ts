@@ -8,9 +8,16 @@ export interface ICategory
     signs: string[];
 }
 
+export interface IResult
+{
+    token: string;
+    sign: string;
+    info: string;
+}
+
 export interface IVideo
 {
-    sign: string;
-    file: Uri;
+    token: string;
+    sign: Uri;
     info: Uri | undefined;
 }
