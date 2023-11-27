@@ -250,7 +250,7 @@ $(() => {
         setInterval(updateCurrentTime, 200);
 
         const componentsIds = [
-            'tabCodeToSign', 'tabSignToCode', 'slower', 'faster', 'rewind', 'backward', 'previousInCategory',
+            'tabCodeToSign', 'tabSignToCode', 'tooltipToggle', 'slower', 'faster', 'rewind', 'backward', 'previousInCategory',
             'playPause', 'nextInCategory', 'forward', 'autoRepeat', 'info', 'readCode', 'writeCode',
         ];
         const numberOfComponents = componentsIds.length;
@@ -262,6 +262,20 @@ $(() => {
                 show: {delay:1000},
             });
         }
+
+        $('#tooltipToggle').on('click', () => {
+            if ($('#tooltipToggle').hasClass('fa-comment')) {
+                $('#tooltipToggle').removeClass('fa-comment');
+                $('#tooltipToggle').addClass('fa-comment-slash');
+                $('#tooltipToggle').prop('title', 'Tooltip desligado');
+                $(button).tooltip('disable');
+            } else {
+                $('#tooltipToggle').removeClass('fa-comment-slash');
+                $('#tooltipToggle').addClass('fa-comment');
+                $('#tooltipToggle').prop('title', 'Tooltip ligado');
+                $(button).tooltip('enable');
+            }
+        });
     });
 
 });
