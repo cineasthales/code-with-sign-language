@@ -3,18 +3,15 @@ import { reservedWords } from './reservedWords';
 
 export function getSigns(editor: vscode.TextEditor) : string[]
 {
-	let signs = [];
-
-	if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
-		signs.push('oi');
-	}
+	const signs = [];
 
 	for (let selection of editor.selections)
 	{
-		const range = new vscode.Range(selection.start, selection.end);
-		const text = editor.document.getText(range).trim().replace(/[\t\v\f ]+/g, ' ');
-		const textLength = text.length;
-		let i = 0, closure = '';
+		const range: vscode.Range = new vscode.Range(selection.start, selection.end);
+		const text: string = editor.document.getText(range).trim().replace(/[\t\v\f ]+/g, ' ');
+		const textLength: number = text.length;
+		let i: number = 0;
+		let closure: string = '';
 
 		// Comentário hashbang
 		if (selection === editor.selections[0]
@@ -45,7 +42,7 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 				if (text[i].match(/["'`]/))
 				{
 					closure = text[i];
-					signs.push('string.start');
+					signs.push('string.begin');
 					continue;
 				}
 
@@ -55,7 +52,7 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 					if (text[i+1] === '/')
 					{
 						closure = '\n';
-						signs.push('comment.single.start');
+						signs.push('comment.single.begin');
 						i++;
 						continue;
 					}
@@ -63,13 +60,13 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 					if (text[i+1] === '*')
 					{
 						closure = '*/';
-						signs.push('comment.start');
+						signs.push('comment.block.begin');
 						i++;
 						continue;
 					}
 					// Expressão Regular
 					closure = '/';
-					signs.push('regex.start');
+					signs.push('regex.begin');
 					continue;
 				}
 
@@ -77,20 +74,20 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 				if (text[i] === '[')
 				{
 					closure = ']';
-					signs.push('array.start');
+					signs.push('array.begin');
 					continue;
 				}
 
 				// Incremento
 				if (text[i] === '+' && text[i+1] === '+') {
-					signs.push('increment');
+					signs.push('math.increment');
 					i++;
 					continue;
 				}
 
 				// Decremento
 				if (text[i] === '-' && text[i+1] === '-') {
-					signs.push('decrement');
+					signs.push('math.decrement');
 					i++;
 					continue;
 				}
@@ -99,7 +96,7 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 					if (text[i+1] === '?') {
 						// Atribuição em coalescência nula
 						if (text[i+2] === '=') {
-							signs.push('assign.nullcoalesc');
+							signs.push('nullcoalesc.assignment');
 							i += 2;
 							continue;
 						}
@@ -323,7 +320,7 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 				if (closure === '*/' && text[i] === '*' && text[i+1] === '/')
 				{
 					closure = '';
-					signs.push('comment.end');
+					signs.push('comment.block.end');
 					i++;
 					continue;
 				}
@@ -340,8 +337,6 @@ export function getSigns(editor: vscode.TextEditor) : string[]
 			if (text[i].match(/[a-zA-Z0-9]/)) { signs.push(text[i]); }
 		}
 	}
-
-	if (!signs.length) { signs.push('oi'); }
 
 	return signs;
 }

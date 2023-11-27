@@ -7,6 +7,10 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 	let signs: string[];
 	const videos: IVideo[] = [];
 
+	if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
+		return videos;
+	}
+
 	switch (editor.document.languageId) {
 		case 'javascript':
 			signs = javascriptCodeChecker.getSigns(editor);
