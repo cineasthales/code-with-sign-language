@@ -70,15 +70,38 @@ export function getResults(editor: vscode.TextEditor) : IResult[]
 					continue;
 				}
 
-				if (text[i] === '+' && text[i+1] === '+') {
-					results.push({token:'++',sign:'math.increment',info:'math.increment'});
-					i++;
+				if (text[i] === '+') {
+					if (text[i+1] === '+') {
+						results.push({token:'++',sign:'math.increment',info:'math.increment'});
+						i++;
+						continue;
+					}
+					results.push({token:'+',sign:'math.sum',info:'math.sum'});
 					continue;
 				}
 
-				if (text[i] === '-' && text[i+1] === '-') {
-					results.push({token:'--',sign:'math.decrement',info:'math.decrement'});
-					i++;
+				if (text[i] === '-') {
+					if (text[i+1] === '-') {
+						results.push({token:'--',sign:'math.decrement',info:'math.decrement'});
+						i++;
+						continue;
+					}
+					results.push({token:'-',sign:'math.minus',info:'math.minus'});
+					continue;
+				}
+
+				if (text[i] === '*') {
+					if (text[i+1] === '*') {
+						results.push({token:'**',sign:'math.power',info:'math.power'});
+						i++;
+						continue;
+					}
+					results.push({token:'*',sign:'math.times',info:'math.times'});
+					continue;
+				}
+
+				if (text[i] === '%') {
+					results.push({token:'%',sign:'math.modulus',info:'math.modulus'});
 					continue;
 				}
 
@@ -108,6 +131,10 @@ export function getResults(editor: vscode.TextEditor) : IResult[]
 				}
 
 				if (text[i] === '.') {
+					if (text[i+1] === '.' && text[i+2] === '.') {
+						results.push({token:'...',sign:'spread',info:'spread'});
+						continue;
+					}
 					results.push({token:'.',sign:'chain',info:'chain'});
 					continue;
 				}
@@ -147,18 +174,13 @@ export function getResults(editor: vscode.TextEditor) : IResult[]
 					continue;
 				}
 
-				if (text[i] === '^') {
-					results.push({token:'^',sign:'bitwise.xor',info:'bitwise.xor'});
+				if (text[i] === '~') {
+					results.push({token:'~',sign:'bitwise.not',info:'bitwise.not'});
 					continue;
 				}
 
-				if (text[i] === '*') {
-					if (text[i+1] === '*') {
-						results.push({token:'**',sign:'math.power',info:'math.power'});
-						i++;
-						continue;
-					}
-					results.push({token:'*',sign:'math.times',info:'math.times'});
+				if (text[i] === '^') {
+					results.push({token:'^',sign:'bitwise.xor',info:'bitwise.xor'});
 					continue;
 				}
 
