@@ -1,5 +1,8 @@
 export const messagesIds: string[] = [
     'welcome',
+    'noEditorOpened',
+    'languageNotSupported',
+    'noCodeSelected',
 ];
 
 export const tooltipsIds: string[] = [
