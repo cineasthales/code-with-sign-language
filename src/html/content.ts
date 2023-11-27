@@ -45,6 +45,9 @@ export function getHtml(webview: Webview, extensionUri: Uri, categories: ICatego
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
+   			<button id="tooltipToggle" class="infoToggle" title="Tooltip ligado">
+				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
+			</button>
 		</nav>
 		<main>
 			<section id="timeContainer" class="codeToSignToggle">
