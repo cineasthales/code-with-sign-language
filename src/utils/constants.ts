@@ -8,6 +8,7 @@ export const messagesIds: string[] = [
 export const tooltipsIds: string[] = [
     'tabCodeToSign',
     'tabSignToCode',
+    'tooltipToggle',
     'slower',
     'faster',
     'rewind',
