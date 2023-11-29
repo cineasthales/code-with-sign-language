@@ -68,3 +68,19 @@ export const categories: ICategory[]  = [
 		signs: ['debugger'],
 	},
 ];
+
+/*
+	Variáveis, Constantes e Vetores
+	Valores
+	Operadores Matemáticos
+	Estruturas de Condição
+	Operadores Relacionais
+	Operadores Lógicos
+	Estruturas de Repetição
+	Tratamento de Exceção e Depuração
+	Funções e Métodos
+	Classes
+	Objetos
+	Módulos
+	Outros
+*/

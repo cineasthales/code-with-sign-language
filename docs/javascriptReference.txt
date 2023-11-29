@@ -1,97 +1,122 @@
-arguments
-array.begin
-array.end
-as
-assignment
-async
-await
-bitwise.and
-bitwise.or
-bitwise.shift.left
-bitwise.shift.right
-bitwise.shift.unsigned
-bitwise.xor
-break
-case
-catch
-chain
-chain.optional
-class
-comment.block.begin
-comment.block.end
-comment.hashbang
-comment.single.begin
-comment.single.end
-const
-constructor
-continue
-debugger
-default
-delete
-different
-different.strict
-do
-else
-enum
-equals
-equals.strict
-eval
-export
-extends
-false
-finally
-for
-from
-function
-function.arrow
-function.generator
-get
-greater
-greater.equal
-if
-implements
-import
-in
-instanceof
-lesser
-lesser.equal
-let
-logical.and
-logical.not
-logical.or
-math.decrement
-math.increment
-math.power
-math.times
-new
-null
-nullcoalesc
-nullcoalesc.assignment
-of
-package
-private
-protected
-public
-regex.begin
-regex.end
-return
-set
-static
-string.begin
-string.end
-super
-switch
-ternary.else
-ternary.if
-this
-throw
-true
-try
-typeof
-undefined
-var
-void
-while
-with
-yield
-yield.generator
+TOKEN       VIDEO AND INFO ID                               CATEGORY                                EXAMPLE
+-------------------------------------------------------------------------------------------------------------------------
+
+#! \n       commentHashbangBegin | commentHashbangEnd       Outros
+" "         stringQuotationBegin | stringQuotationEnd       Valores
+' '         stringApostropheBegin | stringApostropheEnd     Valores
+` `         stringTemplateBegin | stringTemplateEnd         Valores
+// \n       commentLineBegin | commentLineEnd               Outros
+/* */       commentBlockBegin | commentBlockEnd             Outros
+
+{           blockOrObjectBegin                              Objetos
+}           blockOrObjectEnd                                Objetos
+
+(           groupBegin                                      Outros
+)           groupEnd                                        Outros
+
+,           comma                                           Outros
+
+;           semicolon                                       Outros
+
+[           arrayBegin                                      Variáveis, Constantes e Vetores
+]           arrayEnd                                        Variáveis, Constantes e Vetores
+
+++          increment                                       Operadores Matemáticos
++           plus                                            Operadores Matemáticos
+
+--          decrement                                       Operadores Matemáticos
+-           minus                                           Operadores Matemáticos
+
+**          power                                           Operadores Matemáticos
+*           times                                           Operadores Matemáticos
+
+/           divisionOrRegex                                 Operadores Matemáticos
+
+%           modulus                                         Operadores Matemáticos
+
+===         equalStrict                                     Operadores Relacionais
+==          equal                                           Operadores Relacionais
+=>          functionArrow                                   Funções e Métodos
+=           assignment                                      Variáveis, Constantes e Vetores
+
+!==         differentStrict                                 Operadores Relacionais
+!=          different                                       Operadores Relacionais
+!           not                                             Operadores Lógicos
+
+&&          and                                             Operadores Lógicos
+&           bitwiseAnd                                      Operadores Lógicos
+
+||          or                                              Operadores Lógicos
+|           bitwiseOr                                       Operadores Lógicos
+
+~           bitwiseNot                                      Operadores Lógicos
+
+^           bitwiseXor                                      Operadores Lógicos
+
+>>>         bitwiseShiftUnsigned                            Operadores Lógicos
+>>          bitwiseShiftRight                               Operadores Lógicos
+>=          greaterEqual                                    Operadores Relacionais
+>           greater                                         Operadores Relacionais
+
+<<          bitwiseShiftLeft                                Operadores Lógicos
+<=          lesserEqual                                     Operadores Relacionais
+<           lesser                                          Operadores Relacionais
+
+??          nullCoalesc                                     Estruturas de Condição
+?.          chainOptional                                   Objetos
+?           ternaryIf                                       Estruturas de Condição
+
+:           ternaryElseOrPropertyValue                      Estruturas de Condição
+
+...         spreadOrRest                                    Outros
+.           chain                                           Objetos
+
+            arguments                                       Funções e Métodos
+            async                                           Funções e Métodos
+            await                                           Funções e Métodos
+            break                                           Estruturas de Repetição
+            case                                            Estruturas de Condição
+            catch                                           Tratamento de Exceção
+            class                                           Classes
+            constructor                                     Classes
+            continue                                        Estruturas de Repetição
+            debugger                                        Tratamento de Exceção e Depuração
+            default                                         Estruturas de Condição
+            delete                                          Objetos
+            do                                              Estruturas de Repetição
+            else                                            Estruturas de Condição
+            export                                          Módulos 
+            extends                                         Classes
+            false                                           Valores
+            finally                                         Tratamento de Exceção e Depuração
+            for                                             Estruturas de Repetição
+            from                                            Módulos
+            function                                        Funções e Métodos
+            function *                                      Funções e Métodos
+            get                                             Classes
+            if                                              Estruturas de Condição
+            import                                          Módulos
+            instanceof                                      Objetos
+            new                                             Objetos
+            null                                            Valores
+            return                                          Funções e Métodos
+            set                                             Classes
+            static                                          Classes
+            super                                           Objetos
+            switch                                          Estruturas de Condição
+            this                                            Objetos
+            throw                                           Tratamento de Exceção e Depuração
+            true                                            Valores
+            try                                             Tratamento de Exceção e Depuração
+            typeof                                          Variáveis, Constantes e Vetores
+            undefined                                       Valores
+            var                                             Variáveis, Constantes e Vetores
+            void                                            Funções e Métodos
+            while                                           Estruturas de Repetição
+            yield                                           Funções e Métodos
+            yield *                                         Funções e Métodos
+            as                                              Módulos
+            const                                           Variáveis, Constantes e Vetores
+            in                                              Estruturas de Repetição
+            let                                             Variáveis, Constantes e Vetores
+            of                                              Estruturas de Repetição
