@@ -5,19 +5,22 @@ export interface ICategory
     title: string;
     id: string;
     icon: string;
-    signs: string[];
-}
-
-export interface IResult
-{
-    token: string;
-    sign: string;
-    info: string;
+    videos: IVideo[];
 }
 
 export interface IVideo
 {
     token: string;
-    sign: Uri;
+    file: Uri;
     info: Uri | undefined;
+    examples: string[] | undefined;
+}
+
+export interface ISign
+{
+    token: string;
+    directory: string;
+    file: string;
+    info: string;
+    examples: string[];
 }
