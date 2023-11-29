@@ -1,75 +1,75 @@
-TOKEN       VIDEO AND INFO ID                               CATEGORY                                EXAMPLE
+TOKEN       ID VIDEO                                        CATEGORIA                                 ID INFO
 -------------------------------------------------------------------------------------------------------------------------
 
-#! \n       commentHashbangBegin | commentHashbangEnd       Outros
-" "         stringQuotationBegin | stringQuotationEnd       Valores
-' '         stringApostropheBegin | stringApostropheEnd     Valores
-` `         stringTemplateBegin | stringTemplateEnd         Valores
-// \n       commentLineBegin | commentLineEnd               Outros
-/* */       commentBlockBegin | commentBlockEnd             Outros
+#! \n       commentHashbangBegin | commentHashbangEnd       Outros                                    commentHashbang
+" "         stringQuotationBegin | stringQuotationEnd       Valores                                   string
+' '         stringApostropheBegin | stringApostropheEnd     Valores                                   string
+` `         stringTemplateBegin | stringTemplateEnd         Valores                                   stringTemplate
+// \n       commentLineBegin | commentLineEnd               Outros                                    commentLine
+/* */       commentBlockBegin | commentBlockEnd             Outros                                    commentBlock
 
-{           blockOrObjectBegin                              Objetos
-}           blockOrObjectEnd                                Objetos
+{           blockOrObjectBegin                              Objetos                                   blockOrObject
+}           blockOrObjectEnd                                Objetos                                   blockOrObject
 
-(           groupBegin                                      Outros
-)           groupEnd                                        Outros
+(           groupBegin                                      Outros                                    group
+)           groupEnd                                        Outros                                    group
 
-,           comma                                           Outros
+,           comma                                           Outros                                    comma
 
-;           semicolon                                       Outros
+;           semicolon                                       Outros                                    semicolon
 
-[           arrayBegin                                      Variáveis, Constantes e Vetores
-]           arrayEnd                                        Variáveis, Constantes e Vetores
+[           arrayBegin                                      Variáveis, Constantes e Vetores           array
+]           arrayEnd                                        Variáveis, Constantes e Vetores           array
 
-++          increment                                       Operadores Matemáticos
-+           plus                                            Operadores Matemáticos
+++          increment                                       Operadores Matemáticos                    increment
++           plusOrConcat                                    Operadores Matemáticos                    plusOrConcat
 
---          decrement                                       Operadores Matemáticos
--           minus                                           Operadores Matemáticos
+--          decrement                                       Operadores Matemáticos                    decrement
+-           minus                                           Operadores Matemáticos                    minus
 
-**          power                                           Operadores Matemáticos
-*           times                                           Operadores Matemáticos
+**          power                                           Operadores Matemáticos                    power
+*           times                                           Operadores Matemáticos                    times
 
-/           divisionOrRegex                                 Operadores Matemáticos
+/           divisionOrRegex                                 Operadores Matemáticos                    divisionOrRegex
 
-%           modulus                                         Operadores Matemáticos
+%           modulus                                         Operadores Matemáticos                    modulus
 
-===         equalStrict                                     Operadores Relacionais
-==          equal                                           Operadores Relacionais
-=>          functionArrow                                   Funções e Métodos
-=           assignment                                      Variáveis, Constantes e Vetores
+===         equalStrict                                     Operadores Relacionais                    equalStrict
+==          equal                                           Operadores Relacionais                    equal
+=>          functionArrow                                   Funções e Métodos                         functionArrow
+=           assignment                                      Variáveis, Constantes e Vetores           assignment
 
-!==         differentStrict                                 Operadores Relacionais
-!=          different                                       Operadores Relacionais
-!           not                                             Operadores Lógicos
+!==         differentStrict                                 Operadores Relacionais                    differentStrict
+!=          different                                       Operadores Relacionais                    different
+!           not                                             Operadores Lógicos                        not
 
-&&          and                                             Operadores Lógicos
-&           bitwiseAnd                                      Operadores Lógicos
+&&          and                                             Operadores Lógicos                        and
+&           bitwiseAnd                                      Operadores Lógicos                        bitwiseAnd
 
-||          or                                              Operadores Lógicos
-|           bitwiseOr                                       Operadores Lógicos
+||          or                                              Operadores Lógicos                        or
+|           bitwiseOr                                       Operadores Lógicos                        bitwiseOr
 
-~           bitwiseNot                                      Operadores Lógicos
+~           bitwiseNot                                      Operadores Lógicos                        bitwiseNot
 
-^           bitwiseXor                                      Operadores Lógicos
+^           bitwiseXor                                      Operadores Lógicos                        bitwiseXor
 
->>>         bitwiseShiftUnsigned                            Operadores Lógicos
->>          bitwiseShiftRight                               Operadores Lógicos
->=          greaterEqual                                    Operadores Relacionais
->           greater                                         Operadores Relacionais
+>>>         bitwiseShiftUnsigned                            Operadores Lógicos                        bitwiseShiftUnsigned
+>>          bitwiseShiftRight                               Operadores Lógicos                        bitwiseShiftRight
+>=          greaterEqual                                    Operadores Relacionais                    greaterEqual
+>           greater                                         Operadores Relacionais                    greater
 
-<<          bitwiseShiftLeft                                Operadores Lógicos
-<=          lesserEqual                                     Operadores Relacionais
-<           lesser                                          Operadores Relacionais
+<<          bitwiseShiftLeft                                Operadores Lógicos                        bitwiseShiftLeft
+<=          lesserEqual                                     Operadores Relacionais                    lesserEqual
+<           lesser                                          Operadores Relacionais                    lesser
 
-??          nullCoalesc                                     Estruturas de Condição
-?.          chainOptional                                   Objetos
-?           ternaryIf                                       Estruturas de Condição
+??          nullCoalesc                                     Estruturas de Condição                    nullCoalesc
+?.          chainOptional                                   Objetos                                   chainOptional
+?           ternaryIf                                       Estruturas de Condição                    ternaryIf
 
-:           ternaryElseOrPropertyValue                      Estruturas de Condição
+:           ternaryElseOrPropertyValue                      Estruturas de Condição                    ternaryElseOrPropertyValue
 
-...         spreadOrRest                                    Outros
-.           chain                                           Objetos
+...         spreadOrRest                                    Outros                                    spreadOrRest
+.           chain                                           Objetos                                   chain
 
             arguments                                       Funções e Métodos
             async                                           Funções e Métodos
