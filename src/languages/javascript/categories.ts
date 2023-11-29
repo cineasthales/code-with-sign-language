@@ -1,82 +1,131 @@
 import { ICategory } from '../../utils/interfaces';
+import { signs } from './sintax';
 
 export const categories: ICategory[]  = [
 	{
 		title: 'Variáveis, Constantes e Vetores',
 		id: 'Var',
 		icon: 'tags',
-		videos: [],
+		videos: [
+			signs.reservedVar,
+			signs.reservedLet,
+			signs.reservedConst,
+			signs.assignment,
+			signs.reservedTypeof,
+			signs.arrayBegin,
+			signs.arrayEnd,
+		],
 	},
 	{
 		title: 'Valores',
 		id: 'Value',
 		icon: 'magnifying-glass-chart',
-		videos: [],
+		videos: [
+			signs.reservedTrue,
+			signs.reservedFalse,
+			signs.reservedNull,
+			signs.reservedUndefined,
+			signs.stringQuotationBegin,
+			signs.stringQuotationEnd,
+			signs.stringApostropheBegin,
+			signs.stringApostropheEnd,
+			signs.stringTemplateBegin,
+			signs.stringTemplateEnd,
+		],
 	},
 	{
 		title: 'Operadores Matemáticos',
 		id: 'Math',
 		icon: 'calculator',
-		videos: [],
+		videos: [
+			signs.plusOrConcat,
+			signs.minus,
+			signs.times,
+			signs.divisionOrRegex,
+			signs.modulus,
+			signs.power,
+			signs.increment,
+			signs.decrement,
+		],
 	},
 	{
 		title: 'Estruturas de Condição',
 		id: 'Condition',
 		icon: 'arrows-split-up-and-left',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Operadores Relacionais',
 		id: 'Relational',
 		icon: 'code-compare',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Operadores Lógicos',
 		id: 'Logical',
 		icon: 'flag',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Estruturas de Repetição',
 		id: 'Repetition',
 		icon: 'rotate-left',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Tratamento de Exceção e Depuração',
 		id: 'Exception',
 		icon: 'triangle-exclamation',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Funções e Métodos',
 		id: 'Function',
 		icon: 'gears',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Classes',
 		id: 'Class',
 		icon: 'sitemap',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Objetos',
 		id: 'Object',
 		icon: 'object-group',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Módulos',
 		id: 'Module',
 		icon: 'cubes',
-		videos: [],
+		videos: [
+			
+		],
 	},
 	{
 		title: 'Outros',
 		id: 'Other',
 		icon: 'icons',
-		videos: [],
+		videos: [
+			
+		],
 	},
 ];
