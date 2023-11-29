@@ -2,85 +2,81 @@ import { ICategory } from '../../utils/interfaces';
 
 export const categories: ICategory[]  = [
 	{
-		title: 'Variáveis e Constantes',
+		title: 'Variáveis, Constantes e Vetores',
 		id: 'Var',
 		icon: 'tags',
-		signs: ['var', 'let', 'const', 'typeof'],
+		videos: [],
 	},
 	{
 		title: 'Valores',
 		id: 'Value',
-		icon: 'flag',
-		signs: ['true', 'false', 'null', 'undefined'],
+		icon: 'magnifying-glass-chart',
+		videos: [],
+	},
+	{
+		title: 'Operadores Matemáticos',
+		id: 'Math',
+		icon: 'calculator',
+		videos: [],
 	},
 	{
 		title: 'Estruturas de Condição',
 		id: 'Condition',
 		icon: 'arrows-split-up-and-left',
-		signs: ['if', 'else', 'switch', 'case', 'default'],
+		videos: [],
+	},
+	{
+		title: 'Operadores Relacionais',
+		id: 'Relational',
+		icon: 'code-compare',
+		videos: [],
+	},
+	{
+		title: 'Operadores Lógicos',
+		id: 'Logical',
+		icon: 'flag',
+		videos: [],
 	},
 	{
 		title: 'Estruturas de Repetição',
 		id: 'Repetition',
 		icon: 'rotate-left',
-		signs: ['while', 'do', 'break', 'continue', 'for', 'of', 'in'],
+		videos: [],
 	},
 	{
-		title: 'Tratamento de Exceção',
+		title: 'Tratamento de Exceção e Depuração',
 		id: 'Exception',
 		icon: 'triangle-exclamation',
-		signs: ['try', 'catch', 'finally', 'throw'],
+		videos: [],
 	},
 	{
 		title: 'Funções e Métodos',
 		id: 'Function',
 		icon: 'gears',
-		signs: ['function', 'void', 'return', 'arguments', 'eval', 'yield'],
+		videos: [],
 	},
 	{
 		title: 'Classes',
 		id: 'Class',
 		icon: 'sitemap',
-		signs: ['class', 'constructor', 'get', 'set', 'extends', 'static'],
+		videos: [],
 	},
 	{
 		title: 'Objetos',
 		id: 'Object',
-		icon: 'icons',
-		signs: ['new', 'this', 'super', 'instanceof', 'delete'],
-	},
-	{
-		title: 'Programação Assíncrona',
-		id: 'Async',
-		icon: 'arrows-turn-right',
-		signs: ['async', 'await'],
+		icon: 'object-group',
+		videos: [],
 	},
 	{
 		title: 'Módulos',
 		id: 'Module',
 		icon: 'cubes',
-		signs: ['import', 'export', 'from', 'as'],
+		videos: [],
 	},
 	{
-		title: 'Depuração',
-		id: 'Debug',
-		icon: 'bug-slash',
-		signs: ['debugger'],
+		title: 'Outros',
+		id: 'Other',
+		icon: 'icons',
+		videos: [],
 	},
 ];
-
-/*
-	Variáveis, Constantes e Vetores
-	Valores
-	Operadores Matemáticos
-	Estruturas de Condição
-	Operadores Relacionais
-	Operadores Lógicos
-	Estruturas de Repetição
-	Tratamento de Exceção e Depuração
-	Funções e Métodos
-	Classes
-	Objetos
-	Módulos
-	Outros
-*/
