@@ -6,7 +6,7 @@ export const categories: ICategory[]  = [
 		title: 'Variáveis, Constantes e Vetores',
 		id: 'Var',
 		icon: 'tags',
-		videos: [
+		signs: [
 			signs.reservedVar,
 			signs.reservedLet,
 			signs.reservedConst,
@@ -20,7 +20,7 @@ export const categories: ICategory[]  = [
 		title: 'Valores',
 		id: 'Value',
 		icon: 'magnifying-glass-chart',
-		videos: [
+		signs: [
 			signs.reservedTrue,
 			signs.reservedFalse,
 			signs.reservedNull,
@@ -37,7 +37,7 @@ export const categories: ICategory[]  = [
 		title: 'Operadores Matemáticos',
 		id: 'Math',
 		icon: 'calculator',
-		videos: [
+		signs: [
 			signs.plusOrConcat,
 			signs.minus,
 			signs.times,
@@ -52,31 +52,54 @@ export const categories: ICategory[]  = [
 		title: 'Estruturas de Condição',
 		id: 'Condition',
 		icon: 'arrows-split-up-and-left',
-		videos: [
-			
+		signs: [
+			signs.reservedIf,
+			signs.reservedElse,
+			signs.reservedSwitch,
+			signs.reservedCase,
+			signs.reservedDefault,
+			signs.ternaryIf,
+			signs.ternaryElseOrPropertyValue,
+			signs.nullCoalesc,
 		],
 	},
 	{
 		title: 'Operadores Relacionais',
 		id: 'Relational',
 		icon: 'code-compare',
-		videos: [
-			
+		signs: [
+			signs.equalStrict,
+			signs.equal,
+			signs.differentStrict,
+			signs.different,
+			signs.greaterEqual,
+			signs.greater,
+			signs.lesserEqual,
+			signs.lesser,
 		],
 	},
 	{
 		title: 'Operadores Lógicos',
 		id: 'Logical',
 		icon: 'flag',
-		videos: [
-			
+		signs: [
+			signs.not,
+			signs.and,
+			signs.or,
+			signs.bitwiseNot,
+			signs.bitwiseAnd,
+			signs.bitwiseOr,
+			signs.bitwiseXor,
+			signs.bitwiseShiftLeft,
+			signs.bitwiseShiftRight,
+			signs.bitwiseShiftUnsigned,
 		],
 	},
 	{
 		title: 'Estruturas de Repetição',
 		id: 'Repetition',
 		icon: 'rotate-left',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -84,7 +107,7 @@ export const categories: ICategory[]  = [
 		title: 'Tratamento de Exceção e Depuração',
 		id: 'Exception',
 		icon: 'triangle-exclamation',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -92,7 +115,7 @@ export const categories: ICategory[]  = [
 		title: 'Funções e Métodos',
 		id: 'Function',
 		icon: 'gears',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -100,7 +123,7 @@ export const categories: ICategory[]  = [
 		title: 'Classes',
 		id: 'Class',
 		icon: 'sitemap',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -108,7 +131,7 @@ export const categories: ICategory[]  = [
 		title: 'Objetos',
 		id: 'Object',
 		icon: 'object-group',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -116,7 +139,7 @@ export const categories: ICategory[]  = [
 		title: 'Módulos',
 		id: 'Module',
 		icon: 'cubes',
-		videos: [
+		signs: [
 			
 		],
 	},
@@ -124,7 +147,7 @@ export const categories: ICategory[]  = [
 		title: 'Outros',
 		id: 'Other',
 		icon: 'icons',
-		videos: [
+		signs: [
 			
 		],
 	},
