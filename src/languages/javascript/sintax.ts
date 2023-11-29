@@ -1,4 +1,4 @@
-export const reservedWords : string[] = [
+export const reservedWords: string[] = [
 	'arguments',
 	'async',
 	'await',
@@ -13,7 +13,6 @@ export const reservedWords : string[] = [
 	'delete',
 	'do',
 	'else',
-	'eval',
 	'export',
 	'extends',
 	'false',
@@ -49,302 +48,935 @@ export const reservedWords : string[] = [
 	'in',
 	'let',
 	'of',
-    // future reserved words
-	'enum',
-	'implements',
-	'package',
-	'private',
-	'protected',
-	'public',
 ];
 
-const signs = {
-	comment_hashbang: {
+export const signs: Object = {
+	commentHashbangBegin: {
 		token: '#!',
-		sign: 'comment_hashbang',
-		info: '',
-		example: '',
+		directory: 'code',
+		file: 'commentHashbangBegin',
+		info: 'commentHashbang',
+		examples: [
+			'',
+		],
 	},
-	string_quotation_begin: {
-		token: '"',
-		sign: 'string_quotation_begin',
-		info: '',
-		example: '',
-	},
-	string_apostrophe_begin: {
-		token: '\'',
-		sign: 'string_apostrophe_begin',
-		info: '',
-		example: '',
-	},
-	string_template_begin: {
-		token: '`',
-		sign: 'string_template_begin',
-		info: '',
-		example: '',
-	},
-	comment_single_begin: {
-		token: '//',
-		sign: 'comment_single_begin',
-		info: '',
-		example: '',
-	},
-	comment_block_begin: {
-		token: '/*',
-		sign: 'comment_block_begin',
-		info: '',
-		example: '',
-	},
-	regex_begin: {
-		token: '/',
-		sign: 'regex_begin',
-		info: '',
-		example: '',
-	},
-	array_begin: {
-		token: '[',
-		sign: 'array_begin',
-		info: '',
-		example: '',
-	},
-	math_increment: {
-		token: '++',
-		sign: 'math_increment',
-		info: '',
-		example: '',
-	},
-	math_sum: {
-		token: '+',
-		sign: 'math_sum',
-		info: '',
-		example: '',
-	},
-	math_decrement: {
-		token: '--',
-		sign: 'math_decrement',
-		info: '',
-		example: '',
-	},
-	math_minus: {
-		token: '-',
-		sign: 'math_minus',
-		info: '',
-		example: '',
-	},
-	math_power: {
-		token: '**',
-		sign: 'math_power',
-		info: '',
-		example: '',
-	},
-	math_times: {
-		token: '*',
-		sign: 'math_times',
-		info: '',
-		example: '',
-	},
-	math_modulus: {
-		token: '%',
-		sign: 'math_modulus',
-		info: '',
-		example: '',
-	},
-	nullcoalesc: {
-		token: '??',
-		sign: 'nullcoalesc',
-		info: '',
-		example: '',
-	},
-	chain_option: {
-		token: '?.',
-		sign: 'chain_option',
-		info: '',
-		example: '',
-	},
-	ternary_if: {
-		token: '?',
-		sign: 'ternary_if',
-		info: '',
-		example: '',
-	},
-	ternary_else: {
-		token: ':',
-		sign: 'ternary_else',
-		info: '',
-		example: '',
-	},
-	spread: {
-		token: '...',
-		sign: 'spread',
-		info: '',
-		example: '',
-	},
-	chain: {
-		token: '.',
-		sign: 'chain',
-		info: '',
-		example: '',
-	},
-	different_strict: {
-		token: '!==',
-		sign: 'different_strict',
-		info: '',
-		example: '',
-	},
-	different: {
-		token: '!=',
-		sign: 'different',
-		info: '',
-		example: '',
-	},
-	logical_not: {
-		token: '!',
-		sign: 'logical_not',
-		info: '',
-		example: '',
-	},
-	logical_and: {
-		token: '&&',
-		sign: 'logical_and',
-		info: '',
-		example: '',
-	},
-	bitwise_and: {
-		token: '&',
-		sign: 'bitwise_and',
-		info: '',
-		example: '',
-	},
-	logical_or: {
-		token: '||',
-		sign: 'logical_or',
-		info: '',
-		example: '',
-	},
-	bitwise_or: {
-		token: '|',
-		sign: 'bitwise_or',
-		info: '',
-		example: '',
-	},
-	bitwise_not: {
-		token: '~',
-		sign: 'bitwise_not',
-		info: '',
-		example: '',
-	},
-	bitwise_xor: {
-		token: '^',
-		sign: 'bitwise_xor',
-		info: '',
-		example: '',
-	},
-	equals_strict: {
-		token: '===',
-		sign: 'equals_strict',
-		info: '',
-		example: '',
-	},
-	equals: {
-		token: '==',
-		sign: 'equals',
-		info: '',
-		example: '',
-	},
-	function_arrow: {
-		token: '=>',
-		sign: 'function_arrow',
-		info: '',
-		example: '',
-	},
-	assignment: {
-		token: '=',
-		sign: 'assignment',
-		info: '',
-		example: '',
-	},
-	bitwise_shift_unsigned: {
-		token: '>>>',
-		sign: 'bitwise_shift_unsigned',
-		info: '',
-		example: '',
-	},
-	bitwise_shift_right: {
-		token: '>>',
-		sign: 'bitwise_shift_right',
-		info: '',
-		example: '',
-	},
-	greater_equal: {
-		token: '>=',
-		sign: 'greater_equal',
-		info: '',
-		example: '',
-	},
-	greater: {
-		token: '>',
-		sign: 'greater',
-		info: '',
-		example: '',
-	},
-	bitwise_shift_left: {
-		token: '<<',
-		sign: 'bitwise_shift_left',
-		info: '',
-		example: '',
-	},
-	lesser_equal: {
-		token: '<=',
-		sign: 'lesser_equal',
-		info: '',
-		example: '',
-	},
-	lesser: {
-		token: '<',
-		sign: 'lesser',
-		info: '',
-		example: '',
-	},
-	string_quotation_end: {
-		token: '"',
-		sign: 'string_quotation_end',
-		info: '',
-		example: '',
-	},
-	string_apostrophe_end: {
-		token: '\'',
-		sign: 'string_apostrophe_end',
-		info: '',
-		example: '',
-	},
-	string_template_end: {
-		token: '`',
-		sign: 'string_template_end',
-		info: '',
-		example: '',
-	},
-	regex_end: {
-		token: '/',
-		sign: 'regex_end',
-		info: '',
-		example: '',
-	},
-	comment_single_end: {
+	commentHashbangEnd: {
 		token: '',
-		sign: 'comment_single_end',
-		info: '',
-		example: '',
+		directory: 'code',
+		file: 'commentHashbangEnd',
+		info: 'commentHashbang',
+		examples: [
+			'',
+		],
 	},
-	comment_block_end: {
-		token: '*/',
-		sign: 'comment_block_end',
+	TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
 		info: '',
-		example: '',
+		examples: [
+			'',
+		],
 	},
-	array_end: {
-		token: ']',
-		sign: 'array_end',
+	TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
 		info: '',
-		example: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+		TODO: {
+		token: '',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
 	},
 }
+
