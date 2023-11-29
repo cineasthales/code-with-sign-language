@@ -69,914 +69,472 @@ export const signs: Object = {
 			'',
 		],
 	},
-	TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-	TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
-		directory: 'code',
-		file: '',
-		info: '',
-		examples: [
-			'',
-		],
-	},
-		TODO: {
-		token: '',
+	stringQuotationBegin: {
+		token: '"',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringQuotationBegin',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	stringQuotationEnd: {
+		token: '"',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringQuotationEnd',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	stringApostropheBegin: {
+		token: '\'',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringApostropheBegin',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	stringApostropheEnd: {
+		token: '\'',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringApostropheEnd',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	stringTemplateBegin: {
+		token: '`',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringTemplateBegin',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	stringTemplateEnd: {
+		token: '`',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'stringTemplateEnd',
+		info: 'string',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	commentLineBegin: {
+		token: '//',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'commentLineBegin',
+		info: 'commentLine',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
+	commentLineEnd: {
 		token: '',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'commentLineEnd',
+		info: 'commentLine',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	commentBlockBegin: {
+		token: '/*',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'commentBlockBegin',
+		info: 'commentBlock',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	commentBlockEnd: {
+		token: '*/',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'commentBlockEnd',
+		info: 'commentBlock',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	blockOrObjectBegin: {
+		token: '{',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'blockOrObjectBegin',
+		info: 'blockOrObject',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	blockOrObjectEnd: {
+		token: '}',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'blockOrObjectEnd',
+		info: 'blockOrObject',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	groupBegin: {
+		token: '(',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'groupBegin',
+		info: 'group',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	groupEnd: {
+		token: ')',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'groupEnd',
+		info: 'group',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	comma: {
+		token: ',',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'comma',
+		info: 'comma',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	semicolon: {
+		token: ';',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'semicolon',
+		info: 'semicolon',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	arrayBegin: {
+		token: '[',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'arrayBegin',
+		info: 'array',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	arrayEnd: {
+		token: ']',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'arrayEnd',
+		info: 'array',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	increment: {
+		token: '++',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'increment',
+		info: 'increment',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	plusOrConcat: {
+		token: '+',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'plusOrConcat',
+		info: 'plusOrConcat',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	decrement: {
+		token: '--',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'decrement',
+		info: 'decrement',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	minus: {
+		token: '-',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'minus',
+		info: 'minus',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	power: {
+		token: '**',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'power',
+		info: 'power',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	times: {
+		token: '*',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'times',
+		info: 'times',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	divisionOrRegex: {
+		token: '/',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'divisionOrRegex',
+		info: 'divisionOrRegex',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	modulus: {
+		token: '%',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'modulus',
+		info: 'modulus',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	equalStrict: {
+		token: '===',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'equalStrict',
+		info: 'equalStrict',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	equal: {
+		token: '==',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'equal',
+		info: 'equal',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	functionArrow: {
+		token: '=>',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'functionArrow',
+		info: 'functionArrow',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	assignment: {
+		token: '=',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'assignment',
+		info: 'assignment',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	differentStrict: {
+		token: '!==',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'differentStrict',
+		info: 'differentStrict',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	different: {
+		token: '!=',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'different',
+		info: 'different',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	not: {
+		token: '!',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'not',
+		info: 'not',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	and: {
+		token: '&&',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'and',
+		info: 'and',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseAnd: {
+		token: '&',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseAnd',
+		info: 'bitwiseAnd',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	or: {
+		token: '||',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'or',
+		info: 'or',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseOr: {
+		token: '|',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseOr',
+		info: 'bitwiseOr',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseNot: {
+		token: '~',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseNot',
+		info: 'bitwiseNot',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseXor: {
+		token: '^',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseXor',
+		info: 'bitwiseXor',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseShiftUnsigned: {
+		token: '>>>',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseShiftUnsigned',
+		info: 'bitwiseShiftUnsigned',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseShiftRight: {
+		token: '>>',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseShiftRight',
+		info: 'bitwiseShiftRight',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	greaterEqual: {
+		token: '>=',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'greaterEqual',
+		info: 'greaterEqual',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	greater: {
+		token: '>',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'greater',
+		info: 'greater',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	bitwiseShiftLeft: {
+		token: '<<',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'bitwiseShiftLeft',
+		info: 'bitwiseShiftLeft',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	lesserEqual: {
+		token: '<=',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'lesserEqual',
+		info: 'lesserEqual',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	lesser: {
+		token: '<',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'lesser',
+		info: 'lesser',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	nullCoalesc: {
+		token: '??',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'nullCoalesc',
+		info: 'nullCoalesc',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	chainOptional: {
+		token: '?.',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'chainOptional',
+		info: 'chainOptional',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	ternaryIf: {
+		token: '?',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'ternaryIf',
+		info: 'ternaryIf',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	ternaryElseOrPropertyValue: {
+		token: ':',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'ternaryElseOrPropertyValue',
+		info: 'ternaryElseOrPropertyValue',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	spreadOrRest: {
+		token: '...',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'spreadOrRest',
+		info: 'spreadOrRest',
 		examples: [
 			'',
 		],
 	},
-		TODO: {
-		token: '',
+	chain: {
+		token: '.',
 		directory: 'code',
-		file: '',
-		info: '',
+		file: 'chain',
+		info: 'chain',
 		examples: [
 			'',
 		],
 	},
-}
-
+};
