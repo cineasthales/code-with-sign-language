@@ -6,6 +6,7 @@ export const categories: ICategory[]  = [
 		title: 'Variáveis, Constantes e Vetores',
 		id: 'Var',
 		icon: 'tags',
+		tooltip: 'var',
 		signs: [
 			signs.reservedVar,
 			signs.reservedLet,
@@ -20,6 +21,7 @@ export const categories: ICategory[]  = [
 		title: 'Valores',
 		id: 'Value',
 		icon: 'magnifying-glass-chart',
+		tooltip: 'value',
 		signs: [
 			signs.reservedTrue,
 			signs.reservedFalse,
@@ -37,6 +39,7 @@ export const categories: ICategory[]  = [
 		title: 'Operadores Matemáticos',
 		id: 'Math',
 		icon: 'calculator',
+		tooltip: 'math',
 		signs: [
 			signs.plusOrConcat,
 			signs.minus,
@@ -52,6 +55,7 @@ export const categories: ICategory[]  = [
 		title: 'Estruturas de Condição',
 		id: 'Condition',
 		icon: 'arrows-split-up-and-left',
+		tooltip: 'condition',
 		signs: [
 			signs.reservedIf,
 			signs.reservedElse,
@@ -67,6 +71,7 @@ export const categories: ICategory[]  = [
 		title: 'Operadores Relacionais',
 		id: 'Relational',
 		icon: 'code-compare',
+		tooltip: 'relational',
 		signs: [
 			signs.equalStrict,
 			signs.equal,
@@ -82,6 +87,7 @@ export const categories: ICategory[]  = [
 		title: 'Operadores Lógicos',
 		id: 'Logical',
 		icon: 'flag',
+		tooltip: 'logical',
 		signs: [
 			signs.not,
 			signs.and,
@@ -99,56 +105,108 @@ export const categories: ICategory[]  = [
 		title: 'Estruturas de Repetição',
 		id: 'Repetition',
 		icon: 'rotate-left',
+		tooltip: 'repetition',
 		signs: [
-			
+			signs.reservedWhile,
+			signs.reservedDo,
+			signs.reservedBreak,
+			signs.reservedContinue,
+			signs.reservedFor,
+			signs.reservedIn,
+			signs.reservedOf,
 		],
 	},
 	{
 		title: 'Tratamento de Exceção e Depuração',
 		id: 'Exception',
 		icon: 'triangle-exclamation',
+		tooltip: 'exception',
 		signs: [
-			
+			signs.reservedTry,
+			signs.reservedCatch,
+			signs.reservedFinally,
+			signs.reservedThrow,
+			signs.reservedDebugger,
 		],
 	},
 	{
 		title: 'Funções e Métodos',
 		id: 'Function',
 		icon: 'gears',
+		tooltip: 'function',
 		signs: [
-			
+			signs.reservedFunction,
+			signs.reservedReturn,
+			signs.reservedVoid,
+			signs.functionArrow,
+			signs.reservedYield,
+			signs.reservedArguments,
+			signs.reservedAsync,
+			signs.reservedAwait,
+			signs.reservedFunctionGenerator,
+			signs.reservedYieldGenerator,
 		],
 	},
 	{
 		title: 'Classes',
 		id: 'Class',
 		icon: 'sitemap',
+		tooltip: 'class',
 		signs: [
-			
+			signs.reservedClass,
+			signs.reservedConstructor,
+			signs.reservedGet,
+			signs.reservedSet,
+			signs.reservedExtends,
+			signs.reservedStatic,
 		],
 	},
 	{
 		title: 'Objetos',
 		id: 'Object',
 		icon: 'object-group',
+		tooltip: 'object',
 		signs: [
-			
+			signs.blockOrObjectBegin,
+			signs.blockOrObjectEnd,
+			signs.reservedNew,
+			signs.reservedThis,
+			signs.reservedSuper,
+			signs.chain,
+			signs.chainOptional,
+			signs.reservedInstanceof,
+			signs.reservedDelete,
 		],
 	},
 	{
 		title: 'Módulos',
 		id: 'Module',
 		icon: 'cubes',
+		tooltip: 'module',
 		signs: [
-			
+			signs.reservedImport,
+			signs.reservedFrom,
+			signs.reservedAs,
+			signs.reservedExport,
 		],
 	},
 	{
 		title: 'Outros',
 		id: 'Other',
 		icon: 'icons',
+		tooltip: 'other',
 		signs: [
-			
+			signs.comma,
+			signs.semicolon,
+			signs.groupBegin,
+			signs.groupEnd,
+			signs.spreadOrRest,
+			signs.commentLineBegin,
+			signs.commentLineEnd,
+			signs.commentBlockBegin,
+			signs.commentBlockEnd,
+			signs.commentHashbangBegin,
+			signs.commentHashbangEnd,
 		],
 	},
 ];

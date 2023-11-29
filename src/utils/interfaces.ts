@@ -22,6 +22,7 @@ export interface ICategory
     title: string;
     id: string;
     icon: string;
+    tooltip: string;
     signs: ISign[];
 }
 
@@ -30,5 +31,6 @@ export interface ICategoryVideos
     title: string;
     id: string;
     icon: string;
+    tooltip: Uri;
     videos: ISignVideos[];
 }
