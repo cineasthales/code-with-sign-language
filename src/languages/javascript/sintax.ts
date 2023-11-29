@@ -537,4 +537,445 @@ export const signs: Object = {
 			'',
 		],
 	},
+	reservedArguments: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedAsync: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedAwait: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedBreak: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedCase: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedCatch: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedClass: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedConstructor: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedContinue: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedDebugger: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedDefault: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedDelete: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedDo: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedElse: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedExport: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedExtends: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFalse: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFinally: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFor: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFrom: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFunction: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedFunctionGenerator: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedGet: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedIf: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedImport: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedInstanceof: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedNew: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedNull: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedReturn: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedSet: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedStatic: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedSuper: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedSwitch: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedThis: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedThrow: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedTrue: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedTry: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedTypeof: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedUndefined: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedVar: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedVoid: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedWhile: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedYield: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedYieldGenerator: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedAs: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedConst: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedIn: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedLet: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
+	reservedOn: {
+		token: '.',
+		directory: 'code',
+		file: '',
+		info: '',
+		examples: [
+			'',
+		],
+	},
 };
