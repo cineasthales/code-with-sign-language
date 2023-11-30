@@ -8,17 +8,34 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 	const language: string = editor.document.languageId;
 	const results: ISign[] = [];
 	const videos: ISignVideos[] = [];
+	let text: string = '':
+
+	if (editor.selections.length > 0)
+	{
+		for (let selection of editor.selections)
+		{
+			if (text.length > 0) { text += ' '; }
+			const range: vscode.Range = new vscode.Range(selection.start, selection.end);
+			text += editor.document.getText(range);
+		}
+	}
+	else { text = editor.document.getText(); }
+
+	text = text.trim().replace(/[\t\v\f ]+/g, ' '); }
 	
-	switch (language) {
+	switch (language)
+	{
 		case 'javascript':
-			results.push(...javascriptCodeChecker.getResults(editor));
+			results.push(...javascriptCodeChecker.getResults(text));
 			break;
 		default:
 			return videos;
 	}
 
-	if (results) {
-		for (let result of results) {
+	if (results)
+	{
+		for (let result of results)
+		{
 			videos.push({
 				token: result.token,
 				file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, result.directory, result.sign + '.mp4')),
