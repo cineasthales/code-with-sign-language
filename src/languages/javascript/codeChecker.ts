@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import { reservedWords, signs } from './sintax';
 import { ISign } from '../../utils/interfaces';
 

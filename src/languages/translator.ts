@@ -8,7 +8,7 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 	const language: string = editor.document.languageId;
 	const results: ISign[] = [];
 	const videos: ISignVideos[] = [];
-	let text: string = '':
+	let text: string = '';
 
 	if (editor.selections.length > 0)
 	{
@@ -21,7 +21,7 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 	}
 	else { text = editor.document.getText(); }
 
-	text = text.trim().replace(/[\t\v\f ]+/g, ' '); }
+	text = text.trim().replace(/[\t\v\f ]+/g, ' ');
 	
 	switch (language)
 	{
@@ -36,12 +36,24 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 	{
 		for (let result of results)
 		{
-			videos.push({
-				token: result.token,
-				file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, result.directory, result.sign + '.mp4')),
-				info: result.info ?  webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, 'info', result.info + '.mp4')) : undefined,
-				exemples: undefined
-			});
+			if (result.directory !== 'misc')
+			{
+				videos.push({
+					token: result.token,
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, result.directory, result.file + '.mp4')),
+					info: result.info ?  webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, 'info', result.info + '.mp4')) : undefined,
+					examples: undefined,
+				});
+			}
+			else
+			{
+				videos.push({
+					token: result.token,
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, 'misc', result.file + '.mp4')),
+					info: undefined,
+					examples: undefined,
+				});
+			}
 		}
 	}
 

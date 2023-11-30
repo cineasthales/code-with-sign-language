@@ -1,8 +1,12 @@
+export const supportedLanguages: string[] = [
+    'javascript',
+];
+
 export const messagesIds: string[] = [
     'welcome',
-    'noEditorOpened',
+    'documentNotOpened',
     'languageNotSupported',
-    'noCodeSelected',
+    'documentHasErrors',
 ];
 
 export const tooltipsIds: string[] = [

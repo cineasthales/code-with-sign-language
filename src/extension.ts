@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as content from './html/content';
 import * as translator from './languages/translator';
-import { IVideo } from './utils/interfaces';
-import { messagesIds , tooltipsIds } from './utils/constants';
+import { ISignVideos } from './utils/interfaces';
+import { supportedLanguages, messagesIds , tooltipsIds } from './utils/constants';
 import { categories } from './languages/javascript/categories';
 
 export function activate(context: vscode.ExtensionContext)
@@ -51,28 +51,27 @@ export function activate(context: vscode.ExtensionContext)
 			webview.onDidReceiveMessage(
 				(message: any) => {
 					const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
-
 					if (!editor)
 					{
 						/* webview.postMessage({documentNotOpened}); */
 					}
-
-					if (editor.document.languageId !== 'javascript')
+					else if (supportedLanguages.includes(editor.document.languageId))
 					{
-						/* webview.postMessage({language}); */
+						/* webview.postMessage({languageNotSupported}); */
 					}
-					
-					if (message.type)
+					else if (message.type)
 					{
 						if (message.type === 'read')
 						{
-							if (!vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
-								//webview.postMessage({errors});
+							if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
+								//webview.postMessage({documentHasErrors});
 							}
-							
-							const videos: IVideo[] = translator.readCode(editor, webview, uri);
-							if (videos) {
-								webview.postMessage({videos});
+							else
+							{
+								const videos: ISignVideos[] = translator.readCode(editor, webview, uri);
+								if (videos) {
+									webview.postMessage({videos});
+								}
 							}
 						}
 						else if (message.type === 'write' && message.text)
