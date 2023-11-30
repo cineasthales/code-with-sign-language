@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
 import { ISign, ISignVideos } from '../utils/interfaces';
 
-export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri) : ISignVideos[]
+export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
 {
 	const signLanguage: string = 'libras';
 	const language: string = editor.document.languageId;
@@ -40,8 +40,8 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, result.directory, result.file + '.mp4')),
-					info: result.info ?  webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, language, 'info', result.info + '.mp4')) : undefined,
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,language,result.directory,result.file+'.mp4')),
+					info: result.info ?  webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,language,'info',result.info+'.mp4')) : undefined,
 					examples: undefined,
 				});
 			}
@@ -49,7 +49,7 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri, 'videos', signLanguage, 'misc', result.file + '.mp4')),
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
 					info: undefined,
 					examples: undefined,
 				});

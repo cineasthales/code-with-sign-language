@@ -1,22 +1,22 @@
 import { Webview, Uri } from 'vscode';
-import { ICategory } from '../utils/interfaces';
+import { ICategory } from '../../utils/interfaces';
 
-export function getHtml(webview: Webview, extensionUri: Uri, categories: ICategory[]): string
+export function getHtml(webview: Webview, uri: Uri, categories: ICategory[]): string
 {
 	const allCss: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','fontawesome.css')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','regular.css')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','icons','fontawesome','css','solid.css')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','jquery-ui.css')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','jquery-ui-slider-pips.css')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','css','style.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview', 'icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','solid.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','jquery-ui.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','jquery-ui-slider-pips.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','style.css')),
 	];
 
 	const allJs: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery.js')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery-ui.js')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','jquery-ui-slider-pips.js')),
-		webview.asWebviewUri(Uri.joinPath(extensionUri,'src','js','behavior.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','behavior.js')),
 	];
 
 	let html: string = `
@@ -45,7 +45,7 @@ export function getHtml(webview: Webview, extensionUri: Uri, categories: ICatego
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
-   			<button id="tooltipToggle" class="infoToggle" title="Tooltip ligado">
+			<button id="tooltipToggle" class="infoToggle" title="Tooltip ligado">
 				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
 			</button>
 		</nav>

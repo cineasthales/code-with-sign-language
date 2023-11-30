@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import * as content from './html/content';
+import * as content from './webview/html/content';
 import * as translator from './languages/translator';
 import { ISignVideos } from './utils/interfaces';
-import { supportedLanguages, messagesIds , tooltipsIds } from './utils/constants';
+import { messagesIds, supportedLanguages, tooltipsIds } from './utils/constants';
 import { categories } from './languages/javascript/categories';
 
 export function activate(context: vscode.ExtensionContext)
@@ -32,7 +32,6 @@ export function activate(context: vscode.ExtensionContext)
 				context.subscriptions
 			);
 
-			
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
