@@ -51,19 +51,10 @@ export const reservedWords: string[] = [
 ];
 
 export const signs: any = {
-	commentHashbangBegin: {
+	commentHashbang: {
 		token: '#!',
 		directory: 'code',
-		file: 'commentHashbangBegin',
-		info: 'commentHashbang',
-		examples: [
-			'',
-		],
-	},
-	commentHashbangEnd: {
-		token: '',
-		directory: 'code',
-		file: 'commentHashbangEnd',
+		file: 'commentHashbang',
 		info: 'commentHashbang',
 		examples: [
 			'',
@@ -123,19 +114,10 @@ export const signs: any = {
 			'',
 		],
 	},
-	commentLineBegin: {
+	commentLine: {
 		token: '//',
 		directory: 'code',
-		file: 'commentLineBegin',
-		info: 'commentLine',
-		examples: [
-			'',
-		],
-	},
-	commentLineEnd: {
-		token: '',
-		directory: 'code',
-		file: 'commentLineEnd',
+		file: 'commentLine',
 		info: 'commentLine',
 		examples: [
 			'',
