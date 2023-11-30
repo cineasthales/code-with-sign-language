@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext)
 				context.subscriptions
 			);
 
-			const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+			
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
@@ -46,15 +46,37 @@ export function activate(context: vscode.ExtensionContext)
 			}
 			webview.postMessage({messages, tooltips});
 
+			webview.html = content.getHtml(webview, uri, categories);
+
 			webview.onDidReceiveMessage(
 				(message: any) => {
-					if (editor && message.type) {
-						if (message.type === 'read' && editor.selections) {
+					const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+
+					if (!editor)
+					{
+						/* webview.postMessage({documentNotOpened}); */
+					}
+
+					if (editor.document.languageId !== 'javascript')
+					{
+						/* webview.postMessage({language}); */
+					}
+					
+					if (message.type)
+					{
+						if (message.type === 'read')
+						{
+							if (!vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
+								//webview.postMessage({errors});
+							}
+							
 							const videos: IVideo[] = translator.readCode(editor, webview, uri);
 							if (videos) {
 								webview.postMessage({videos});
 							}
-						} else if (message.type === 'write' && message.text) {
+						}
+						else if (message.type === 'write' && message.text)
+						{
 							translator.writeCode(editor, message.text);
 						}
 					}
@@ -62,8 +84,6 @@ export function activate(context: vscode.ExtensionContext)
 				undefined,
 				context.subscriptions
 			);
-
-			webview.html = content.getHtml(webview, uri, categories);
 		})
 	);
 }
