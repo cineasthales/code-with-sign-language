@@ -2,13 +2,6 @@ export const supportedLanguages: string[] = [
     'javascript',
 ];
 
-export const messagesIds: string[] = [
-    'welcome',
-    'documentNotOpened',
-    'languageNotSupported',
-    'documentHasErrors',
-];
-
 export const tooltipsIds: string[] = [
     'tabCodeToSign',
     'tabSignToCode',
@@ -26,3 +19,10 @@ export const tooltipsIds: string[] = [
     'readCode',
     'writeCode',
 ];
+
+export const errors: any = {
+    documentNotOpened: 'documentNotOpened',
+    languageNotSupported: 'languageNotSupported',
+    documentHasErrors: 'documentHasErrors',
+    documentIsEmpty: 'documentIsEmpty',
+};

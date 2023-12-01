@@ -52,37 +52,51 @@ export function activate(context: vscode.ExtensionContext)
 			webview.html = content.getHtml(webview, uri, categories);
 
 			webview.onDidReceiveMessage(
-				(message: any) => {
-					const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
-					if (!editor)
-					{
-						const error: vscode.Uri = webview.asWebviewUri(
-							vscode.Uri.joinPath(uri,'videos',signLanguage,'error',errors.documentNotOpened+'.mp4')
-						);
-						webview.postMessage({error});
-					}
-					else if (supportedLanguages.includes(editor.document.languageId))
-					{
-						/* webview.postMessage({languageNotSupported}); */
-					}
-					else if (message.type)
-					{
-						if (message.type === 'read')
+				(message: any) =>
+				{
+					try {
+						const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+						if (!editor)
 						{
-							if (vscode.languages.getDiagnostics(editor.document.uri).length > 0) {
-								//webview.postMessage({documentHasErrors});
-							}
-							else
+							throw new Error(errors.documentNotOpened);
+						}
+						else if (supportedLanguages.includes(editor.document.languageId))
+						{
+							throw new Error(errors.languageNotSupported);
+						}
+						else if (message.type)
+						{
+							if (message.type === 'read')
 							{
-								const videos: ISignVideos[] = translator.readCode(editor, webview, uri);
-								if (videos) {
-									webview.postMessage({videos});
+								if (vscode.languages.getDiagnostics(editor.document.uri).length > 0)
+								{
+									throw new Error(errors.documentHasErrors);
+								}
+								else
+								{
+									const videos: ISignVideos[] = translator.readCode(signLanguage, editor, webview, uri);
+									if (videos)
+									{
+										webview.postMessage({videos});
+									}
+									else
+									{
+										throw new Error(errors.documentIsEmpty);
+									}
 								}
 							}
+							else if (message.type === 'write' && message.text)
+							{
+								translator.writeCode(editor, message.text);
+							}
 						}
-						else if (message.type === 'write' && message.text)
+					} catch (err) {
+						if (err instanceof Error && errors.hasOwnProperty(err.message))
 						{
-							translator.writeCode(editor, message.text);
+							const error: vscode.Uri = webview.asWebviewUri(
+								vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
+							);
+							webview.postMessage({error});
 						}
 					}
 				},
