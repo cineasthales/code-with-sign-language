@@ -2,27 +2,14 @@ import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
 import { ISign, ISignVideos } from '../utils/interfaces';
 
-export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
+export function readCode(signLanguage: string, editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
 {
-	const signLanguage: string = 'libras';
 	const language: string = editor.document.languageId;
 	const results: ISign[] = [];
 	const videos: ISignVideos[] = [];
-	let text: string = '';
 
-	if (editor.selections.length > 0)
-	{
-		for (let selection of editor.selections)
-		{
-			if (text.length > 0) { text += ' '; }
-			const range: vscode.Range = new vscode.Range(selection.start, selection.end);
-			text += editor.document.getText(range);
-		}
-	}
-	else { text = editor.document.getText(); }
+	const text: string = getTextInEditor(editor);
 
-	text = text.trim().replace(/[\t\v\f ]+/g, ' ');
-	
 	switch (language)
 	{
 		case 'javascript':
@@ -63,7 +50,25 @@ export function readCode(editor: vscode.TextEditor, webview: vscode.Webview, uri
 export function writeCode(editor: vscode.TextEditor, text: string)
 {
 	const position: vscode.Position = editor.selection.active;
-	editor.edit((builder: vscode.TextEditorEdit) => {
-		builder.insert(position, text);
-	});
+	editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
+}
+
+function getTextInEditor(editor: vscode.TextEditor): string
+{
+	let text: string = '';
+
+	if (editor.selections.length > 0)
+	{
+		for (let selection of editor.selections)
+		{
+			if (text.length > 0) { text += ' '; }
+			const range: vscode.Range = new vscode.Range(selection.start, selection.end);
+			text += editor.document.getText(range);
+		}
+	}
+	else { text = editor.document.getText(); }
+
+	text = text.trim().replace(/[\t\v\f ]+/g, ' ');
+
+	return text;
 }
