@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { ISignVideos, ICategoryVideos } from './utils/interfaces';
+import { ISignVideos } from './utils/interfaces';
 import { errors, supportedLanguages, tooltipsIds } from './utils/constants';
-import { categories } from './languages/javascript/categories';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -49,7 +48,7 @@ export function activate(context: vscode.ExtensionContext)
 			
 			webview.postMessage({welcome, tooltips});
 
-			webview.html = content.getHtml(webview, uri, categories);
+			webview.html = content.getHtml(webview, uri);
 
 			webview.onDidReceiveMessage(
 				(message: any) =>
@@ -96,12 +95,18 @@ export function activate(context: vscode.ExtensionContext)
 							// }
 						}
 					} catch (err) {
-						if (err instanceof Error && errors.hasOwnProperty(err.message))
+						if (err instanceof Error)
 						{
-							const error: vscode.Uri = webview.asWebviewUri(
-								vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
-							);
-							webview.postMessage({error});
+							if (errors.hasOwnProperty(err.message)) {
+								const error: vscode.Uri = webview.asWebviewUri(
+									vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
+								);
+								webview.postMessage({error});
+							}
+							else
+							{
+								vscode.window.showErrorMessage(err.message);
+							}
 						}
 					}
 				},

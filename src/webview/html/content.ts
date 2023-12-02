@@ -1,7 +1,6 @@
 import { Webview, Uri } from 'vscode';
-import { ICategory } from '../../utils/interfaces';
 
-export function getHtml(webview: Webview, uri: Uri, categories: ICategory[]): string
+export function getHtml(webview: Webview, uri: Uri): string
 {
 	const allCss: Uri[] = [
 		webview.asWebviewUri(Uri.joinPath(uri,'src','webview', 'icons','fontawesome','css','fontawesome.css')),
@@ -63,17 +62,7 @@ export function getHtml(webview: Webview, uri: Uri, categories: ICategory[]): st
 				</div>
 				<span id="totalDuration" class="infoTimeToggle"></span>
 			</section>
-			<section id="categoriesContainer" class="signToCodeToggle">`;
-
-				for (let category of categories) {
-					html += `
-					<button id="category${category.id}" class="infoToggle categories" title="${category.title}">
-						<i class="fa-solid fa-${category.icon}" id="category${category.id}Icon"></i>
-					</button>`;
-				}
-
-			html += `
-			</section>
+			<section id="categoriesContainer" class="signToCodeToggle"></section>
 			<div id="videoContainer"></div>
 			<div id="sliderContainer" class="codeToSignToggle"></div>
 			<section id="playerContainer">
