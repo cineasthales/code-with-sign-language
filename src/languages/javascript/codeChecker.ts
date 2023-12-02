@@ -1,4 +1,5 @@
-import { reservedWords, signs, signsMisc } from './sintax';
+import { reservedWords, signs } from './sintax';
+import { signsMisc } from '../../utils/constants';
 import { ISign } from '../../utils/interfaces';
 
 export function getResults(text: string): ISign[]
@@ -377,7 +378,7 @@ export function getResults(text: string): ISign[]
 			}
 		}
 
-		if (text[i].toLowerCase().match(/[a-z]/)) { results.push(signsMisc[text[i]]); }
+		if (text[i].toLowerCase().match(/[a-zç]/)) { results.push(signsMisc[text[i]]); }
 		else if (text[i].match(/\d/)) { results.push(signsMisc['n'+text[i]]); }
 	}
 
