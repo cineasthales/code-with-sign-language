@@ -15,10 +15,10 @@
     "commands": [
       {
         "command": "code-with-sign-language.start",
-        "title": "Libras",
+        "title": "Programar com Libras",
         "icon": {
-          "dark": "./src/icons/hands-dark.svg",
-          "light": "./src/icons/hands-light.svg"
+          "dark": "./src/webview/icons/hands-dark.svg",
+          "light": "./src/webview/icons/hands-light.svg"
         }
       }
     ],
