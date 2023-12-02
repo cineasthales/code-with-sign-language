@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
 import { ISign, ISignVideos } from '../utils/interfaces';
+//import { categories } from './languages/javascript/categories';
 
 export function readCode(signLanguage: string, editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
 {
@@ -27,8 +28,9 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,language,result.directory,result.file+'.mp4')),
-					info: result.info ?  webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,language,'info',result.info+'.mp4')) : undefined,
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,result.directory,result.file+'.mp4')),
+					info: result.info ?
+						webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',result.info+'.mp4')) : undefined,
 					examples: undefined,
 				});
 			}
@@ -52,6 +54,11 @@ export function writeCode(editor: vscode.TextEditor, text: string)
 	const position: vscode.Position = editor.selection.active;
 	editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
 }
+
+// export function getCategories()
+// {
+	
+// }
 
 function getTextInEditor(editor: vscode.TextEditor): string
 {

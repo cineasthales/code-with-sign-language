@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { ISignVideos } from './utils/interfaces';
+import { ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages, tooltipsIds } from './utils/constants';
 import { categories } from './languages/javascript/categories';
 
@@ -66,7 +66,7 @@ export function activate(context: vscode.ExtensionContext)
 						}
 						else if (message.type)
 						{
-							if (message.type === 'read')
+							if (message.type === 'readCode')
 							{
 								if (vscode.languages.getDiagnostics(editor.document.uri).length > 0)
 								{
@@ -85,10 +85,15 @@ export function activate(context: vscode.ExtensionContext)
 									}
 								}
 							}
-							else if (message.type === 'write' && message.text)
+							else if (message.type === 'writeCode' && message.text)
 							{
 								translator.writeCode(editor, message.text);
 							}
+							// else if (message.type === 'getCategories')
+							// {
+							// 	const categories: ICategoryVideos[] = translator.getCategories();
+							// 	webview.postMessage({categories});
+							// }
 						}
 					} catch (err) {
 						if (err instanceof Error && errors.hasOwnProperty(err.message))
