@@ -44,7 +44,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
-			<button id="tooltipToggle" class="infoToggle" title="Tooltip ligado">
+			<button id="tooltipToggle" class="infoToggle" title="Tooltips ligados">
 				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
 			</button>
 		</nav>
@@ -91,7 +91,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 			<section id="actionsContainer">
 				<div id="infoContainer">
 					<span id="currentSign"></span>
-					<button id="info" title="O que é esta palavra?">
+					<button id="info" title="O que isto significa?">
 						<i class="fa-solid fa-question" id="infoIcon"></i>
 					</button>
 				</div>

@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext)
 				));
 			}
 			
-			webview.postMessage({welcome, tooltips});
+			webview.postMessage({welcome, tooltips, tooltipsIds});
 
 			webview.html = content.getHtml(webview, uri);
 
