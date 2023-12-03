@@ -57,7 +57,7 @@ export const signs: any = {
 		file: 'commentHashbang',
 		info: 'commentHashbang',
 		examples: [
-			'',
+			`#!/usr/bin/env node`,
 		],
 	},
 	stringQuotationBegin: {
@@ -66,7 +66,7 @@ export const signs: any = {
 		file: 'stringQuotationBegin',
 		info: 'string',
 		examples: [
-			'',
+			`let nome = "Maria";`,
 		],
 	},
 	stringQuotationEnd: {
@@ -75,7 +75,7 @@ export const signs: any = {
 		file: 'stringQuotationEnd',
 		info: 'string',
 		examples: [
-			'',
+			`let nome = "Maria";`,
 		],
 	},
 	stringApostropheBegin: {
@@ -84,7 +84,7 @@ export const signs: any = {
 		file: 'stringApostropheBegin',
 		info: 'string',
 		examples: [
-			'',
+			`let nome = 'Maria';`,
 		],
 	},
 	stringApostropheEnd: {
@@ -93,7 +93,7 @@ export const signs: any = {
 		file: 'stringApostropheEnd',
 		info: 'string',
 		examples: [
-			'',
+			`let nome = 'Maria';`,
 		],
 	},
 	stringTemplateBegin: {
@@ -102,7 +102,8 @@ export const signs: any = {
 		file: 'stringTemplateBegin',
 		info: 'string',
 		examples: [
-			'',
+			`let texto = \`Este é um texto
+			com quebra de linha.\`;`,
 		],
 	},
 	stringTemplateEnd: {
@@ -111,7 +112,8 @@ export const signs: any = {
 		file: 'stringTemplateEnd',
 		info: 'string',
 		examples: [
-			'',
+			`let texto = \`Este é um texto
+			com quebra de linha.\`;`,
 		],
 	},
 	commentLine: {
@@ -120,7 +122,7 @@ export const signs: any = {
 		file: 'commentLine',
 		info: 'commentLine',
 		examples: [
-			'',
+			`// Esta é um comentário em linha`,
 		],
 	},
 	commentBlockBegin: {
@@ -129,7 +131,9 @@ export const signs: any = {
 		file: 'commentBlockBegin',
 		info: 'commentBlock',
 		examples: [
-			'',
+			`/* Este é um
+			comentário
+			em bloco */`,
 		],
 	},
 	commentBlockEnd: {
@@ -138,7 +142,9 @@ export const signs: any = {
 		file: 'commentBlockEnd',
 		info: 'commentBlock',
 		examples: [
-			'',
+			`/* Este é um
+			comentário
+			em bloco */`,
 		],
 	},
 	blockOrObjectBegin: {
@@ -147,7 +153,10 @@ export const signs: any = {
 		file: 'blockOrObjectBegin',
 		info: 'blockOrObject',
 		examples: [
-			'',
+			`let pessoa = {
+				nome: 'Maria',
+				idade: 25,
+			};`,
 		],
 	},
 	blockOrObjectEnd: {
@@ -156,7 +165,10 @@ export const signs: any = {
 		file: 'blockOrObjectEnd',
 		info: 'blockOrObject',
 		examples: [
-			'',
+			`let pessoa = {
+				nome: 'Maria',
+				idade: 25,
+			};`,
 		],
 	},
 	groupBegin: {
@@ -165,7 +177,7 @@ export const signs: any = {
 		file: 'groupBegin',
 		info: 'group',
 		examples: [
-			'',
+			`let resultado = (10 + 1) * 2;`,
 		],
 	},
 	groupEnd: {
@@ -174,7 +186,7 @@ export const signs: any = {
 		file: 'groupEnd',
 		info: 'group',
 		examples: [
-			'',
+			`let resultado = (10 + 1) * 2;`,
 		],
 	},
 	comma: {
@@ -183,7 +195,7 @@ export const signs: any = {
 		file: 'comma',
 		info: 'comma',
 		examples: [
-			'',
+			`let frutas = ['banana', 'maçã', 'laranja'];`,
 		],
 	},
 	semicolon: {
@@ -192,7 +204,7 @@ export const signs: any = {
 		file: 'semicolon',
 		info: 'semicolon',
 		examples: [
-			'',
+			`let idade = 25;`,
 		],
 	},
 	arrayBegin: {
@@ -201,7 +213,7 @@ export const signs: any = {
 		file: 'arrayBegin',
 		info: 'array',
 		examples: [
-			'',
+			`let frutas = ['banana', 'maçã', 'laranja'];`,
 		],
 	},
 	arrayEnd: {
@@ -210,7 +222,7 @@ export const signs: any = {
 		file: 'arrayEnd',
 		info: 'array',
 		examples: [
-			'',
+			`let frutas = ['banana', 'maçã', 'laranja'];`,
 		],
 	},
 	increment: {
@@ -219,7 +231,8 @@ export const signs: any = {
 		file: 'increment',
 		info: 'increment',
 		examples: [
-			'',
+			`let idade = 25;
+			idade++;`,
 		],
 	},
 	plusOrConcat: {
@@ -228,7 +241,10 @@ export const signs: any = {
 		file: 'plusOrConcat',
 		info: 'plusOrConcat',
 		examples: [
-			'',
+			`let idade = 25 + 5;`,
+			`let nome = 'Maria';
+			let sobrenome = 'Silva';
+			let nomeCompleto = nome + sobrenome;`,
 		],
 	},
 	decrement: {
@@ -237,7 +253,8 @@ export const signs: any = {
 		file: 'decrement',
 		info: 'decrement',
 		examples: [
-			'',
+			`let idade = 25;
+			idade--;`,
 		],
 	},
 	minus: {
@@ -246,7 +263,7 @@ export const signs: any = {
 		file: 'minus',
 		info: 'minus',
 		examples: [
-			'',
+			`let idade = 25 - 5;`,
 		],
 	},
 	power: {
@@ -255,7 +272,7 @@ export const signs: any = {
 		file: 'power',
 		info: 'power',
 		examples: [
-			'',
+			`let idade = 2 ** 5;`,
 		],
 	},
 	times: {
@@ -264,7 +281,7 @@ export const signs: any = {
 		file: 'times',
 		info: 'times',
 		examples: [
-			'',
+			`let idade = 2 * 5;`,
 		],
 	},
 	divisionOrRegex: {
@@ -273,7 +290,8 @@ export const signs: any = {
 		file: 'divisionOrRegex',
 		info: 'divisionOrRegex',
 		examples: [
-			'',
+			`let idade = 10 / 2;`,
+			`let expressaoRegular = /[0-9]/g`,
 		],
 	},
 	modulus: {
@@ -282,7 +300,7 @@ export const signs: any = {
 		file: 'modulus',
 		info: 'modulus',
 		examples: [
-			'',
+			`let idade = 10 % 3;`,
 		],
 	},
 	equalStrict: {
@@ -291,7 +309,9 @@ export const signs: any = {
 		file: 'equalStrict',
 		info: 'equalStrict',
 		examples: [
-			'',
+			`if (idade === 25) {
+
+			}`,
 		],
 	},
 	equal: {
@@ -300,7 +320,9 @@ export const signs: any = {
 		file: 'equal',
 		info: 'equal',
 		examples: [
-			'',
+			`if (idade == 25) {
+				
+			}`,
 		],
 	},
 	functionArrow: {
@@ -309,7 +331,7 @@ export const signs: any = {
 		file: 'functionArrow',
 		info: 'functionArrow',
 		examples: [
-			'',
+			``,
 		],
 	},
 	assignment: {
@@ -318,7 +340,7 @@ export const signs: any = {
 		file: 'assignment',
 		info: 'assignment',
 		examples: [
-			'',
+			`(numero) => numero * 10;`,
 		],
 	},
 	differentStrict: {
@@ -327,7 +349,9 @@ export const signs: any = {
 		file: 'differentStrict',
 		info: 'differentStrict',
 		examples: [
-			'',
+			`if (idade !== 25) {
+
+			}`,
 		],
 	},
 	different: {
@@ -336,7 +360,9 @@ export const signs: any = {
 		file: 'different',
 		info: 'different',
 		examples: [
-			'',
+			`if (idade != 25) {
+
+			}`,
 		],
 	},
 	not: {
@@ -345,7 +371,9 @@ export const signs: any = {
 		file: 'not',
 		info: 'not',
 		examples: [
-			'',
+			`if (!idade) {
+
+			}`,
 		],
 	},
 	and: {
@@ -354,7 +382,9 @@ export const signs: any = {
 		file: 'and',
 		info: 'and',
 		examples: [
-			'',
+			`if (nome === 'Maria' && idade === 25) {
+
+			}`,
 		],
 	},
 	bitwiseAnd: {
@@ -363,7 +393,7 @@ export const signs: any = {
 		file: 'bitwiseAnd',
 		info: 'bitwiseAnd',
 		examples: [
-			'',
+			``,
 		],
 	},
 	or: {
@@ -372,7 +402,9 @@ export const signs: any = {
 		file: 'or',
 		info: 'or',
 		examples: [
-			'',
+			`if (nome === 'Maria' || idade === 25) {
+
+			}`,
 		],
 	},
 	bitwiseOr: {
@@ -381,7 +413,7 @@ export const signs: any = {
 		file: 'bitwiseOr',
 		info: 'bitwiseOr',
 		examples: [
-			'',
+			``,
 		],
 	},
 	bitwiseNot: {
@@ -390,7 +422,7 @@ export const signs: any = {
 		file: 'bitwiseNot',
 		info: 'bitwiseNot',
 		examples: [
-			'',
+			``,
 		],
 	},
 	bitwiseXor: {
@@ -399,7 +431,7 @@ export const signs: any = {
 		file: 'bitwiseXor',
 		info: 'bitwiseXor',
 		examples: [
-			'',
+			``,
 		],
 	},
 	bitwiseShiftUnsigned: {
@@ -408,7 +440,7 @@ export const signs: any = {
 		file: 'bitwiseShiftUnsigned',
 		info: 'bitwiseShiftUnsigned',
 		examples: [
-			'',
+			``,
 		],
 	},
 	bitwiseShiftRight: {
@@ -417,7 +449,7 @@ export const signs: any = {
 		file: 'bitwiseShiftRight',
 		info: 'bitwiseShiftRight',
 		examples: [
-			'',
+			``,
 		],
 	},
 	greaterEqual: {
@@ -426,7 +458,9 @@ export const signs: any = {
 		file: 'greaterEqual',
 		info: 'greaterEqual',
 		examples: [
-			'',
+			`if (idade >= 25) {
+
+			}`,
 		],
 	},
 	greater: {
@@ -435,7 +469,9 @@ export const signs: any = {
 		file: 'greater',
 		info: 'greater',
 		examples: [
-			'',
+			`if (idade > 25) {
+
+			}`,
 		],
 	},
 	bitwiseShiftLeft: {
@@ -444,7 +480,7 @@ export const signs: any = {
 		file: 'bitwiseShiftLeft',
 		info: 'bitwiseShiftLeft',
 		examples: [
-			'',
+			``,
 		],
 	},
 	lesserEqual: {
@@ -453,7 +489,9 @@ export const signs: any = {
 		file: 'lesserEqual',
 		info: 'lesserEqual',
 		examples: [
-			'',
+			`if (idade <= 25) {
+
+			}`,
 		],
 	},
 	lesser: {
@@ -462,7 +500,9 @@ export const signs: any = {
 		file: 'lesser',
 		info: 'lesser',
 		examples: [
-			'',
+			`if (idade < 25) {
+
+			}`,
 		],
 	},
 	nullCoalesc: {
@@ -471,7 +511,7 @@ export const signs: any = {
 		file: 'nullCoalesc',
 		info: 'nullCoalesc',
 		examples: [
-			'',
+			`let nome = nomeDigitado ?? 'Não informado';`,
 		],
 	},
 	chainOptional: {
@@ -480,7 +520,7 @@ export const signs: any = {
 		file: 'chainOptional',
 		info: 'chainOptional',
 		examples: [
-			'',
+			``,
 		],
 	},
 	ternaryIf: {
@@ -489,7 +529,7 @@ export const signs: any = {
 		file: 'ternaryIf',
 		info: 'ternaryIf',
 		examples: [
-			'',
+			`let tipo = idade > 17 ? 'Maior' : 'Menor';`,
 		],
 	},
 	ternaryElseOrPropertyValue: {
@@ -498,7 +538,11 @@ export const signs: any = {
 		file: 'ternaryElseOrPropertyValue',
 		info: 'ternaryElseOrPropertyValue',
 		examples: [
-			'',
+			`let tipo = idade > 17 ? 'Maior' : 'Menor';`,
+			`let pessoa = {
+				nome: 'Maria',
+				idade: 25,
+			};`,
 		],
 	},
 	spreadOrRest: {
@@ -507,7 +551,7 @@ export const signs: any = {
 		file: 'spreadOrRest',
 		info: 'spreadOrRest',
 		examples: [
-			'',
+			``,
 		],
 	},
 	chain: {
@@ -516,7 +560,7 @@ export const signs: any = {
 		file: 'chain',
 		info: 'chain',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedArguments: {
@@ -525,7 +569,7 @@ export const signs: any = {
 		file: 'arguments',
 		info: 'arguments',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedAsync: {
@@ -534,7 +578,7 @@ export const signs: any = {
 		file: 'async',
 		info: 'async',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedAwait: {
@@ -543,7 +587,7 @@ export const signs: any = {
 		file: 'await',
 		info: 'await',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedBreak: {
@@ -552,7 +596,7 @@ export const signs: any = {
 		file: 'break',
 		info: 'break',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedCase: {
@@ -561,7 +605,7 @@ export const signs: any = {
 		file: 'case',
 		info: 'case',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedCatch: {
@@ -570,7 +614,7 @@ export const signs: any = {
 		file: 'catch',
 		info: 'catch',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedClass: {
@@ -579,7 +623,7 @@ export const signs: any = {
 		file: 'class',
 		info: 'class',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedConstructor: {
@@ -588,7 +632,7 @@ export const signs: any = {
 		file: 'constructor',
 		info: 'constructor',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedContinue: {
@@ -597,7 +641,7 @@ export const signs: any = {
 		file: 'continue',
 		info: 'continue',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedDebugger: {
@@ -606,7 +650,7 @@ export const signs: any = {
 		file: 'debugger',
 		info: 'debugger',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedDefault: {
@@ -615,7 +659,7 @@ export const signs: any = {
 		file: 'default',
 		info: 'default',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedDelete: {
@@ -624,7 +668,7 @@ export const signs: any = {
 		file: 'delete',
 		info: 'delete',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedDo: {
@@ -633,7 +677,7 @@ export const signs: any = {
 		file: 'do',
 		info: 'do',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedElse: {
@@ -642,7 +686,7 @@ export const signs: any = {
 		file: 'else',
 		info: 'else',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedExport: {
@@ -651,7 +695,7 @@ export const signs: any = {
 		file: 'export',
 		info: 'export',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedExtends: {
@@ -660,7 +704,7 @@ export const signs: any = {
 		file: 'extends',
 		info: 'extends',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFalse: {
@@ -669,7 +713,7 @@ export const signs: any = {
 		file: 'false',
 		info: 'false',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFinally: {
@@ -678,7 +722,7 @@ export const signs: any = {
 		file: 'finally',
 		info: 'finally',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFor: {
@@ -687,7 +731,7 @@ export const signs: any = {
 		file: 'for',
 		info: 'for',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFrom: {
@@ -696,7 +740,7 @@ export const signs: any = {
 		file: 'from',
 		info: 'from',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFunction: {
@@ -705,7 +749,7 @@ export const signs: any = {
 		file: 'function',
 		info: 'function',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedFunctionGenerator: {
@@ -714,7 +758,7 @@ export const signs: any = {
 		file: 'functionGenerator',
 		info: 'functionGenerator',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedGet: {
@@ -723,7 +767,7 @@ export const signs: any = {
 		file: 'get',
 		info: 'get',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedIf: {
@@ -732,7 +776,7 @@ export const signs: any = {
 		file: 'if',
 		info: 'if',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedImport: {
@@ -741,7 +785,7 @@ export const signs: any = {
 		file: 'import',
 		info: 'import',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedInstanceof: {
@@ -750,7 +794,7 @@ export const signs: any = {
 		file: 'instanceof',
 		info: 'instanceof',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedNew: {
@@ -759,7 +803,7 @@ export const signs: any = {
 		file: 'new',
 		info: 'new',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedNull: {
@@ -768,7 +812,7 @@ export const signs: any = {
 		file: 'null',
 		info: 'null',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedReturn: {
@@ -777,7 +821,7 @@ export const signs: any = {
 		file: 'return',
 		info: 'return',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedSet: {
@@ -786,7 +830,7 @@ export const signs: any = {
 		file: 'set',
 		info: 'set',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedStatic: {
@@ -795,7 +839,7 @@ export const signs: any = {
 		file: 'static',
 		info: 'static',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedSuper: {
@@ -804,7 +848,7 @@ export const signs: any = {
 		file: 'super',
 		info: 'super',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedSwitch: {
@@ -813,7 +857,7 @@ export const signs: any = {
 		file: 'switch',
 		info: 'switch',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedThis: {
@@ -822,7 +866,7 @@ export const signs: any = {
 		file: 'this',
 		info: 'this',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedThrow: {
@@ -831,7 +875,7 @@ export const signs: any = {
 		file: 'throw',
 		info: 'throw',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedTrue: {
@@ -840,7 +884,7 @@ export const signs: any = {
 		file: 'true',
 		info: 'true',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedTry: {
@@ -849,7 +893,7 @@ export const signs: any = {
 		file: 'try',
 		info: 'try',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedTypeof: {
@@ -858,7 +902,7 @@ export const signs: any = {
 		file: 'typeof',
 		info: 'typeof',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedUndefined: {
@@ -867,7 +911,7 @@ export const signs: any = {
 		file: 'undefined',
 		info: 'undefined',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedVar: {
@@ -876,7 +920,7 @@ export const signs: any = {
 		file: 'var',
 		info: 'var',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedVoid: {
@@ -885,7 +929,7 @@ export const signs: any = {
 		file: 'void',
 		info: 'void',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedWhile: {
@@ -894,7 +938,7 @@ export const signs: any = {
 		file: 'while',
 		info: 'while',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedYield: {
@@ -903,7 +947,7 @@ export const signs: any = {
 		file: 'yield',
 		info: 'yield',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedYieldGenerator: {
@@ -912,7 +956,7 @@ export const signs: any = {
 		file: 'yieldGenerator',
 		info: 'yieldGenerator',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedAs: {
@@ -921,7 +965,7 @@ export const signs: any = {
 		file: 'as',
 		info: 'as',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedConst: {
@@ -930,7 +974,7 @@ export const signs: any = {
 		file: 'const',
 		info: 'const',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedIn: {
@@ -939,7 +983,7 @@ export const signs: any = {
 		file: 'in',
 		info: 'in',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedLet: {
@@ -948,7 +992,7 @@ export const signs: any = {
 		file: 'let',
 		info: 'let',
 		examples: [
-			'',
+			``,
 		],
 	},
 	reservedOn: {
@@ -957,7 +1001,7 @@ export const signs: any = {
 		file: 'on',
 		info: 'on',
 		examples: [
-			'',
+			``,
 		],
 	},
 };
