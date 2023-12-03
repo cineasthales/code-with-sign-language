@@ -53,9 +53,9 @@ export const categories: ICategory[]  = [
 	},
 	{
 		title: 'Estruturas de Condição',
-		id: 'Condition',
+		id: 'Conditional',
 		icon: 'arrows-split-up-and-left',
-		tooltip: 'condition',
+		tooltip: 'conditional',
 		signs: [
 			signs.reservedIf,
 			signs.reservedElse,

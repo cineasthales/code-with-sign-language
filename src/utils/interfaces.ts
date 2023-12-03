@@ -3,7 +3,7 @@ import { Uri } from 'vscode';
 export interface ISign
 {
     token: string;
-    directory: string;
+    isCode: boolean;
     file: string;
     info: string;
     examples: string[];

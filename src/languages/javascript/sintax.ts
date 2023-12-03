@@ -53,7 +53,7 @@ export const reservedWords: string[] = [
 export const signs: any = {
 	commentHashbang: {
 		token: '#!',
-		directory: 'code',
+		isCode: true,
 		file: 'commentHashbang',
 		info: 'commentHashbang',
 		examples: [
@@ -62,7 +62,7 @@ export const signs: any = {
 	},
 	stringQuotationBegin: {
 		token: '"',
-		directory: 'code',
+		isCode: true,
 		file: 'stringQuotationBegin',
 		info: 'string',
 		examples: [
@@ -71,7 +71,7 @@ export const signs: any = {
 	},
 	stringQuotationEnd: {
 		token: '"',
-		directory: 'code',
+		isCode: true,
 		file: 'stringQuotationEnd',
 		info: 'string',
 		examples: [
@@ -80,7 +80,7 @@ export const signs: any = {
 	},
 	stringApostropheBegin: {
 		token: '\'',
-		directory: 'code',
+		isCode: true,
 		file: 'stringApostropheBegin',
 		info: 'string',
 		examples: [
@@ -89,7 +89,7 @@ export const signs: any = {
 	},
 	stringApostropheEnd: {
 		token: '\'',
-		directory: 'code',
+		isCode: true,
 		file: 'stringApostropheEnd',
 		info: 'string',
 		examples: [
@@ -98,7 +98,7 @@ export const signs: any = {
 	},
 	stringTemplateBegin: {
 		token: '`',
-		directory: 'code',
+		isCode: true,
 		file: 'stringTemplateBegin',
 		info: 'string',
 		examples: [
@@ -107,7 +107,7 @@ export const signs: any = {
 	},
 	stringTemplateEnd: {
 		token: '`',
-		directory: 'code',
+		isCode: true,
 		file: 'stringTemplateEnd',
 		info: 'string',
 		examples: [
@@ -116,7 +116,7 @@ export const signs: any = {
 	},
 	commentLine: {
 		token: '//',
-		directory: 'code',
+		isCode: true,
 		file: 'commentLine',
 		info: 'commentLine',
 		examples: [
@@ -125,7 +125,7 @@ export const signs: any = {
 	},
 	commentBlockBegin: {
 		token: '/*',
-		directory: 'code',
+		isCode: true,
 		file: 'commentBlockBegin',
 		info: 'commentBlock',
 		examples: [
@@ -134,7 +134,7 @@ export const signs: any = {
 	},
 	commentBlockEnd: {
 		token: '*/',
-		directory: 'code',
+		isCode: true,
 		file: 'commentBlockEnd',
 		info: 'commentBlock',
 		examples: [
@@ -143,7 +143,7 @@ export const signs: any = {
 	},
 	blockOrObjectBegin: {
 		token: '{',
-		directory: 'code',
+		isCode: true,
 		file: 'blockOrObjectBegin',
 		info: 'blockOrObject',
 		examples: [
@@ -152,7 +152,7 @@ export const signs: any = {
 	},
 	blockOrObjectEnd: {
 		token: '}',
-		directory: 'code',
+		isCode: true,
 		file: 'blockOrObjectEnd',
 		info: 'blockOrObject',
 		examples: [
@@ -161,7 +161,7 @@ export const signs: any = {
 	},
 	groupBegin: {
 		token: '(',
-		directory: 'code',
+		isCode: true,
 		file: 'groupBegin',
 		info: 'group',
 		examples: [
@@ -170,7 +170,7 @@ export const signs: any = {
 	},
 	groupEnd: {
 		token: ')',
-		directory: 'code',
+		isCode: true,
 		file: 'groupEnd',
 		info: 'group',
 		examples: [
@@ -179,7 +179,7 @@ export const signs: any = {
 	},
 	comma: {
 		token: ',',
-		directory: 'code',
+		isCode: true,
 		file: 'comma',
 		info: 'comma',
 		examples: [
@@ -188,7 +188,7 @@ export const signs: any = {
 	},
 	semicolon: {
 		token: ';',
-		directory: 'code',
+		isCode: true,
 		file: 'semicolon',
 		info: 'semicolon',
 		examples: [
@@ -197,7 +197,7 @@ export const signs: any = {
 	},
 	arrayBegin: {
 		token: '[',
-		directory: 'code',
+		isCode: true,
 		file: 'arrayBegin',
 		info: 'array',
 		examples: [
@@ -206,7 +206,7 @@ export const signs: any = {
 	},
 	arrayEnd: {
 		token: ']',
-		directory: 'code',
+		isCode: true,
 		file: 'arrayEnd',
 		info: 'array',
 		examples: [
@@ -215,7 +215,7 @@ export const signs: any = {
 	},
 	increment: {
 		token: '++',
-		directory: 'code',
+		isCode: true,
 		file: 'increment',
 		info: 'increment',
 		examples: [
@@ -224,7 +224,7 @@ export const signs: any = {
 	},
 	plusOrConcat: {
 		token: '+',
-		directory: 'code',
+		isCode: true,
 		file: 'plusOrConcat',
 		info: 'plusOrConcat',
 		examples: [
@@ -233,7 +233,7 @@ export const signs: any = {
 	},
 	decrement: {
 		token: '--',
-		directory: 'code',
+		isCode: true,
 		file: 'decrement',
 		info: 'decrement',
 		examples: [
@@ -242,7 +242,7 @@ export const signs: any = {
 	},
 	minus: {
 		token: '-',
-		directory: 'code',
+		isCode: true,
 		file: 'minus',
 		info: 'minus',
 		examples: [
@@ -251,7 +251,7 @@ export const signs: any = {
 	},
 	power: {
 		token: '**',
-		directory: 'code',
+		isCode: true,
 		file: 'power',
 		info: 'power',
 		examples: [
@@ -260,7 +260,7 @@ export const signs: any = {
 	},
 	times: {
 		token: '*',
-		directory: 'code',
+		isCode: true,
 		file: 'times',
 		info: 'times',
 		examples: [
@@ -269,7 +269,7 @@ export const signs: any = {
 	},
 	divisionOrRegex: {
 		token: '/',
-		directory: 'code',
+		isCode: true,
 		file: 'divisionOrRegex',
 		info: 'divisionOrRegex',
 		examples: [
@@ -278,7 +278,7 @@ export const signs: any = {
 	},
 	modulus: {
 		token: '%',
-		directory: 'code',
+		isCode: true,
 		file: 'modulus',
 		info: 'modulus',
 		examples: [
@@ -287,7 +287,7 @@ export const signs: any = {
 	},
 	equalStrict: {
 		token: '===',
-		directory: 'code',
+		isCode: true,
 		file: 'equalStrict',
 		info: 'equalStrict',
 		examples: [
@@ -296,7 +296,7 @@ export const signs: any = {
 	},
 	equal: {
 		token: '==',
-		directory: 'code',
+		isCode: true,
 		file: 'equal',
 		info: 'equal',
 		examples: [
@@ -305,7 +305,7 @@ export const signs: any = {
 	},
 	functionArrow: {
 		token: '=>',
-		directory: 'code',
+		isCode: true,
 		file: 'functionArrow',
 		info: 'functionArrow',
 		examples: [
@@ -314,7 +314,7 @@ export const signs: any = {
 	},
 	assignment: {
 		token: '=',
-		directory: 'code',
+		isCode: true,
 		file: 'assignment',
 		info: 'assignment',
 		examples: [
@@ -323,7 +323,7 @@ export const signs: any = {
 	},
 	differentStrict: {
 		token: '!==',
-		directory: 'code',
+		isCode: true,
 		file: 'differentStrict',
 		info: 'differentStrict',
 		examples: [
@@ -332,7 +332,7 @@ export const signs: any = {
 	},
 	different: {
 		token: '!=',
-		directory: 'code',
+		isCode: true,
 		file: 'different',
 		info: 'different',
 		examples: [
@@ -341,7 +341,7 @@ export const signs: any = {
 	},
 	not: {
 		token: '!',
-		directory: 'code',
+		isCode: true,
 		file: 'not',
 		info: 'not',
 		examples: [
@@ -350,7 +350,7 @@ export const signs: any = {
 	},
 	and: {
 		token: '&&',
-		directory: 'code',
+		isCode: true,
 		file: 'and',
 		info: 'and',
 		examples: [
@@ -359,7 +359,7 @@ export const signs: any = {
 	},
 	bitwiseAnd: {
 		token: '&',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseAnd',
 		info: 'bitwiseAnd',
 		examples: [
@@ -368,7 +368,7 @@ export const signs: any = {
 	},
 	or: {
 		token: '||',
-		directory: 'code',
+		isCode: true,
 		file: 'or',
 		info: 'or',
 		examples: [
@@ -377,7 +377,7 @@ export const signs: any = {
 	},
 	bitwiseOr: {
 		token: '|',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseOr',
 		info: 'bitwiseOr',
 		examples: [
@@ -386,7 +386,7 @@ export const signs: any = {
 	},
 	bitwiseNot: {
 		token: '~',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseNot',
 		info: 'bitwiseNot',
 		examples: [
@@ -395,7 +395,7 @@ export const signs: any = {
 	},
 	bitwiseXor: {
 		token: '^',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseXor',
 		info: 'bitwiseXor',
 		examples: [
@@ -404,7 +404,7 @@ export const signs: any = {
 	},
 	bitwiseShiftUnsigned: {
 		token: '>>>',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseShiftUnsigned',
 		info: 'bitwiseShiftUnsigned',
 		examples: [
@@ -413,7 +413,7 @@ export const signs: any = {
 	},
 	bitwiseShiftRight: {
 		token: '>>',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseShiftRight',
 		info: 'bitwiseShiftRight',
 		examples: [
@@ -422,7 +422,7 @@ export const signs: any = {
 	},
 	greaterEqual: {
 		token: '>=',
-		directory: 'code',
+		isCode: true,
 		file: 'greaterEqual',
 		info: 'greaterEqual',
 		examples: [
@@ -431,7 +431,7 @@ export const signs: any = {
 	},
 	greater: {
 		token: '>',
-		directory: 'code',
+		isCode: true,
 		file: 'greater',
 		info: 'greater',
 		examples: [
@@ -440,7 +440,7 @@ export const signs: any = {
 	},
 	bitwiseShiftLeft: {
 		token: '<<',
-		directory: 'code',
+		isCode: true,
 		file: 'bitwiseShiftLeft',
 		info: 'bitwiseShiftLeft',
 		examples: [
@@ -449,7 +449,7 @@ export const signs: any = {
 	},
 	lesserEqual: {
 		token: '<=',
-		directory: 'code',
+		isCode: true,
 		file: 'lesserEqual',
 		info: 'lesserEqual',
 		examples: [
@@ -458,7 +458,7 @@ export const signs: any = {
 	},
 	lesser: {
 		token: '<',
-		directory: 'code',
+		isCode: true,
 		file: 'lesser',
 		info: 'lesser',
 		examples: [
@@ -467,7 +467,7 @@ export const signs: any = {
 	},
 	nullCoalesc: {
 		token: '??',
-		directory: 'code',
+		isCode: true,
 		file: 'nullCoalesc',
 		info: 'nullCoalesc',
 		examples: [
@@ -476,7 +476,7 @@ export const signs: any = {
 	},
 	chainOptional: {
 		token: '?.',
-		directory: 'code',
+		isCode: true,
 		file: 'chainOptional',
 		info: 'chainOptional',
 		examples: [
@@ -485,7 +485,7 @@ export const signs: any = {
 	},
 	ternaryIf: {
 		token: '?',
-		directory: 'code',
+		isCode: true,
 		file: 'ternaryIf',
 		info: 'ternaryIf',
 		examples: [
@@ -494,7 +494,7 @@ export const signs: any = {
 	},
 	ternaryElseOrPropertyValue: {
 		token: ':',
-		directory: 'code',
+		isCode: true,
 		file: 'ternaryElseOrPropertyValue',
 		info: 'ternaryElseOrPropertyValue',
 		examples: [
@@ -503,7 +503,7 @@ export const signs: any = {
 	},
 	spreadOrRest: {
 		token: '...',
-		directory: 'code',
+		isCode: true,
 		file: 'spreadOrRest',
 		info: 'spreadOrRest',
 		examples: [
@@ -512,7 +512,7 @@ export const signs: any = {
 	},
 	chain: {
 		token: '.',
-		directory: 'code',
+		isCode: true,
 		file: 'chain',
 		info: 'chain',
 		examples: [
@@ -521,7 +521,7 @@ export const signs: any = {
 	},
 	reservedArguments: {
 		token: 'arguments',
-		directory: 'code',
+		isCode: true,
 		file: 'arguments',
 		info: 'arguments',
 		examples: [
@@ -530,7 +530,7 @@ export const signs: any = {
 	},
 	reservedAsync: {
 		token: 'async',
-		directory: 'code',
+		isCode: true,
 		file: 'async',
 		info: 'async',
 		examples: [
@@ -539,7 +539,7 @@ export const signs: any = {
 	},
 	reservedAwait: {
 		token: 'await',
-		directory: 'code',
+		isCode: true,
 		file: 'await',
 		info: 'await',
 		examples: [
@@ -548,7 +548,7 @@ export const signs: any = {
 	},
 	reservedBreak: {
 		token: 'break',
-		directory: 'code',
+		isCode: true,
 		file: 'break',
 		info: 'break',
 		examples: [
@@ -557,7 +557,7 @@ export const signs: any = {
 	},
 	reservedCase: {
 		token: 'case',
-		directory: 'code',
+		isCode: true,
 		file: 'case',
 		info: 'case',
 		examples: [
@@ -566,7 +566,7 @@ export const signs: any = {
 	},
 	reservedCatch: {
 		token: 'catch',
-		directory: 'code',
+		isCode: true,
 		file: 'catch',
 		info: 'catch',
 		examples: [
@@ -575,7 +575,7 @@ export const signs: any = {
 	},
 	reservedClass: {
 		token: 'class',
-		directory: 'code',
+		isCode: true,
 		file: 'class',
 		info: 'class',
 		examples: [
@@ -584,7 +584,7 @@ export const signs: any = {
 	},
 	reservedConstructor: {
 		token: 'constructor',
-		directory: 'code',
+		isCode: true,
 		file: 'constructor',
 		info: 'constructor',
 		examples: [
@@ -593,7 +593,7 @@ export const signs: any = {
 	},
 	reservedContinue: {
 		token: 'continue',
-		directory: 'code',
+		isCode: true,
 		file: 'continue',
 		info: 'continue',
 		examples: [
@@ -602,7 +602,7 @@ export const signs: any = {
 	},
 	reservedDebugger: {
 		token: 'debugger',
-		directory: 'code',
+		isCode: true,
 		file: 'debugger',
 		info: 'debugger',
 		examples: [
@@ -611,7 +611,7 @@ export const signs: any = {
 	},
 	reservedDefault: {
 		token: 'default',
-		directory: 'code',
+		isCode: true,
 		file: 'default',
 		info: 'default',
 		examples: [
@@ -620,7 +620,7 @@ export const signs: any = {
 	},
 	reservedDelete: {
 		token: 'delete',
-		directory: 'code',
+		isCode: true,
 		file: 'delete',
 		info: 'delete',
 		examples: [
@@ -629,7 +629,7 @@ export const signs: any = {
 	},
 	reservedDo: {
 		token: 'do',
-		directory: 'code',
+		isCode: true,
 		file: 'do',
 		info: 'do',
 		examples: [
@@ -638,7 +638,7 @@ export const signs: any = {
 	},
 	reservedElse: {
 		token: 'else',
-		directory: 'code',
+		isCode: true,
 		file: 'else',
 		info: 'else',
 		examples: [
@@ -647,7 +647,7 @@ export const signs: any = {
 	},
 	reservedExport: {
 		token: 'export',
-		directory: 'code',
+		isCode: true,
 		file: 'export',
 		info: 'export',
 		examples: [
@@ -656,7 +656,7 @@ export const signs: any = {
 	},
 	reservedExtends: {
 		token: 'extends',
-		directory: 'code',
+		isCode: true,
 		file: 'extends',
 		info: 'extends',
 		examples: [
@@ -665,7 +665,7 @@ export const signs: any = {
 	},
 	reservedFalse: {
 		token: 'false',
-		directory: 'code',
+		isCode: true,
 		file: 'false',
 		info: 'false',
 		examples: [
@@ -674,7 +674,7 @@ export const signs: any = {
 	},
 	reservedFinally: {
 		token: 'finally',
-		directory: 'code',
+		isCode: true,
 		file: 'finally',
 		info: 'finally',
 		examples: [
@@ -683,7 +683,7 @@ export const signs: any = {
 	},
 	reservedFor: {
 		token: 'for',
-		directory: 'code',
+		isCode: true,
 		file: 'for',
 		info: 'for',
 		examples: [
@@ -692,7 +692,7 @@ export const signs: any = {
 	},
 	reservedFrom: {
 		token: 'from',
-		directory: 'code',
+		isCode: true,
 		file: 'from',
 		info: 'from',
 		examples: [
@@ -701,7 +701,7 @@ export const signs: any = {
 	},
 	reservedFunction: {
 		token: 'function',
-		directory: 'code',
+		isCode: true,
 		file: 'function',
 		info: 'function',
 		examples: [
@@ -710,7 +710,7 @@ export const signs: any = {
 	},
 	reservedFunctionGenerator: {
 		token: 'function *',
-		directory: 'code',
+		isCode: true,
 		file: 'functionGenerator',
 		info: 'functionGenerator',
 		examples: [
@@ -719,7 +719,7 @@ export const signs: any = {
 	},
 	reservedGet: {
 		token: 'get',
-		directory: 'code',
+		isCode: true,
 		file: 'get',
 		info: 'get',
 		examples: [
@@ -728,7 +728,7 @@ export const signs: any = {
 	},
 	reservedIf: {
 		token: 'if',
-		directory: 'code',
+		isCode: true,
 		file: 'if',
 		info: 'if',
 		examples: [
@@ -737,7 +737,7 @@ export const signs: any = {
 	},
 	reservedImport: {
 		token: 'import',
-		directory: 'code',
+		isCode: true,
 		file: 'import',
 		info: 'import',
 		examples: [
@@ -746,7 +746,7 @@ export const signs: any = {
 	},
 	reservedInstanceof: {
 		token: 'instanceof',
-		directory: 'code',
+		isCode: true,
 		file: 'instanceof',
 		info: 'instanceof',
 		examples: [
@@ -755,7 +755,7 @@ export const signs: any = {
 	},
 	reservedNew: {
 		token: 'new',
-		directory: 'code',
+		isCode: true,
 		file: 'new',
 		info: 'new',
 		examples: [
@@ -764,7 +764,7 @@ export const signs: any = {
 	},
 	reservedNull: {
 		token: 'null',
-		directory: 'code',
+		isCode: true,
 		file: 'null',
 		info: 'null',
 		examples: [
@@ -773,7 +773,7 @@ export const signs: any = {
 	},
 	reservedReturn: {
 		token: 'return',
-		directory: 'code',
+		isCode: true,
 		file: 'return',
 		info: 'return',
 		examples: [
@@ -782,7 +782,7 @@ export const signs: any = {
 	},
 	reservedSet: {
 		token: 'set',
-		directory: 'code',
+		isCode: true,
 		file: 'set',
 		info: 'set',
 		examples: [
@@ -791,7 +791,7 @@ export const signs: any = {
 	},
 	reservedStatic: {
 		token: 'static',
-		directory: 'code',
+		isCode: true,
 		file: 'static',
 		info: 'static',
 		examples: [
@@ -800,7 +800,7 @@ export const signs: any = {
 	},
 	reservedSuper: {
 		token: 'super',
-		directory: 'code',
+		isCode: true,
 		file: 'super',
 		info: 'super',
 		examples: [
@@ -809,7 +809,7 @@ export const signs: any = {
 	},
 	reservedSwitch: {
 		token: 'switch',
-		directory: 'code',
+		isCode: true,
 		file: 'switch',
 		info: 'switch',
 		examples: [
@@ -818,7 +818,7 @@ export const signs: any = {
 	},
 	reservedThis: {
 		token: 'this',
-		directory: 'code',
+		isCode: true,
 		file: 'this',
 		info: 'this',
 		examples: [
@@ -827,7 +827,7 @@ export const signs: any = {
 	},
 	reservedThrow: {
 		token: 'throw',
-		directory: 'code',
+		isCode: true,
 		file: 'throw',
 		info: 'throw',
 		examples: [
@@ -836,7 +836,7 @@ export const signs: any = {
 	},
 	reservedTrue: {
 		token: 'true',
-		directory: 'code',
+		isCode: true,
 		file: 'true',
 		info: 'true',
 		examples: [
@@ -845,7 +845,7 @@ export const signs: any = {
 	},
 	reservedTry: {
 		token: 'try',
-		directory: 'code',
+		isCode: true,
 		file: 'try',
 		info: 'try',
 		examples: [
@@ -854,7 +854,7 @@ export const signs: any = {
 	},
 	reservedTypeof: {
 		token: 'typeof',
-		directory: 'code',
+		isCode: true,
 		file: 'typeof',
 		info: 'typeof',
 		examples: [
@@ -863,7 +863,7 @@ export const signs: any = {
 	},
 	reservedUndefined: {
 		token: 'undefined',
-		directory: 'code',
+		isCode: true,
 		file: 'undefined',
 		info: 'undefined',
 		examples: [
@@ -872,7 +872,7 @@ export const signs: any = {
 	},
 	reservedVar: {
 		token: 'var',
-		directory: 'code',
+		isCode: true,
 		file: 'var',
 		info: 'var',
 		examples: [
@@ -881,7 +881,7 @@ export const signs: any = {
 	},
 	reservedVoid: {
 		token: 'void',
-		directory: 'code',
+		isCode: true,
 		file: 'void',
 		info: 'void',
 		examples: [
@@ -890,7 +890,7 @@ export const signs: any = {
 	},
 	reservedWhile: {
 		token: 'while',
-		directory: 'code',
+		isCode: true,
 		file: 'while',
 		info: 'while',
 		examples: [
@@ -899,7 +899,7 @@ export const signs: any = {
 	},
 	reservedYield: {
 		token: 'yield',
-		directory: 'code',
+		isCode: true,
 		file: 'yield',
 		info: 'yield',
 		examples: [
@@ -908,7 +908,7 @@ export const signs: any = {
 	},
 	reservedYieldGenerator: {
 		token: 'yield *',
-		directory: 'code',
+		isCode: true,
 		file: 'yieldGenerator',
 		info: 'yieldGenerator',
 		examples: [
@@ -917,7 +917,7 @@ export const signs: any = {
 	},
 	reservedAs: {
 		token: 'as',
-		directory: 'code',
+		isCode: true,
 		file: 'as',
 		info: 'as',
 		examples: [
@@ -926,7 +926,7 @@ export const signs: any = {
 	},
 	reservedConst: {
 		token: 'const',
-		directory: 'code',
+		isCode: true,
 		file: 'const',
 		info: 'const',
 		examples: [
@@ -935,7 +935,7 @@ export const signs: any = {
 	},
 	reservedIn: {
 		token: 'in',
-		directory: 'code',
+		isCode: true,
 		file: 'in',
 		info: 'in',
 		examples: [
@@ -944,7 +944,7 @@ export const signs: any = {
 	},
 	reservedLet: {
 		token: 'let',
-		directory: 'code',
+		isCode: true,
 		file: 'let',
 		info: 'let',
 		examples: [
@@ -953,7 +953,7 @@ export const signs: any = {
 	},
 	reservedOn: {
 		token: 'on',
-		directory: 'code',
+		isCode: true,
 		file: 'on',
 		info: 'on',
 		examples: [

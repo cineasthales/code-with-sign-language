@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { ISignVideos } from './utils/interfaces';
+import { ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages, tooltipsIds } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
@@ -73,7 +73,8 @@ export function activate(context: vscode.ExtensionContext)
 								}
 								else
 								{
-									const videos: ISignVideos[] = translator.readCode(signLanguage, editor, webview, uri);
+									const videos: ISignVideos[] = translator.readCode(
+										signLanguage, editor, webview, uri);
 									if (videos)
 									{
 										webview.postMessage({videos});
@@ -88,11 +89,12 @@ export function activate(context: vscode.ExtensionContext)
 							{
 								translator.writeCode(editor, message.text);
 							}
-							// else if (message.type === 'getCategories')
-							// {
-							// 	const categories: ICategoryVideos[] = translator.getCategories();
-							// 	webview.postMessage({categories});
-							// }
+							else if (message.type === 'getCategories')
+							{
+								const categories: ICategoryVideos[] = translator.getCategories(
+									signLanguage, editor.document.languageId, webview, uri);
+								webview.postMessage({categories});
+							}
 						}
 					} catch (err) {
 						if (err instanceof Error)
