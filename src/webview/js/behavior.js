@@ -5,15 +5,27 @@ $(() =>
 
     let currentIndex = 0, currentTab = 1, currentCategory = 0;
     let numberOfDigits = 0, totalDuration = 0, currentSpeed = 1;
-    let hasTotalDuration = false, autoRepeat = true, stopped = false;
+    let hasTotalDuration = false, stopped = false;
+    let tooltipToggle = true, autoRepeatToggle = true;
+    let numberOfVideos = 1;
 
     $('.signToCodeToggle').hide();
 
     window.addEventListener('message', event =>
     {
-        const welcome = event.data.welcome;
-        const tooltips = event.data.tooltips;
-        const tooltipsIds = event.data.tooltipsIds;
+        switch (event.data.messageType) {
+            case 'error': showErrorVideo(event.data); break;
+            case 'videos': loadTranslationVideos(event.data); break;
+            case 'categories': loadCategories(event.data); break;
+            case 'init': initializeView(event.data);
+        }
+    });
+
+    function initializeView(data)
+    {
+        const welcome = data.welcome;
+        const tooltips = data.tooltips;
+        const tooltipsIds = data.tooltipsIds;
         const numberOfTooltips = tooltipsIds.length;
 
         $('#videoContainer').append(
@@ -32,20 +44,9 @@ $(() =>
 
         $('#tooltipToggle').on('click', () =>
         {
-            if ($('#tooltipToggle').hasClass('fa-comment'))
-            {
-                $('#tooltipToggle').removeClass('fa-comment');
-                $('#tooltipToggle').addClass('fa-comment-slash');
-                $('#tooltipToggle').prop('title', 'Tooltips desligados');
-                $(button).tooltip('disable');
-            }
-            else
-            {
-                $('#tooltipToggle').removeClass('fa-comment-slash');
-                $('#tooltipToggle').addClass('fa-comment');
-                $('#tooltipToggle').prop('title', 'Tooltips ligados');
-                $(button).tooltip('enable');
-            }
+            tooltipToggle = !tooltipToggle;
+            $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
+            $(button).tooltip(tooltipToggle ? 'enable' : 'disable');
         });
 
         $('#tabCodeToSign').on('click', () =>
@@ -124,8 +125,8 @@ $(() =>
         });
         $('#autoRepeat').on('click', () =>
         {
-            autoRepeat = !autoRepeat;
-            $('#autoRepeat').css('background-color', autoRepeat ? primaryColor : 'transparent');
+            autoRepeatToggle = !autoRepeatToggle;
+            $('#autoRepeat').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
         });
 
         $('#info').on('click', () =>
@@ -179,26 +180,20 @@ $(() =>
                 switch (event.key)
                 {
                     case 'PageDown':
-                        $('#slower').trigger('click');
-                        break;
+                        $('#slower').trigger('click'); break;
                     case 'PageUp':
-                        $('#faster').trigger('click');
-                        break;
+                        $('#faster').trigger('click'); break;
                     case 'Home':
                     case 'End':
                     case 'Backspace':
-                        $('#rewind').trigger('click');
-                        break;
+                        $('#rewind').trigger('click'); break;
                     case 'ArrowLeft':
-                        $('#backward').trigger('click');
-                        break;
+                        $('#backward').trigger('click'); break;
                     case 'ArrowRight':
-                        $('#forward').trigger('click');
-                        break;
+                        $('#forward').trigger('click'); break;
                     case 'a':
                     case 'A':
-                        $('#autoRepeat').trigger('click');
-                        break;
+                        $('#autoRepeat').trigger('click'); break;
                     case 'r':
                     case 'R':
                         $('#readCode').trigger('click');
@@ -209,11 +204,9 @@ $(() =>
                 switch (event.key)
                 {
                     case 'ArrowLeft':
-                        $('#previousInCategory').trigger('click');
-                        break;
+                        $('#previousInCategory').trigger('click'); break;
                     case 'ArrowRight':
-                        $('#nextInCategory').trigger('click');
-                        break;
+                        $('#nextInCategory').trigger('click'); break;
                     case 'w':
                     case 'W':
                         $('#writeCode').trigger('click');
@@ -285,9 +278,5 @@ $(() =>
             }
         }
         setInterval(updateCurrentTime, 200);
-
-    });
-
+    }
 });
-
-

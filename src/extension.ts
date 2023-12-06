@@ -46,7 +46,8 @@ export function activate(context: vscode.ExtensionContext)
 				));
 			}
 			
-			webview.postMessage({welcome, tooltips, tooltipsIds});
+			let messageType: string = 'init';
+			webview.postMessage({messageType, welcome, tooltips, tooltipsIds});
 
 			webview.html = content.getHtml(webview, uri);
 
@@ -77,7 +78,8 @@ export function activate(context: vscode.ExtensionContext)
 										signLanguage, editor, webview, uri);
 									if (videos)
 									{
-										webview.postMessage({videos});
+										messageType = 'videos';
+										webview.postMessage({messageType, videos});
 									}
 									else
 									{
@@ -93,7 +95,8 @@ export function activate(context: vscode.ExtensionContext)
 							{
 								const categories: ICategoryVideos[] = translator.getCategories(
 									signLanguage, editor.document.languageId, webview, uri);
-								webview.postMessage({categories});
+								messageType = 'categories';
+								webview.postMessage({messageType, categories});
 							}
 						}
 					} catch (err) {
@@ -103,7 +106,8 @@ export function activate(context: vscode.ExtensionContext)
 								const error: vscode.Uri = webview.asWebviewUri(
 									vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
 								);
-								webview.postMessage({error});
+								messageType = 'error';
+								webview.postMessage({messageType, error});
 							}
 							else
 							{

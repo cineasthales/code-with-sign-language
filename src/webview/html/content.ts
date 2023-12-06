@@ -44,7 +44,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
-			<button id="tooltipToggle" class="infoToggle" title="Tooltips ligados">
+			<button id="tooltipToggle" class="infoToggle" title="Tooltips">
 				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
 			</button>
 		</nav>
@@ -84,8 +84,8 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<button id="forward" class="infoToggle codeToSignToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 				</button>
-				<button id="autoRepeat" class="infoToggle codeToSignToggle" title="Repetir automaticamente">
-					<i class="fa-solid fa-repeat" id="autoRepeatIcon"></i>
+				<button id="autoRepeatToggle" class="infoToggle codeToSignToggle" title="Repetir automaticamente">
+					<i class="fa-solid fa-repeat" id="autoRepeatToggleIcon"></i>
 				</button>
 			</section>
 			<section id="actionsContainer">

@@ -3,7 +3,7 @@ export const supportedLanguages: string[] = [
 ];
 
 export const tooltipsIds: string[] = [
-	'autoRepeat',
+	'autoRepeatToggle',
 	'backward',
 	'faster',
 	'forward',
