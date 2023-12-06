@@ -2,7 +2,7 @@ export const supportedLanguages: string[] = [
     'javascript',
 ];
 
-export const tooltipsIds: string[] = [
+export const tooltipsButtons: string[] = [
 	'autoRepeatToggle',
 	'backward',
 	'faster',

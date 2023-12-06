@@ -3,7 +3,7 @@ import { Webview, Uri } from 'vscode';
 export function getHtml(webview: Webview, uri: Uri): string
 {
 	const allCss: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview', 'icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','fontawesome.css')),
 		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','regular.css')),
 		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','solid.css')),
 		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','jquery-ui.css')),

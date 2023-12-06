@@ -3,21 +3,26 @@ $(() =>
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
 
-    let currentIndex = 0, currentTab = 1, currentCategory = 0;
+    let currentVideos = [];
+    currentVideos.push([]);
+
+    let currentIndex = 0, currentTab = 1;//, currentCategory = 0;
     let numberOfDigits = 0, totalDuration = 0, currentSpeed = 1;
     let hasTotalDuration = false, stopped = false;
     let tooltipToggle = true, autoRepeatToggle = true;
+    
     let numberOfVideos = 1;
 
     $('.signToCodeToggle').hide();
 
     window.addEventListener('message', event =>
     {
-        switch (event.data.messageType) {
-            case 'error': showErrorVideo(event.data); break;
-            case 'videos': loadTranslationVideos(event.data); break;
-            case 'categories': loadCategories(event.data); break;
-            case 'init': initializeView(event.data);
+        const data = event.data;
+        switch (data.messageType) {
+            //case 'error': showErrorVideo(data); break;
+            case 'videos': loadTranslationVideos(data); break;
+            //case 'categories': loadCategories(data); break;
+            case 'init': initializeView(data);
         }
     });
 
@@ -27,17 +32,17 @@ $(() =>
         const tooltips = data.tooltips;
         const tooltipsIds = data.tooltipsIds;
         const numberOfTooltips = tooltipsIds.length;
-
+        
         $('#videoContainer').append(
-            '<video type="video/mp4" muted autoplay src="' + welcome.file.scheme
-            + '://' + welcome.file.authority + welcome.file.path + '"></video>',
+            '<video type="video/mp4" muted autoplay src="' + welcome.scheme
+            + '://' + welcome.authority + welcome.path + '"></video>',
         );
 
         for (let i = 0; i < numberOfTooltips; i++)
         {
             $('#' + tooltipsIds[i]).tooltip({
-                content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].file.scheme
-                + '://' + tooltips[i].file.authority + tooltips[i].file.path + '"></video>',
+                content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].scheme
+                + '://' + tooltips[i].authority + tooltips[i].path + '"></video>',
                 show: {delay:750},
             });
         }
@@ -57,6 +62,7 @@ $(() =>
             $('.codeToSignToggle').show();
             currentTab = 1;
         });
+        /*
         $('#tabSignToCode').on('click', () =>
         {
             $('#tabCodeToSign').css('background-color', 'transparent');
@@ -65,6 +71,7 @@ $(() =>
             $('.signToCodeToggle').show();
             currentTab = 2;
         });
+        */
 
         $('#slower').on('click', () =>
         {
@@ -160,10 +167,12 @@ $(() =>
         {
             vscode.postMessage({ type: 'read' });
         });
+        /*
         $('#writeCode').on('click', () =>
         {
             vscode.postMessage({ type: 'write', text: 'teste' });
         });
+        */
 
         $('body').on('keypress', event =>
         {
@@ -199,6 +208,7 @@ $(() =>
                         $('#readCode').trigger('click');
                 }
             }
+            /*
             else if (currentTab === 2)
             {
                 switch (event.key)
@@ -212,6 +222,7 @@ $(() =>
                         $('#writeCode').trigger('click');
                 }
             }
+            */
         });
 
         function play()
@@ -278,5 +289,10 @@ $(() =>
             }
         }
         setInterval(updateCurrentTime, 200);
+
+        function loadTranslationVideos(data)
+        {
+            // TODO
+        }
     }
 });

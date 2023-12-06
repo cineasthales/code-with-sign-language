@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
 import { ISignVideos, ICategoryVideos } from './utils/interfaces';
-import { errors, supportedLanguages, tooltipsIds } from './utils/constants';
+import { errors, supportedLanguages, tooltipsButtons } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -35,19 +35,20 @@ export function activate(context: vscode.ExtensionContext)
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
-			const welcome: vscode.Uri = webview.asWebviewUri(
-				vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')
-			);
-
+			const tooltipsIds: string[] = tooltipsButtons;
 			const tooltips: (vscode.Uri)[] = [];
-			for (let tooltip of tooltipsIds) {
+			for (let tooltip of tooltipsButtons) {
 				tooltips.push(webview.asWebviewUri(
 					vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4')
 				));
 			}
+
+			const welcome: vscode.Uri = webview.asWebviewUri(
+				vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')
+			);
 			
 			let messageType: string = 'init';
-			webview.postMessage({messageType, welcome, tooltips, tooltipsIds});
+			webview.postMessage({messageType, tooltipsIds, tooltips, welcome});
 
 			webview.html = content.getHtml(webview, uri);
 
