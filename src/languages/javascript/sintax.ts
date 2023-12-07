@@ -1,72 +1,72 @@
 export const reservedWords: string[] = [
-	'arguments',
-	'async',
-	'await',
+	//'arguments',
+	//'async',
+	//'await',
 	'break',
 	'case',
-	'catch',
-	'class',
-	'constructor',
-	'continue',
-	'debugger',
+	//'catch',
+	//'class',
+	//'constructor',
+	//'continue',
+	//'debugger',
 	'default',
-	'delete',
+	//'delete',
 	'do',
 	'else',
-	'export',
-	'extends',
+	//'export',
+	//'extends',
 	'false',
-	'finally',
+	//'finally',
 	'for',
-	'from',
+	//'from',
 	'function',
-	'get',
+	//'get',
 	'if',
-	'import',
+	//'import',
 	'instanceof',
-	'new',
+	//'new',
 	'null',
 	'return',
-	'set',
-	'static',
-	'super',
+	//'set',
+	//'static',
+	//'super',
 	'switch',
-	'this',
-	'throw',
+	//'this',
+	//'throw',
 	'true',
-	'try',
+	//'try',
 	'typeof',
-	'undefined',
-	'var',
-	'void',
+	//'undefined',
+	//'var',
+	//'void',
 	'while',
 	'with',
-	'yield',
+	//'yield',
     // substrings of other reserved words
-	'as',
+	//'as',
 	'const',
-	'in',
+	//'in',
 	'let',
-	'of',
+	//'of',
 ];
 
 export const signs: any = {
+	/*
 	commentHashbang: {
 		token: '#!',
 		isCode: true,
 		file: 'commentHashbang',
 		info: 'commentHashbang',
-		examples: [
-			`#!/usr/bin/env node`,
-		],
+		examples: [],
 	},
+	*/
 	stringQuotationBegin: {
 		token: '"',
 		isCode: true,
 		file: 'stringQuotationBegin',
 		info: 'string',
 		examples: [
-			`let nome = "Maria";`,
+			`let nome = "Fulana de Tal";`,
 		],
 	},
 	stringQuotationEnd: {
@@ -75,7 +75,7 @@ export const signs: any = {
 		file: 'stringQuotationEnd',
 		info: 'string',
 		examples: [
-			`let nome = "Maria";`,
+			`let nome = "Fulana de Tal";`,
 		],
 	},
 	stringApostropheBegin: {
@@ -84,7 +84,7 @@ export const signs: any = {
 		file: 'stringApostropheBegin',
 		info: 'string',
 		examples: [
-			`let nome = 'Maria';`,
+			`let nome = 'Fulana de Tal';`,
 		],
 	},
 	stringApostropheEnd: {
@@ -93,60 +93,47 @@ export const signs: any = {
 		file: 'stringApostropheEnd',
 		info: 'string',
 		examples: [
-			`let nome = 'Maria';`,
+			`let nome = 'Fulana de Tal';`,
 		],
 	},
+	/*
 	stringTemplateBegin: {
 		token: '`',
 		isCode: true,
 		file: 'stringTemplateBegin',
 		info: 'string',
-		examples: [
-			`let texto = \`Este é um texto
-			com quebra de linha.\`;`,
-		],
+		examples: [],
 	},
 	stringTemplateEnd: {
 		token: '`',
 		isCode: true,
 		file: 'stringTemplateEnd',
 		info: 'string',
-		examples: [
-			`let texto = \`Este é um texto
-			com quebra de linha.\`;`,
-		],
+		examples: [],
 	},
 	commentLine: {
 		token: '//',
 		isCode: true,
 		file: 'commentLine',
 		info: 'commentLine',
-		examples: [
-			`// Esta é um comentário em linha`,
-		],
+		examples: [],
 	},
 	commentBlockBegin: {
-		token: '/*',
+		token: '/_*',
 		isCode: true,
 		file: 'commentBlockBegin',
 		info: 'commentBlock',
-		examples: [
-			`/* Este é um
-			comentário
-			em bloco */`,
-		],
+		examples: [],
 	},
 	commentBlockEnd: {
-		token: '*/',
+		token: '*_/',
 		isCode: true,
 		file: 'commentBlockEnd',
 		info: 'commentBlock',
-		examples: [
-			`/* Este é um
-			comentário
-			em bloco */`,
+		examples: [],
 		],
 	},
+	*/
 	blockOrObjectBegin: {
 		token: '{',
 		isCode: true,
@@ -154,7 +141,7 @@ export const signs: any = {
 		info: 'blockOrObject',
 		examples: [
 			`let pessoa = {
-				nome: 'Maria',
+				nome: 'Fulana de Tal',
 				idade: 25,
 			};`,
 		],
@@ -166,7 +153,7 @@ export const signs: any = {
 		info: 'blockOrObject',
 		examples: [
 			`let pessoa = {
-				nome: 'Maria',
+				nome: 'Fulana de Tal',
 				idade: 25,
 			};`,
 		],
@@ -196,6 +183,7 @@ export const signs: any = {
 		info: 'comma',
 		examples: [
 			`let frutas = ['banana', 'maçã', 'laranja'];`,
+			`let precos = [2.5, 5, 7.5, 10];`,
 		],
 	},
 	semicolon: {
@@ -214,6 +202,7 @@ export const signs: any = {
 		info: 'array',
 		examples: [
 			`let frutas = ['banana', 'maçã', 'laranja'];`,
+			`let precos = [2.5, 5, 7.5, 10];`,
 		],
 	},
 	arrayEnd: {
@@ -223,6 +212,7 @@ export const signs: any = {
 		info: 'array',
 		examples: [
 			`let frutas = ['banana', 'maçã', 'laranja'];`,
+			`let precos = [2.5, 5, 7.5, 10];`,
 		],
 	},
 	increment: {
@@ -233,6 +223,8 @@ export const signs: any = {
 		examples: [
 			`let idade = 25;
 			idade++;`,
+			`let idade = 25;
+			++idade;`,
 		],
 	},
 	plusOrConcat: {
@@ -242,9 +234,9 @@ export const signs: any = {
 		info: 'plusOrConcat',
 		examples: [
 			`let idade = 25 + 5;`,
-			`let nome = 'Maria';
-			let sobrenome = 'Silva';
-			let nomeCompleto = nome + sobrenome;`,
+			`let nome = 'Fulana';
+			let sobrenome = 'de Tal';
+			let nomeCompleto = nome + ' ' + sobrenome;`,
 		],
 	},
 	decrement: {
@@ -255,6 +247,8 @@ export const signs: any = {
 		examples: [
 			`let idade = 25;
 			idade--;`,
+			`let idade = 25;
+			--idade;`,
 		],
 	},
 	minus: {
@@ -272,7 +266,7 @@ export const signs: any = {
 		file: 'power',
 		info: 'power',
 		examples: [
-			`let idade = 2 ** 5;`,
+			`let idade = 4 ** 5;`,
 		],
 	},
 	times: {
@@ -281,7 +275,7 @@ export const signs: any = {
 		file: 'times',
 		info: 'times',
 		examples: [
-			`let idade = 2 * 5;`,
+			`let idade = 4 * 5;`,
 		],
 	},
 	divisionOrRegex: {
@@ -290,7 +284,7 @@ export const signs: any = {
 		file: 'divisionOrRegex',
 		info: 'divisionOrRegex',
 		examples: [
-			`let idade = 10 / 2;`,
+			`let idade = 100 / 2;`,
 			`let expressaoRegular = /[0-9]/g`,
 		],
 	},
@@ -300,7 +294,7 @@ export const signs: any = {
 		file: 'modulus',
 		info: 'modulus',
 		examples: [
-			`let idade = 10 % 3;`,
+			`let idade = 100 % 3;`,
 		],
 	},
 	equalStrict: {
@@ -321,26 +315,27 @@ export const signs: any = {
 		info: 'equal',
 		examples: [
 			`if (idade == 25) {
-				
+
 			}`,
 		],
 	},
+	/*
 	functionArrow: {
 		token: '=>',
 		isCode: true,
 		file: 'functionArrow',
 		info: 'functionArrow',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	assignment: {
 		token: '=',
 		isCode: true,
 		file: 'assignment',
 		info: 'assignment',
 		examples: [
-			`(numero) => numero * 10;`,
+			`let numero = 5;
+			numero = numero * 10;`,
 		],
 	},
 	differentStrict: {
@@ -382,76 +377,68 @@ export const signs: any = {
 		file: 'and',
 		info: 'and',
 		examples: [
-			`if (nome === 'Maria' && idade === 25) {
+			`if (nome === 'Fulana de Tal' && idade === 25) {
 
 			}`,
 		],
 	},
+	/*
 	bitwiseAnd: {
 		token: '&',
 		isCode: true,
 		file: 'bitwiseAnd',
 		info: 'bitwiseAnd',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	or: {
 		token: '||',
 		isCode: true,
 		file: 'or',
 		info: 'or',
 		examples: [
-			`if (nome === 'Maria' || idade === 25) {
+			`if (nome === 'Fulana de Tal' || idade === 25) {
 
 			}`,
 		],
 	},
+	/*
 	bitwiseOr: {
 		token: '|',
 		isCode: true,
 		file: 'bitwiseOr',
 		info: 'bitwiseOr',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	bitwiseNot: {
 		token: '~',
 		isCode: true,
 		file: 'bitwiseNot',
 		info: 'bitwiseNot',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	bitwiseXor: {
 		token: '^',
 		isCode: true,
 		file: 'bitwiseXor',
 		info: 'bitwiseXor',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	bitwiseShiftUnsigned: {
 		token: '>>>',
 		isCode: true,
 		file: 'bitwiseShiftUnsigned',
 		info: 'bitwiseShiftUnsigned',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	bitwiseShiftRight: {
 		token: '>>',
 		isCode: true,
 		file: 'bitwiseShiftRight',
 		info: 'bitwiseShiftRight',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	greaterEqual: {
 		token: '>=',
 		isCode: true,
@@ -474,15 +461,15 @@ export const signs: any = {
 			}`,
 		],
 	},
+	/*
 	bitwiseShiftLeft: {
 		token: '<<',
 		isCode: true,
 		file: 'bitwiseShiftLeft',
 		info: 'bitwiseShiftLeft',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	lesserEqual: {
 		token: '<=',
 		isCode: true,
@@ -505,98 +492,88 @@ export const signs: any = {
 			}`,
 		],
 	},
+	/*
 	nullCoalesc: {
 		token: '??',
 		isCode: true,
 		file: 'nullCoalesc',
 		info: 'nullCoalesc',
-		examples: [
-			`let nome = nomeDigitado ?? 'Não informado';`,
-		],
+		examples: [],
 	},
 	chainOptional: {
 		token: '?.',
 		isCode: true,
 		file: 'chainOptional',
 		info: 'chainOptional',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	ternaryIf: {
 		token: '?',
 		isCode: true,
 		file: 'ternaryIf',
 		info: 'ternaryIf',
-		examples: [
-			`let tipo = idade > 17 ? 'Maior' : 'Menor';`,
-		],
+		examples: [],
 	},
 	ternaryElseOrPropertyValue: {
 		token: ':',
 		isCode: true,
 		file: 'ternaryElseOrPropertyValue',
 		info: 'ternaryElseOrPropertyValue',
-		examples: [
-			`let tipo = idade > 17 ? 'Maior' : 'Menor';`,
-			`let pessoa = {
-				nome: 'Maria',
-				idade: 25,
-			};`,
-		],
+		examples: [],
 	},
 	spreadOrRest: {
 		token: '...',
 		isCode: true,
 		file: 'spreadOrRest',
 		info: 'spreadOrRest',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	chain: {
 		token: '.',
 		isCode: true,
 		file: 'chain',
 		info: 'chain',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedArguments: {
 		token: 'arguments',
 		isCode: true,
 		file: 'arguments',
 		info: 'arguments',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedAsync: {
 		token: 'async',
 		isCode: true,
 		file: 'async',
 		info: 'async',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedAwait: {
 		token: 'await',
 		isCode: true,
 		file: 'await',
 		info: 'await',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedBreak: {
 		token: 'break',
 		isCode: true,
 		file: 'break',
 		info: 'break',
 		examples: [
-			``,
+			`let nomeMes;
+			switch (mes) {
+				case 1:
+					nomeMes = 'janeiro';
+					break;
+				case 2:
+					nomeMes = 'fevereiro';
+					break;
+				default:
+					nomeMes = 'outro mês';
+			}`,
 		],
 	},
 	reservedCase: {
@@ -605,79 +582,94 @@ export const signs: any = {
 		file: 'case',
 		info: 'case',
 		examples: [
-			``,
+			`let nomeMes;
+			switch (mes) {
+				case 1:
+					nomeMes = 'janeiro';
+					break;
+				case 2:
+					nomeMes = 'fevereiro';
+					break;
+				default:
+					nomeMes = 'outro mês';
+			}`,
 		],
 	},
+	/*
 	reservedCatch: {
 		token: 'catch',
 		isCode: true,
 		file: 'catch',
 		info: 'catch',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedClass: {
 		token: 'class',
 		isCode: true,
 		file: 'class',
 		info: 'class',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedConstructor: {
 		token: 'constructor',
 		isCode: true,
 		file: 'constructor',
 		info: 'constructor',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedContinue: {
 		token: 'continue',
 		isCode: true,
 		file: 'continue',
 		info: 'continue',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedDebugger: {
 		token: 'debugger',
 		isCode: true,
 		file: 'debugger',
 		info: 'debugger',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedDefault: {
 		token: 'default',
 		isCode: true,
 		file: 'default',
 		info: 'default',
 		examples: [
-			``,
+			`let nomeMes;
+			switch (mes) {
+				case 1:
+					nomeMes = 'janeiro';
+					break;
+				case 2:
+					nomeMes = 'fevereiro';
+					break;
+				default:
+					nomeMes = 'outro mês';
+			}`,
 		],
 	},
+	/*
 	reservedDelete: {
 		token: 'delete',
 		isCode: true,
 		file: 'delete',
 		info: 'delete',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedDo: {
 		token: 'do',
 		isCode: true,
 		file: 'do',
 		info: 'do',
 		examples: [
-			``,
+			`let numero = 0;
+			do {
+				numero = numero + 10;
+			} while (numero < 5);`,
 		],
 	},
 	reservedElse: {
@@ -686,133 +678,158 @@ export const signs: any = {
 		file: 'else',
 		info: 'else',
 		examples: [
-			``,
+			`let voto;
+			if (idade >= 18) {
+				voto = 'obrigatório';
+			} else if (idade === 16 || idade === 17 || idade >= 70) {
+				voto = 'facultativo';
+			} else {
+				voto = 'proibido';
+			}`,
 		],
 	},
+	/*
 	reservedExport: {
 		token: 'export',
 		isCode: true,
 		file: 'export',
 		info: 'export',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedExtends: {
 		token: 'extends',
 		isCode: true,
 		file: 'extends',
 		info: 'extends',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedFalse: {
 		token: 'false',
 		isCode: true,
 		file: 'false',
 		info: 'false',
 		examples: [
-			``,
+			`let podeEntrar;
+			if (idade > 17) {
+				podeEntrar = true;
+			} else {
+				podeEntrar = false;
+			}`,
 		],
 	},
+	/*
 	reservedFinally: {
 		token: 'finally',
 		isCode: true,
 		file: 'finally',
 		info: 'finally',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedFor: {
 		token: 'for',
 		isCode: true,
 		file: 'for',
 		info: 'for',
 		examples: [
-			``,
+			`let numero = 0;
+			for (let i = 0; i < 5; i++) {
+				numero = numero + 10;
+			}`,
 		],
 	},
+	/*
 	reservedFrom: {
 		token: 'from',
 		isCode: true,
 		file: 'from',
 		info: 'from',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedFunction: {
 		token: 'function',
 		isCode: true,
 		file: 'function',
 		info: 'function',
 		examples: [
-			``,
+			`function dividir(dividendo, divisor) {
+				if (divisor === 0) {
+					return 'Impossível dividir';
+				}
+				let resultado = dividendo / divisor;
+				return 'Resultado: ' + resultado;
+			}`,
 		],
 	},
+	/*
 	reservedFunctionGenerator: {
 		token: 'function *',
 		isCode: true,
 		file: 'functionGenerator',
 		info: 'functionGenerator',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedGet: {
 		token: 'get',
 		isCode: true,
 		file: 'get',
 		info: 'get',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedIf: {
 		token: 'if',
 		isCode: true,
 		file: 'if',
 		info: 'if',
 		examples: [
-			``,
+			`let podeEntrar;
+			if (idade > 17) {
+				podeEntrar = true;
+			} else {
+				podeEntrar = false;
+			}`,
 		],
 	},
+	/*
 	reservedImport: {
 		token: 'import',
 		isCode: true,
 		file: 'import',
 		info: 'import',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedInstanceof: {
 		token: 'instanceof',
 		isCode: true,
 		file: 'instanceof',
 		info: 'instanceof',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedNew: {
 		token: 'new',
 		isCode: true,
 		file: 'new',
 		info: 'new',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedNull: {
 		token: 'null',
 		isCode: true,
 		file: 'null',
 		info: 'null',
 		examples: [
-			``,
+			`let nome = null;
+			let temNome;
+			if (!nome) {
+				temNome = false;
+			} else {
+				temNome = true;
+			}
+			`,
 		],
 	},
 	reservedReturn: {
@@ -821,187 +838,202 @@ export const signs: any = {
 		file: 'return',
 		info: 'return',
 		examples: [
-			``,
+			`function dividir(dividendo, divisor) {
+				if (divisor === 0) {
+					return 'Impossível dividir';
+				}
+				let resultado = dividendo / divisor;
+				return 'Resultado: ' + resultado;
+			}`,
 		],
 	},
+	/*
 	reservedSet: {
 		token: 'set',
 		isCode: true,
 		file: 'set',
 		info: 'set',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedStatic: {
 		token: 'static',
 		isCode: true,
 		file: 'static',
 		info: 'static',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedSuper: {
 		token: 'super',
 		isCode: true,
 		file: 'super',
 		info: 'super',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedSwitch: {
 		token: 'switch',
 		isCode: true,
 		file: 'switch',
 		info: 'switch',
 		examples: [
-			``,
+			`let nomeMes;
+			switch (mes) {
+				case 1:
+					nomeMes = 'janeiro';
+					break;
+				case 2:
+					nomeMes = 'fevereiro';
+					break;
+				default:
+					nomeMes = 'outro mês';
+			}`,
 		],
 	},
+	/*
 	reservedThis: {
 		token: 'this',
 		isCode: true,
 		file: 'this',
 		info: 'this',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedThrow: {
 		token: 'throw',
 		isCode: true,
 		file: 'throw',
 		info: 'throw',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedTrue: {
 		token: 'true',
 		isCode: true,
 		file: 'true',
 		info: 'true',
 		examples: [
-			``,
+			`let podeEntrar;
+			if (idade > 17) {
+				podeEntrar = true;
+			} else {
+				podeEntrar = false;
+			}`,
 		],
 	},
+	/*
 	reservedTry: {
 		token: 'try',
 		isCode: true,
 		file: 'try',
 		info: 'try',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedTypeof: {
 		token: 'typeof',
 		isCode: true,
 		file: 'typeof',
 		info: 'typeof',
 		examples: [
-			``,
+			`let nome = 'Fulana de Tal';
+			let tipoNome = typeof nome;`,
 		],
 	},
+	/*
 	reservedUndefined: {
 		token: 'undefined',
 		isCode: true,
 		file: 'undefined',
 		info: 'undefined',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedVar: {
 		token: 'var',
 		isCode: true,
 		file: 'var',
 		info: 'var',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedVoid: {
 		token: 'void',
 		isCode: true,
 		file: 'void',
 		info: 'void',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedWhile: {
 		token: 'while',
 		isCode: true,
 		file: 'while',
 		info: 'while',
 		examples: [
-			``,
+			`let numero = 0;
+			while (numero < 5) {
+				numero = numero + 10;
+			}`,
 		],
 	},
+	/*
 	reservedYield: {
 		token: 'yield',
 		isCode: true,
 		file: 'yield',
 		info: 'yield',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
 	reservedYieldGenerator: {
 		token: 'yield *',
 		isCode: true,
 		file: 'yieldGenerator',
 		info: 'yieldGenerator',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	
 	reservedAs: {
 		token: 'as',
 		isCode: true,
 		file: 'as',
 		info: 'as',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedConst: {
 		token: 'const',
 		isCode: true,
 		file: 'const',
 		info: 'const',
 		examples: [
-			``,
+			`const janeiro = 1;
+			const fevereiro = 2;`,
 		],
 	},
+	/*
 	reservedIn: {
 		token: 'in',
 		isCode: true,
 		file: 'in',
 		info: 'in',
-		examples: [
-			``,
-		],
+		examples: [],
 	},
+	*/
 	reservedLet: {
 		token: 'let',
 		isCode: true,
 		file: 'let',
 		info: 'let',
 		examples: [
-			``,
+			`let idade = 10;
+			idade = idade + 5;
+			idade = idade + 3;`,
 		],
 	},
-	reservedOn: {
-		token: 'on',
+	/*
+	reservedOf: {
+		token: 'of',
 		isCode: true,
-		file: 'on',
-		info: 'on',
-		examples: [
-			``,
-		],
+		file: 'of',
+		info: 'of',
+		examples: [],
 	},
+	*/
 };

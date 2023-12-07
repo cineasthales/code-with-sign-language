@@ -146,7 +146,7 @@ export const categories: ICategory[]  = [
 			signs.reservedDebugger,
 		],
 	},
- 	*/
+	*/
 	{
 		title: 'Vetores e Objetos',
 		id: 'Object',
@@ -193,7 +193,7 @@ export const categories: ICategory[]  = [
 			signs.reservedExport,
 		],
 	},
- 	*/
+	*/
 	{
 		title: 'Outros',
 		id: 'Other',
