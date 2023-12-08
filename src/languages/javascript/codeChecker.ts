@@ -9,12 +9,14 @@ export function getResults(text: string): ISign[]
 	let closure: string = '';
 	let i: number = 0;
 	
+	/*
 	if (text[0] === '#' && text[1] === '!')
 	{
 		results.push(signs.commentHashbang);
 		closure = '\n';
 		i = 2;
 	}
+	*/
 
 	for (i; i < textLength; i++)
 	{
@@ -40,15 +42,18 @@ export function getResults(text: string): ISign[]
 				closure = '\'';
 				continue;
 			}
+			/*
 			if (text[i] === '`')
 			{
 				results.push(signs.stringTemplateBegin);
 				closure = '`';
 				continue;
 			}
+			*/
 
 			if (text[i] === '/')
 			{
+				/*
 				if (text[i+1] === '/')
 				{
 					results.push(signs.commentLine);
@@ -56,13 +61,15 @@ export function getResults(text: string): ISign[]
 					i++;
 					continue;
 				}
+				
 				if (text[i+1] === '*')
 				{
-					results.push(signs.comma);
-					closure = '*/';
+					results.push(signs.commentBlockBegin);
+					closure = '*_/';
 					i++;
 					continue;
 				}
+				*/
 				results.push(signs.divisionOrRegex);
 				continue;
 			}
@@ -171,12 +178,14 @@ export function getResults(text: string): ISign[]
 					i++;
 					continue;
 				}
+				/*
 				if (text[i+1] === '>')
 				{
 					results.push(signs.functionArrow);
 					i++;
 					continue;
 				}
+				*/
 				results.push(signs.assignment);
 				continue;
 			}
@@ -207,8 +216,8 @@ export function getResults(text: string): ISign[]
 					i++;
 					continue;
 				}
-				results.push(signs.bitwiseAnd);
-				continue;
+				//results.push(signs.bitwiseAnd);
+				//continue;
 			}
 
 			if (text[i] === '|')
@@ -219,10 +228,11 @@ export function getResults(text: string): ISign[]
 					i++;
 					continue;
 				}
-				results.push(signs.bitwiseOr);
-				continue;
+				//results.push(signs.bitwiseOr);
+				//continue;
 			}
 
+			/*
 			if (text[i] === '~')
 			{
 				results.push(signs.bitwiseNot);
@@ -234,9 +244,11 @@ export function getResults(text: string): ISign[]
 				results.push(signs.bitwiseXor);
 				continue;
 			}
+			*/
 
 			if (text[i] === '>')
 			{
+				/*
 				if (text[i+1] === '>')
 				{
 					if (text[i+2] === '>')
@@ -249,6 +261,7 @@ export function getResults(text: string): ISign[]
 					i++;
 					continue;
 				}
+				*/
 				if (text[i+1] === '=')
 				{
 					results.push(signs.greaterEqual);
@@ -261,12 +274,14 @@ export function getResults(text: string): ISign[]
 
 			if (text[i] === '<')
 			{
+				/*
 				if (text[i+1] === '<')
 				{
 					results.push(signs.bitwiseShiftLeft);
 					i++;
 					continue;
 				}
+				*/
 				if (text[i+1] === '=')
 				{
 					results.push(signs.lesserEqual);
@@ -277,6 +292,7 @@ export function getResults(text: string): ISign[]
 				continue;
 			}
 
+			/*
 			if (text[i] === '?')
 			{
 				if (text[i+1] === '?')
@@ -311,6 +327,7 @@ export function getResults(text: string): ISign[]
 				results.push(signs.chain);
 				continue;
 			}
+			*/
 
 			if (text[i].match(/[a-gilonr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 			{
@@ -362,6 +379,7 @@ export function getResults(text: string): ISign[]
 				continue;
 			}
 
+			/*
 			if (closure === '`' && text[i] === '`')
 			{
 				results.push(signs.stringTemplateEnd);
@@ -369,15 +387,17 @@ export function getResults(text: string): ISign[]
 				continue;
 			}
 
-			if (closure === '*/' && text[i] === '*' && text[i+1] === '/')
+			if (closure === '*_/' && text[i] === '*' && text[i+1] === '/')
 			{
 				results.push(signs.commentBlockEnd);
 				closure = '';
 				i++;
 				continue;
 			}
+			*/
 		}
 
+		// TODO: punctuation in signsMisc
 		if (text[i].toLowerCase().match(/[a-zç]/)) { results.push(signsMisc[text[i]]); }
 		else if (text[i].match(/\d/)) { results.push(signsMisc['n'+text[i]]); }
 	}

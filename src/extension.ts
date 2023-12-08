@@ -37,7 +37,8 @@ export function activate(context: vscode.ExtensionContext)
 
 			const tooltipsIds: string[] = tooltipsButtons;
 			const tooltips: (vscode.Uri)[] = [];
-			for (let tooltip of tooltipsButtons) {
+			for (let tooltip of tooltipsButtons)
+			{
 				tooltips.push(webview.asWebviewUri(
 					vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4')
 				));
@@ -103,7 +104,8 @@ export function activate(context: vscode.ExtensionContext)
 					} catch (err) {
 						if (err instanceof Error)
 						{
-							if (errors.hasOwnProperty(err.message)) {
+							if (errors.hasOwnProperty(err.message))
+							{
 								const error: vscode.Uri = webview.asWebviewUri(
 									vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
 								);
