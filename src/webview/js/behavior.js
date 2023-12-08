@@ -8,7 +8,107 @@ $(() =>
     let hasTotalDuration = false, stopped = false;
     let tooltipToggle = true, autoRepeatToggle = true;
 
-    $('.signToCodeToggle').hide();
+    function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
+
+    function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
+
+    function reloadSlider()
+    {
+        if ($('#sliderContainer').slider('instance')) {
+            $('#sliderContainer').slider('destroy');
+        }
+        if (sliderSize > 1)
+        {
+            $('#sliderContainer').slider(
+            {
+                animate: 'fast',
+                max: sliderSize - 1,
+                start: (event, ui) =>
+                {
+                    if (ui.value !== currentIndex) { pause(); }
+                },
+                stop: (event, ui) =>
+                {
+                    if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
+                }
+            }).slider('pips', { first: 'pip', last: 'pip' });
+        }
+    }
+
+    function play()
+    {
+        stopped = false;
+        $('#playPauseIcon').removeClass('fa-circle-play');
+        $('#playPauseIcon').addClass('fa-circle-pause');
+        $('#playPauseIcon').prop('title', 'Pausar vídeo');
+        $('#video_' + currentArray + '_' + currentIndex).trigger('play');
+    }
+
+    function pause()
+    {
+        $('#playPauseIcon').removeClass('fa-circle-pause');
+        $('#playPauseIcon').addClass('fa-circle-play');
+        $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
+        $('#video_' + currentArray + '_' + currentIndex).trigger('pause');
+    }
+
+    function changeCurrentVideo(newArray, newIndex, playNew)
+    {
+        if (currentArray !== newArray || sliderSize > 1)
+        {
+            if (currentArray !== newArray) {
+                reloadSlider();
+            } else if ($('#sliderContainer').slider('instance')) {
+                $('#sliderContainer').slider('value', newIndex);
+            }
+            let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+            $(currentVideo).hide();
+            $(currentVideo)[0].load();
+            currentArray = newArray;
+            currentIndex = newIndex;
+            currentVideo = '#video_' + currentArray + '_' + currentIndex;
+            $(currentVideo).show();
+            //$('#currentSign').text(videos[currentIndex].sign);
+            if (currentArray === 0)
+            {
+                $(currentVideo).prop('playbackRate', currentSpeed);
+            }
+        }
+        playNew ? play() : pause();
+    }
+
+    function updateCurrentTime()
+    {
+        if (!hasTotalDuration)
+        {
+            for (let i = 0; i < sliderSize; i++)
+            {
+                totalDuration += $('#video_' + currentArray + '_' + i).prop('duration');
+            }
+            if (!isNaN(totalDuration))
+            {
+                totalDuration = Math.floor(totalDuration);
+                numberOfDigits = totalDuration.toString().length;
+                $('#totalDuration').text(totalDuration + 's');
+                hasTotalDuration = true;
+            }
+            else
+            {
+                totalDuration = 0;
+            }
+        }
+
+        let currentTime = $('#video_' + currentArray + '_' + currentIndex).prop('currentTime');
+        for (let i = 0; i < currentIndex; i++)
+        {
+            currentTime += $('#video_' + currentArray + '_' + i).prop('duration');
+        }
+        if (!isNaN(currentTime))
+        {
+            $('#currentTime').text(Math.floor(currentTime).toString().padStart(numberOfDigits, '0')  + 's');
+        }
+    }
+    setInterval(updateCurrentTime, 200);
 
     window.addEventListener('message', event =>
     {
@@ -16,7 +116,7 @@ $(() =>
         switch (data.messageType) {
             case 'main': loadMainVideos(data); break;
             case 'categories': loadCategoriesVideos(data); break;
-            case 'init': initializeView(data);
+            case 'init': initializeWebview(data);
         }
     });
 
@@ -59,38 +159,8 @@ $(() =>
         }
     }
 
-    function reloadSlider()
-    {
-        $('#sliderContainer').slider('destroy');
-        $('#sliderContainer').slider(
-        {
-            animate: 'fast',
-            max: sliderSize - 1,
-            start: (event, ui) =>
-            {
-                if (ui.value !== currentIndex) { pause(); }
-            },
-            stop: (event, ui) =>
-            {
-                if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
-            }
-        }).slider('pips', { first: 'pip', last: 'pip' });
-    }
-
-    function previousIndex()
-    {
-        return currentIndex === 0 ? 0 : currentIndex - 1;
-    }
-
-    function nextIndex()
-    {
-        return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1;
-    }
-
-    function initializeView(data)
-    {
-        loadMainVideos(data.welcome);
-        
+    function initializeWebview(data)
+    {        
         const tooltips = data.tooltips;
         const tooltipsIds = data.tooltipsIds;
         const numberOfTooltips = tooltipsIds.length;
@@ -103,6 +173,7 @@ $(() =>
                 show: {delay:750},
             });
         }
+        
         $('#tooltipToggle').on('click', () =>
         {
             tooltipToggle = !tooltipToggle;
@@ -125,6 +196,7 @@ $(() =>
             $('.codeToSignToggle').hide();
             $('.signToCodeToggle').show();
             changeCurrentVideo(1, 0, false);
+            //vscode.postMessage({ type: 'getCategories', text: 'javascript' });
         });
 
         $('#slower').on('click', () =>
@@ -172,7 +244,6 @@ $(() =>
 
         $('#nextInCategory').on('click', () =>
         {
-            const newIndex = 
             changeCurrentVideo(currentArray, nextIndex(), false);
         });
         $('#forward').on('click', () =>
@@ -214,14 +285,13 @@ $(() =>
 
         $('#readCode').on('click', () =>
         {
+            hasTotalDuration = false;
             vscode.postMessage({ type: 'readCode' });
         });
         $('#writeCode').on('click', () =>
         {
             vscode.postMessage({ type: 'writeCode', text: 'teste' });
         });
-
-        // REFACTOR FROM HERE!!!
 
         $('body').on('keypress', event =>
         {
@@ -233,7 +303,7 @@ $(() =>
             {
                 $('#info').trigger('click');
             }
-            else if (currentTab === 1)
+            else if (currentArray === 0)
             {
                 switch (event.key)
                 {
@@ -257,8 +327,7 @@ $(() =>
                         $('#readCode').trigger('click');
                 }
             }
-            /*
-            else if (currentTab === 2)
+            else
             {
                 switch (event.key)
                 {
@@ -271,77 +340,10 @@ $(() =>
                         $('#writeCode').trigger('click');
                 }
             }
-            */
         });
 
-        function play()
-        {
-            stopped = false;
-            $('#playPauseIcon').removeClass('fa-circle-play');
-            $('#playPauseIcon').addClass('fa-circle-pause');
-            $('#playPauseIcon').prop('title', 'Pausar vídeo');
-            $('#video_' + currentIndex).trigger('play');
-        }
+        $('.signToCodeToggle').hide();
 
-        function pause()
-        {
-            $('#playPauseIcon').removeClass('fa-circle-pause');
-            $('#playPauseIcon').addClass('fa-circle-play');
-            $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
-            $('#video_' + currentIndex).trigger('pause');
-        }
-
-        function changeCurrentVideo(newIndex, playNew)
-        {
-            if (numberOfVideos > 1)
-            {
-                $('#video_' + currentIndex).hide();
-                $('#video_' + currentIndex)[0].load();
-                currentIndex = newIndex;
-                $('#video_' + currentIndex).show();
-                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-                $('#sliderContainer').slider('value', currentIndex);
-                $('#currentSign').text(videos[currentIndex].sign.toUpperCase());
-            }
-            playNew ? play() : pause();
-        }
-
-        function updateCurrentTime()
-        {
-            if (!hasTotalDuration)
-            {
-                for (let i = 0; i < numberOfVideos; i++)
-                {
-                    totalDuration += $('#video_' + i).prop('duration');
-                }
-                if (!isNaN(totalDuration))
-                {
-                    totalDuration = Math.floor(totalDuration);
-                    numberOfDigits = totalDuration.toString().length;
-                    $('#totalDuration').text(totalDuration + 's');
-                    hasTotalDuration = true;
-                }
-                else
-                {
-                    totalDuration = 0;
-                }
-            }
-
-            let currentTime = $('#video_' + currentIndex).prop('currentTime');
-            for (let i = 0; i < currentIndex; i++)
-            {
-                currentTime += $('#video_' + i).prop('duration');
-            }
-            if (!isNaN(currentTime))
-            {
-                $('#currentTime').text(Math.floor(currentTime).toString().padStart(numberOfDigits, '0')  + 's');
-            }
-        }
-        setInterval(updateCurrentTime, 200);
-
-        function loadTranslationVideos(data)
-        {
-            // TODO
-        }
+        loadMainVideos(data.welcome);
     }
 });
