@@ -122,7 +122,7 @@ export const categories: ICategory[]  = [
 		signs: [
 			signs.reservedFunction,
 			signs.reservedReturn,
-			signs.reservedVoid,
+			//signs.reservedVoid,
 			//signs.functionArrow,
 			//signs.reservedYield,
 			//signs.reservedArguments,
