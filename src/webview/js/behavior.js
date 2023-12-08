@@ -3,15 +3,10 @@ $(() =>
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
 
-    let currentVideos = [];
-    currentVideos.push([]);
-
-    let currentIndex = 0, currentTab = 1;//, currentCategory = 0;
-    let numberOfDigits = 0, totalDuration = 0, currentSpeed = 1;
+    let currentArray = 0, currentIndex = 0, currentSpeed = 1;
+    let numberOfDigits = 0, totalDuration = 0, sliderSize = 1;
     let hasTotalDuration = false, stopped = false;
     let tooltipToggle = true, autoRepeatToggle = true;
-    
-    let numberOfVideos = 1;
 
     $('.signToCodeToggle').hide();
 
@@ -19,25 +14,87 @@ $(() =>
     {
         const data = event.data;
         switch (data.messageType) {
-            //case 'error': showErrorVideo(data); break;
-            case 'videos': loadTranslationVideos(data); break;
-            //case 'categories': loadCategories(data); break;
+            case 'main': loadMainVideos(data); break;
+            case 'categories': loadCategoriesVideos(data); break;
             case 'init': initializeView(data);
         }
     });
 
+    function loadMainVideos(data)
+    {
+        $('#mainVideosContainer').empty();
+
+        sliderSize = data.length;
+        for (let i = 0; i < sliderSize; i++)
+        {
+            $('#mainVideosContainer').append(
+                '<video id="video_0_' + i + '" type="video/mp4" muted src="'
+                + data[i].scheme + '://' + data[i].authority + data[i].path + '"></video>',
+            );
+        }
+
+        reloadSlider();
+    }
+
+    function loadCategoriesVideos(data)
+    {
+        $('#categoriesVideosContainer').empty();
+
+        const numberOfCategories = data.length;
+        for (let i = 0; i < numberOfCategories; i++)
+        {
+            const numberOfVideosInCategory = data[i].length;
+            if (i = 0)
+            {
+                sliderSize = numberOfVideosInCategory;
+                reloadSlider();
+            }
+            for (let j = 0; j < numberOfVideosInCategory; j++)
+            {
+                $('#categoriesVideosContainer').append(
+                    '<video id="video_' + i + '_' + j + '" type="video/mp4" muted src="'
+                    + data[i][j].scheme + '://' + data[i][j].authority + data[i][j].path + '"></video>',
+                );
+            }
+        }
+    }
+
+    function reloadSlider()
+    {
+        $('#sliderContainer').slider('destroy');
+        $('#sliderContainer').slider(
+        {
+            animate: 'fast',
+            max: sliderSize - 1,
+            start: (event, ui) =>
+            {
+                if (ui.value !== currentIndex) { pause(); }
+            },
+            stop: (event, ui) =>
+            {
+                if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
+            }
+        }).slider('pips', { first: 'pip', last: 'pip' });
+    }
+
+    function previousIndex()
+    {
+        return currentIndex === 0 ? 0 : currentIndex - 1;
+    }
+
+    function nextIndex()
+    {
+        return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1;
+    }
+
     function initializeView(data)
     {
-        const welcome = data.welcome;
+        loadMainVideos(data.welcome);
+        
         const tooltips = data.tooltips;
         const tooltipsIds = data.tooltipsIds;
         const numberOfTooltips = tooltipsIds.length;
         
-        $('#videoContainer').append(
-            '<video type="video/mp4" muted autoplay src="' + welcome.scheme
-            + '://' + welcome.authority + welcome.path + '"></video>',
-        );
-
         for (let i = 0; i < numberOfTooltips; i++)
         {
             $('#' + tooltipsIds[i]).tooltip({
@@ -46,7 +103,6 @@ $(() =>
                 show: {delay:750},
             });
         }
-
         $('#tooltipToggle').on('click', () =>
         {
             tooltipToggle = !tooltipToggle;
@@ -60,25 +116,23 @@ $(() =>
             $('#tabCodeToSign').css('background-color', primaryColor);
             $('.signToCodeToggle').hide();
             $('.codeToSignToggle').show();
-            currentTab = 1;
+            changeCurrentVideo(0, 0, false);
         });
-        /*
         $('#tabSignToCode').on('click', () =>
         {
             $('#tabCodeToSign').css('background-color', 'transparent');
             $('#tabSignToCode').css('background-color', primaryColor);
             $('.codeToSignToggle').hide();
             $('.signToCodeToggle').show();
-            currentTab = 2;
+            changeCurrentVideo(1, 0, false);
         });
-        */
 
         $('#slower').on('click', () =>
         {
             if (currentSpeed > 0.25)
             {
                 currentSpeed -= 0.25;
-                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
                 $('#currentSpeed').text(currentSpeed + 'x');
             }
         });
@@ -87,34 +141,24 @@ $(() =>
             if (currentSpeed < 2)
             {
                 currentSpeed += 0.25;
-                $('#video_' + currentIndex).prop('playbackRate', currentSpeed);
-                $('#currentSpeed').text(currentSpeed + 'x');
+                $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
+                $('#currentSpeed').text(currentSpeed + 'x');;
             }
         });
-
-        $('#sliderContainer').slider(
-        {
-            animate: 'fast',
-            max: numberOfVideos - 1,
-            start: (event, ui) =>
-            {
-                if (ui.value !== currentIndex) { pause(); }
-            },
-            stop: (event, ui) =>
-            {
-                if (ui.value !== currentIndex) { changeCurrentVideo(ui.value, false); }
-            }
-        }).slider('pips', { first: 'pip', last: 'pip' });
 
         $('#rewind').on('click', () =>
         {
-            changeCurrentVideo(0, false);
+            changeCurrentVideo(0, 0, false);
         });
         $('#backward').on('click', () =>
         {
-            const newIndex = currentIndex === 0 ? 0 : currentIndex - 1;
-            changeCurrentVideo(newIndex, false);
+            changeCurrentVideo(0, previousIndex(), false);
         });
+        $('#previousInCategory').on('click', () =>
+        {
+            changeCurrentVideo(currentArray, previousIndex(), false);
+        });
+
         $('#playPause').on('click', () =>
         {
             if ($('#playPauseIcon').hasClass('fa-circle-play'))
@@ -125,10 +169,15 @@ $(() =>
                 pause();
             }
         });
+
+        $('#nextInCategory').on('click', () =>
+        {
+            const newIndex = 
+            changeCurrentVideo(currentArray, nextIndex(), false);
+        });
         $('#forward').on('click', () =>
         {
-            const newIndex = currentIndex === numberOfVideos - 1 ? currentIndex : currentIndex + 1;
-            changeCurrentVideo(newIndex, false);
+            changeCurrentVideo(0, nextIndex(), false);
         });
         $('#autoRepeat').on('click', () =>
         {
@@ -165,14 +214,14 @@ $(() =>
 
         $('#readCode').on('click', () =>
         {
-            vscode.postMessage({ type: 'read' });
+            vscode.postMessage({ type: 'readCode' });
         });
-        /*
         $('#writeCode').on('click', () =>
         {
-            vscode.postMessage({ type: 'write', text: 'teste' });
+            vscode.postMessage({ type: 'writeCode', text: 'teste' });
         });
-        */
+
+        // REFACTOR FROM HERE!!!
 
         $('body').on('keypress', event =>
         {
