@@ -12,7 +12,7 @@ export const categories: ICategory[]  = [
 			signs.reservedConst,
 			signs.assignment,
 			signs.reservedTypeof,
-			//signs.reservedVar,
+			signs.reservedVar,
 		],
 	},
 	{
