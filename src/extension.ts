@@ -44,12 +44,12 @@ export function activate(context: vscode.ExtensionContext)
 				));
 			}
 
-			const welcome: vscode.Uri = webview.asWebviewUri(
+			const videos: ISignVideos[] = webview.asWebviewUri(
 				vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')
 			);
 			
 			let messageType: string = 'init';
-			webview.postMessage({messageType, tooltipsIds, tooltips, welcome});
+			webview.postMessage({messageType, tooltipsIds, tooltips, videos});
 
 			webview.html = content.getHtml(webview, uri);
 
@@ -106,10 +106,10 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (errors.hasOwnProperty(err.message))
 							{
-								const error: vscode.Uri = webview.asWebviewUri(
+								const videos: ISignVideos[] = webview.asWebviewUri(
 									vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
 								);
-								messageType = 'error';
+								messageType = 'main';
 								webview.postMessage({messageType, error});
 							}
 							else
