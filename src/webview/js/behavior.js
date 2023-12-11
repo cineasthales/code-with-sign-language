@@ -124,12 +124,12 @@ $(() =>
     {
         $('#mainVideosContainer').empty();
 
-        sliderSize = data.length;
+        sliderSize = data.videos.length;
         for (let i = 0; i < sliderSize; i++)
         {
             $('#mainVideosContainer').append(
                 '<video id="video_0_' + i + '" type="video/mp4" muted src="'
-                + data[i].scheme + '://' + data[i].authority + data[i].path + '"></video>',
+                + data.videos[i].scheme + '://' + data.videos[i].authority + data.videos[i].path + '"></video>',
             );
         }
 
@@ -140,10 +140,10 @@ $(() =>
     {
         $('#categoriesVideosContainer').empty();
 
-        const numberOfCategories = data.length;
+        const numberOfCategories = data.categories.length;
         for (let i = 0; i < numberOfCategories; i++)
         {
-            const numberOfVideosInCategory = data[i].length;
+            const numberOfVideosInCategory = data.categories[i].length;
             if (i = 0)
             {
                 sliderSize = numberOfVideosInCategory;
@@ -153,7 +153,8 @@ $(() =>
             {
                 $('#categoriesVideosContainer').append(
                     '<video id="video_' + i + '_' + j + '" type="video/mp4" muted src="'
-                    + data[i][j].scheme + '://' + data[i][j].authority + data[i][j].path + '"></video>',
+                    + data.categories[i][j].scheme + '://' + data.categories[i][j].authority
+                    + data.categories[i][j].path + '"></video>',
                 );
             }
         }
@@ -344,6 +345,6 @@ $(() =>
 
         $('.signToCodeToggle').hide();
 
-        loadMainVideos(data.welcome);
+        loadMainVideos(data.videos);
     }
 });
