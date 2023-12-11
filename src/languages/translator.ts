@@ -114,7 +114,7 @@ function getTextInEditor(editor: vscode.TextEditor): string
 	}
 	else { text = editor.document.getText(); }
 
-	text = text.trim().replace(/[\t\v\f ]+/g, ' ');
+	text = text.trim().replace(/[\t\v\f ]+/g, ' ').normalize("NFD").replace(/[\u0300-\u036f]/g, '');
 
 	return text;
 }
