@@ -36,7 +36,7 @@ export const reservedWords: string[] = [
 	'true',
 	//'try',
 	'typeof',
-	//'undefined',
+	'undefined',
 	'var',
 	//'void',
 	'while',
@@ -938,15 +938,15 @@ export const signs: any = {
 			let tipoNome = typeof nome;`,
 		],
 	},
-	/*
 	reservedUndefined: {
 		token: 'undefined',
 		isCode: true,
 		file: 'undefined',
 		info: 'undefined',
-		examples: [],
+		examples: [
+			`let nome;`;
+		],
 	},
- 	*/
 	reservedVar: {
 		token: 'var',
 		isCode: true,
