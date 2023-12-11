@@ -944,7 +944,7 @@ export const signs: any = {
 		file: 'undefined',
 		info: 'undefined',
 		examples: [
-			`let nome;`;
+			`let nome;`,
 		],
 	},
 	reservedVar: {
@@ -958,7 +958,7 @@ export const signs: any = {
 			idade = idade + 3;`,
 		],
 	},
- 	/*
+	/*
 	reservedVoid: {
 		token: 'void',
 		isCode: true,

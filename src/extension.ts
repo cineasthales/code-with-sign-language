@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext)
 				));
 			}
 
-			let videos: ISignVideos[];
+			let videos: ISignVideos[] = [];
 			videos.push({
 				token: '',
 				file: webview.asWebviewUri(
