@@ -114,36 +114,37 @@ $(() =>
     {
         const data = event.data;
         switch (data.messageType) {
-            case 'main': loadMainVideos(data); break;
-            case 'categories': loadCategoriesVideos(data); break;
+            case 'main': loadMainVideos(data.videos); break;
+            case 'categories': loadCategoriesVideos(data.categories); break;
             case 'init': initializeWebview(data);
         }
     });
 
-    function loadMainVideos(data)
+    function loadMainVideos(videos)
     {
         $('#mainVideosContainer').empty();
 
-        sliderSize = data.videos.length;
+        sliderSize = videos.length;
         for (let i = 0; i < sliderSize; i++)
         {
             $('#mainVideosContainer').append(
                 '<video id="video_0_' + i + '" type="video/mp4" muted src="'
-                + data.videos[i].scheme + '://' + data.videos[i].authority + data.videos[i].path + '"></video>',
+                + videos[i].file.scheme + '://' + videos[i].file.authority
+                + videos[i].file.path + '"></video>',
             );
         }
 
         reloadSlider();
     }
 
-    function loadCategoriesVideos(data)
+    function loadCategoriesVideos(categories)
     {
         $('#categoriesVideosContainer').empty();
 
-        const numberOfCategories = data.categories.length;
+        const numberOfCategories = categories.length;
         for (let i = 0; i < numberOfCategories; i++)
         {
-            const numberOfVideosInCategory = data.categories[i].length;
+            const numberOfVideosInCategory = categories[i].length;
             if (i = 0)
             {
                 sliderSize = numberOfVideosInCategory;
@@ -153,8 +154,8 @@ $(() =>
             {
                 $('#categoriesVideosContainer').append(
                     '<video id="video_' + i + '_' + j + '" type="video/mp4" muted src="'
-                    + data.categories[i][j].scheme + '://' + data.categories[i][j].authority
-                    + data.categories[i][j].path + '"></video>',
+                    + categories[i][j].file.scheme + '://' + categories[i][j].file.authority
+                    + categories[i][j].file.path + '"></video>',
                 );
             }
         }
