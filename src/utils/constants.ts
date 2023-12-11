@@ -25,7 +25,6 @@ export const errors: any = {
     languageNotSupported: 'languageNotSupported',
     documentHasErrors: 'documentHasErrors',
     documentIsEmpty: 'documentIsEmpty',
-	categoryIsEmpty: 'categoryIsEmpty',
 };
 
 export const signsMisc: any = {
