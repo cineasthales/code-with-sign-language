@@ -37,7 +37,7 @@ export const reservedWords: string[] = [
 	//'try',
 	'typeof',
 	//'undefined',
-	//'var',
+	'var',
 	//'void',
 	'while',
 	'with',
@@ -946,13 +946,19 @@ export const signs: any = {
 		info: 'undefined',
 		examples: [],
 	},
+ 	*/
 	reservedVar: {
 		token: 'var',
 		isCode: true,
 		file: 'var',
 		info: 'var',
-		examples: [],
+		examples: [
+			`var idade = 10;
+			idade = idade + 5;
+			idade = idade + 3;`,
+		],
 	},
+ 	/*
 	reservedVoid: {
 		token: 'void',
 		isCode: true,
