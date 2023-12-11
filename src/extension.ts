@@ -44,9 +44,16 @@ export function activate(context: vscode.ExtensionContext)
 				));
 			}
 
-			const videos: ISignVideos[] = webview.asWebviewUri(
-				vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')
-			);
+			let videos: ISignVideos[];
+			videos.push({
+				token: '',
+				file: webview.asWebviewUri(
+					vscode.Uri.joinPath(
+						uri,'videos',signLanguage,'welcome.mp4')
+					),
+				info: undefined,
+				examples: undefined,
+			});
 			
 			let messageType: string = 'init';
 			webview.postMessage({messageType, tooltipsIds, tooltips, videos});
@@ -76,11 +83,11 @@ export function activate(context: vscode.ExtensionContext)
 								}
 								else
 								{
-									const videos: ISignVideos[] = translator.readCode(
+									videos = translator.readCode(
 										signLanguage, editor, webview, uri);
 									if (videos)
 									{
-										messageType = 'videos';
+										messageType = 'main';
 										webview.postMessage({messageType, videos});
 									}
 									else
@@ -106,11 +113,18 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (errors.hasOwnProperty(err.message))
 							{
-								const videos: ISignVideos[] = webview.asWebviewUri(
-									vscode.Uri.joinPath(uri,'videos',signLanguage,'error',err.message+'.mp4')
-								);
+								videos = [];
+								videos.push({
+									token: 'Erro!',
+									file: webview.asWebviewUri(
+										vscode.Uri.joinPath(
+											uri,'videos',signLanguage,'error',err.message+'.mp4')
+										),
+									info: undefined,
+									examples: undefined,
+								});
 								messageType = 'main';
-								webview.postMessage({messageType, error});
+								webview.postMessage({messageType, videos});
 							}
 							else
 							{
