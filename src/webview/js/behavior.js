@@ -154,11 +154,6 @@ $(() =>
             for (let i = 0; i < numberOfCategories; i++)
             {
                 const numberOfVideosInCategory = categories[i].videos.length;
-                if (i = 0)
-                {
-                    sliderSize = numberOfVideosInCategory;
-                    reloadSlider();
-                }
                 const categoryIndex = i + 1;
                 allVideos[categoryIndex] === 'undefined' ? allVideos.push([]) : allVideos[categoryIndex] = [];
                 for (let j = 0; j < numberOfVideosInCategory; j++)
@@ -172,12 +167,10 @@ $(() =>
                 }
             }
         }
-        else
-        {
-            currentArray = 1;
-            sliderSize = allVideos[currentArray].videos.length;
-            reloadSlider();
-        }
+        currentArray = 1;
+        sliderSize = allVideos[currentArray].videos.length;
+        reloadSlider();
+        changeCurrentVideo(currentArray, 0, false);
     }
 
     function initializeWebview(data)
@@ -214,7 +207,6 @@ $(() =>
             $('#tabSignToCode').css('background-color', primaryColor);
             $('.codeToSignToggle').hide();
             $('.signToCodeToggle').show();
-            changeCurrentVideo(1, 0, false);
         });
 
         $('#slower').on('click', () =>
