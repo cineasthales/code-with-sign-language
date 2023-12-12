@@ -90,12 +90,16 @@ export function writeCode(editor: vscode.TextEditor, text: string)
 	editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
 }
 
-export function getCategories(signLanguage: string, language: string, webview: vscode.Webview, uri: vscode.Uri): ICategoryVideos[]
+export function getCategories(signLanguage: string, currentLanguage: string, editorLanguage: string, webview: vscode.Webview, uri: vscode.Uri): ICategoryVideos[]
 {
 	const results: ICategory[] = [];
 	const categories: ICategoryVideos[] = [];
 
-	switch (language)
+	if (currentLanguage === editorLanguage) {
+		return categories;
+	}
+
+	switch (editorLanguage)
 	{
 		case 'javascript':
 			results.push(...javascriptCategories.categories);
@@ -115,10 +119,10 @@ export function getCategories(signLanguage: string, language: string, webview: v
 				categoryVideos.push({
 					token: sign.token,
 					file: webview.asWebviewUri(
-						vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'code',sign.file+'.mp4')),
+						vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',editorLanguage,'code',sign.file+'.mp4')),
 					info: sign.info ?
 						webview.asWebviewUri(
-							vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',sign.info+'.mp4'))
+							vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',editorLanguage,'info',sign.info+'.mp4'))
 						: undefined,
 					examples: sign.examples,
 				});
@@ -129,7 +133,7 @@ export function getCategories(signLanguage: string, language: string, webview: v
 				id: result.id,
 				icon: result.icon,
 				tooltip: webview.asWebviewUri(
-					vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'category',result.tooltip+'.mp4')),
+					vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',editorLanguage,'category',result.tooltip+'.mp4')),
 				videos: categoryVideos,
 			});
 		}
