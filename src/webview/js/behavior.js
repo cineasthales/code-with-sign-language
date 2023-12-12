@@ -3,10 +3,13 @@ $(() =>
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
 
+    let currentLanguage = '';
     let currentArray = 0, currentIndex = 0, currentSpeed = 1;
     let numberOfDigits = 0, totalDuration = 0, sliderSize = 1;
     let hasTotalDuration = false, stopped = false;
     let tooltipToggle = true, autoRepeatToggle = true;
+    let allVideos = [];
+    allVideos.push([]);
 
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
@@ -68,7 +71,7 @@ $(() =>
             currentIndex = newIndex;
             currentVideo = '#video_' + currentArray + '_' + currentIndex;
             $(currentVideo).show();
-            //$('#currentSign').text(videos[currentIndex].sign);
+            $('#currentSign').text(allVideos[currentArray][currentIndex].token);
             if (currentArray === 0)
             {
                 $(currentVideo).prop('playbackRate', currentSpeed);
@@ -123,6 +126,7 @@ $(() =>
     function loadMainVideos(videos)
     {
         $('#mainVideosContainer').empty();
+        allVideos[0] = [];
 
         sliderSize = videos.length;
         for (let i = 0; i < sliderSize; i++)
@@ -132,6 +136,7 @@ $(() =>
                 + videos[i].file.scheme + '://' + videos[i].file.authority
                 + videos[i].file.path + '"></video>',
             );
+            allVideos[0].push(videos[i]);
         }
 
         reloadSlider();
@@ -139,26 +144,37 @@ $(() =>
 
     function loadCategoriesVideos(categories)
     {
-        $('#categoriesVideosContainer').empty();
-
-        const numberOfCategories = categories.length;
-        for (let i = 0; i < numberOfCategories; i++)
+        if (categories)
         {
-            const numberOfVideosInCategory = categories[i].videos.length;
-            if (i = 0)
+            $('#categoriesVideosContainer').empty();
+    
+            const numberOfCategories = categories.length;
+            for (let i = 0; i < numberOfCategories; i++)
             {
-                sliderSize = numberOfVideosInCategory;
-                reloadSlider();
+                const numberOfVideosInCategory = categories[i].videos.length;
+                if (i = 0)
+                {
+                    sliderSize = numberOfVideosInCategory;
+                    reloadSlider();
+                }
+                const categoryIndex = i + 1;
+                allVideos[categoryIndex] === 'undefined' ? allVideos.push([]) : allVideos[categoryIndex] = [];
+                for (let j = 0; j < numberOfVideosInCategory; j++)
+                {
+                    $('#categoriesVideosContainer').append(
+                        '<video id="video_' + categoryIndex + '_' + j + '" type="video/mp4" muted src="'
+                        + categories[i].videos[j].file.scheme + '://' + categories[i].videos[j].file.authority
+                        + categories[i].videos[j].file.path + '"></video>',
+                    );
+                    allVideos[categoryIndex].push(categories[i].videos[j]);
+                }
             }
-            const categoryIndex = i + 1;
-            for (let j = 0; j < numberOfVideosInCategory; j++)
-            {
-                $('#categoriesVideosContainer').append(
-                    '<video id="video_' + categoryIndex + '_' + j + '" type="video/mp4" muted src="'
-                    + categories[i].videos[j].file.scheme + '://' + categories[i].videos[j].file.authority
-                    + categories[i].videos[j].file.path + '"></video>',
-                );
-            }
+        }
+        else
+        {
+            currentArray = 1;
+            sliderSize = allVideos[currentArray].videos.length;
+            reloadSlider();
         }
     }
 
@@ -191,12 +207,12 @@ $(() =>
         });
         $('#tabSignToCode').on('click', () =>
         {
+            vscode.postMessage({ type: 'getCategories', text: currentLanguage});
             $('#tabCodeToSign').css('background-color', 'transparent');
             $('#tabSignToCode').css('background-color', primaryColor);
             $('.codeToSignToggle').hide();
             $('.signToCodeToggle').show();
             changeCurrentVideo(1, 0, false);
-            //vscode.postMessage({ type: 'getCategories', text: 'javascript' });
         });
 
         $('#slower').on('click', () =>
