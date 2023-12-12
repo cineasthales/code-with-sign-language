@@ -144,10 +144,10 @@ $(() =>
 
     function loadCategoriesVideos(categories, newLanguage)
     {
-        currentLanguage = newLanguage;
-
-        if (categories)
+        if (currentLanguage !== newLanguage)
         {
+            currentLanguage = newLanguage;
+            
             $('#categoriesVideosContainer').empty();
     
             const numberOfCategories = categories.length;
