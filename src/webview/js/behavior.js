@@ -150,10 +150,11 @@ $(() =>
                 sliderSize = numberOfVideosInCategory;
                 reloadSlider();
             }
+            const categoryIndex = i + 1;
             for (let j = 0; j < numberOfVideosInCategory; j++)
             {
                 $('#categoriesVideosContainer').append(
-                    '<video id="video_' + i + '_' + j + '" type="video/mp4" muted src="'
+                    '<video id="video_' + categoryIndex + '_' + j + '" type="video/mp4" muted src="'
                     + categories[i][j].file.scheme + '://' + categories[i][j].file.authority
                     + categories[i][j].file.path + '"></video>',
                 );
