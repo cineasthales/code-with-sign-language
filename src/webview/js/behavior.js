@@ -144,7 +144,7 @@ $(() =>
         const numberOfCategories = categories.length;
         for (let i = 0; i < numberOfCategories; i++)
         {
-            const numberOfVideosInCategory = categories[i].length;
+            const numberOfVideosInCategory = categories[i].videos.length;
             if (i = 0)
             {
                 sliderSize = numberOfVideosInCategory;
@@ -155,8 +155,8 @@ $(() =>
             {
                 $('#categoriesVideosContainer').append(
                     '<video id="video_' + categoryIndex + '_' + j + '" type="video/mp4" muted src="'
-                    + categories[i][j].file.scheme + '://' + categories[i][j].file.authority
-                    + categories[i][j].file.path + '"></video>',
+                    + categories[i].videos[j].file.scheme + '://' + categories[i].videos[j].file.authority
+                    + categories[i].videos[j].file.path + '"></video>',
                 );
             }
         }
