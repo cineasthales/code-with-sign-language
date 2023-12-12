@@ -10,6 +10,8 @@ export function getWelcome(signLanguage: string, webview: vscode.Webview, uri: v
 	videos.push({
 		token: '',
 		file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')),
+		info: undefined,
+		examples: undefined,
 	});
 	return videos;
 }
@@ -21,7 +23,7 @@ export function getTooltips(signLanguage: string, webview: vscode.Webview, uri: 
 	{
 		tooltips.push({
 			id: tooltip,
-			file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4'),
+			file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4')),
 		});
 	}
 	return tooltips;
@@ -33,6 +35,8 @@ export function getError(message: string, signLanguage: string, webview: vscode.
 	videos.push({
 		token: 'Erro!',
 		file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'error',message+'.mp4')),
+		info: undefined,
+		examples: undefined,
 	});
 	return videos;
 }
@@ -68,6 +72,7 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 						webview.asWebviewUri(
 							vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',result.info+'.mp4'))
 						: undefined,
+					examples: undefined,
 				});
 			}
 			else
@@ -76,6 +81,8 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 					token: result.token,
 					file: webview.asWebviewUri(
 						vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
+					info: undefined,
+					examples: undefined,
 				});
 			}
 		}
