@@ -1,5 +1,11 @@
 import { Uri } from 'vscode';
 
+export interface ITooltips
+{
+    id: string;
+    file: Uri;
+}
+
 export interface ISign
 {
     token: string;
