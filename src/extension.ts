@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext)
 
 			let messageType: string = 'init';
 			let videos: ISignVideos[] = translator.getWelcome(signLanguage, webview, uri);
-			const tooltips: ITooltips[] = translator.getTooltips(signLanguage, webview, uri);'
+			const tooltips: ITooltips[] = translator.getTooltips(signLanguage, webview, uri);
 			
 			webview.postMessage({messageType, videos, tooltips});
 
