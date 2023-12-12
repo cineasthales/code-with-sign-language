@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { ISignVideos, ICategoryVideos } from './utils/interfaces';
-import { errors, supportedLanguages, tooltipsButtons } from './utils/constants';
+import { ISignVideos, ICategoryVideos, ITooltips } from './utils/interfaces';
+import { errors, supportedLanguages } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -35,28 +35,11 @@ export function activate(context: vscode.ExtensionContext)
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
-			const tooltipsIds: string[] = tooltipsButtons;
-			const tooltips: (vscode.Uri)[] = [];
-			for (let tooltip of tooltipsButtons)
-			{
-				tooltips.push(webview.asWebviewUri(
-					vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4')
-				));
-			}
-
-			let videos: ISignVideos[] = [];
-			videos.push({
-				token: '',
-				file: webview.asWebviewUri(
-					vscode.Uri.joinPath(
-						uri,'videos',signLanguage,'welcome.mp4')
-					),
-				info: undefined,
-				examples: undefined,
-			});
-			
 			let messageType: string = 'init';
-			webview.postMessage({messageType, tooltipsIds, tooltips, videos});
+			let videos: ISignVideos[] = translator.getWelcome(signLanguage, webview, uri);
+			const tooltips: ITooltips[] = translator.getTooltips(signLanguage, webview, uri);'
+			
+			webview.postMessage({messageType, videos, tooltips});
 
 			webview.html = content.getHtml(webview, uri);
 
@@ -84,7 +67,8 @@ export function activate(context: vscode.ExtensionContext)
 								else
 								{
 									videos = translator.readCode(
-										signLanguage, editor, webview, uri);
+										signLanguage, editor, webview, uri
+									);
 									if (videos)
 									{
 										messageType = 'main';
@@ -102,9 +86,10 @@ export function activate(context: vscode.ExtensionContext)
 							}
 							else if (message.type === 'getCategories')
 							{
-								const categories: ICategoryVideos[] = translator.getCategories(
-									signLanguage, editor.document.languageId, webview, uri);
 								messageType = 'categories';
+								const categories: ICategoryVideos[] = translator.getCategories(
+									signLanguage, editor.document.languageId, webview, uri
+								);
 								webview.postMessage({messageType, categories});
 							}
 						}
@@ -113,17 +98,8 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (errors.hasOwnProperty(err.message))
 							{
-								videos = [];
-								videos.push({
-									token: 'Erro!',
-									file: webview.asWebviewUri(
-										vscode.Uri.joinPath(
-											uri,'videos',signLanguage,'error',err.message+'.mp4')
-										),
-									info: undefined,
-									examples: undefined,
-								});
 								messageType = 'main';
+								videos = translator.getError(err.message, signLanguage, webview, uri);
 								webview.postMessage({messageType, videos});
 							}
 							else
