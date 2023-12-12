@@ -2,6 +2,40 @@ import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
 import * as javascriptCategories from './javascript/categories';
 import { ITooltips, ISign, ISignVideos, ICategory, ICategoryVideos } from '../utils/interfaces';
+import { tooltipsIds } from '../utils/constants';
+
+export function getWelcome(signLanguage: string, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
+{
+	const videos: ISignVideos[] = [];
+	videos.push({
+		token: '',
+		file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'welcome.mp4')),
+	});
+	return videos;
+}
+
+export function getTooltips(signLanguage: string, webview: vscode.Webview, uri: vscode.Uri): ITooltips[]
+{
+	const tooltips: ITooltips[] = [];
+	for (let tooltip of tooltipsIds)
+	{
+		tooltips.push({
+			id: tooltip,
+			file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'tooltip',tooltip+'.mp4'),
+		});
+	}
+	return tooltips;
+}
+
+export function getError(message: string, signLanguage: string, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
+{
+	const videos: ISignVideos[] = [];
+	videos.push({
+		token: 'Erro!',
+		file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'error',message+'.mp4')),
+	});
+	return videos;
+}
 
 export function readCode(signLanguage: string, editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
 {
@@ -9,7 +43,7 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 	const results: ISign[] = [];
 	const videos: ISignVideos[] = [];
 
-	const text: string = getTextInEditor(editor);
+	const text: string = sanitizeEditorText(editor);
 
 	switch (language)
 	{
@@ -28,17 +62,20 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'code',result.file+'.mp4')),
+					file: webview.asWebviewUri(
+						vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'code',result.file+'.mp4')),
 					info: result.info ?
-						webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',result.info+'.mp4')) : undefined,
-					examples: undefined,
+						webview.asWebviewUri(
+							vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',result.info+'.mp4'))
+						: undefined,
 				});
 			}
 			else
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
+					file: webview.asWebviewUri(
+						vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
 					info: undefined,
 					examples: undefined,
 				});
@@ -79,9 +116,12 @@ export function getCategories(signLanguage: string, language: string, webview: v
 			{
 				categoryVideos.push({
 					token: sign.token,
-					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'code',sign.file+'.mp4')),
+					file: webview.asWebviewUri(
+						vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'code',sign.file+'.mp4')),
 					info: sign.info ?
-						webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',sign.info+'.mp4')) : undefined,
+						webview.asWebviewUri(
+							vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'info',sign.info+'.mp4'))
+						: undefined,
 					examples: sign.examples,
 				});
 			}
@@ -90,7 +130,8 @@ export function getCategories(signLanguage: string, language: string, webview: v
 				title: result.title,
 				id: result.id,
 				icon: result.icon,
-				tooltip: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'category',result.tooltip+'.mp4')),
+				tooltip: webview.asWebviewUri(
+					vscode.Uri.joinPath(uri,'videos',signLanguage,'languages',language,'category',result.tooltip+'.mp4')),
 				videos: categoryVideos,
 			});
 		}
@@ -99,7 +140,7 @@ export function getCategories(signLanguage: string, language: string, webview: v
 	return categories;
 }
 
-function getTextInEditor(editor: vscode.TextEditor): string
+function sanitizeEditorText(editor: vscode.TextEditor): string
 {
 	let text: string = '';
 
