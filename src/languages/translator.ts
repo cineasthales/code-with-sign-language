@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as javascriptCodeChecker from './javascript/codeChecker';
 import * as javascriptCategories from './javascript/categories';
-import { ISign, ISignVideos, ICategory, ICategoryVideos } from '../utils/interfaces';
+import { ITooltips, ISign, ISignVideos, ICategory, ICategoryVideos } from '../utils/interfaces';
 
 export function readCode(signLanguage: string, editor: vscode.TextEditor, webview: vscode.Webview, uri: vscode.Uri): ISignVideos[]
 {
