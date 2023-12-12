@@ -34,17 +34,17 @@ export function getHtml(webview: Webview, uri: Uri): string
 	</head>
 	<body>
 		<nav id="tabsContainer">
-			<button id="tabCodeToSign" class="infoToggle" title="Tradutor de código para Libras">
+			<button id="tabCodeToSign" class="button infoToggle" title="Tradutor de código para Libras">
 				<i class="fa-regular fa-file-code" id="codeToSignFirstIcon"></i>
 				<i class="fa-solid fa-arrow-right" id="codeToSignArrow"></i>
 				<i class="fa-solid fa-hands" id="codeToSignLastIcon"></i>
 			</button>
-			<button id="tabSignToCode" class="infoToggle" title="Tradutor de Libras para código">
+			<button id="tabSignToCode" class="button infoToggle" title="Tradutor de Libras para código">
 				<i class="fa-solid fa-hands" id="signToCodeFirstIcon"></i>
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
-			<button id="tooltipToggle" class="infoToggle" title="Tooltips">
+			<button id="tooltipToggle" class="button infoToggle" title="Tooltips">
 				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
 			</button>
 		</nav>
@@ -52,55 +52,55 @@ export function getHtml(webview: Webview, uri: Uri): string
 			<section id="timeContainer" class="codeToSignToggle">
 				<span id="currentTime" class="infoTimeToggle"></span>
 				<div id="speedContainer">
-					<button id="slower" class="infoToggle" title="Diminuir velocidade">
+					<button id="slower" class="button infoToggle" title="Diminuir velocidade">
 						<i class="fa-solid fa-backward" id="slowerIcon"></i>
 					</button>
 					<span id="currentSpeed" class="infoTimeToggle">1x</span>
-					<button id="faster" class="infoToggle" title="Aumentar velocidade">
+					<button id="faster" class="button infoToggle" title="Aumentar velocidade">
 						<i class="fa-solid fa-forward" id="fasterIcon"></i>
 					</button>
 				</div>
 				<span id="totalDuration" class="infoTimeToggle"></span>
 			</section>
 			<section id="categoriesContainer" class="signToCodeToggle"></section>
-			<div id="mainVideosContainer" class="codeToSignToggle"></div>
-   			<div id="categoriesVideosContainer" class="signToCodeToggle"></div>
-			<div id="sliderContainer" class="codeToSignToggle"></div>
+			<section id="mainVideosContainer" class="codeToSignToggle"></section>
+			<section id="categoriesVideosContainer" class="signToCodeToggle"></section>
+			<section id="sliderContainer" class="codeToSignToggle"></section>
 			<section id="playerContainer">
-				<button id="rewind" class="infoToggle codeToSignToggle" title="Retornar ao início">
+				<button id="rewind" class="button infoToggle codeToSignToggle" title="Retornar ao início">
 					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
 				</button>
-				<button id="backward" class="infoToggle codeToSignToggle" title="Sinal anterior">
+				<button id="backward" class="button infoToggle codeToSignToggle" title="Sinal anterior">
 					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
 				</button>
-				<button id="previousInCategory" class="infoToggle signToCodeToggle" title="Sinal anterior da categoria">
+				<button id="previousInCategory" class="button infoToggle signToCodeToggle" title="Sinal anterior da categoria">
 					<i class="fa-solid fa-angle-left" id="previousInCategoryIcon"></i>
 				</button>
-				<button id="playPause" title="Reproduzir vídeo">
+				<button id="playPause" class="button" title="Reproduzir vídeo">
 					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
 				</button>
-				<button id="nextInCategory" class="infoToggle signToCodeToggle" title="Próximo sinal da categoria">
+				<button id="nextInCategory" class="button infoToggle signToCodeToggle" title="Próximo sinal da categoria">
 					<i class="fa-solid fa-angle-right" id="nextInCategoryIcon"></i>
 				</button>
-				<button id="forward" class="infoToggle codeToSignToggle" title="Próximo sinal">
+				<button id="forward" class="button infoToggle codeToSignToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
 				</button>
-				<button id="autoRepeatToggle" class="infoToggle codeToSignToggle" title="Repetir automaticamente">
+				<button id="autoRepeatToggle" class="button infoToggle codeToSignToggle" title="Repetir automaticamente">
 					<i class="fa-solid fa-repeat" id="autoRepeatToggleIcon"></i>
 				</button>
 			</section>
 			<section id="actionsContainer">
 				<div id="infoContainer">
 					<span id="currentSign"></span>
-					<button id="info" title="O que isto significa?">
+					<button id="info" class="button" title="O que isto significa?">
 						<i class="fa-solid fa-question" id="infoIcon"></i>
 					</button>
 				</div>
 				<div id="mainActionsContainer">
-					<button id="readCode" class="infoToggle codeToSignToggle" title="Ler código selecionado">
+					<button id="readCode" class="button infoToggle codeToSignToggle" title="Ler código selecionado">
 						<i class="fa-solid fa-glasses" id="readCodeIcon"></i>
 					</button>
-					<button id="writeCode" class="infoToggle signToCodeToggle" title="Escrever palavra no código">
+					<button id="writeCode" class="button infoToggle signToCodeToggle" title="Escrever palavra no código">
 						<i class="fa-solid fa-pen" id="writeCodeIcon"></i>
 					</button>
 				</div>

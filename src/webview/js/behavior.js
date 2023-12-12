@@ -80,13 +80,6 @@ $(() =>
         playNew ? play() : pause();
     }
 
-    function changeCurrentCategory()
-    {
-        // TODO: change categories buttons styles
-        // TODO: get new value for currentArray
-        // TODO: changeCurrentVideo(newValueOfCurrentArray, 0, false)
-    }
-
     function updateCurrentTime()
     {
         if (!hasTotalDuration)
@@ -143,7 +136,7 @@ $(() =>
             $('#mainVideosContainer').append(
                 `<video id="video_0_${i}" type="video/mp4" muted
                     src="${file.scheme}://${file.authority}${file.path}">
-                </video>`,
+                </video>`
             );
             allVideos[0].push(videos[i]);
         }
@@ -159,13 +152,25 @@ $(() =>
 
             $('#categoriesContainer').empty();
             $('#categoriesVideosContainer').empty();
-    
+
             const numberOfCategories = categories.length;
             for (let i = 0; i < numberOfCategories; i++)
             {
-                // TODO: load categories buttons
-                
                 const categoryIndex = i + 1;
+                const tooltipFile = categories[i].tooltip;
+                $('#categoriesContainer').append(
+                    `<button id="category_${categoryIndex}" title="${categories[i].title}"
+                        class="button categoryButton">
+                            <i class="fa-solid fa-${categories[i].icon}"></i>
+                    </button>`
+                );
+                $('#category_' + categoryIndex).tooltip({
+                    content:
+                        `<video type="video/mp4" muted autoplay loop
+                            src="${tooltipFile.scheme}://${tooltipFile.authority}${tooltipFile.path}">
+                        </video>`,
+                    show: {delay:750},
+                });
                 allVideos[categoryIndex] === 'undefined' ? allVideos.push([]) : allVideos[categoryIndex] = [];
 
                 const numberOfVideos = categories[i].videos.length;
@@ -175,7 +180,7 @@ $(() =>
                     $('#categoriesVideosContainer').append(
                         `<video id="video_${categoryIndex}_${j}" type="video/mp4" muted
                             src="${file.scheme}://${file.authority}${file.path}">
-                        </video>`,
+                        </video>`
                     );
                     allVideos[categoryIndex].push(categories[i].videos[j]);
                 }
@@ -189,11 +194,14 @@ $(() =>
     function initializeWebview(data)
     {        
         const tooltips = data.tooltips;
-        for (tooltip of tooltips)
+        for (let tooltip of tooltips)
         {
+            const file = tooltip.file;
             $('#' + tooltip.id).tooltip({
-                content: '<video type="video/mp4" muted autoplay loop src="' + tooltip.file.scheme
-                + '://' + tooltip.file.authority + tooltip.file.path + '"></video>',
+                content:
+                    `<video type="video/mp4" muted autoplay loop
+                        src="${file.scheme}://${file.authority}${file.path}">
+                    </video>`,
                 show: {delay:750},
             });
         }
@@ -202,7 +210,7 @@ $(() =>
         {
             tooltipToggle = !tooltipToggle;
             $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
-            $(button).tooltip(tooltipToggle ? 'enable' : 'disable');
+            $('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
         });
 
         $('#tabCodeToSign').on('click', () =>
@@ -220,6 +228,14 @@ $(() =>
             $('#tabSignToCode').css('background-color', primaryColor);
             $('.codeToSignToggle').hide();
             $('.signToCodeToggle').show();
+        });
+
+        $('.categoryButton').on('click', (event) =>
+        {
+            const newArray = event.target.id;
+            $('.categoryButton').css('background-color', 'transparent');
+            $('#category_' + newArray).css('background-color', primaryColor);
+            changeCurrentVideo(newArray, 0, false);
         });
 
         $('#slower').on('click', () =>
