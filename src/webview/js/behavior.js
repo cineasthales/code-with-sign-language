@@ -80,6 +80,13 @@ $(() =>
         playNew ? play() : pause();
     }
 
+    function changeCurrentCategory()
+    {
+        // TODO: change categories buttons styles
+        // TODO: get new value for currentArray
+        // TODO: changeCurrentVideo(newValueOfCurrentArray, 0, false)
+    }
+
     function updateCurrentTime()
     {
         if (!hasTotalDuration)
@@ -126,20 +133,22 @@ $(() =>
     function loadMainVideos(videos)
     {
         $('#mainVideosContainer').empty();
-        allVideos[0] = [];
 
+        allVideos[0] = [];
         sliderSize = videos.length;
+
         for (let i = 0; i < sliderSize; i++)
         {
+            const file = videos[i].file;
             $('#mainVideosContainer').append(
-                '<video id="video_0_' + i + '" type="video/mp4" muted src="'
-                + videos[i].file.scheme + '://' + videos[i].file.authority
-                + videos[i].file.path + '"></video>',
+                `<video id="video_0_${i}" type="video/mp4" muted
+                    src="${file.scheme}://${file.authority}${file.path}">
+                </video>`,
             );
             allVideos[0].push(videos[i]);
         }
 
-        reloadSlider();
+        changeCurrentVideo(0, 0, true);
     }
 
     function loadCategoriesVideos(categories, newLanguage)
@@ -147,30 +156,34 @@ $(() =>
         if (currentLanguage !== newLanguage)
         {
             currentLanguage = newLanguage;
-            
+
+            $('#categoriesContainer').empty();
             $('#categoriesVideosContainer').empty();
     
             const numberOfCategories = categories.length;
             for (let i = 0; i < numberOfCategories; i++)
             {
-                const numberOfVideosInCategory = categories[i].videos.length;
+                // TODO: load categories buttons
+                
                 const categoryIndex = i + 1;
                 allVideos[categoryIndex] === 'undefined' ? allVideos.push([]) : allVideos[categoryIndex] = [];
-                for (let j = 0; j < numberOfVideosInCategory; j++)
+
+                const numberOfVideos = categories[i].videos.length;
+                for (let j = 0; j < numberOfVideos; j++)
                 {
+                    const file = categories[i].videos[j].file;
                     $('#categoriesVideosContainer').append(
-                        '<video id="video_' + categoryIndex + '_' + j + '" type="video/mp4" muted src="'
-                        + categories[i].videos[j].file.scheme + '://' + categories[i].videos[j].file.authority
-                        + categories[i].videos[j].file.path + '"></video>',
+                        `<video id="video_${categoryIndex}_${j}" type="video/mp4" muted
+                            src="${file.scheme}://${file.authority}${file.path}">
+                        </video>`,
                     );
                     allVideos[categoryIndex].push(categories[i].videos[j]);
                 }
             }
         }
-        currentArray = 1;
-        sliderSize = allVideos[currentArray].videos.length;
-        reloadSlider();
-        changeCurrentVideo(currentArray, 0, false);
+        sliderSize = allVideos[1].videos.length;
+
+        changeCurrentVideo(1, 0, false);
     }
 
     function initializeWebview(data)
