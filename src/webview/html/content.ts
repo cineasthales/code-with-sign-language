@@ -63,7 +63,8 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<span id="totalDuration" class="infoTimeToggle"></span>
 			</section>
 			<section id="categoriesContainer" class="signToCodeToggle"></section>
-			<div id="videoContainer"></div>
+			<div id="mainVideosContainer" class="codeToSignToggle"></div>
+   			<div id="categoriesVideosContainer" class="signToCodeToggle"></div>
 			<div id="sliderContainer" class="codeToSignToggle"></div>
 			<section id="playerContainer">
 				<button id="rewind" class="infoToggle codeToSignToggle" title="Retornar ao início">
