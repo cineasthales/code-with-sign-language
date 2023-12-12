@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { ISignVideos, ICategoryVideos, ITooltips } from './utils/interfaces';
+import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
