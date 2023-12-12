@@ -76,8 +76,6 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 					token: result.token,
 					file: webview.asWebviewUri(
 						vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
-					info: undefined,
-					examples: undefined,
 				});
 			}
 		}
