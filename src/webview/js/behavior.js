@@ -164,14 +164,11 @@ $(() =>
     function initializeWebview(data)
     {        
         const tooltips = data.tooltips;
-        const tooltipsIds = data.tooltipsIds;
-        const numberOfTooltips = tooltipsIds.length;
-        
-        for (let i = 0; i < numberOfTooltips; i++)
+        for (tooltip of tooltips)
         {
-            $('#' + tooltipsIds[i]).tooltip({
-                content: '<video type="video/mp4" muted autoplay loop src="' + tooltips[i].scheme
-                + '://' + tooltips[i].authority + tooltips[i].path + '"></video>',
+            $('#' + tooltip.id).tooltip({
+                content: '<video type="video/mp4" muted autoplay loop src="' + tooltip.file.scheme
+                + '://' + tooltip.file.authority + tooltip.file.path + '"></video>',
                 show: {delay:750},
             });
         }
