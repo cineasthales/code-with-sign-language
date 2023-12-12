@@ -3,11 +3,11 @@ $(() =>
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
 
-    let currentLanguage = '';
     let currentArray = 0, currentIndex = 0, currentSpeed = 1;
     let numberOfDigits = 0, totalDuration = 0, sliderSize = 1;
     let hasTotalDuration = false, stopped = false;
     let tooltipToggle = true, autoRepeatToggle = true;
+    let currentLanguage = '';
     let allVideos = [];
     allVideos.push([]);
 
@@ -118,7 +118,7 @@ $(() =>
         const data = event.data;
         switch (data.messageType) {
             case 'main': loadMainVideos(data.videos); break;
-            case 'categories': loadCategoriesVideos(data.categories); break;
+            case 'categories': loadCategoriesVideos(data.categories, data.newLanguage); break;
             case 'init': initializeWebview(data);
         }
     });
@@ -142,8 +142,10 @@ $(() =>
         reloadSlider();
     }
 
-    function loadCategoriesVideos(categories)
+    function loadCategoriesVideos(categories, newLanguage)
     {
+        currentLanguage = newLanguage;
+
         if (categories)
         {
             $('#categoriesVideosContainer').empty();
@@ -207,7 +209,7 @@ $(() =>
         });
         $('#tabSignToCode').on('click', () =>
         {
-            vscode.postMessage({ type: 'getCategories', text: currentLanguage});
+            vscode.postMessage({ type: 'getCategories', currentLanguage: currentLanguage});
             $('#tabCodeToSign').css('background-color', 'transparent');
             $('#tabSignToCode').css('background-color', primaryColor);
             $('.codeToSignToggle').hide();
