@@ -90,8 +90,8 @@ export function activate(context: vscode.ExtensionContext)
 								const categories: ICategoryVideos[] = translator.getCategories(
 									signLanguage, message.currentLanguage, editor.document.languageId, webview, uri
 								);
-								const currentLanguage = editor.document.languageId;
-								webview.postMessage({messageType, categories, currentLanguage});
+								const newLanguage = editor.document.languageId;
+								webview.postMessage({messageType, categories, newLanguage});
 							}
 						}
 					} catch (err) {
