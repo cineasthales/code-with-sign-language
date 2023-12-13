@@ -19,7 +19,7 @@ $(() =>
 
     allVideos.push([]);
 
-    // TODO: load info video
+    // TODO: info event load info video
     // TODO: examples navigation and keyboard shortcuts
 
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
@@ -196,9 +196,13 @@ $(() =>
                 for (let j = 0; j < numberOfVideos; j++)
                 {
                     const file = categories[i].videos[j].file;
+                    const info = categories[i].videos[j].info;
                     $('#categoriesVideosContainer').append(
                         `<video id="video_${categoryIndex}_${j}" type="video/mp4" muted
                             src="${file.scheme}://${file.authority}${file.path}">
+                        </video>
+                        <video id="info_${categoryIndex}_${j}" type="video/mp4" muted
+                            src="${info.scheme}://${info.authority}${info.path}">
                         </video>`
                     );
                     allVideos[categoryIndex].push(categories[i].videos[j]);
@@ -207,6 +211,7 @@ $(() =>
                     {
                         $('#video_' + categoryIndex + '_' + j).hide();
                     }
+                    $('#info_' + categoryIndex + '_' + j).hide();
                 }
             }
         }
