@@ -79,8 +79,7 @@ export function readCode(signLanguage: string, editor: vscode.TextEditor, webvie
 			{
 				videos.push({
 					token: result.token,
-					file: webview.asWebviewUri(
-						vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.file+'.mp4')),
+					file: webview.asWebviewUri(vscode.Uri.joinPath(uri,'videos',signLanguage,'misc',result.token+'.mp4')),
 					info: undefined,
 					examples: undefined,
 				});

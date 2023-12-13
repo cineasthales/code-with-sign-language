@@ -47,16 +47,26 @@ export function activate(context: vscode.ExtensionContext)
 				(message: any) =>
 				{
 					try {
-						const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
-						if (!editor)
+						let editor: vscode.TextEditor | undefined = undefined;
+
+						if (vscode.window.visibleTextEditors.length === 0)
 						{
 							throw new Error(errors.documentNotOpened);
 						}
-						else if (supportedLanguages.includes(editor.document.languageId))
+
+						for (let oneTextEditor of vscode.window.visibleTextEditors)
+						{
+							if (supportedLanguages.includes(oneTextEditor.document.languageId)) {
+								editor = oneTextEditor;
+								break;
+							}
+						}
+						if (!editor)
 						{
 							throw new Error(errors.languageNotSupported);
 						}
-						else if (message.type)
+						
+						if (message.type)
 						{
 							if (message.type === 'readCode')
 							{

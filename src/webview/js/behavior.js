@@ -17,7 +17,8 @@ $(() =>
 
     function reloadSlider()
     {
-        if ($('#sliderContainer').slider('instance')) {
+        if ($('#sliderContainer').slider('instance'))
+        {
             $('#sliderContainer').slider('destroy');
         }
         if (sliderSize > 1)
@@ -139,6 +140,19 @@ $(() =>
                 </video>`
             );
             allVideos[0].push(videos[i]);
+
+            if (i > 0) { $('#video_0_' + i).hide(); }
+
+            $('#video_0_' + i).on('ended', () => {
+                if (i < allVideos[0].length - 1) {
+                    changeCurrentVideo(0, i + 1, true);
+                } else if (autoRepeatToggle) {
+                    changeCurrentVideo(0, 0, true);
+                } else {
+                    stopped = true;
+                    pause();
+                }
+            });
         }
 
         changeCurrentVideo(0, 0, true);
@@ -183,6 +197,11 @@ $(() =>
                         </video>`
                     );
                     allVideos[categoryIndex].push(categories[i].videos[j]);
+
+                    if (j > 0 || categoryIndex > 1)
+                    {
+                        $('#video_' + categoryIndex + '_' + j).hide();
+                    }
                 }
             }
         }
@@ -289,10 +308,10 @@ $(() =>
         {
             changeCurrentVideo(0, nextIndex(), false);
         });
-        $('#autoRepeat').on('click', () =>
+        $('#autoRepeatToggle').on('click', () =>
         {
             autoRepeatToggle = !autoRepeatToggle;
-            $('#autoRepeat').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
+            $('#autoRepeatToggle').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
         });
 
         $('#info').on('click', () =>
@@ -325,6 +344,7 @@ $(() =>
         $('#readCode').on('click', () =>
         {
             hasTotalDuration = false;
+            totalDuration = 0;
             vscode.postMessage({ type: 'readCode' });
         });
         $('#writeCode').on('click', () =>
@@ -360,7 +380,7 @@ $(() =>
                         $('#forward').trigger('click'); break;
                     case 'a':
                     case 'A':
-                        $('#autoRepeat').trigger('click'); break;
+                        $('#autoRepeatToggle').trigger('click'); break;
                     case 'r':
                     case 'R':
                         $('#readCode').trigger('click');

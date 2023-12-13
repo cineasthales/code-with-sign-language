@@ -26,7 +26,8 @@
       "editor/title": [
         {
           "command": "code-with-sign-language.start",
-          "group": "navigation@1"
+          "group": "navigation@1",
+          "when": "editorLangId == javascript"
         }
       ]
     }
