@@ -32,23 +32,31 @@ $(() =>
 
     function changeCurrentVideo(newArray, newIndex, playNew)
     {
-        if (!playNew || currentArray !== newArray) {
+        if (currentArray !== newArray) {
             playNew = false;
-            pause();
+            newIndex = 0;
+            sliderSize = allVideos[newArray][newIndex].length;
+            $('#sliderContainer').slider('option', 'max', sliderSize - 1);
         }
         let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+        let currentSignText = allVideos[currentArray][currentIndex].token;
         $(currentVideo).hide();
         $(currentVideo)[0].load();
         currentArray = newArray;
         currentIndex = newIndex;
         currentVideo = '#video_' + currentArray + '_' + currentIndex;
         $(currentVideo).show();
-        $('#currentSign').text(allVideos[currentArray][currentIndex].token);
         if (currentArray === 0)
         {
             $(currentVideo).prop('playbackRate', currentSpeed);
         }
-        if (playNew) { play(); }
+        else
+        {
+            currentSignText = '(' + (currentIndex + 1) + '/' + sliderSize + '): ' + currentSignText;
+        }
+        $('#currentSign').text(currentSignText);
+        $('#sliderContainer').slider('value', currentIndex);
+        playNew ? play(); : pause();
     }
 
     function updateCurrentTime()
