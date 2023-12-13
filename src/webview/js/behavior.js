@@ -137,6 +137,17 @@ $(() =>
 
             if (i > 0) { $('#video_0_' + i).hide(); }
 
+            const info = videos[i].info;
+            if (info)
+            {
+                $('#mainVideosContainer').append(
+                    `<video id="info_0_${i}" type="video/mp4" muted
+                        src="${info.scheme}://${info.authority}${info.path}">
+                    </video>`
+                );
+                $('#info_0_' + i).hide();
+            }
+            
             $('#video_0_' + i).on('ended', () => {
                 if (i < sliderSize - 1) {
                     changeCurrentVideo(0, i + 1, true);
