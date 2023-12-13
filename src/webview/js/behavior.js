@@ -72,7 +72,7 @@ $(() =>
         }
         $('#currentSign').text(currentSignText);
         $('#sliderContainer').slider('value', currentIndex);
-        playNew ? play(); : pause();
+        playNew ? play() : pause();
     }
 
     function updateCurrentTime()
