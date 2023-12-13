@@ -108,6 +108,7 @@ $(() =>
 
         allVideos[0] = [];
         sliderSize = videos.length;
+        $('#sliderContainer').slider('option', 'max', sliderSize - 1);
 
         for (let i = 0; i < sliderSize; i++)
         {
@@ -122,7 +123,7 @@ $(() =>
             if (i > 0) { $('#video_0_' + i).hide(); }
 
             $('#video_0_' + i).on('ended', () => {
-                if (i < allVideos[0].length - 1) {
+                if (i < sliderSize - 1) {
                     changeCurrentVideo(0, i + 1, true);
                 } else if (autoRepeatToggle) {
                     changeCurrentVideo(0, 0, true);
@@ -163,7 +164,7 @@ $(() =>
                         </video>`,
                     show: {delay:750},
                 });
-                allVideos[categoryIndex] === 'undefined' ? allVideos.push([]) : allVideos[categoryIndex] = [];
+                !allVideos[categoryIndex] ? allVideos.push([]) : allVideos[categoryIndex] = [];
 
                 const numberOfVideos = categories[i].videos.length;
                 for (let j = 0; j < numberOfVideos; j++)
@@ -183,7 +184,7 @@ $(() =>
                 }
             }
         }
-        sliderSize = allVideos[1].videos.length;
+        sliderSize = allVideos[1][0].length;
 
         changeCurrentVideo(1, 0, false);
     }
