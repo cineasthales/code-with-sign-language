@@ -3,17 +3,34 @@ $(() =>
     const vscode = acquireVsCodeApi();
     const primaryColor = 'rgb(19, 123, 205)';
 
-    let currentArray = 0, currentIndex = 0, currentSpeed = 1;
-    let numberOfDigits = 0, totalDuration = 0, sliderSize = 1;
-    let hasTotalDuration = false, stopped = false;
-    let tooltipToggle = true, autoRepeatToggle = true;
-    let currentLanguage = '';
-    let allVideos = [];
+    let currentArray = 0,
+        currentIndex = 0,
+        currentExample = 0,
+        sliderSize = 1,
+        currentSpeed = 1,
+        numberOfDigits = 0,
+        totalDuration = 0,
+        hasTotalDuration = false,
+        stopped = false,
+        tooltipToggle = true,
+        autoRepeatToggle = true,
+        currentLanguage = '',
+        allVideos = [];
+
     allVideos.push([]);
+
+    // TODO: load info video
+    // TODO: examples navigation and keyboard shortcuts
 
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
     function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
+
+    function updateSlider(newSize)
+    {
+        sliderSize = newSize;
+        $('#sliderContainer').slider('option', 'max', sliderSize - 1);
+    }
 
     function play()
     {
@@ -35,8 +52,7 @@ $(() =>
         if (currentArray !== newArray) {
             playNew = false;
             newIndex = 0;
-            sliderSize = allVideos[newArray][newIndex].length;
-            $('#sliderContainer').slider('option', 'max', sliderSize - 1);
+            updateSlider(allVideos[newArray][newIndex].length);
         }
         let currentVideo = '#video_' + currentArray + '_' + currentIndex;
         let currentSignText = allVideos[currentArray][currentIndex].token;
@@ -107,8 +123,7 @@ $(() =>
         $('#mainVideosContainer').empty();
 
         allVideos[0] = [];
-        sliderSize = videos.length;
-        $('#sliderContainer').slider('option', 'max', sliderSize - 1);
+        updateSlider(videos.length);
 
         for (let i = 0; i < sliderSize; i++)
         {
@@ -184,7 +199,7 @@ $(() =>
                 }
             }
         }
-        sliderSize = allVideos[1][0].length;
+        updateSlider(allVideos[1][0].length);
 
         changeCurrentVideo(1, 0, false);
     }
@@ -338,11 +353,16 @@ $(() =>
         {
             hasTotalDuration = false;
             totalDuration = 0;
+            $('#totalDuration').text('');
+            $('#currentTime').text('');
             vscode.postMessage({ type: 'readCode' });
         });
         $('#writeCode').on('click', () =>
         {
-            vscode.postMessage({ type: 'writeCode', text: 'teste' });
+            vscode.postMessage({
+                type: 'writeCode',
+                text: allVideos[currentArray][currentIndex].examples[currentExample],
+            });
         });
 
         $('body').on('keypress', event =>
@@ -354,6 +374,10 @@ $(() =>
             if (event.key === 'i' || event.key === 'I')
             {
                 $('#info').trigger('click');
+            }
+            else if (event.key === 't' || event.key === 'T')
+            {
+                $('#tooltipToggle').trigger('click');
             }
             else if (currentArray === 0)
             {
