@@ -15,36 +15,11 @@ $(() =>
 
     function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
 
-    function reloadSlider()
-    {
-        if ($('#sliderContainer').slider('instance'))
-        {
-            $('#sliderContainer').slider('destroy');
-        }
-        if (sliderSize > 1)
-        {
-            $('#sliderContainer').slider(
-            {
-                animate: 'fast',
-                max: sliderSize - 1,
-                start: (event, ui) =>
-                {
-                    if (ui.value !== currentIndex) { pause(); }
-                },
-                stop: (event, ui) =>
-                {
-                    if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
-                }
-            }).slider('pips', { first: 'pip', last: 'pip' });
-        }
-    }
-
     function play()
     {
         stopped = false;
         $('#playPauseIcon').removeClass('fa-circle-play');
         $('#playPauseIcon').addClass('fa-circle-pause');
-        $('#playPauseIcon').prop('title', 'Pausar vídeo');
         $('#video_' + currentArray + '_' + currentIndex).trigger('play');
     }
 
@@ -52,33 +27,28 @@ $(() =>
     {
         $('#playPauseIcon').removeClass('fa-circle-pause');
         $('#playPauseIcon').addClass('fa-circle-play');
-        $('#playPauseIcon').prop('title', 'Reproduzir vídeo');
         $('#video_' + currentArray + '_' + currentIndex).trigger('pause');
     }
 
     function changeCurrentVideo(newArray, newIndex, playNew)
     {
-        if (currentArray !== newArray || sliderSize > 1)
-        {
-            if (currentArray !== newArray) {
-                reloadSlider();
-            } else if ($('#sliderContainer').slider('instance')) {
-                $('#sliderContainer').slider('value', newIndex);
-            }
-            let currentVideo = '#video_' + currentArray + '_' + currentIndex;
-            $(currentVideo).hide();
-            $(currentVideo)[0].load();
-            currentArray = newArray;
-            currentIndex = newIndex;
-            currentVideo = '#video_' + currentArray + '_' + currentIndex;
-            $(currentVideo).show();
-            $('#currentSign').text(allVideos[currentArray][currentIndex].token);
-            if (currentArray === 0)
-            {
-                $(currentVideo).prop('playbackRate', currentSpeed);
-            }
+        if (!playNew || currentArray !== newArray) {
+            playNew = false;
+            pause();
         }
-        playNew ? play() : pause();
+        let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+        $(currentVideo).hide();
+        $(currentVideo)[0].load();
+        currentArray = newArray;
+        currentIndex = newIndex;
+        currentVideo = '#video_' + currentArray + '_' + currentIndex;
+        $(currentVideo).show();
+        $('#currentSign').text(allVideos[currentArray][currentIndex].token);
+        if (currentArray === 0)
+        {
+            $(currentVideo).prop('playbackRate', currentSpeed);
+        }
+        if (playNew) { play(); }
     }
 
     function updateCurrentTime()
@@ -275,6 +245,20 @@ $(() =>
                 $('#currentSpeed').text(currentSpeed + 'x');;
             }
         });
+
+        $('#sliderContainer').slider(
+        {
+            animate: 'fast',
+            max: sliderSize - 1,
+            start: (event, ui) =>
+            {
+                if (ui.value !== currentIndex) { pause(); }
+            },
+            stop: (event, ui) =>
+            {
+                if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
+            }
+        }).slider('pips', { first: 'pip', last: 'pip' });
 
         $('#rewind').on('click', () =>
         {
