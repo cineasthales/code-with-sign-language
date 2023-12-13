@@ -12,6 +12,7 @@ $(() =>
         totalDuration = 0,
         hasTotalDuration = false,
         stopped = false,
+        notInfo = true,
         tooltipToggle = true,
         autoRepeatToggle = true,
         currentLanguage = '',
@@ -19,8 +20,7 @@ $(() =>
 
     allVideos.push([]);
 
-    // TODO: info event load info video
-    // TODO: examples navigation and keyboard shortcuts
+    // TODO: show examples and make navigation buttons (html) and events (js) for them
 
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
@@ -37,14 +37,14 @@ $(() =>
         stopped = false;
         $('#playPauseIcon').removeClass('fa-circle-play');
         $('#playPauseIcon').addClass('fa-circle-pause');
-        $('#video_' + currentArray + '_' + currentIndex).trigger('play');
+        $('#' + (notInfo ? 'video_' : 'info_') + currentArray + '_' + currentIndex).trigger('play');
     }
 
     function pause()
     {
         $('#playPauseIcon').removeClass('fa-circle-pause');
         $('#playPauseIcon').addClass('fa-circle-play');
-        $('#video_' + currentArray + '_' + currentIndex).trigger('pause');
+        $('#' + (notInfo ? 'video_' : 'info_') + currentArray + '_' + currentIndex).trigger('pause');
     }
 
     function changeCurrentVideo(newArray, newIndex, playNew)
@@ -72,6 +72,7 @@ $(() =>
         }
         $('#currentSign').text(currentSignText);
         $('#sliderContainer').slider('value', currentIndex);
+        allVideos[currentArray][currentIndex].info ? $('#info').show() : $('#info').hide();
         playNew ? play() : pause();
     }
 
@@ -340,7 +341,6 @@ $(() =>
 
         $('#info').on('click', () =>
         {
-            pause();
             if ($('#infoIcon').hasClass('fa-question'))
             {
                 $('#infoIcon').removeClass('fa-question');
@@ -351,6 +351,12 @@ $(() =>
                 $('.infoToggle').css('cursor', 'not-allowed');
                 $('.infoToggle').prop('disabled', true);
                 $('#sliderContainer').slider('disable');
+                const sufix = currentArray + '_' + currentIndex;
+                $('#video_' + sufix).hide();
+                $('#video_' + sufix)[0].load();
+                $('#info_' + sufix).show();
+                notInfo = false;
+                play();
             }
             else
             {
@@ -362,6 +368,8 @@ $(() =>
                 $('.infoToggle').css('cursor', 'pointer');
                 $('.infoToggle').prop('disabled', false);
                 $('#sliderContainer').slider('enable');
+                notInfo = true;
+                changeCurrentVideo(currentArray, currentIndex, false);
             }
         });
 
@@ -379,6 +387,15 @@ $(() =>
                 type: 'writeCode',
                 text: allVideos[currentArray][currentIndex].examples[currentExample],
             });
+        });
+
+        $('#previousExample').on('click', () =>
+        {
+            // TODO
+        });
+        $('#nextExample').on('click', () =>
+        {
+            // TODO
         });
 
         $('body').on('keypress', event =>
@@ -430,6 +447,10 @@ $(() =>
                     case 'w':
                     case 'W':
                         $('#writeCode').trigger('click');
+                    case 'PageDown':
+                        $('#previousExample').trigger('click'); break;
+                    case 'PageUp':
+                        $('#nextExample').trigger('click'); break;
                 }
             }
         });

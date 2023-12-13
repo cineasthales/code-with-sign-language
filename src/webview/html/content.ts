@@ -76,7 +76,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<button id="previousInCategory" class="button infoToggle signToCodeToggle" title="Sinal anterior da categoria">
 					<i class="fa-solid fa-angle-left" id="previousInCategoryIcon"></i>
 				</button>
-				<button id="playPause" class="button" title="Reproduzir vídeo">
+				<button id="playPause" class="button" title="Reproduzir ou pausar vídeo">
 					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
 				</button>
 				<button id="nextInCategory" class="button infoToggle signToCodeToggle" title="Próximo sinal da categoria">
