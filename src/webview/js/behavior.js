@@ -394,11 +394,15 @@ $(() =>
 
         $('#previousExample').on('click', () =>
         {
-            // TODO
+            const examples = allVideos[currentArray][currentIndex].examples;
+            const newExample = currentExample === 0 ? 0 : currentExample - 1;
+            $('#exampleBlock').text(examples[newExample]);
         });
         $('#nextExample').on('click', () =>
         {
-            // TODO
+            const examples = allVideos[currentArray][currentIndex].examples;
+            const newExample = currentExample === examples.length - 1 ? currentExample : currentExample + 1;
+            $('#exampleBlock').text(examples[newExample]);
         });
 
         $('body').on('keypress', event =>
