@@ -20,8 +20,6 @@ $(() =>
 
     allVideos.push([]);
 
-    // TODO: show examples and make navigation buttons (html) and events (js) for them
-
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
     function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
@@ -54,25 +52,53 @@ $(() =>
             newIndex = 0;
             updateSlider(allVideos[newArray][newIndex].length);
         }
-        let currentVideo = '#video_' + currentArray + '_' + currentIndex,
-            currentSignText = allVideos[currentArray][currentIndex].token;
+
+        let newVideo = allVideos[newArray][newIndex];
+        let newSign = newVideo.token;
+        let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+
         $(currentVideo).hide();
         $(currentVideo)[0].load();
+
         currentArray = newArray;
         currentIndex = newIndex;
         currentVideo = '#video_' + currentArray + '_' + currentIndex;
+
         $(currentVideo).show();
+
         if (currentArray === 0)
         {
             $(currentVideo).prop('playbackRate', currentSpeed);
         }
         else
         {
-            currentSignText = '(' + (currentIndex + 1) + '/' + sliderSize + '): ' + currentSignText;
+            newSign = '(' + (currentIndex + 1) + '/' + sliderSize + '): ' + newSign;
+
+            if (!newVideo.examples)
+            {
+                $('#examplesContainer').hide();
+            }
+            else
+            {
+                $('#examplesContainer').show();
+
+                if (newVideo.examples.length === 1)
+                {
+                    $('#previousExample').hide();
+                    $('#nextExample').hide();
+                }
+                else
+                {
+                    $('#previousExample').show();
+                    $('#nextExample').show();
+                }
+            }
         }
-        $('#currentSign').text(currentSignText);
+
+        newVideo.info ? $('#info').show() : $('#info').hide();
+        $('#currentSign').text(newSign);
         $('#sliderContainer').slider('value', currentIndex);
-        allVideos[currentArray][currentIndex].info ? $('#info').show() : $('#info').hide();
+
         playNew ? play() : pause();
     }
 
@@ -128,8 +154,8 @@ $(() =>
 
         for (let i = 0; i < sliderSize; i++)
         {
-            const file = videos[i].file,
-                info = videos[i].info;
+            const file = videos[i].file;
+            const info = videos[i].info;
 
             $('#mainVideosContainer').append(
                 `<video id="video_0_${i}" type="video/mp4" muted
@@ -138,7 +164,10 @@ $(() =>
             );
             allVideos[0].push(videos[i]);
 
-            if (i > 0) { $('#video_0_' + i).hide(); }
+            if (i > 0)
+            {
+                $('#video_0_' + i).hide();
+            }
 
             if (info)
             {
@@ -151,11 +180,16 @@ $(() =>
             }
             
             $('#video_0_' + i).on('ended', () => {
-                if (i < sliderSize - 1) {
+                if (i < sliderSize - 1)
+                {
                     changeCurrentVideo(0, i + 1, true);
-                } else if (autoRepeatToggle) {
+                }
+                else if (autoRepeatToggle)
+                {
                     changeCurrentVideo(0, 0, true);
-                } else {
+                }
+                else
+                {
                     stopped = true;
                     pause();
                 }
@@ -177,8 +211,8 @@ $(() =>
             const numberOfCategories = categories.length;
             for (let i = 0; i < numberOfCategories; i++)
             {
-                const categoryIndex = i + 1,
-                    tooltipFile = categories[i].tooltip;
+                const categoryIndex = i + 1;
+                const tooltipFile = categories[i].tooltip;
 
                 $('#categoriesContainer').append(
                     `<button id="category_${categoryIndex}" title="${categories[i].title}"
@@ -296,11 +330,17 @@ $(() =>
             max: sliderSize - 1,
             start: (event, ui) =>
             {
-                if (ui.value !== currentIndex) { pause(); }
+                if (ui.value !== currentIndex)
+                {
+                    pause();
+                }
             },
             stop: (event, ui) =>
             {
-                if (ui.value !== currentIndex) { changeCurrentVideo(currentArray, ui.value, false); }
+                if (ui.value !== currentIndex)
+                {
+                    changeCurrentVideo(currentArray, ui.value, false);
+                }
             }
         }).slider('pips', { first: 'pip', last: 'pip' });
 
@@ -321,7 +361,10 @@ $(() =>
         {
             if ($('#playPauseIcon').hasClass('fa-circle-play'))
             {
-                if (stopped) { $('#rewind').trigger('click'); }
+                if (stopped)
+                {
+                    $('#rewind').trigger('click');
+                }
                 play();
             } else {
                 pause();
@@ -407,7 +450,10 @@ $(() =>
 
         $('body').on('keypress', event =>
         {
-            if (event.keyCode === 32) { $('#playPause').trigger('click'); }
+            if (event.keyCode === 32)
+            {
+                $('#playPause').trigger('click');
+            }
         });
         $('body').on('keydown', event =>
         {
