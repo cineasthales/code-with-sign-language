@@ -1,7 +1,7 @@
 $(() =>
 {
-    const vscode = acquireVsCodeApi();
-    const primaryColor = 'rgb(19, 123, 205)';
+    const vscode = acquireVsCodeApi(),
+        primaryColor = 'rgb(19, 123, 205)';
 
     let currentArray = 0,
         currentIndex = 0,
@@ -54,8 +54,8 @@ $(() =>
             newIndex = 0;
             updateSlider(allVideos[newArray][newIndex].length);
         }
-        let currentVideo = '#video_' + currentArray + '_' + currentIndex;
-        let currentSignText = allVideos[currentArray][currentIndex].token;
+        let currentVideo = '#video_' + currentArray + '_' + currentIndex,
+            currentSignText = allVideos[currentArray][currentIndex].token;
         $(currentVideo).hide();
         $(currentVideo)[0].load();
         currentArray = newArray;
@@ -128,7 +128,9 @@ $(() =>
 
         for (let i = 0; i < sliderSize; i++)
         {
-            const file = videos[i].file;
+            const file = videos[i].file,
+                info = videos[i].info;
+
             $('#mainVideosContainer').append(
                 `<video id="video_0_${i}" type="video/mp4" muted
                     src="${file.scheme}://${file.authority}${file.path}">
@@ -138,7 +140,6 @@ $(() =>
 
             if (i > 0) { $('#video_0_' + i).hide(); }
 
-            const info = videos[i].info;
             if (info)
             {
                 $('#mainVideosContainer').append(
@@ -176,8 +177,9 @@ $(() =>
             const numberOfCategories = categories.length;
             for (let i = 0; i < numberOfCategories; i++)
             {
-                const categoryIndex = i + 1;
-                const tooltipFile = categories[i].tooltip;
+                const categoryIndex = i + 1,
+                    tooltipFile = categories[i].tooltip;
+
                 $('#categoriesContainer').append(
                     `<button id="category_${categoryIndex}" title="${categories[i].title}"
                         class="button categoryButton">
@@ -196,8 +198,9 @@ $(() =>
                 const numberOfVideos = categories[i].videos.length;
                 for (let j = 0; j < numberOfVideos; j++)
                 {
-                    const file = categories[i].videos[j].file;
-                    const info = categories[i].videos[j].info;
+                    const file = categories[i].videos[j].file,
+                        info = categories[i].videos[j].info;
+
                     $('#categoriesVideosContainer').append(
                         `<video id="video_${categoryIndex}_${j}" type="video/mp4" muted
                             src="${file.scheme}://${file.authority}${file.path}">
