@@ -1,13 +1,46 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
+import { FileDownloader, getApi } from "@microsoft/vscode-file-downloader-api";
 import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
-{
-	// TODO: copy media to client extension path if it was not copied yet
+{	/*
+ 	try
+  	{
+		const fileDownloader: FileDownloader = await getApi();
+		const downloadedFiles: Uri[] = await fileDownloader.listDownloadedItems(context);
 
+	 	if (!downloadedFiles)
+   		{
+			const url = 'https://drive.google.com/';
+   			const filename = 'videos.zip';
+   			const cancellationToken = new CancellationTokenSource().token;
+
+			const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) => {
+   				const downloadedPercentage = Math.floor((downloadedBytes * 100) / totalBytes);
+				vscode.window.showInformationMessage(`Baixando vídeos: ${downloadedPercentage}% completo.`);
+			};
+
+			const directory: Uri = await fileDownloader.downloadFile(
+				Uri.parse(url),
+				filename,
+				context,
+				cancellationToken,
+				progressCallback,
+    				{ shouldUnzip: true },
+			);
+	  	}
+	}
+ 	catch (err)
+  	{
+		if (err instanceof Error)
+		{
+  			vscode.window.showErrorMessage(err.message);
+     		}
+       	}*/
+	
 	let panel: vscode.WebviewPanel | undefined = undefined;
 
 	context.subscriptions.push(
@@ -104,7 +137,9 @@ export function activate(context: vscode.ExtensionContext)
 								webview.postMessage({messageType, categories, newLanguage});
 							}
 						}
-					} catch (err) {
+					}
+					catch (err)
+					{
 						if (err instanceof Error)
 						{
 							if (errors.hasOwnProperty(err.message))
@@ -129,5 +164,5 @@ export function activate(context: vscode.ExtensionContext)
 
 export function deactivate() 
 {
-	// TODO: clean up media from client extension path
+	//await fileDownloader.deleteAllItems(context);
 }
