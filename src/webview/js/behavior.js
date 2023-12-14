@@ -457,15 +457,17 @@ $(() =>
         });
         $('body').on('keydown', event =>
         {
-            if (event.key === 'i' || event.key === 'I')
+            switch (event.key)
             {
-                $('#info').trigger('click');
+                case 'i':
+                case 'I':
+                    $('#info').trigger('click'); break;
+                case 't':
+                case 'T':
+                    $('#tooltipToggle').trigger('click');
             }
-            else if (event.key === 't' || event.key === 'T')
-            {
-                $('#tooltipToggle').trigger('click');
-            }
-            else if (currentArray === 0)
+            
+            if (currentArray === 0)
             {
                 switch (event.key)
                 {
@@ -497,13 +499,13 @@ $(() =>
                         $('#previousInCategory').trigger('click'); break;
                     case 'ArrowRight':
                         $('#nextInCategory').trigger('click'); break;
-                    case 'w':
-                    case 'W':
-                        $('#writeCode').trigger('click');
                     case 'PageDown':
                         $('#previousExample').trigger('click'); break;
                     case 'PageUp':
                         $('#nextExample').trigger('click'); break;
+                    case 'w':
+                    case 'W':
+                        $('#writeCode').trigger('click');
                 }
             }
         });
