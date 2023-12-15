@@ -6,7 +6,7 @@ import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
 
 export function activate(context: vscode.ExtensionContext)
-{	/*
+{
  	try
   	{
 		const fileDownloader: FileDownloader = await getApi();
@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext)
 
 	 	if (!downloadedFiles)
    		{
-			const url = 'https://drive.google.com/';
+			const url = 'https://drive.google.com/u/0/uc?id=1NqvhMLbjgkvHuPcZYuYhoM1Kk2fvQ2Im&export=download';
    			const filename = 'videos.zip';
    			const cancellationToken = new CancellationTokenSource().token;
 
@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext)
 		{
   			vscode.window.showErrorMessage(err.message);
      		}
-       	}*/
+       	}
 	
 	let panel: vscode.WebviewPanel | undefined = undefined;
 
@@ -164,5 +164,5 @@ export function activate(context: vscode.ExtensionContext)
 
 export function deactivate() 
 {
-	//await fileDownloader.deleteAllItems(context);
+	await fileDownloader.deleteAllItems(context);
 }
