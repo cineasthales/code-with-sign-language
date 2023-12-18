@@ -1,0 +1,63 @@
+import { FileDownloader, getApi } from "@microsoft/vscode-file-downloader-api";
+
+////////////////////////////////////////
+
+try
+{
+    const fileId = '1oNt0S894iBJLr5KhSDjwnZffVyhtUluH';
+    const fileDownloader: FileDownloader = await getApi();
+    const downloadedFiles: vscode.Uri[] = await fileDownloader.listDownloadedItems(context);
+
+    if (!downloadedFiles)
+    {
+        const url = 'https://drive.google.com/uc?export=download&id=' + fileId;
+        const filename = 'videos.zip';
+
+        const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) =>
+        {
+            if (totalBytes)
+            {
+                const downloadedPercentage = Math.floor((downloadedBytes * 100) / totalBytes);
+                vscode.window.showInformationMessage(`Baixando vídeos: ${downloadedPercentage}% completo.`);
+            }
+        };
+
+        const directory: vscode.Uri = await fileDownloader.downloadFile(
+            vscode.Uri.parse(url),
+            filename,
+            context,
+            undefined,
+            progressCallback,
+            { shouldUnzip: true }
+        );
+
+        vscode.window.showInformationMessage(directory.fsPath);
+    }
+}
+catch (err) {
+    if (err instanceof Error) {
+        vscode.window.showErrorMessage(err.message);
+    }
+}
+
+////////////////////////////////////////
+
+try
+{
+    const fileDownloader: FileDownloader = await getApi();
+    await fileDownloader.deleteAllItems(context);
+}
+catch (err) {
+    if (err instanceof Error) {
+        vscode.window.showErrorMessage(err.message);
+    }
+}
+
+////////////////////////////////////////
+
+  "extensionDependencies": [
+    "mindaro-dev.file-downloader"
+  ],
+  "dependencies": {
+    "@microsoft/vscode-file-downloader-api": "^1.0.1"
+  }
