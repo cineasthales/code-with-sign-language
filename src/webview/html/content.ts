@@ -44,9 +44,6 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<i class="fa-solid fa-arrow-right" id="signToCodeArrow"></i>
 				<i class="fa-regular fa-file-code" id="signToCodeLastIcon"></i>
 			</button>
-			<button id="tooltipToggle" class="button infoToggle" title="Tooltips">
-				<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
-			</button>
 		</nav>
 		<main>
 			<section id="timeContainer" class="codeToSignToggle">
@@ -97,23 +94,26 @@ export function getHtml(webview: Webview, uri: Uri): string
 					</button>
 				</div>
 				<div id="mainActionsContainer">
+					<button id="tooltipToggle" class="button infoToggle" title="Tooltips">
+						<i class="fa-solid fa-comment" id="tooltipToggleIcon"></i>
+					</button>
 					<button id="readCode" class="button infoToggle codeToSignToggle" title="Ler código selecionado">
 						<i class="fa-solid fa-glasses" id="readCodeIcon"></i>
 					</button>
 				</div>
 			</section>
-   			<section id="examplesContainer signToCodeToggle">
+			<section id="examplesContainer" class="signToCodeToggle">
 				<button id="previousExample" class="button" title="Exemplo anterior">
 					<i class="fa-solid fa-caret-left" id="previousExampleIcon"></i>
 				</button>
-      				<code id="exampleBlock"></code>
+				<code id="exampleBlock"></code>
 				<button id="writeCode" class="button" title="Escrever exemplo no código">
 					<i class="fa-solid fa-pen" id="writeCodeIcon"></i>
 				</button>
-	  			<button id="nextExample" class="button" title="Próximo exemplo">
+				<button id="nextExample" class="button" title="Próximo exemplo">
 					<i class="fa-solid fa-caret-right" id="nextExampleIcon"></i>
 				</button>
-      			</section>
+			</section>
 		</main>
 	`;
 

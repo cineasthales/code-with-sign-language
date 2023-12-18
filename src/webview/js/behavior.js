@@ -12,9 +12,9 @@ $(() =>
         totalDuration = 0,
         hasTotalDuration = false,
         stopped = false,
-        notInfo = true,
+        autoRepeatToggle = false,
         tooltipToggle = true,
-        autoRepeatToggle = true,
+        notInfo = true,
         currentLanguage = '',
         allVideos = [];
 
@@ -216,7 +216,7 @@ $(() =>
 
                 $('#categoriesContainer').append(
                     `<button id="category_${categoryIndex}" title="${categories[i].title}"
-                        class="button categoryButton">
+                        class="button categoryButton infoToggle">
                             <i class="fa-solid fa-${categories[i].icon}"></i>
                     </button>`
                 );
@@ -272,13 +272,6 @@ $(() =>
                 show: {delay:750},
             });
         }
-        
-        $('#tooltipToggle').on('click', () =>
-        {
-            tooltipToggle = !tooltipToggle;
-            $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
-            $('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
-        });
 
         $('#tabCodeToSign').on('click', () =>
         {
@@ -417,6 +410,13 @@ $(() =>
                 notInfo = true;
                 changeCurrentVideo(currentArray, currentIndex, false);
             }
+        });
+
+        $('#tooltipToggle').on('click', () =>
+        {
+            tooltipToggle = !tooltipToggle;
+            $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
+            $('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
         });
 
         $('#readCode').on('click', () =>

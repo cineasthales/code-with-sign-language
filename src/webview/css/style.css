@@ -117,8 +117,7 @@ video {
     margin-left: 1rem;
 }
 
-#tabCodeToSign, #tooltipToggle,
-#autoRepeatToggle, #categoryVar {
+#tabCodeToSign, #tooltipToggle, #categoryVar {
     background-color: var(--primaryColor);
 }
 
