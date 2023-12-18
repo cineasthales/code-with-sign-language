@@ -140,10 +140,10 @@ export const signs: any = {
 		file: 'blockOrObjectBegin',
 		info: 'blockOrObject',
 		examples: [
-			`let pessoa = {
-				nome: 'Fulana de Tal',
-				idade: 25,
-			};`,
+			`let pessoa = {\n` +
+			`\tnome: 'Fulana de Tal',\n` +
+			`\tidade: 25,\n` +
+			`};`,
 		],
 	},
 	blockOrObjectEnd: {
@@ -152,10 +152,10 @@ export const signs: any = {
 		file: 'blockOrObjectEnd',
 		info: 'blockOrObject',
 		examples: [
-			`let pessoa = {
-				nome: 'Fulana de Tal',
-				idade: 25,
-			};`,
+			`let pessoa = {\n` +
+			`\tnome: 'Fulana de Tal',\n` +
+			`\tidade: 25,\n` +
+			`};`,
 		],
 	},
 	groupBegin: {
@@ -221,10 +221,10 @@ export const signs: any = {
 		file: 'increment',
 		info: 'increment',
 		examples: [
-			`let idade = 25;
-			idade++;`,
-			`let idade = 25;
-			++idade;`,
+			`let idade = 25;\n` +
+			`idade++;`,
+			`let idade = 25;\n` +
+			`++idade;`,
 		],
 	},
 	plusOrConcat: {
@@ -234,9 +234,9 @@ export const signs: any = {
 		info: 'plusOrConcat',
 		examples: [
 			`let idade = 25 + 5;`,
-			`let nome = 'Fulana';
-			let sobrenome = 'de Tal';
-			let nomeCompleto = nome + ' ' + sobrenome;`,
+			`let nome = 'Fulana';\n` +
+			`let sobrenome = 'de Tal';\n` +
+			`let nomeCompleto = nome + ' ' + sobrenome;`,
 		],
 	},
 	decrement: {
@@ -245,10 +245,10 @@ export const signs: any = {
 		file: 'decrement',
 		info: 'decrement',
 		examples: [
-			`let idade = 25;
-			idade--;`,
-			`let idade = 25;
-			--idade;`,
+			`let idade = 25;\n` +
+			`idade--;`,
+			`let idade = 25;\n` +
+			`--idade;`,
 		],
 	},
 	minus: {
@@ -303,9 +303,9 @@ export const signs: any = {
 		file: 'equalStrict',
 		info: 'equalStrict',
 		examples: [
-			`if (idade === 25) {
-
-			}`,
+			`if (idade === 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	equal: {
@@ -314,9 +314,9 @@ export const signs: any = {
 		file: 'equal',
 		info: 'equal',
 		examples: [
-			`if (idade == 25) {
-
-			}`,
+			`if (idade == 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	/*
@@ -344,9 +344,9 @@ export const signs: any = {
 		file: 'differentStrict',
 		info: 'differentStrict',
 		examples: [
-			`if (idade !== 25) {
-
-			}`,
+			`if (idade !== 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	different: {
@@ -355,9 +355,9 @@ export const signs: any = {
 		file: 'different',
 		info: 'different',
 		examples: [
-			`if (idade != 25) {
-
-			}`,
+			`if (idade != 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	not: {
@@ -366,9 +366,9 @@ export const signs: any = {
 		file: 'not',
 		info: 'not',
 		examples: [
-			`if (!idade) {
-
-			}`,
+			`if (!idade) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	and: {
@@ -377,9 +377,9 @@ export const signs: any = {
 		file: 'and',
 		info: 'and',
 		examples: [
-			`if (nome === 'Fulana de Tal' && idade === 25) {
-
-			}`,
+			`if (nome === 'Fulana de Tal' && idade === 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	/*
@@ -397,9 +397,9 @@ export const signs: any = {
 		file: 'or',
 		info: 'or',
 		examples: [
-			`if (nome === 'Fulana de Tal' || idade === 25) {
-
-			}`,
+			`if (nome === 'Fulana de Tal' || idade === 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	/*
@@ -445,9 +445,9 @@ export const signs: any = {
 		file: 'greaterEqual',
 		info: 'greaterEqual',
 		examples: [
-			`if (idade >= 25) {
-
-			}`,
+			`if (idade >= 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	greater: {
@@ -456,9 +456,9 @@ export const signs: any = {
 		file: 'greater',
 		info: 'greater',
 		examples: [
-			`if (idade > 25) {
-
-			}`,
+			`if (idade > 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	/*
@@ -476,9 +476,9 @@ export const signs: any = {
 		file: 'lesserEqual',
 		info: 'lesserEqual',
 		examples: [
-			`if (idade <= 25) {
-
-			}`,
+			`if (idade <= 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	lesser: {
@@ -487,9 +487,9 @@ export const signs: any = {
 		file: 'lesser',
 		info: 'lesser',
 		examples: [
-			`if (idade < 25) {
-
-			}`,
+			`if (idade < 25) {\n` +
+			`\t\n` +
+			`}`,
 		],
 	},
 	/*
@@ -563,17 +563,17 @@ export const signs: any = {
 		file: 'break',
 		info: 'break',
 		examples: [
-			`let nomeMes;
-			switch (mes) {
-				case 1:
-					nomeMes = 'janeiro';
-					break;
-				case 2:
-					nomeMes = 'fevereiro';
-					break;
-				default:
-					nomeMes = 'outro mês';
-			}`,
+			`let nomeMes;\n` +
+			`switch (mes) {\n` +
+			`\tcase 1:\n` +
+			`\t\tnomeMes = 'janeiro';\n` +
+			`\t\tbreak;\n` +
+			`\tcase 2:\n` +
+			`\t\tnomeMes = 'fevereiro';\n` +
+			`\t\tbreak;\n` +
+			`\tdefault\n` +
+			`\t\tnomeMes = 'outro mês';\n` +
+			`}`,
 		],
 	},
 	reservedCase: {
@@ -582,17 +582,17 @@ export const signs: any = {
 		file: 'case',
 		info: 'case',
 		examples: [
-			`let nomeMes;
-			switch (mes) {
-				case 1:
-					nomeMes = 'janeiro';
-					break;
-				case 2:
-					nomeMes = 'fevereiro';
-					break;
-				default:
-					nomeMes = 'outro mês';
-			}`,
+			`let nomeMes;\n` +
+			`switch (mes) {\n` +
+			`\tcase 1:\n` +
+			`\t\tnomeMes = 'janeiro';\n` +
+			`\t\tbreak;\n` +
+			`\tcase 2:\n` +
+			`\t\tnomeMes = 'fevereiro';\n` +
+			`\t\tbreak;\n` +
+			`\tdefault\n` +
+			`\t\tnomeMes = 'outro mês';\n` +
+			`}`,
 		],
 	},
 	/*
@@ -638,17 +638,17 @@ export const signs: any = {
 		file: 'default',
 		info: 'default',
 		examples: [
-			`let nomeMes;
-			switch (mes) {
-				case 1:
-					nomeMes = 'janeiro';
-					break;
-				case 2:
-					nomeMes = 'fevereiro';
-					break;
-				default:
-					nomeMes = 'outro mês';
-			}`,
+			`let nomeMes;\n` +
+			`switch (mes) {\n` +
+			`\tcase 1:\n` +
+			`\t\tnomeMes = 'janeiro';\n` +
+			`\t\tbreak;\n` +
+			`\tcase 2:\n` +
+			`\t\tnomeMes = 'fevereiro';\n` +
+			`\t\tbreak;\n` +
+			`\tdefault\n` +
+			`\t\tnomeMes = 'outro mês';\n` +
+			`}`,
 		],
 	},
 	/*
@@ -666,10 +666,10 @@ export const signs: any = {
 		file: 'do',
 		info: 'do',
 		examples: [
-			`let numero = 0;
-			do {
-				numero = numero + 10;
-			} while (numero < 5);`,
+			`let numero = 0;\n` +
+			`do {\n` +
+			`\tnumero = numero + 10;\n` +
+			`} while (numero < 5);`,
 		],
 	},
 	reservedElse: {
@@ -678,14 +678,14 @@ export const signs: any = {
 		file: 'else',
 		info: 'else',
 		examples: [
-			`let voto;
-			if (idade >= 18) {
-				voto = 'obrigatório';
-			} else if (idade === 16 || idade === 17 || idade >= 70) {
-				voto = 'facultativo';
-			} else {
-				voto = 'proibido';
-			}`,
+			`let voto;\n` +
+			`if (idade >= 18) {\n` +
+			`\tvoto = 'obrigatório';\n` +
+			`} else if (idade === 16 || idade === 17 || idade >= 70) {\n` +
+			`\tvoto = 'facultativo';\n` +
+			`} else {\n` +
+			`\tvoto = 'proibido';\n` +
+			`}`,
 		],
 	},
 	/*
@@ -710,12 +710,12 @@ export const signs: any = {
 		file: 'false',
 		info: 'false',
 		examples: [
-			`let podeEntrar;
-			if (idade > 17) {
-				podeEntrar = true;
-			} else {
-				podeEntrar = false;
-			}`,
+			`let podeEntrar;\n` +
+			`if (idade > 17) {\n` +
+			`\tpodeEntrar = true;\n` +
+			`} else {\n` +
+			`\tpodeEntrar = false;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -733,10 +733,10 @@ export const signs: any = {
 		file: 'for',
 		info: 'for',
 		examples: [
-			`let numero = 0;
-			for (let i = 0; i < 5; i++) {
-				numero = numero + 10;
-			}`,
+			`let numero = 0;\n` +
+			`for (let i = 0; i < 5; i++) {\n` +
+			`\tnumero = numero + 10;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -754,13 +754,13 @@ export const signs: any = {
 		file: 'function',
 		info: 'function',
 		examples: [
-			`function dividir(dividendo, divisor) {
-				if (divisor === 0) {
-					return 'Impossível dividir';
-				}
-				let resultado = dividendo / divisor;
-				return 'Resultado: ' + resultado;
-			}`,
+			`function dividir(dividendo, divisor) {\n` +
+			`\tif (divisor === 0) {\n` +
+			`\t\treturn 'Impossível dividir';\n` +
+			`\t}\n` +
+			`\tlet resultado = dividendo / divisor;\n` +
+			`\treturn 'Resultado: ' + resultado;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -785,12 +785,12 @@ export const signs: any = {
 		file: 'if',
 		info: 'if',
 		examples: [
-			`let podeEntrar;
-			if (idade > 17) {
-				podeEntrar = true;
-			} else {
-				podeEntrar = false;
-			}`,
+			`let podeEntrar;\n` +
+			`if (idade > 17) {\n` +
+			`\tpodeEntrar = true;\n` +
+			`} else {\n` +
+			`\tpodeEntrar = false;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -822,14 +822,13 @@ export const signs: any = {
 		file: 'null',
 		info: 'null',
 		examples: [
-			`let nome = null;
-			let temNome;
-			if (!nome) {
-				temNome = false;
-			} else {
-				temNome = true;
-			}
-			`,
+			`let nome = null;\n` +
+			`let temNome;\n` +
+			`if (!nome) {\n` +
+			`\ttemNome = false;\n` +
+			`} else {\n` +
+			`\ttemNome = true;\n` +
+			`}\n`,
 		],
 	},
 	reservedReturn: {
@@ -838,13 +837,13 @@ export const signs: any = {
 		file: 'return',
 		info: 'return',
 		examples: [
-			`function dividir(dividendo, divisor) {
-				if (divisor === 0) {
-					return 'Impossível dividir';
-				}
-				let resultado = dividendo / divisor;
-				return 'Resultado: ' + resultado;
-			}`,
+			`function dividir(dividendo, divisor) {\n` +
+			`\tif (divisor === 0) {\n` +
+			`\t\treturn 'Impossível dividir';\n` +
+			`\t}\n` +
+			`\tlet resultado = dividendo / divisor;\n` +
+			`\treturn 'Resultado: ' + resultado;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -876,17 +875,17 @@ export const signs: any = {
 		file: 'switch',
 		info: 'switch',
 		examples: [
-			`let nomeMes;
-			switch (mes) {
-				case 1:
-					nomeMes = 'janeiro';
-					break;
-				case 2:
-					nomeMes = 'fevereiro';
-					break;
-				default:
-					nomeMes = 'outro mês';
-			}`,
+			`let nomeMes;\n` +
+			`switch (mes) {\n` +
+			`\tcase 1:\n` +
+			`\t\tnomeMes = 'janeiro';\n` +
+			`\t\tbreak;\n` +
+			`\tcase 2:\n` +
+			`\t\tnomeMes = 'fevereiro';\n` +
+			`\t\tbreak;\n` +
+			`\tdefault\n` +
+			`\t\tnomeMes = 'outro mês';\n` +
+			`}`,
 		],
 	},
 	/*
@@ -911,12 +910,12 @@ export const signs: any = {
 		file: 'true',
 		info: 'true',
 		examples: [
-			`let podeEntrar;
-			if (idade > 17) {
-				podeEntrar = true;
-			} else {
-				podeEntrar = false;
-			}`,
+			`let podeEntrar;\n` +
+			`if (idade > 17) {\n` +
+			`\tpodeEntrar = true;\n` +
+			`} else {\n` +
+			`\tpodeEntrar = false;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -934,8 +933,8 @@ export const signs: any = {
 		file: 'typeof',
 		info: 'typeof',
 		examples: [
-			`let nome = 'Fulana de Tal';
-			let tipoNome = typeof nome;`,
+			`let nome = 'Fulana de Tal';\n` +
+			`let tipoNome = typeof nome;`,
 		],
 	},
 	reservedUndefined: {
@@ -953,9 +952,9 @@ export const signs: any = {
 		file: 'var',
 		info: 'var',
 		examples: [
-			`var idade = 10;
-			idade = idade + 5;
-			idade = idade + 3;`,
+			`var idade = 10;\n` +
+			`idade = idade + 5;\n` +
+			`idade = idade + 3;`,
 		],
 	},
 	/*
@@ -973,10 +972,10 @@ export const signs: any = {
 		file: 'while',
 		info: 'while',
 		examples: [
-			`let numero = 0;
-			while (numero < 5) {
-				numero = numero + 10;
-			}`,
+			`let numero = 0;\n` +
+			`while (numero < 5) {\n` +
+			`\tnumero = numero + 10;\n` +
+			`}`,
 		],
 	},
 	/*
@@ -1009,8 +1008,8 @@ export const signs: any = {
 		file: 'const',
 		info: 'const',
 		examples: [
-			`const janeiro = 1;
-			const fevereiro = 2;`,
+			`const janeiro = 1;\n` +
+			`const fevereiro = 2;`,
 		],
 	},
 	/*
@@ -1028,9 +1027,9 @@ export const signs: any = {
 		file: 'let',
 		info: 'let',
 		examples: [
-			`let idade = 10;
-			idade = idade + 5;
-			idade = idade + 3;`,
+			`let idade = 10;\n` +
+			`idade = idade + 5;\n` +
+			`idade = idade + 3;`,
 		],
 	},
 	/*
