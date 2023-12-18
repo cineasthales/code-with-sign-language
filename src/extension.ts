@@ -3,50 +3,9 @@ import * as content from './webview/html/content';
 import * as translator from './languages/translator';
 import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
-//import { FileDownloader, getApi } from "@microsoft/vscode-file-downloader-api";
 
-export async function activate(context: vscode.ExtensionContext)
+export function activate(context: vscode.ExtensionContext)
 {
-	/*
-	try
-	{
-		const fileId = '1oNt0S894iBJLr5KhSDjwnZffVyhtUluH';
-		const fileDownloader: FileDownloader = await getApi();
-		const downloadedFiles: vscode.Uri[] = await fileDownloader.listDownloadedItems(context);
-
-		if (!downloadedFiles)
-		{
-			const url = 'https://drive.google.com/uc?export=download&id=' + fileId;
-			const filename = 'videos.zip';
-
-			const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) =>
-			{
-				if (totalBytes)
-				{
-					const downloadedPercentage = Math.floor((downloadedBytes * 100) / totalBytes);
-					vscode.window.showInformationMessage(`Baixando vídeos: ${downloadedPercentage}% completo.`);
-				}
-			};
-
-			const directory: vscode.Uri = await fileDownloader.downloadFile(
-				vscode.Uri.parse(url),
-				filename,
-				context,
-				undefined,
-				progressCallback,
-				{ shouldUnzip: true }
-			);
-
-			vscode.window.showInformationMessage(directory.fsPath);
-		}
-	}
-	catch (err) {
-		if (err instanceof Error) {
-			vscode.window.showErrorMessage(err.message);
-		}
-	}
-	*/
-	
 	let panel: vscode.WebviewPanel | undefined = undefined;
 
 	context.subscriptions.push(
@@ -104,7 +63,7 @@ export async function activate(context: vscode.ExtensionContext)
 						{
 							throw new Error(errors.languageNotSupported);
 						}
-						
+
 						if (message.type)
 						{
 							if (message.type === 'readCode')
@@ -166,20 +125,4 @@ export async function activate(context: vscode.ExtensionContext)
 			);
 		})
 	);
-}
-
-export async function deactivate(context: vscode.ExtensionContext) 
-{
-	/*
-	try
-	{
-		const fileDownloader: FileDownloader = await getApi();
-		await fileDownloader.deleteAllItems(context);
-	}
-	catch (err) {
-		if (err instanceof Error) {
-			vscode.window.showErrorMessage(err.message);
-		}
-	}
-	*/
 }
