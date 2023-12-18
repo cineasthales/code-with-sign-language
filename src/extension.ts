@@ -1,45 +1,51 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
 import * as translator from './languages/translator';
-import { FileDownloader, getApi } from "@microsoft/vscode-file-downloader-api";
 import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
+//import { FileDownloader, getApi } from "@microsoft/vscode-file-downloader-api";
 
-export function activate(context: vscode.ExtensionContext)
+export async function activate(context: vscode.ExtensionContext)
 {
- 	try
-  	{
+	/*
+	try
+	{
+		const fileId = '1oNt0S894iBJLr5KhSDjwnZffVyhtUluH';
 		const fileDownloader: FileDownloader = await getApi();
-		const downloadedFiles: Uri[] = await fileDownloader.listDownloadedItems(context);
+		const downloadedFiles: vscode.Uri[] = await fileDownloader.listDownloadedItems(context);
 
-	 	if (!downloadedFiles)
-   		{
-			const url = 'https://drive.google.com/u/0/uc?id=1NqvhMLbjgkvHuPcZYuYhoM1Kk2fvQ2Im&export=download';
-   			const filename = 'videos.zip';
-   			const cancellationToken = new CancellationTokenSource().token;
+		if (!downloadedFiles)
+		{
+			const url = 'https://drive.google.com/uc?export=download&id=' + fileId;
+			const filename = 'videos.zip';
 
-			const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) => {
-   				const downloadedPercentage = Math.floor((downloadedBytes * 100) / totalBytes);
-				vscode.window.showInformationMessage(`Baixando vídeos: ${downloadedPercentage}% completo.`);
+			const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) =>
+			{
+				if (totalBytes)
+				{
+					const downloadedPercentage = Math.floor((downloadedBytes * 100) / totalBytes);
+					vscode.window.showInformationMessage(`Baixando vídeos: ${downloadedPercentage}% completo.`);
+				}
 			};
 
-			const directory: Uri = await fileDownloader.downloadFile(
-				Uri.parse(url),
+			const directory: vscode.Uri = await fileDownloader.downloadFile(
+				vscode.Uri.parse(url),
 				filename,
 				context,
-				cancellationToken,
+				undefined,
 				progressCallback,
-    				{ shouldUnzip: true },
+				{ shouldUnzip: true }
 			);
-	  	}
+
+			vscode.window.showInformationMessage(directory.fsPath);
+		}
 	}
- 	catch (err)
-  	{
-		if (err instanceof Error)
-		{
-  			vscode.window.showErrorMessage(err.message);
-     		}
-       	}
+	catch (err) {
+		if (err instanceof Error) {
+			vscode.window.showErrorMessage(err.message);
+		}
+	}
+	*/
 	
 	let panel: vscode.WebviewPanel | undefined = undefined;
 
@@ -162,7 +168,18 @@ export function activate(context: vscode.ExtensionContext)
 	);
 }
 
-export function deactivate() 
+export async function deactivate(context: vscode.ExtensionContext) 
 {
-	await fileDownloader.deleteAllItems(context);
+	/*
+	try
+	{
+		const fileDownloader: FileDownloader = await getApi();
+		await fileDownloader.deleteAllItems(context);
+	}
+	catch (err) {
+		if (err instanceof Error) {
+			vscode.window.showErrorMessage(err.message);
+		}
+	}
+	*/
 }
