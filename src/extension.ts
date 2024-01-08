@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
-import * as translator from './languages/translator';
+import Translator from './languages/translator';
 import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
 
@@ -33,9 +33,11 @@ export function activate(context: vscode.ExtensionContext)
 			const webview: vscode.Webview = panel.webview;
 			const uri: vscode.Uri = context.extensionUri;
 
+			const translator = new Translator(signLanguage, webview, uri);
+
 			let messageType: string = 'init';
-			let videos: ISignVideos[] = translator.getWelcome(signLanguage, webview, uri);
-			const tooltips: ITooltips[] = translator.getTooltips(signLanguage, webview, uri);
+			let videos: ISignVideos[] = translator.getWelcome();
+			const tooltips: ITooltips[] = translator.getTooltips();
 			
 			webview.postMessage({messageType, videos, tooltips});
 
@@ -74,9 +76,7 @@ export function activate(context: vscode.ExtensionContext)
 								}
 								else
 								{
-									videos = translator.readCode(
-										signLanguage, editor, webview, uri
-									);
+									videos = translator.readCode(editor);
 									if (videos)
 									{
 										messageType = 'main';
@@ -96,7 +96,7 @@ export function activate(context: vscode.ExtensionContext)
 							{
 								messageType = 'categories';
 								const categories: ICategoryVideos[] = translator.getCategories(
-									signLanguage, message.currentLanguage, editor.document.languageId, webview, uri
+									message.currentLanguage, editor.document.languageId
 								);
 								const newLanguage = editor.document.languageId;
 								webview.postMessage({messageType, categories, newLanguage});
@@ -110,7 +110,7 @@ export function activate(context: vscode.ExtensionContext)
 							if (errors.hasOwnProperty(err.message))
 							{
 								messageType = 'main';
-								videos = translator.getError(err.message, signLanguage, webview, uri);
+								videos = translator.getError(err.message);
 								webview.postMessage({messageType, videos});
 							}
 							else
