@@ -2,7 +2,7 @@ import { reservedWords, signs } from './sintax';
 import { signsMisc } from '../../utils/constants';
 import { ISign } from '../../utils/interfaces';
 
-export function getResults(text: string): ISign[]
+export function getResults(text: []): ISign[]
 {
 	const textLength: number = text.length;
 	const results: ISign[] = [];
