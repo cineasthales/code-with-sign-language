@@ -397,9 +397,46 @@ export function getResults(text: string): ISign[]
 			*/
 		}
 
-		// TODO: punctuation in signsMisc
 		if (text[i].toLowerCase().match(/[a-zç]/)) { results.push(signsMisc[text[i]]); }
 		else if (text[i].match(/\d/)) { results.push(signsMisc['n'+text[i]]); }
+		else
+		{
+			switch (text[i])
+			{
+				case '.': results.push(signsMisc.punctuationDot); break;
+				case ',': results.push(signsMisc.punctuationComma); break;
+				case '?': results.push(signsMisc.punctuationQuestion); break;
+				case '!': results.push(signsMisc.punctuationExclamation); break;
+				case ':': results.push(signsMisc.punctuationColon); break;
+				case ';': results.push(signsMisc.punctuationSemicolon); break;
+				case '~': results.push(signsMisc.punctuationTilde); break;
+				case '´': results.push(signsMisc.punctuationAccentAcute); break;
+				case '^': results.push(signsMisc.punctuationAccentCircumflex); break;
+				case '`': results.push(signsMisc.punctuationAccentGrave); break;
+				case '"': results.push(signsMisc.punctuationQuotation); break;
+				case '\'': results.push(signsMisc.punctuationApostrophe); break;
+				case '/': results.push(signsMisc.punctuationSlash); break;
+				case '\\': results.push(signsMisc.punctuationSlashBack); break;
+				case '|': results.push(signsMisc.punctuationVerticalBar); break;
+				case '(': results.push(signsMisc.punctuationBracketRoundBegin); break;
+				case ')': results.push(signsMisc.punctuationBracketRoundEnd); break;
+				case '[': results.push(signsMisc.punctuationBracketSquareBegin); break;
+				case ']': results.push(signsMisc.punctuationBracketSquareEnd); break;	
+				case '{': results.push(signsMisc.punctuationBracketCurlyBegin); break;
+				case '}': results.push(signsMisc.punctuationBracketCurlEnd); break;
+				case '-': results.push(signsMisc.punctuationMinusOrHyphen); break;
+				case '+': results.push(signsMisc.punctuationPlus); break;
+				case '=': results.push(signsMisc.punctuationEqual); break;
+				case '%': results.push(signsMisc.punctuationPercentage); break;
+				case '$': results.push(signsMisc.punctuationDollar); break;
+				case '@': results.push(signsMisc.punctuationAt); break;
+				case '#': results.push(signsMisc.punctuationSharp); break;
+				case '&': results.push(signsMisc.punctuationAmpersand); break;
+				case '>': results.push(signsMisc.punctuationGreater); break;
+				case '<': results.push(signsMisc.punctuationLesser); break;
+				case '_': results.push(signsMisc.punctuationUnderline);
+			}		
+		}
 	}
 
 	return results;
