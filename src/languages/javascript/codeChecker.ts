@@ -397,7 +397,7 @@ export function getResults(text: string): ISign[]
 			*/
 		}
 
-		if (text[i].toLowerCase().match(/[a-zç]/)) { results.push(signsMisc[text[i]]); }
+		if (text[i].match(/[a-zçA-ZÇ]/)) { results.push(signsMisc['letter'+text[i].toUpperCase()]); }
 		else if (text[i].match(/\d/)) { results.push(signsMisc['number'+text[i]]); }
 		else
 		{
