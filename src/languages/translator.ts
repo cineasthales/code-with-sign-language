@@ -66,8 +66,9 @@ class Translator
 		const results: ISign[] = [];
 		const videos: ISignVideos[] = [];
 	
-		const text: string = this.#sanitizeEditorText(editor);
-	
+		const text: [] = this.#sanitizeEditorText(editor);
+		//const text: string = this.#sanitizeEditorText(editor);
+
 		switch (language)
 		{
 			case 'javascript':
@@ -173,7 +174,7 @@ class Translator
 		return categories;
 	}
 
-	#sanitizeEditorText(editor: vscode.TextEditor): string
+	#sanitizeEditorText(editor: vscode.TextEditor): []
 	{
 		let text: string = '';
 	
@@ -188,8 +189,7 @@ class Translator
 		}
 		else { text = editor.document.getText(); }
 	
-		text = text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-	
-		return text;
+		return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').split('');
+		//return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 	}
 }
