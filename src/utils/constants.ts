@@ -88,166 +88,166 @@ export const signsMisc: any = {
 		file: 'number9',
 		examples: undefined,
 	},
-	a: {
+	letterA: {
 		token: 'a',
 		isCode: false,
-		file: 'a',
+		file: 'letterA',
 		examples: undefined,
 	},
-	b: {
+	letterB: {
 		token: 'b',
 		isCode: false,
-		file: 'b',
+		file: 'letterB',
 		examples: undefined,
 	},
-	c: {
+	letterC: {
 		token: 'c',
 		isCode: false,
-		file: 'c',
+		file: 'letterC',
 		examples: undefined,
 	},
-	ç: {
+	letterÇ: {
 		token: 'ç',
 		isCode: false,
-		file: 'ç',
+		file: 'letterÇ',
 		examples: undefined,
 	},
-	d: {
+	letterD: {
 		token: 'd',
 		isCode: false,
-		file: 'd',
+		file: 'letterD',
 		examples: undefined,
 	},
-	e: {
+	letterE: {
 		token: 'e',
 		isCode: false,
-		file: 'e',
+		file: 'letterE',
 		examples: undefined,
 	},
-	f: {
+	letterF: {
 		token: 'f',
 		isCode: false,
-		file: 'f',
+		file: 'letterF',
 		examples: undefined,
 	},
-	g: {
+	letterG: {
 		token: 'g',
 		isCode: false,
-		file: 'g',
+		file: 'letterG',
 		examples: undefined,
 	},
-	h: {
+	letterH: {
 		token: 'h',
 		isCode: false,
-		file: 'h',
+		file: 'letterH',
 		examples: undefined,
 	},
-	i: {
+	letterI: {
 		token: 'i',
 		isCode: false,
-		file: 'i',
+		file: 'letterI',
 		examples: undefined,
 	},
-	j: {
+	letterJ: {
 		token: 'j',
 		isCode: false,
-		file: 'j',
+		file: 'letterJ',
 		examples: undefined,
 	},
-	k: {
+	letterK: {
 		token: 'k',
 		isCode: false,
-		file: 'k',
+		file: 'letterK',
 		examples: undefined,
 	},
-	l: {
+	letterL: {
 		token: 'l',
 		isCode: false,
-		file: 'l',
+		file: 'letterL',
 		examples: undefined,
 	},
-	m: {
+	letterM: {
 		token: 'm',
 		isCode: false,
-		file: 'm',
+		file: 'letterM',
 		examples: undefined,
 	},
-	n: {
+	letterN: {
 		token: 'n',
 		isCode: false,
-		file: 'n',
+		file: 'letterN',
 		examples: undefined,
 	},
-	o: {
+	letterO: {
 		token: 'o',
 		isCode: false,
-		file: 'o',
+		file: 'letterO',
 		examples: undefined,
 	},
-	p: {
+	letterP: {
 		token: 'p',
 		isCode: false,
-		file: 'p',
+		file: 'letterP',
 		examples: undefined,
 	},
-	q: {
+	letterQ: {
 		token: 'q',
 		isCode: false,
-		file: 'q',
+		file: 'letterQ',
 		examples: undefined,
 	},
-	r: {
+	letterR: {
 		token: 'r',
 		isCode: false,
-		file: 'r',
+		file: 'letterR',
 		examples: undefined,
 	},
-	s: {
+	letterS: {
 		token: 's',
 		isCode: false,
-		file: 's',
+		file: 'letterS',
 		examples: undefined,
 	},
-	t: {
+	letterT: {
 		token: 't',
 		isCode: false,
-		file: 't',
+		file: 'letterT',
 		examples: undefined,
 	},
-	u: {
+	letterU: {
 		token: 'u',
 		isCode: false,
-		file: 'u',
+		file: 'letterU',
 		examples: undefined,
 	},
-	v: {
+	letterV: {
 		token: 'v',
 		isCode: false,
-		file: 'v',
+		file: 'letterV',
 		examples: undefined,
 	},
-	w: {
+	letterW: {
 		token: 'w',
 		isCode: false,
-		file: 'w',
+		file: 'letterW',
 		examples: undefined,
 	},
-	x: {
+	letterX: {
 		token: 'x',
 		isCode: false,
-		file: 'x',
+		file: 'letterX',
 		examples: undefined,
 	},
-	y: {
+	letterY: {
 		token: 'y',
 		isCode: false,
-		file: 'y',
+		file: 'letterY',
 		examples: undefined,
 	},
-	z: {
+	letterZ: {
 		token: 'z',
 		isCode: false,
-		file: 'z',
+		file: 'letterZ',
 		examples: undefined,
 	},
 	punctuationDot: {
