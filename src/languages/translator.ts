@@ -98,12 +98,12 @@ export function writeCode(editor: vscode.TextEditor, text: string)
 
 export function getCategories(signLanguage: string, currentLanguage: string, editorLanguage: string, webview: vscode.Webview, uri: vscode.Uri): ICategoryVideos[]
 {
-	const results: ICategory[] = [];
-	const categories: ICategoryVideos[] = [];
-
 	if (currentLanguage === editorLanguage) {
 		return categories;
 	}
+	
+	const results: ICategory[] = [];
+	const categories: ICategoryVideos[] = [];
 
 	switch (editorLanguage)
 	{
@@ -163,7 +163,7 @@ function sanitizeEditorText(editor: vscode.TextEditor): string
 	}
 	else { text = editor.document.getText(); }
 
-	text = text.trim().replace(/[\t\v\f ]+/g, ' ').normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+	text = text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 	return text;
 }
