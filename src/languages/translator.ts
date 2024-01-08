@@ -100,7 +100,7 @@ class Translator
 					videos.push({
 						token: result.token,
 						file: this.webview.asWebviewUri(
-							vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'misc',result.token+'.mp4')
+							vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'misc',result.file+'.mp4')
 						),
 						info: undefined,
 						examples: undefined,
