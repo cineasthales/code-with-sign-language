@@ -66,7 +66,7 @@ class Translator
 		const results: ISign[] = [];
 		const videos: ISignVideos[] = [];
 	
-		const text: string = sanitizeEditorText(editor);
+		const text: string = this.#sanitizeEditorText(editor);
 	
 		switch (language)
 		{
