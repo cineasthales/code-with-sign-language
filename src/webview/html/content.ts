@@ -3,19 +3,19 @@ import { Webview, Uri } from 'vscode';
 export function getHtml(webview: Webview, uri: Uri): string
 {
 	const allCss: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','fontawesome.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','regular.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','solid.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','jquery-ui.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','jquery-ui-slider-pips.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','style.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','icons','fontawesome','css','solid.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','css','jquery-ui.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','css','jquery-ui-slider-pips.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','css','style.css')),
 	];
 
 	const allJs: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui-slider-pips.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','behavior.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','js','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','js','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'out','webview','js','behavior.js')),
 	];
 
 	let html: string = `
