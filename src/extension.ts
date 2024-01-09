@@ -58,6 +58,7 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (supportedLanguages.includes(oneTextEditor.document.languageId)) {
 								editor = oneTextEditor;
+								vscode.window.activeTextEditor = editor;
 								break;
 							}
 						}
