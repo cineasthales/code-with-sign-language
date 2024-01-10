@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as content from './webview/html/content';
-import Translator from './languages/translator';
+import { Translator } from './languages/translator';
 import { ITooltips, ISignVideos, ICategoryVideos } from './utils/interfaces';
 import { errors, supportedLanguages } from './utils/constants';
 

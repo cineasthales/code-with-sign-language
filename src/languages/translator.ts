@@ -4,13 +4,13 @@ import * as javascriptCategories from './javascript/categories';
 import { ITooltips, ISign, ISignVideos, ICategory, ICategoryVideos } from '../utils/interfaces';
 import { tooltipsIds } from '../utils/constants';
 
-class Translator
+export class Translator
 {
 	signLanguage: string;
 	webview: vscode.Webview;
 	uri: vscode.Uri;
 
-	constructor(signLanguage: string, webview: vscode.Webview, uri: vscode.Uri): void
+	constructor(signLanguage: string, webview: vscode.Webview, uri: vscode.Uri)
 	{
 		this.signLanguage = signLanguage;
 		this.webview = webview;
@@ -66,7 +66,7 @@ class Translator
 		const results: ISign[] = [];
 		const videos: ISignVideos[] = [];
 	
-		const text: [] = this.#sanitizeEditorText(editor);
+		const text: string = this.#sanitizeEditorText(editor);
 		//const text: string = this.#sanitizeEditorText(editor);
 
 		switch (language)
@@ -174,7 +174,7 @@ class Translator
 		return categories;
 	}
 
-	#sanitizeEditorText(editor: vscode.TextEditor): []
+	#sanitizeEditorText(editor: vscode.TextEditor): string
 	{
 		let text: string = '';
 	
@@ -189,7 +189,7 @@ class Translator
 		}
 		else { text = editor.document.getText(); }
 	
-		return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').split('');
-		//return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+		//return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').split('');
+		return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 	}
 }
