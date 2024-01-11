@@ -108,7 +108,7 @@ $(() =>
         {
             for (let i = 0; i < sliderSize; i++)
             {
-                totalDuration += $('#video_' + currentArray + '_' + i).prop('duration');
+                totalDuration += $('#video_0_' + i).prop('duration');
             }
             if (!isNaN(totalDuration))
             {
