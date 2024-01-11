@@ -426,6 +426,7 @@ export function getResults(text: string): ISign[]
 				case '}': results.push(signsMisc.punctuationBracketCurlEnd); break;
 				case '-': results.push(signsMisc.punctuationMinusOrHyphen); break;
 				case '+': results.push(signsMisc.punctuationPlus); break;
+				case '*': results.push(signsMisc.punctuationAsterisk); break;
 				case '=': results.push(signsMisc.punctuationEqual); break;
 				case '%': results.push(signsMisc.punctuationPercentage); break;
 				case '$': results.push(signsMisc.punctuationDollar); break;

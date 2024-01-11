@@ -334,10 +334,10 @@ export const signsMisc: any = {
 		file: 'punctuationSlashBack',
 		examples: undefined,
 	},
-	punctuationVerticalBar: {
+	punctuationPipe: {
 		token: '|',
 		isCode: false,
-		file: 'punctuationVerticalBar',
+		file: 'punctuationPipe',
 		examples: undefined,
 	},
 	punctuationBracketRoundBegin: {
@@ -386,6 +386,12 @@ export const signsMisc: any = {
 		token: '+',
 		isCode: false,
 		file: 'punctuationPlus',
+		examples: undefined,
+	},
+	punctuationAsterisk: {
+		token: '*',
+		isCode: false,
+		file: 'punctuationAsterisk',
 		examples: undefined,
 	},
 	punctuationEqual: {
