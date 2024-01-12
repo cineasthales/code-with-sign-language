@@ -12,9 +12,9 @@ export function getHtml(webview: Webview, uri: Uri): string
 	];
 
 	const allJs: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery-ui-slider-pips.js')),
 		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','behavior.js')),
 	];
 
