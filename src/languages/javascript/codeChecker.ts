@@ -336,11 +336,12 @@ export function getResults(text: string): ISign[]
 				if (firstWord && firstWord.length > 0 && !firstWord[0].match(/[\d_$]+/)
 					&& firstWord[0] === firstWord[0].toLowerCase())
 				{
-					const found = reservedWords.find(word => word === firstWord[0]);
+					let found = reservedWords.find(word => word === firstWord[0]);
 					if (found)
 					{
 						i += found.length-1;
-						if (found !== 'function' && found !== 'yield')
+						found = 'reserved' + found.charAt(0).toUpperCase() + found.slice(1);
+						if (found !== 'reservedFunction' && found !== 'reservedYield')
 						{
 							results.push(signs[found]);
 							continue;

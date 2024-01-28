@@ -78,7 +78,7 @@ export class Translator
 				return videos;
 		}
 	
-		if (results)
+		if (results.length > 0)
 		{
 			for (let result of results)
 			{
@@ -138,7 +138,7 @@ export class Translator
 				return categories;
 		}
 	
-		if (results)
+		if (results.length > 0)
 		{
 			for (let result of results)
 			{

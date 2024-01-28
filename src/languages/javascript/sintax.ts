@@ -993,7 +993,6 @@ export const signs: any = {
 		info: 'yieldGenerator',
 		examples: [],
 	},
-	
 	reservedAs: {
 		token: 'as',
 		isCode: true,
