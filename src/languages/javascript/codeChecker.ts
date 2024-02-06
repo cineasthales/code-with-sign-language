@@ -74,6 +74,7 @@ export function getResults(text: string): ISign[]
 				continue;
 			}
 
+			/*
 			if (text[i] === '{')
 			{
 				results.push(signs.blockOrObjectBegin);
@@ -121,27 +122,32 @@ export function getResults(text: string): ISign[]
 				results.push(signs.arrayEnd);
 				continue;
 			}
+			*/
 
 			if (text[i] === '+')
 			{
+				/*
 				if (text[i+1] === '+')
 				{
 					results.push(signs.increment);
 					i++;
 					continue;
 				}
+				*/
 				results.push(signs.plusOrConcat);
 				continue;
 			}
 
 			if (text[i] === '-')
 			{
+				/*
 				if (text[i+1] === '-')
 				{
 					results.push(signs.decrement);
 					i++;
 					continue;
 				}
+				*/
 				results.push(signs.minus);
 				continue;
 			}
@@ -341,6 +347,7 @@ export function getResults(text: string): ISign[]
 					{
 						i += found.length-1;
 						found = 'reserved' + found.charAt(0).toUpperCase() + found.slice(1);
+						/*
 						if (found !== 'reservedFunction' && found !== 'reservedYield')
 						{
 							results.push(signs[found]);
@@ -358,6 +365,7 @@ export function getResults(text: string): ISign[]
 							i += 2;
 							continue;
 						}
+						*/
 						results.push(signs[found]);
 						continue;
 					}

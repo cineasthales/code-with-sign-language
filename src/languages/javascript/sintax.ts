@@ -2,35 +2,35 @@ export const reservedWords: string[] = [
 	//'arguments',
 	//'async',
 	//'await',
-	'break',
-	'case',
+	//'break',
+	//'case',
 	//'catch',
 	//'class',
 	//'constructor',
 	//'continue',
 	//'debugger',
-	'default',
+	//'default',
 	//'delete',
-	'do',
+	//'do',
 	'else',
 	//'export',
 	//'extends',
 	'false',
 	//'finally',
-	'for',
+	//'for',
 	//'from',
-	'function',
+	//'function',
 	//'get',
 	'if',
 	//'import',
-	'instanceof',
+	//'instanceof',
 	//'new',
 	'null',
-	'return',
+	//'return',
 	//'set',
 	//'static',
 	//'super',
-	'switch',
+	//'switch',
 	//'this',
 	//'throw',
 	'true',
@@ -39,8 +39,8 @@ export const reservedWords: string[] = [
 	'undefined',
 	'var',
 	//'void',
-	'while',
-	'with',
+	//'while',
+	//'with',
 	//'yield',
     // substrings of other reserved words
 	//'as',
@@ -133,7 +133,7 @@ export const signs: any = {
 		examples: [],
 		],
 	},
-	*/
+	
 	blockOrObjectBegin: {
 		token: '{',
 		isCode: true,
@@ -227,6 +227,7 @@ export const signs: any = {
 			`++idade;`,
 		],
 	},
+	*/
 	plusOrConcat: {
 		token: '+',
 		isCode: true,
@@ -239,6 +240,7 @@ export const signs: any = {
 			`let nomeCompleto = nome + ' ' + sobrenome;`,
 		],
 	},
+	/*
 	decrement: {
 		token: '--',
 		isCode: true,
@@ -251,6 +253,7 @@ export const signs: any = {
 			`--idade;`,
 		],
 	},
+	*/
 	minus: {
 		token: '-',
 		isCode: true,
@@ -556,7 +559,6 @@ export const signs: any = {
 		info: 'await',
 		examples: [],
 	},
-	*/
 	reservedBreak: {
 		token: 'break',
 		isCode: true,
@@ -595,7 +597,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedCatch: {
 		token: 'catch',
 		isCode: true,
@@ -631,7 +632,6 @@ export const signs: any = {
 		info: 'debugger',
 		examples: [],
 	},
-	*/
 	reservedDefault: {
 		token: 'default',
 		isCode: true,
@@ -651,7 +651,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedDelete: {
 		token: 'delete',
 		isCode: true,
@@ -659,7 +658,6 @@ export const signs: any = {
 		info: 'delete',
 		examples: [],
 	},
-	*/
 	reservedDo: {
 		token: 'do',
 		isCode: true,
@@ -672,6 +670,7 @@ export const signs: any = {
 			`} while (numero < 5);`,
 		],
 	},
+	*/
 	reservedElse: {
 		token: 'else',
 		isCode: true,
@@ -726,7 +725,6 @@ export const signs: any = {
 		info: 'finally',
 		examples: [],
 	},
-	*/
 	reservedFor: {
 		token: 'for',
 		isCode: true,
@@ -739,7 +737,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedFrom: {
 		token: 'from',
 		isCode: true,
@@ -747,7 +744,6 @@ export const signs: any = {
 		info: 'from',
 		examples: [],
 	},
-	*/
 	reservedFunction: {
 		token: 'function',
 		isCode: true,
@@ -763,7 +759,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedFunctionGenerator: {
 		token: 'function *',
 		isCode: true,
@@ -831,6 +826,7 @@ export const signs: any = {
 			`}\n`,
 		],
 	},
+	/*
 	reservedReturn: {
 		token: 'return',
 		isCode: true,
@@ -846,7 +842,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedSet: {
 		token: 'set',
 		isCode: true,
@@ -868,7 +863,6 @@ export const signs: any = {
 		info: 'super',
 		examples: [],
 	},
-	*/
 	reservedSwitch: {
 		token: 'switch',
 		isCode: true,
@@ -888,7 +882,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedThis: {
 		token: 'this',
 		isCode: true,
@@ -965,7 +958,6 @@ export const signs: any = {
 		info: 'void',
 		examples: [],
 	},
-	*/
 	reservedWhile: {
 		token: 'while',
 		isCode: true,
@@ -978,7 +970,6 @@ export const signs: any = {
 			`}`,
 		],
 	},
-	/*
 	reservedYield: {
 		token: 'yield',
 		isCode: true,
