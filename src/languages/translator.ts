@@ -187,8 +187,12 @@ export class Translator
 			}
 		}
 		else { text = editor.document.getText(); }
-	
-		//return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').split('');
-		return text.trim().replace(/[\t\v\f ]+/g, ' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+		return text
+			.trim()
+			.replace(/[\t\v\f ]+/g, ' ')
+			.replace(/console[ ]*\.[ ]*log/g, 'console.log')
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '');
 	}
 }

@@ -337,37 +337,45 @@ export function getResults(text: string): ISign[]
 
 			if (text[i].match(/[a-gilonr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 			{
-				const firstWord = text.substring(i).match(/\w+\b/);
+				const firstWord: RegExpMatchArray | null = text.slice(i).match(/\w+\b/);
 
-				if (firstWord && firstWord.length > 0 && !firstWord[0].match(/[\d_$]+/)
-					&& firstWord[0] === firstWord[0].toLowerCase())
+				if (firstWord && firstWord.length > 0)
 				{
-					let found = reservedWords.find(word => word === firstWord[0]);
-					if (found)
+					if (firstWord[0].slice(0, 11) === 'console.log') {
+						i += 10;
+						results.push(signs.functionConsoleLog);
+						continue;
+					}
+
+					if (!firstWord[0].match(/[\d_$]+/) && firstWord[0] === firstWord[0].toLowerCase())
 					{
-						i += found.length-1;
-						found = 'reserved' + found.charAt(0).toUpperCase() + found.slice(1);
-						/*
-						if (found !== 'reservedFunction' && found !== 'reservedYield')
+						let found: string | undefined = reservedWords.find(word => word === firstWord[0]);
+						if (found)
 						{
+							i += found.length-1;
+							found = 'reserved' + found.charAt(0).toUpperCase() + found.slice(1);
+							/*
+							if (found !== 'reservedFunction' && found !== 'reservedYield')
+							{
+								results.push(signs[found]);
+								continue;
+							}
+							if (text[i+1] === '*')
+							{
+								results.push(signs[found + 'Generator']);
+								i++;
+								continue;
+							}
+							if (text[i+1] === ' ' && text[i+2] === '*')
+							{
+								results.push(signs[found + 'Generator']);
+								i += 2;
+								continue;
+							}
+							*/
 							results.push(signs[found]);
 							continue;
 						}
-						if (text[i+1] === '*')
-						{
-							results.push(signs[found + 'Generator']);
-							i++;
-							continue;
-						}
-						if (text[i+1] === ' ' && text[i+2] === '*')
-						{
-							results.push(signs[found + 'Generator']);
-							i += 2;
-							continue;
-						}
-						*/
-						results.push(signs[found]);
-						continue;
 					}
 				}
 			}
@@ -426,7 +434,7 @@ export function getResults(text: string): ISign[]
 				case '\'': results.push(signsMisc.punctuationApostrophe); break;
 				case '/': results.push(signsMisc.punctuationSlash); break;
 				case '\\': results.push(signsMisc.punctuationSlashBack); break;
-				case '|': results.push(signsMisc.punctuationVerticalBar); break;
+				case '|': results.push(signsMisc.punctuationPipe); break;
 				case '(': results.push(signsMisc.punctuationBracketRoundBegin); break;
 				case ')': results.push(signsMisc.punctuationBracketRoundEnd); break;
 				case '[': results.push(signsMisc.punctuationBracketSquareBegin); break;

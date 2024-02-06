@@ -538,6 +538,18 @@ export const signs: any = {
 		info: 'chain',
 		examples: [],
 	},
+	*/
+	functionConsoleLog: {
+		token: 'console.log',
+		isCode: true,
+		file: 'functionConsoleLog',
+		info: 'functionConsoleLog',
+		examples: [
+			`let nome = 'Fulana';\n` +
+			`console.log('Olá, ' + nome + '!');\n`,
+		],
+	},
+	/*
 	reservedArguments: {
 		token: 'arguments',
 		isCode: true,
