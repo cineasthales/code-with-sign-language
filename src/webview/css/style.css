@@ -34,62 +34,59 @@ video {
     max-width: 100%;
 }
 
-#tabsContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+#welcomeTab, #loadingTab,
+#codeToSignTab, #signToCodeTab {
     padding: 0.75rem;
 }
 
-#tabCodeToSign, #tabSignToCode {
-    display: flex;
-    font-size: 2.5rem;
+#loadingTab,
+#codeToSignTab, #signToCodeTab {
+    display: none;
 }
 
-#tabCodeToSign i, #tabSignToCode i {
+#welcomeMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+}
+
+#goToCodeToSign, #goToSignToCode {
+    display: flex;
+    font-size: 5rem;
+}
+
+#goToCodeToSign i, #goToSignToCode i {
     display: inline-block;
 }
 
-#codeToSignArrow, #signToCodeArrow {
+#goToCodeToSignArrow, #goToSignToCodeArrow {
     padding: 0 0.85rem;
 }
 
-#timeContainer, #categoriesContainer {
+#codeToSignTime {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem;
     font-size: 2rem;
-}
-
-#timeContainer {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-.infoTimeToggle {
-    cursor: default;
-}
-
-#speedContainer {
+#codeToSignTimeSpeed {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-width: 16rem;
 }
 
-#slower, #faster, .categories {
+#slower, #faster {
     font-size: 2rem;
 }
 
-#videoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#playerContainer {
+#codeToSignPlayer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,27 +95,6 @@ video {
 
 #playPause {
     font-size: 5.5rem;
-}
-
-#actionsContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 0.75rem 0.75rem 0.75rem;
-}
-
-#currentSign {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-#info {
-    font-size: 2rem;
-    margin-left: 1rem;
-}
-
-#tabCodeToSign, #tooltipToggle, #categoryVar {
-    background-color: var(--primaryColor);
 }
 
 body.vscode-light button {
@@ -133,14 +109,6 @@ body.vscode-high-contrast button {
     color: var(--highContrastThemeColor);
     border: var(--highContrastThemeBorder); 
 }
-
-body.vscode-light #tabsContainer { border-bottom: var(--lightThemeBorder); }
-body.vscode-dark #tabsContainer { border-bottom: var(--darkThemeBorder); }
-body.vscode-high-contrast #tabsContainer { border-bottom: var(--highContrastThemeBorder); }
-
-body.vscode-light #playerContainer { border-bottom: var(--lightThemeBorder); }
-body.vscode-dark #playerContainer { border-bottom: var(--darkThemeBorder); }
-body.vscode-high-contrast #playerContainer { border-bottom: var(--highContrastThemeBorder); }
 
 body.vscode-light .ui-tooltip,
 body.vscode-dark .ui-tooltip,
@@ -186,11 +154,11 @@ body.vscode-high-contrast .ui-slider .ui-slider-pip .ui-slider-pip-selected-init
     color: var(--highContrastThemeColor);
 }
 
-#sliderContainer {
+#codeToSignSlider {
     margin: 1.75rem 0.75rem;
 }
 
-#sliderContainer .ui-slider-handle {
+#codeToSignSlider .ui-slider-handle {
     border-radius: 23px;
     height: 23px;
     width: 23px;
@@ -198,21 +166,21 @@ body.vscode-high-contrast .ui-slider .ui-slider-pip .ui-slider-pip-selected-init
     margin-left: -11px;
 }
 
-#sliderContainer .ui-slider-pip {
+#codeToSignSlider .ui-slider-pip {
     top: 3px;
 }
 
-#sliderContainer .ui-slider-pip .ui-slider-line {
+#codeToSignSlider .ui-slider-pip .ui-slider-line {
     width: 4px;
     height: 4px;
     border-radius: 4px;
     margin-left: -2px;
 }
 
-#sliderContainer .ui-slider-pip .ui-slider-pip-selected-initial {
+#codeToSignSlider .ui-slider-pip .ui-slider-pip-selected-initial {
     font-weight: normal;
 }
 
-#sliderContainer .ui-slider-pip .ui-slider-pip-selected {
+#codeToSignSlider .ui-slider-pip .ui-slider-pip-selected {
     font-weight: bold;
 }
