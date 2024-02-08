@@ -24,8 +24,7 @@ button {
     border-radius: 5%;
 }
 
-button:hover:enabled,
-button:active:enabled {
+button:hover:enabled, button:active:enabled {
     border: 0.1rem solid var(--primaryColor);
     cursor: pointer;
 }
@@ -34,21 +33,19 @@ video {
     max-width: 100%;
 }
 
-#welcomeTab, #loadingTab,
-#codeToSignTab, #signToCodeTab {
-    padding: 0.75rem;
+#initialTab, #loadingTab, #codeToSignTab {
+    padding: 0.75rem
 }
 
-#loadingTab,
-#codeToSignTab, #signToCodeTab {
+#loadingTab, #codeToSignTab {
     display: none;
 }
 
-#welcomeMenu {
+#initialMenu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.75rem;
+    padding: 0.75rem 0;
 }
 
 #goToCodeToSign, #goToSignToCode {
@@ -64,18 +61,40 @@ video {
     padding: 0 0.85rem;
 }
 
+#loadingTab {
+    justify-content: center;
+    align-items: center;
+}
+
+#loadingTab i {
+    font-size: 5rem;
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
 #codeToSignTime {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem;
+    padding: 0.75rem 0;
     font-size: 2rem;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-#codeToSignTimeSpeed {
+.infoTimeToggle {
+    cursor: default;
+}
+
+#speedContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,15 +105,42 @@ video {
     font-size: 2rem;
 }
 
+#codeToSignVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #codeToSignPlayer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0.75rem 2rem 0.75rem;
+    padding: 0.75rem 0;
 }
 
 #playPause {
     font-size: 5.5rem;
+}
+
+#codeToSignActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+#currentToken {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+#info {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+#tooltipToggle {
+    background-color: var(--primaryColor);
 }
 
 body.vscode-light button {
@@ -109,6 +155,10 @@ body.vscode-high-contrast button {
     color: var(--highContrastThemeColor);
     border: var(--highContrastThemeBorder); 
 }
+
+body.vscode-light #codeToSignPlayer { border-bottom: var(--lightThemeBorder); }
+body.vscode-dark #codeToSignPlayer { border-bottom: var(--darkThemeBorder); }
+body.vscode-high-contrast #codeToSignPlayer { border-bottom: var(--highContrastThemeBorder); }
 
 body.vscode-light .ui-tooltip,
 body.vscode-dark .ui-tooltip,
@@ -131,15 +181,9 @@ body.vscode-light .ui-slider { border: var(--lightThemeBorder); }
 body.vscode-dark .ui-slider { border: var(--darkThemeBorder); }
 body.vscode-high-contrast .ui-slider { border: var(--highContrastThemeBorder); }
 
-body.vscode-light .ui-slider .ui-slider-handle {
-    background-color: var(--lightThemeColor);
-}
-body.vscode-dark .ui-slider .ui-slider-handle {
-    background-color: var(--darkThemeColor);
-}
-body.vscode-high-contrast .ui-slider .ui-slider-handle {
-    background-color: var(--highContrastThemeColor);
-}
+body.vscode-light .ui-slider .ui-slider-handle { background-color: var(--lightThemeColor); }
+body.vscode-dark .ui-slider .ui-slider-handle { background-color: var(--darkThemeColor); }
+body.vscode-high-contrast .ui-slider .ui-slider-handle { background-color: var(--highContrastThemeColor); }
 
 body.vscode-light .ui-slider .ui-slider-pip .ui-slider-pip-selected,
 body.vscode-light .ui-slider .ui-slider-pip .ui-slider-pip-selected-initial {

@@ -35,12 +35,6 @@ export function activate(context: vscode.ExtensionContext)
 
 			const translator = new Translator(signLanguage, webview, uri);
 
-			let messageType: string = 'init';
-			let videos: ISignVideos[] = translator.getWelcome();
-			const tooltips: ITooltips[] = translator.getTooltips();
-			
-			webview.postMessage({messageType, videos, tooltips});
-
 			webview.html = content.getHtml(webview, uri);
 
 			webview.onDidReceiveMessage(
@@ -68,7 +62,8 @@ export function activate(context: vscode.ExtensionContext)
 
 						if (message.type)
 						{
-							if (message.type === 'readCode')
+							const messageType = message.type;
+							if (messageType === 'codeToSign')
 							{
 								if (vscode.languages.getDiagnostics(editor.document.uri).length > 0)
 								{
@@ -76,10 +71,9 @@ export function activate(context: vscode.ExtensionContext)
 								}
 								else
 								{
-									videos = translator.readCode(editor);
-									if (videos)
+									const videos = translator.readCode(editor);
+									if (videos && videos.length)
 									{
-										messageType = 'main';
 										webview.postMessage({messageType, videos});
 									}
 									else
@@ -87,19 +81,6 @@ export function activate(context: vscode.ExtensionContext)
 										throw new Error(errors.documentIsEmpty);
 									}
 								}
-							}
-							else if (message.type === 'writeCode' && message.text)
-							{
-								translator.writeCode(editor, message.text);
-							}
-							else if (message.type === 'getCategories')
-							{
-								messageType = 'categories';
-								const categories: ICategoryVideos[] = translator.getCategories(
-									message.currentLanguage, editor.document.languageId
-								);
-								const newLanguage = editor.document.languageId;
-								webview.postMessage({messageType, categories, newLanguage});
 							}
 						}
 					}
@@ -109,8 +90,8 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (errors.hasOwnProperty(err.message))
 							{
-								messageType = 'main';
-								videos = translator.getError(err.message);
+								const messageType = 'error';
+								const videos = translator.getError(err.message);
 								webview.postMessage({messageType, videos});
 							}
 							else

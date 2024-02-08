@@ -37,8 +37,8 @@ export function getHtml(webview: Webview, uri: Uri): string
 	<body>
 	<main>
 
-		<div id="welcomeTab">
-			<section id="welcomeMenu">
+		<div id="initialTab">
+			<nav id="initialMenu">
 				<button id="goToCodeToSign" title="Código → Libras">
 					<i class="fa-regular fa-file-code"></i>
 					<i class="fa-solid fa-arrow-right" id="goToCodeToSignArrow"></i>
@@ -49,8 +49,8 @@ export function getHtml(webview: Webview, uri: Uri): string
 					<i class="fa-solid fa-arrow-right" id="goToSignToCodeArrow"></i>
 					<i class="fa-regular fa-file-code"></i>
 				</button>
-			</section>
-			<section id="welcomeVideo">
+			</nav>
+			<section id="initialVideo">
 				<video type="video/mp4" muted autoplay
 					src="${welcome.scheme}://${welcome.authority}${welcome.path}">
 				</video>
@@ -58,47 +58,59 @@ export function getHtml(webview: Webview, uri: Uri): string
 		</div>
 
 		<div id="loadingTab">
-			<h1>CARREGANDO...</h1>
+			<i class="fa-solid fa-spinner"></i>
 		</div>
 
 		<div id="codeToSignTab">
 			<section id="codeToSignTime">
-				<span id="currentTime">0s</span>
-				<section id="codeToSignTimeSpeed">
-					<button id="slower" class="button" title="Diminuir velocidade">
-						<i class="fa-solid fa-backward" id="slowerIcon"></i>
+				<span id="currentTime" class="infoTimeToggle"></span>
+				<span id="speedContainer">
+					<button id="slower" class="button infoToggle" title="Diminuir velocidade">
+						<i class="fa-solid fa-backward"></i>
 					</button>
 					<span id="currentSpeed" class="infoTimeToggle">1x</span>
-					<button id="faster" class="button" title="Aumentar velocidade">
-						<i class="fa-solid fa-forward" id="fasterIcon"></i>
+					<button id="faster" class="button infoToggle" title="Aumentar velocidade">
+						<i class="fa-solid fa-forward"></i>
 					</button>
-				</section>
-				<span id="totalDuration" class="infoTimeToggle">10s</span>
+				</span>
+				<span id="totalDuration" class="infoTimeToggle"></span>
 			</section>
-			<section id="codeToSignVideo"></section>
+			<section id="codeToSignVideos"></section>
 			<section id="codeToSignSlider"></section>
 			<section id="codeToSignPlayer">
 				<button id="rewind" class="button infoToggle" title="Retornar ao início">
-					<i class="fa-solid fa-backward-fast" id="rewindIcon"></i>
+					<i class="fa-solid fa-backward-fast"></i>
 				</button>
 				<button id="backward" class="button infoToggle" title="Sinal anterior">
-					<i class="fa-solid fa-backward-step" id="backwardIcon"></i>
+					<i class="fa-solid fa-backward-step"></i>
 				</button>
 				<button id="playPause" class="button" title="Reproduzir ou pausar vídeo">
 					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
 				</button>
 				<button id="forward" class="button infoToggle" title="Próximo sinal">
-					<i class="fa-solid fa-forward-step" id="forwardIcon"></i>
+					<i class="fa-solid fa-forward-step"></i>
 				</button>
 				<button id="autoRepeatToggle" class="button infoToggle" title="Repetir automaticamente">
-					<i class="fa-solid fa-repeat" id="autoRepeatToggleIcon"></i>
+					<i class="fa-solid fa-repeat"></i>
+				</button>
+			</section>
+			<section id="codeToSignActions">
+				<button id="tooltipToggle" class="button infoToggle" title="Tooltips">
+					<i class="fa-solid fa-comment"></i>
+				</button>
+				<span id="infoContainer">
+					<span id="currentToken"></span>
+					<button id="info" class="button" title="O que isto significa?">
+						<i class="fa-solid fa-question" id="infoIcon"></i>
+					</button>
+				</span>
+				<button id="updateCodeToSign" class="button infoToggle" title="Código → Libras (novamente)">
+					<i class="fa-solid fa-hands-clapping"></i>
 				</button>
 			</section>
 		</div>
 
-		<div id="signToCodeTab">
-			<h1>2</h1>
-		</div>
+		<div id="debug"></div>
 
 	</main>
 	`;
