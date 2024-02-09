@@ -21,6 +21,232 @@ $(() =>
 
     allVideos.push([]);
 
+    /* INITIAL TAB */
+
+    $('#goToCodeToSign').on('click', () =>
+    {
+        $('#initialTab').hide();
+        $('#loadingTab').css('display', 'flex');
+        vscode.postMessage({ type: 'codeToSign' });
+    });
+
+    $('#goToSignToCode').on('click', () =>
+    {
+        $('#initialTab').hide();
+        $('#loadingTab').css('display', 'flex');
+        vscode.postMessage({ type: 'signToCode' });
+    });
+
+    /* CODE TO SIGN TAB */
+
+    $('#slower').on('click', () =>
+    {
+        if (currentSpeed > 0.25)
+        {
+            currentSpeed -= 0.25;
+            $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
+            $('#currentSpeed').text(currentSpeed + 'x');
+        }
+    });
+
+    $('#faster').on('click', () =>
+    {
+        if (currentSpeed < 2)
+        {
+            currentSpeed += 0.25;
+            $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
+            $('#currentSpeed').text(currentSpeed + 'x');;
+        }
+    });
+
+    $('#codeToSignSlider').slider(
+    {
+        animate: 'fast',
+        max: sliderSize - 1,
+        start: (event, ui) =>
+        {
+            if (ui.value !== currentIndex)
+            {
+                pause();
+            }
+        },
+        stop: (event, ui) =>
+        {
+            if (ui.value !== currentIndex)
+            {
+                changeCurrentVideo(currentArray, ui.value, false);
+            }
+        }
+    }).slider('pips', { first: 'pip', last: 'pip' });
+
+    $('#rewind').on('click', () =>
+    {
+        changeCurrentVideo(0, 0, false);
+    });
+
+    $('#backward').on('click', () =>
+    {
+        changeCurrentVideo(0, previousIndex(), false);
+    });
+
+    $('#playPause').on('click', () =>
+    {
+        if ($('#playPauseIcon').hasClass('fa-circle-play'))
+        {
+            if (stopped)
+            {
+                $('#rewind').trigger('click');
+            }
+            play();
+        } else {
+            pause();
+        }
+    });
+
+    $('#forward').on('click', () =>
+    {
+        changeCurrentVideo(0, nextIndex(), false);
+    });
+
+    $('#autoRepeatToggle').on('click', () =>
+    {
+        autoRepeatToggle = !autoRepeatToggle;
+        $('#autoRepeatToggle').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
+    });
+
+    $('#tooltipToggle').on('click', () =>
+    {
+        tooltipToggle = !tooltipToggle;
+        $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
+        $('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
+    });
+
+    $('#info').on('click', () =>
+    {
+        if ($('#infoIcon').hasClass('fa-question'))
+        {
+            $('#infoIcon').removeClass('fa-question');
+            $('#infoIcon').addClass('fa-check');
+            $('#info').prop('title', 'Ok');
+            $('.infoTimeToggle').css('opacity', '0.1');
+            $('.infoToggle').css('opacity', '0.1');
+            $('.infoToggle').css('cursor', 'not-allowed');
+            $('.infoToggle').prop('disabled', true);
+            $('#codeToSignSlider').slider('disable');
+            const sufix = currentArray + '_' + currentIndex;
+            $('#video_' + sufix).hide();
+            $('#video_' + sufix)[0].load();
+            $('#info_' + sufix).show();
+            notInfo = false;
+            play();
+        }
+        else
+        {
+            $('#infoIcon').removeClass('fa-check');
+            $('#infoIcon').addClass('fa-question');
+            $('#info').prop('title', 'O que isto significa?');
+            $('.infoTimeToggle').css('opacity', '1');
+            $('.infoToggle').css('opacity', '1');
+            $('.infoToggle').css('cursor', 'pointer');
+            $('.infoToggle').prop('disabled', false);
+            $('#codeToSignSlider').slider('enable');
+            notInfo = true;
+            changeCurrentVideo(currentArray, currentIndex, false);
+        }
+    });
+
+    $('#updateCodeToSign').on('click', () =>
+    {
+        hasTotalDuration = false;
+        showCodeToSignTab = true;
+        totalDuration = 0;
+        $('#codeToSignTab').hide();
+        $('#loadingTab').css('display', 'flex');
+        vscode.postMessage({ type: 'codeToSign' });
+    });
+
+    /* VS CODE MESSAGE HANDLING */
+
+    window.addEventListener('message', event =>
+    {
+        const data = event.data;
+        switch (data.messageType) {
+            case 'error': loadErrorVideo(data.videos[0].file); break;
+            case 'codeToSign': loadCodeToSignVideos(data.videos);
+            case 'signToCode': loadSignToCodeVideos(data.videos);
+            case 'tooltips': loadTooltips(data.videos);
+        }
+    });
+
+    function loadErrorVideo(file)
+    {
+        $('#initialVideo').empty();
+        $('#initialVideo').append(
+            `<video type="video/mp4" muted autoplay
+                src="${file.scheme}://${file.authority}${file.path}">
+            </video>`
+        );
+        $('#loadingTab').hide();
+        $('#initialTab').show();
+    }
+
+    function loadCodeToSignVideos(videos)
+    {
+        $('#codeToSignVideos').empty();
+
+        allVideos[0] = [];
+        updateSlider(videos.length);
+        $('#debug').text('');
+
+        for (let i = 0; i < sliderSize; i++)
+        {
+            const file = videos[i].file;
+            const info = videos[i].info;
+
+            $('#codeToSignVideos').append(
+                `<video id="video_0_${i}" type="video/mp4" muted
+                    src="${file.scheme}://${file.authority}${file.path}">
+                </video>`
+            );
+            allVideos[0].push(videos[i]);
+
+            if (i > 0)
+            {
+                $('#video_0_' + i).hide();
+            }
+
+            if (info)
+            {
+                $('#codeToSignVideos').append(
+                    `<video id="info_0_${i}" type="video/mp4" muted
+                        src="${info.scheme}://${info.authority}${info.path}">
+                    </video>`
+                );
+                $('#info_0_' + i).hide();
+            }
+            
+            $('#video_0_' + i).on('ended', () => {
+                if (i < sliderSize - 1)
+                {
+                    changeCurrentVideo(0, i + 1, true);
+                }
+                else if (autoRepeatToggle)
+                {
+                    changeCurrentVideo(0, 0, true);
+                }
+                else
+                {
+                    stopped = true;
+                    pause();
+                }
+            });
+        }
+
+        changeCurrentVideo(0, 0, false);
+    }
+
+    /* OTHER NAMED FUNCTIONS */
+
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
     function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
@@ -119,210 +345,4 @@ $(() =>
         }
     }
     setInterval(updateCurrentTime, 200);
-
-    window.addEventListener('message', event =>
-    {
-        const data = event.data;
-        switch (data.messageType) {
-            case 'error': loadErrorVideo(data.videos[0].file); break;
-            case 'codeToSign': loadCodeToSignVideos(data.videos);
-        }
-    });
-
-    function loadErrorVideo(file)
-    {
-        $('#initialVideo').empty();
-        $('#initialVideo').append(
-            `<video type="video/mp4" muted autoplay
-                src="${file.scheme}://${file.authority}${file.path}">
-            </video>`
-        );
-        $('#loadingTab').hide();
-        $('#initialTab').show();
-    }
-
-    function loadCodeToSignVideos(videos)
-    {
-        $('#codeToSignVideos').empty();
-
-        allVideos[0] = [];
-        updateSlider(videos.length);
-        $('#debug').text('');
-
-        for (let i = 0; i < sliderSize; i++)
-        {
-            const file = videos[i].file;
-            const info = videos[i].info;
-
-            $('#codeToSignVideos').append(
-                `<video id="video_0_${i}" type="video/mp4" muted
-                    src="${file.scheme}://${file.authority}${file.path}">
-                </video>`
-            );
-            allVideos[0].push(videos[i]);
-
-            if (i > 0)
-            {
-                $('#video_0_' + i).hide();
-            }
-
-            if (info)
-            {
-                $('#codeToSignVideos').append(
-                    `<video id="info_0_${i}" type="video/mp4" muted
-                        src="${info.scheme}://${info.authority}${info.path}">
-                    </video>`
-                );
-                $('#info_0_' + i).hide();
-            }
-            
-            $('#video_0_' + i).on('ended', () => {
-                if (i < sliderSize - 1)
-                {
-                    changeCurrentVideo(0, i + 1, true);
-                }
-                else if (autoRepeatToggle)
-                {
-                    changeCurrentVideo(0, 0, true);
-                }
-                else
-                {
-                    stopped = true;
-                    pause();
-                }
-            });
-        }
-
-        changeCurrentVideo(0, 0, false);
-    }
-
-    $('#goToCodeToSign').on('click', () =>
-    {
-        $('#initialTab').hide();
-        $('#loadingTab').css('display', 'flex');
-        vscode.postMessage({ type: 'codeToSign' });
-    });
-
-    $('#slower').on('click', () =>
-    {
-        if (currentSpeed > 0.25)
-        {
-            currentSpeed -= 0.25;
-            $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
-            $('#currentSpeed').text(currentSpeed + 'x');
-        }
-    });
-    $('#faster').on('click', () =>
-    {
-        if (currentSpeed < 2)
-        {
-            currentSpeed += 0.25;
-            $('#video_0_' + currentIndex).prop('playbackRate', currentSpeed);
-            $('#currentSpeed').text(currentSpeed + 'x');;
-        }
-    });
-
-    $('#codeToSignSlider').slider(
-    {
-        animate: 'fast',
-        max: sliderSize - 1,
-        start: (event, ui) =>
-        {
-            if (ui.value !== currentIndex)
-            {
-                pause();
-            }
-        },
-        stop: (event, ui) =>
-        {
-            if (ui.value !== currentIndex)
-            {
-                changeCurrentVideo(currentArray, ui.value, false);
-            }
-        }
-    }).slider('pips', { first: 'pip', last: 'pip' });
-
-    $('#rewind').on('click', () =>
-    {
-        changeCurrentVideo(0, 0, false);
-    });
-    $('#backward').on('click', () =>
-    {
-        changeCurrentVideo(0, previousIndex(), false);
-    });
-
-    $('#playPause').on('click', () =>
-    {
-        if ($('#playPauseIcon').hasClass('fa-circle-play'))
-        {
-            if (stopped)
-            {
-                $('#rewind').trigger('click');
-            }
-            play();
-        } else {
-            pause();
-        }
-    });
-
-    $('#forward').on('click', () =>
-    {
-        changeCurrentVideo(0, nextIndex(), false);
-    });
-    $('#autoRepeatToggle').on('click', () =>
-    {
-        autoRepeatToggle = !autoRepeatToggle;
-        $('#autoRepeatToggle').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
-    });
-
-    $('#tooltipToggle').on('click', () =>
-    {
-        tooltipToggle = !tooltipToggle;
-        $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
-        //$('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
-    });
-
-    $('#info').on('click', () =>
-    {
-        if ($('#infoIcon').hasClass('fa-question'))
-        {
-            $('#infoIcon').removeClass('fa-question');
-            $('#infoIcon').addClass('fa-check');
-            $('#info').prop('title', 'Ok');
-            $('.infoTimeToggle').css('opacity', '0.1');
-            $('.infoToggle').css('opacity', '0.1');
-            $('.infoToggle').css('cursor', 'not-allowed');
-            $('.infoToggle').prop('disabled', true);
-            $('#codeToSignSlider').slider('disable');
-            const sufix = currentArray + '_' + currentIndex;
-            $('#video_' + sufix).hide();
-            $('#video_' + sufix)[0].load();
-            $('#info_' + sufix).show();
-            notInfo = false;
-            play();
-        }
-        else
-        {
-            $('#infoIcon').removeClass('fa-check');
-            $('#infoIcon').addClass('fa-question');
-            $('#info').prop('title', 'O que isto significa?');
-            $('.infoTimeToggle').css('opacity', '1');
-            $('.infoToggle').css('opacity', '1');
-            $('.infoToggle').css('cursor', 'pointer');
-            $('.infoToggle').prop('disabled', false);
-            $('#codeToSignSlider').slider('enable');
-            notInfo = true;
-            changeCurrentVideo(currentArray, currentIndex, false);
-        }
-    });
-
-    $('#updateCodeToSign').on('click', () =>
-    {
-        hasTotalDuration = false;
-        showCodeToSignTab = true;
-        totalDuration = 0;
-        $('#codeToSignTab').hide();
-        $('#loadingTab').css('display', 'flex');
-        vscode.postMessage({ type: 'codeToSign' });
-    });
 });

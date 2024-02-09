@@ -17,20 +17,20 @@ export class Translator
 		this.uri = uri;
 	}
 
-	// getTooltips(): ITooltips[]
-	// {
-	// 	const tooltips: ITooltips[] = [];
-	// 	for (let tooltip of tooltipsIds)
-	// 	{
-	// 		tooltips.push({
-	// 			id: tooltip,
-	// 			file: this.webview.asWebviewUri(
-	// 				vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'tooltip',tooltip+'.mp4')
-	// 			),
-	// 		});
-	// 	}
-	// 	return tooltips;
-	// }
+	getTooltips(): ITooltips[]
+	{
+		const tooltips: ITooltips[] = [];
+		for (let tooltip of tooltipsIds)
+		{
+			tooltips.push({
+				id: tooltip,
+				file: this.webview.asWebviewUri(
+					vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'tooltip',tooltip+'.mp4')
+				),
+			});
+		}
+		return tooltips;
+	}
 
 	getError(message: string): ISignVideos[]
 	{
@@ -41,7 +41,7 @@ export class Translator
 				vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'error',message+'.mp4')
 			),
 			info: undefined,
-			examples: undefined,
+			example: undefined,
 		});
 		return videos;
 	}
@@ -78,7 +78,7 @@ export class Translator
 							this.webview.asWebviewUri(
 								vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',language,'info',result.info+'.mp4')
 							) : undefined,
-						examples: undefined,
+						example: undefined,
 					});
 				}
 				else
@@ -89,7 +89,7 @@ export class Translator
 							vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'misc',result.file+'.mp4')
 						),
 						info: undefined,
-						examples: undefined,
+						example: undefined,
 					});
 				}
 			}
@@ -98,66 +98,61 @@ export class Translator
 		return videos;
 	}
 
-	// writeCode(editor: vscode.TextEditor, text: string): void
-	// {
-	// 	const position: vscode.Position = editor.selection.active;
-	// 	editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
-	// }
+	writeCode(editor: vscode.TextEditor, text: string): void
+	{
+		const position: vscode.Position = editor.selection.active;
+		editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
+	}
 
-	// getCategories(currentLanguage: string, editorLanguage: string): ICategoryVideos[]
-	// {
-	// 	const categories: ICategoryVideos[] = [];
-		
-	// 	if (currentLanguage === editorLanguage) {
-	// 		return categories;
-	// 	}
-		
-	// 	const results: ICategory[] = [];
+	getCategories(language: string): ICategoryVideos[]
+	{
+		const results: ICategory[] = [];
+		const categories: ICategoryVideos[] = [];
 	
-	// 	switch (editorLanguage)
-	// 	{
-	// 		case 'javascript':
-	// 			results.push(...javascriptCategories.categories);
-	// 			break;
-	// 		default:
-	// 			return categories;
-	// 	}
+		switch (language)
+		{
+			case 'javascript':
+				results.push(...javascriptCategories.categories);
+				break;
+			default:
+				return categories;
+		}
 	
-	// 	if (results.length > 0)
-	// 	{
-	// 		for (let result of results)
-	// 		{
-	// 			const categoryVideos: ISignVideos[] = [];
+		if (results.length > 0)
+		{
+			for (let result of results)
+			{
+				const categoryVideos: ISignVideos[] = [];
 				
-	// 			for (let sign of result.signs)
-	// 			{
-	// 				categoryVideos.push({
-	// 					token: sign.token,
-	// 					file: this.webview.asWebviewUri(
-	// 						vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',editorLanguage,'code',sign.file+'.mp4')
-	// 					),
-	// 					info: sign.info ?
-	// 						this.webview.asWebviewUri(
-	// 							vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',editorLanguage,'info',sign.info+'.mp4')
-	// 						) : undefined,
-	// 					examples: sign.examples,
-	// 				});
-	// 			}
+				for (let sign of result.signs)
+				{
+					categoryVideos.push({
+						token: sign.token,
+						file: this.webview.asWebviewUri(
+							vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',language,'code',sign.file+'.mp4')
+						),
+						info: sign.info ?
+							this.webview.asWebviewUri(
+								vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',language,'info',sign.info+'.mp4')
+							) : undefined,
+						example: sign.example,
+					});
+				}
 	
-	// 			categories.push({
-	// 				title: result.title,
-	// 				id: result.id,
-	// 				icon: result.icon,
-	// 				tooltip: this.webview.asWebviewUri(
-	// 					vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',editorLanguage,'category',result.tooltip+'.mp4')
-	// 				),
-	// 				videos: categoryVideos,
-	// 			});
-	// 		}
-	// 	}
+				categories.push({
+					title: result.title,
+					id: result.id,
+					icon: result.icon,
+					tooltip: this.webview.asWebviewUri(
+						vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'languages',language,'category',result.tooltip+'.mp4')
+					),
+					videos: categoryVideos,
+				});
+			}
+		}
 	
-	// 	return categories;
-	// }
+		return categories;
+	}
 
 	#sanitizeEditorText(editor: vscode.TextEditor): string
 	{

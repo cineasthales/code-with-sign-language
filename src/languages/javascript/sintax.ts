@@ -57,7 +57,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'commentHashbang',
 		info: 'commentHashbang',
-		examples: [],
+		example: ''
 	},
 	*/
 	stringQuotationBegin: {
@@ -65,36 +65,36 @@ export const signs: any = {
 		isCode: true,
 		file: 'stringQuotationBegin',
 		info: 'string',
-		examples: [
-			`let nome = "Fulana de Tal";`,
-		],
+		example:
+			`let nome = "Fulana de Tal";\n` +
+			`console.log(nome);`
 	},
 	stringQuotationEnd: {
 		token: '"',
 		isCode: true,
 		file: 'stringQuotationEnd',
 		info: 'string',
-		examples: [
-			`let nome = "Fulana de Tal";`,
-		],
+		example:
+			`let nome = "Fulana de Tal";\n` +
+			`console.log(nome);`
 	},
 	stringApostropheBegin: {
 		token: '\'',
 		isCode: true,
 		file: 'stringApostropheBegin',
 		info: 'string',
-		examples: [
-			`let nome = 'Fulana de Tal';`,
-		],
+		example:
+			`let nome = 'Fulana de Tal';\n` +
+			`console.log(nome);`
 	},
 	stringApostropheEnd: {
 		token: '\'',
 		isCode: true,
 		file: 'stringApostropheEnd',
 		info: 'string',
-		examples: [
-			`let nome = 'Fulana de Tal';`,
-		],
+		example:
+			`let nome = 'Fulana de Tal';\n` +
+			`console.log(nome);`
 	},
 	/*
 	stringTemplateBegin: {
@@ -102,130 +102,98 @@ export const signs: any = {
 		isCode: true,
 		file: 'stringTemplateBegin',
 		info: 'string',
-		examples: [],
+		example: ''
 	},
 	stringTemplateEnd: {
 		token: '`',
 		isCode: true,
 		file: 'stringTemplateEnd',
 		info: 'string',
-		examples: [],
+		example: ''
 	},
 	commentLine: {
 		token: '//',
 		isCode: true,
 		file: 'commentLine',
 		info: 'commentLine',
-		examples: [],
+		example: ''
 	},
 	commentBlockBegin: {
 		token: '/_*',
 		isCode: true,
 		file: 'commentBlockBegin',
 		info: 'commentBlock',
-		examples: [],
+		example: ''
 	},
 	commentBlockEnd: {
 		token: '*_/',
 		isCode: true,
 		file: 'commentBlockEnd',
 		info: 'commentBlock',
-		examples: [],
-		],
+		example: ''
 	},
-	
 	blockOrObjectBegin: {
 		token: '{',
 		isCode: true,
 		file: 'blockOrObjectBegin',
 		info: 'blockOrObject',
-		examples: [
-			`let pessoa = {\n` +
-			`\tnome: 'Fulana de Tal',\n` +
-			`\tidade: 25,\n` +
-			`};`,
-		],
+		example: ''
 	},
 	blockOrObjectEnd: {
 		token: '}',
 		isCode: true,
 		file: 'blockOrObjectEnd',
 		info: 'blockOrObject',
-		examples: [
-			`let pessoa = {\n` +
-			`\tnome: 'Fulana de Tal',\n` +
-			`\tidade: 25,\n` +
-			`};`,
-		],
+		example: ''
 	},
 	groupBegin: {
 		token: '(',
 		isCode: true,
 		file: 'groupBegin',
 		info: 'group',
-		examples: [
-			`let resultado = (10 + 1) * 2;`,
-		],
+		example: ''
 	},
 	groupEnd: {
 		token: ')',
 		isCode: true,
 		file: 'groupEnd',
 		info: 'group',
-		examples: [
-			`let resultado = (10 + 1) * 2;`,
-		],
+		example: ''
 	},
 	comma: {
 		token: ',',
 		isCode: true,
 		file: 'comma',
 		info: 'comma',
-		examples: [
-			`let frutas = ['banana', 'maçã', 'laranja'];`,
-			`let precos = [2.5, 5, 7.5, 10];`,
-		],
+		example: ''
 	},
 	semicolon: {
 		token: ';',
 		isCode: true,
 		file: 'semicolon',
 		info: 'semicolon',
-		examples: [
-			`let idade = 25;`,
-		],
+		example: ''
 	},
 	arrayBegin: {
 		token: '[',
 		isCode: true,
 		file: 'arrayBegin',
 		info: 'array',
-		examples: [
-			`let frutas = ['banana', 'maçã', 'laranja'];`,
-			`let precos = [2.5, 5, 7.5, 10];`,
-		],
+		example: ''
 	},
 	arrayEnd: {
 		token: ']',
 		isCode: true,
 		file: 'arrayEnd',
 		info: 'array',
-		examples: [
-			`let frutas = ['banana', 'maçã', 'laranja'];`,
-			`let precos = [2.5, 5, 7.5, 10];`,
-		],
+		example: ''
 	},
 	increment: {
 		token: '++',
 		isCode: true,
 		file: 'increment',
 		info: 'increment',
-		examples: [
-			`let idade = 25;\n` +
-			`idade++;`,
-			`let idade = 25;\n` +
-			`++idade;`,
-		],
+		example: ''
 	},
 	*/
 	plusOrConcat: {
@@ -233,12 +201,13 @@ export const signs: any = {
 		isCode: true,
 		file: 'plusOrConcat',
 		info: 'plusOrConcat',
-		examples: [
-			`let idade = 25 + 5;`,
+		example:
+			`let idade = 25 + 5;\n` +
 			`let nome = 'Fulana';\n` +
 			`let sobrenome = 'de Tal';\n` +
-			`let nomeCompleto = nome + ' ' + sobrenome;`,
-		],
+			`let nomeCompleto = nome + ' ' + sobrenome;\n` +
+			`console.log('Nome: ' + nomeCompleto);\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	/*
 	decrement: {
@@ -246,12 +215,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'decrement',
 		info: 'decrement',
-		examples: [
-			`let idade = 25;\n` +
-			`idade--;`,
-			`let idade = 25;\n` +
-			`--idade;`,
-		],
+		example: ''
 	},
 	*/
 	minus: {
@@ -259,68 +223,67 @@ export const signs: any = {
 		isCode: true,
 		file: 'minus',
 		info: 'minus',
-		examples: [
-			`let idade = 25 - 5;`,
-		],
+		example:
+			`let idade = 25 - 5;\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	power: {
 		token: '**',
 		isCode: true,
 		file: 'power',
 		info: 'power',
-		examples: [
-			`let idade = 4 ** 5;`,
-		],
+		example:
+			`let idade = 4 ** 3;\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	times: {
 		token: '*',
 		isCode: true,
 		file: 'times',
 		info: 'times',
-		examples: [
-			`let idade = 4 * 5;`,
-		],
+		example:
+			`let idade = 5 * 4;\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	divisionOrRegex: {
 		token: '/',
 		isCode: true,
 		file: 'divisionOrRegex',
 		info: 'divisionOrRegex',
-		examples: [
-			`let idade = 100 / 2;`,
-			`let expressaoRegular = /[0-9]/g`,
-		],
+		example:
+			`let idade = 100 / 2;\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	modulus: {
 		token: '%',
 		isCode: true,
 		file: 'modulus',
 		info: 'modulus',
-		examples: [
-			`let idade = 100 % 3;`,
-		],
+		example:
+			`let idade = 100 % 3;\n` +
+			`console.log('Idade: ' + idade + ' anos');`
 	},
 	equalStrict: {
 		token: '===',
 		isCode: true,
 		file: 'equalStrict',
 		info: 'equalStrict',
-		examples: [
+		example:
+			`let idade = 25;\n` +
 			`if (idade === 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você tem 25 anos!');\n` +
+			`}`
 	},
 	equal: {
 		token: '==',
 		isCode: true,
 		file: 'equal',
 		info: 'equal',
-		examples: [
+		example:
+			`let idade = '25';\n` +
 			`if (idade == 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você tem 25 anos!');\n` +
+			`}`
 	},
 	/*
 	functionArrow: {
@@ -328,7 +291,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'functionArrow',
 		info: 'functionArrow',
-		examples: [],
+		example: ''
 	},
 	*/
 	assignment: {
@@ -336,54 +299,55 @@ export const signs: any = {
 		isCode: true,
 		file: 'assignment',
 		info: 'assignment',
-		examples: [
-			`let numero = 5;
-			numero = numero * 10;`,
-		],
+		example:
+			`let numero = 5;\n` +
+			`numero = numero * 10;\n` +
+			`console.log(numero);`
 	},
 	differentStrict: {
 		token: '!==',
 		isCode: true,
 		file: 'differentStrict',
 		info: 'differentStrict',
-		examples: [
+		example:
+			`let idade = '25';\n` +
 			`if (idade !== 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você não tem 25 anos!');\n` +
+			`}`
 	},
 	different: {
 		token: '!=',
 		isCode: true,
 		file: 'different',
 		info: 'different',
-		examples: [
+		example:
+			`let idade = 30;\n` +
 			`if (idade != 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você não tem 25 anos!');\n` +
+			`}`
 	},
 	not: {
 		token: '!',
 		isCode: true,
 		file: 'not',
 		info: 'not',
-		examples: [
+		example:
+			`let idade;\n` +
 			`if (!idade) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você não preencheu a idade!');\n` +
+			`}`
 	},
 	and: {
 		token: '&&',
 		isCode: true,
 		file: 'and',
 		info: 'and',
-		examples: [
-			`if (nome === 'Fulana de Tal' && idade === 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+		example:
+			`let nome = 'Beltrano';\n` +
+			`let idade = 25;\n` +
+			`if (nome === 'Beltrano' && idade === 25) {\n` +
+			`\tconsole.log('Você é quem eu estava procurando!');\n` +
+			`}`
 	},
 	/*
 	bitwiseAnd: {
@@ -391,7 +355,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'bitwiseAnd',
 		info: 'bitwiseAnd',
-		examples: [],
+		example: ''
 	},
 	*/
 	or: {
@@ -399,11 +363,12 @@ export const signs: any = {
 		isCode: true,
 		file: 'or',
 		info: 'or',
-		examples: [
-			`if (nome === 'Fulana de Tal' || idade === 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+		example:
+			`let nome = 'Fulano';\n` +
+			`let idade = 25;\n` +
+			`if (nome === 'Beltrano' || idade === 25) {\n` +
+			`\tconsole.log('Você é quem eu estava procurando!');\n` +
+			`}`
 	},
 	/*
 	bitwiseOr: {
@@ -411,35 +376,35 @@ export const signs: any = {
 		isCode: true,
 		file: 'bitwiseOr',
 		info: 'bitwiseOr',
-		examples: [],
+		example: ''
 	},
 	bitwiseNot: {
 		token: '~',
 		isCode: true,
 		file: 'bitwiseNot',
 		info: 'bitwiseNot',
-		examples: [],
+		example: ''
 	},
 	bitwiseXor: {
 		token: '^',
 		isCode: true,
 		file: 'bitwiseXor',
 		info: 'bitwiseXor',
-		examples: [],
+		example: ''
 	},
 	bitwiseShiftUnsigned: {
 		token: '>>>',
 		isCode: true,
 		file: 'bitwiseShiftUnsigned',
 		info: 'bitwiseShiftUnsigned',
-		examples: [],
+		example: ''
 	},
 	bitwiseShiftRight: {
 		token: '>>',
 		isCode: true,
 		file: 'bitwiseShiftRight',
 		info: 'bitwiseShiftRight',
-		examples: [],
+		example: ''
 	},
 	*/
 	greaterEqual: {
@@ -447,22 +412,22 @@ export const signs: any = {
 		isCode: true,
 		file: 'greaterEqual',
 		info: 'greaterEqual',
-		examples: [
+		example:
+			`let idade = 25;\n` +
 			`if (idade >= 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você tem 25 anos ou mais!');\n` +
+			`}`
 	},
 	greater: {
 		token: '>',
 		isCode: true,
 		file: 'greater',
 		info: 'greater',
-		examples: [
+		example:
+			`let idade = 26;\n` +
 			`if (idade > 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você tem mais de 25 anos!');\n` +
+			`}`
 	},
 	/*
 	bitwiseShiftLeft: {
@@ -470,7 +435,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'bitwiseShiftLeft',
 		info: 'bitwiseShiftLeft',
-		examples: [],
+		example: ''
 	},
 	*/
 	lesserEqual: {
@@ -478,22 +443,22 @@ export const signs: any = {
 		isCode: true,
 		file: 'lesserEqual',
 		info: 'lesserEqual',
-		examples: [
+		example:
+			`let idade = 25;\n` +
 			`if (idade <= 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+			`\tconsole.log('Você tem 25 anos ou menos!');\n` +
+			`}`
 	},
 	lesser: {
 		token: '<',
 		isCode: true,
 		file: 'lesser',
 		info: 'lesser',
-		examples: [
-			`if (idade < 25) {\n` +
-			`\t\n` +
-			`}`,
-		],
+		example:
+			`let idade = 24;\n` +
+			`if (idade > 25) {\n` +
+			`\tconsole.log('Você tem menos de 25 anos!');\n` +
+			`}`
 	},
 	/*
 	nullCoalesc: {
@@ -501,42 +466,42 @@ export const signs: any = {
 		isCode: true,
 		file: 'nullCoalesc',
 		info: 'nullCoalesc',
-		examples: [],
+		example: ''
 	},
 	chainOptional: {
 		token: '?.',
 		isCode: true,
 		file: 'chainOptional',
 		info: 'chainOptional',
-		examples: [],
+		example: ''
 	},
 	ternaryIf: {
 		token: '?',
 		isCode: true,
 		file: 'ternaryIf',
 		info: 'ternaryIf',
-		examples: [],
+		example: ''
 	},
 	ternaryElseOrPropertyValue: {
 		token: ':',
 		isCode: true,
 		file: 'ternaryElseOrPropertyValue',
 		info: 'ternaryElseOrPropertyValue',
-		examples: [],
+		example: ''
 	},
 	spreadOrRest: {
 		token: '...',
 		isCode: true,
 		file: 'spreadOrRest',
 		info: 'spreadOrRest',
-		examples: [],
+		example: ''
 	},
 	chain: {
 		token: '.',
 		isCode: true,
 		file: 'chain',
 		info: 'chain',
-		examples: [],
+		example: ''
 	},
 	*/
 	functionConsoleLog: {
@@ -544,10 +509,9 @@ export const signs: any = {
 		isCode: true,
 		file: 'functionConsoleLog',
 		info: 'functionConsoleLog',
-		examples: [
+		example:
 			`let nome = 'Fulana';\n` +
-			`console.log('Olá, ' + nome + '!');\n`,
-		],
+			`console.log('Olá, ' + nome + '!');`
 	},
 	/*
 	reservedArguments: {
@@ -555,132 +519,91 @@ export const signs: any = {
 		isCode: true,
 		file: 'arguments',
 		info: 'arguments',
-		examples: [],
+		example: ''
 	},
 	reservedAsync: {
 		token: 'async',
 		isCode: true,
 		file: 'async',
 		info: 'async',
-		examples: [],
+		example: ''
 	},
 	reservedAwait: {
 		token: 'await',
 		isCode: true,
 		file: 'await',
 		info: 'await',
-		examples: [],
+		example: ''
 	},
 	reservedBreak: {
 		token: 'break',
 		isCode: true,
 		file: 'break',
 		info: 'break',
-		examples: [
-			`let nomeMes;\n` +
-			`switch (mes) {\n` +
-			`\tcase 1:\n` +
-			`\t\tnomeMes = 'janeiro';\n` +
-			`\t\tbreak;\n` +
-			`\tcase 2:\n` +
-			`\t\tnomeMes = 'fevereiro';\n` +
-			`\t\tbreak;\n` +
-			`\tdefault\n` +
-			`\t\tnomeMes = 'outro mês';\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedCase: {
 		token: 'case',
 		isCode: true,
 		file: 'case',
 		info: 'case',
-		examples: [
-			`let nomeMes;\n` +
-			`switch (mes) {\n` +
-			`\tcase 1:\n` +
-			`\t\tnomeMes = 'janeiro';\n` +
-			`\t\tbreak;\n` +
-			`\tcase 2:\n` +
-			`\t\tnomeMes = 'fevereiro';\n` +
-			`\t\tbreak;\n` +
-			`\tdefault\n` +
-			`\t\tnomeMes = 'outro mês';\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedCatch: {
 		token: 'catch',
 		isCode: true,
 		file: 'catch',
 		info: 'catch',
-		examples: [],
+		example: ''
 	},
 	reservedClass: {
 		token: 'class',
 		isCode: true,
 		file: 'class',
 		info: 'class',
-		examples: [],
+		example: ''
 	},
 	reservedConstructor: {
 		token: 'constructor',
 		isCode: true,
 		file: 'constructor',
 		info: 'constructor',
-		examples: [],
+		example: ''
 	},
 	reservedContinue: {
 		token: 'continue',
 		isCode: true,
 		file: 'continue',
 		info: 'continue',
-		examples: [],
+		example: ''
 	},
 	reservedDebugger: {
 		token: 'debugger',
 		isCode: true,
 		file: 'debugger',
 		info: 'debugger',
-		examples: [],
+		example: ''
 	},
 	reservedDefault: {
 		token: 'default',
 		isCode: true,
 		file: 'default',
 		info: 'default',
-		examples: [
-			`let nomeMes;\n` +
-			`switch (mes) {\n` +
-			`\tcase 1:\n` +
-			`\t\tnomeMes = 'janeiro';\n` +
-			`\t\tbreak;\n` +
-			`\tcase 2:\n` +
-			`\t\tnomeMes = 'fevereiro';\n` +
-			`\t\tbreak;\n` +
-			`\tdefault\n` +
-			`\t\tnomeMes = 'outro mês';\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedDelete: {
 		token: 'delete',
 		isCode: true,
 		file: 'delete',
 		info: 'delete',
-		examples: [],
+		example: ''
 	},
 	reservedDo: {
 		token: 'do',
 		isCode: true,
 		file: 'do',
 		info: 'do',
-		examples: [
-			`let numero = 0;\n` +
-			`do {\n` +
-			`\tnumero = numero + 10;\n` +
-			`} while (numero < 5);`,
-		],
+		example: ''
 	},
 	*/
 	reservedElse: {
@@ -688,16 +611,15 @@ export const signs: any = {
 		isCode: true,
 		file: 'else',
 		info: 'else',
-		examples: [
-			`let voto;\n` +
-			`if (idade >= 18) {\n` +
-			`\tvoto = 'obrigatório';\n` +
-			`} else if (idade === 16 || idade === 17 || idade >= 70) {\n` +
-			`\tvoto = 'facultativo';\n` +
+		example:
+			`let idade = 15;\n` +
+			`if (idade === 16 || idade === 17 || idade >= 70) {\n` +
+			`\tconsole.log('Voto facultativo.');\n` +
+			`} else if (idade >= 18 && idade < 70) {\n` +
+			`\tconsole.log('Voto obrigatório.');\n` +
 			`} else {\n` +
-			`\tvoto = 'proibido';\n` +
-			`}`,
-		],
+			`\tconsole.log('Voto proibido.');\n` +
+			`}`
 	},
 	/*
 	reservedExport: {
@@ -705,14 +627,14 @@ export const signs: any = {
 		isCode: true,
 		file: 'export',
 		info: 'export',
-		examples: [],
+		example: ''
 	},
 	reservedExtends: {
 		token: 'extends',
 		isCode: true,
 		file: 'extends',
 		info: 'extends',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedFalse: {
@@ -720,14 +642,15 @@ export const signs: any = {
 		isCode: true,
 		file: 'false',
 		info: 'false',
-		examples: [
+		example:
+			`let idade = 17;\n` +
 			`let podeEntrar;\n` +
 			`if (idade > 17) {\n` +
 			`\tpodeEntrar = true;\n` +
 			`} else {\n` +
 			`\tpodeEntrar = false;\n` +
-			`}`,
-		],
+			`}\n` +
+			`console.log('Pode entrar? ' + podeEntrar);`
 	},
 	/*
 	reservedFinally: {
@@ -735,55 +658,42 @@ export const signs: any = {
 		isCode: true,
 		file: 'finally',
 		info: 'finally',
-		examples: [],
+		example: ''
 	},
 	reservedFor: {
 		token: 'for',
 		isCode: true,
 		file: 'for',
 		info: 'for',
-		examples: [
-			`let numero = 0;\n` +
-			`for (let i = 0; i < 5; i++) {\n` +
-			`\tnumero = numero + 10;\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedFrom: {
 		token: 'from',
 		isCode: true,
 		file: 'from',
 		info: 'from',
-		examples: [],
+		example: ''
 	},
 	reservedFunction: {
 		token: 'function',
 		isCode: true,
 		file: 'function',
 		info: 'function',
-		examples: [
-			`function dividir(dividendo, divisor) {\n` +
-			`\tif (divisor === 0) {\n` +
-			`\t\treturn 'Impossível dividir';\n` +
-			`\t}\n` +
-			`\tlet resultado = dividendo / divisor;\n` +
-			`\treturn 'Resultado: ' + resultado;\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedFunctionGenerator: {
 		token: 'function *',
 		isCode: true,
 		file: 'functionGenerator',
 		info: 'functionGenerator',
-		examples: [],
+		example: ''
 	},
 	reservedGet: {
 		token: 'get',
 		isCode: true,
 		file: 'get',
 		info: 'get',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedIf: {
@@ -791,14 +701,11 @@ export const signs: any = {
 		isCode: true,
 		file: 'if',
 		info: 'if',
-		examples: [
-			`let podeEntrar;\n` +
+		example:
+			`let idade = 18;\n` +
 			`if (idade > 17) {\n` +
-			`\tpodeEntrar = true;\n` +
-			`} else {\n` +
-			`\tpodeEntrar = false;\n` +
-			`}`,
-		],
+			`\tconsole.log('Pode entrar!');\n` +
+			`}`
 	},
 	/*
 	reservedImport: {
@@ -806,21 +713,21 @@ export const signs: any = {
 		isCode: true,
 		file: 'import',
 		info: 'import',
-		examples: [],
+		example: ''
 	},
 	reservedInstanceof: {
 		token: 'instanceof',
 		isCode: true,
 		file: 'instanceof',
 		info: 'instanceof',
-		examples: [],
+		example: ''
 	},
 	reservedNew: {
 		token: 'new',
 		isCode: true,
 		file: 'new',
 		info: 'new',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedNull: {
@@ -828,15 +735,13 @@ export const signs: any = {
 		isCode: true,
 		file: 'null',
 		info: 'null',
-		examples: [
+		example:
 			`let nome = null;\n` +
-			`let temNome;\n` +
 			`if (!nome) {\n` +
-			`\ttemNome = false;\n` +
+			`\tconsole.log('Você não preencheu o nome!');\n` +
 			`} else {\n` +
-			`\ttemNome = true;\n` +
-			`}\n`,
-		],
+			`\tconsole.log('Você preencheu o nome!');\n` +
+			`}\n`
 	},
 	/*
 	reservedReturn: {
@@ -844,69 +749,49 @@ export const signs: any = {
 		isCode: true,
 		file: 'return',
 		info: 'return',
-		examples: [
-			`function dividir(dividendo, divisor) {\n` +
-			`\tif (divisor === 0) {\n` +
-			`\t\treturn 'Impossível dividir';\n` +
-			`\t}\n` +
-			`\tlet resultado = dividendo / divisor;\n` +
-			`\treturn 'Resultado: ' + resultado;\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedSet: {
 		token: 'set',
 		isCode: true,
 		file: 'set',
 		info: 'set',
-		examples: [],
+		example: ''
 	},
 	reservedStatic: {
 		token: 'static',
 		isCode: true,
 		file: 'static',
 		info: 'static',
-		examples: [],
+		example: ''
 	},
 	reservedSuper: {
 		token: 'super',
 		isCode: true,
 		file: 'super',
 		info: 'super',
-		examples: [],
+		example: ''
 	},
 	reservedSwitch: {
 		token: 'switch',
 		isCode: true,
 		file: 'switch',
 		info: 'switch',
-		examples: [
-			`let nomeMes;\n` +
-			`switch (mes) {\n` +
-			`\tcase 1:\n` +
-			`\t\tnomeMes = 'janeiro';\n` +
-			`\t\tbreak;\n` +
-			`\tcase 2:\n` +
-			`\t\tnomeMes = 'fevereiro';\n` +
-			`\t\tbreak;\n` +
-			`\tdefault\n` +
-			`\t\tnomeMes = 'outro mês';\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedThis: {
 		token: 'this',
 		isCode: true,
 		file: 'this',
 		info: 'this',
-		examples: [],
+		example: ''
 	},
 	reservedThrow: {
 		token: 'throw',
 		isCode: true,
 		file: 'throw',
 		info: 'throw',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedTrue: {
@@ -914,14 +799,15 @@ export const signs: any = {
 		isCode: true,
 		file: 'true',
 		info: 'true',
-		examples: [
+		example:
+			`let idade = 18;\n` +
 			`let podeEntrar;\n` +
 			`if (idade > 17) {\n` +
 			`\tpodeEntrar = true;\n` +
 			`} else {\n` +
 			`\tpodeEntrar = false;\n` +
-			`}`,
-		],
+			`}\n` +
+			`\tconsole.log('Pode entrar? ' + podeEntrar);`
 	},
 	/*
 	reservedTry: {
@@ -929,7 +815,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'try',
 		info: 'try',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedTypeof: {
@@ -937,30 +823,32 @@ export const signs: any = {
 		isCode: true,
 		file: 'typeof',
 		info: 'typeof',
-		examples: [
+		example:
 			`let nome = 'Fulana de Tal';\n` +
-			`let tipoNome = typeof nome;`,
-		],
+			`let tipoNome = typeof nome;\n` +
+			`console.log('O tipo do dado "nome" é: ' + tipoNome);`
 	},
 	reservedUndefined: {
 		token: 'undefined',
 		isCode: true,
 		file: 'undefined',
 		info: 'undefined',
-		examples: [
-			`let nome;`,
-		],
+		example:
+			`let nome;\n` +
+			`console.log(Seu nome é: ' + nome);`
 	},
 	reservedVar: {
 		token: 'var',
 		isCode: true,
 		file: 'var',
 		info: 'var',
-		examples: [
+		example:
 			`var idade = 10;\n` +
+			`console.log(idade);\n` +
 			`idade = idade + 5;\n` +
-			`idade = idade + 3;`,
-		],
+			`console.log(idade);\n` +
+			`idade = idade + 3;\n` +
+			`console.log(idade);`
 	},
 	/*
 	reservedVoid: {
@@ -968,40 +856,35 @@ export const signs: any = {
 		isCode: true,
 		file: 'void',
 		info: 'void',
-		examples: [],
+		example: ''
 	},
 	reservedWhile: {
 		token: 'while',
 		isCode: true,
 		file: 'while',
 		info: 'while',
-		examples: [
-			`let numero = 0;\n` +
-			`while (numero < 5) {\n` +
-			`\tnumero = numero + 10;\n` +
-			`}`,
-		],
+		example: ''
 	},
 	reservedYield: {
 		token: 'yield',
 		isCode: true,
 		file: 'yield',
 		info: 'yield',
-		examples: [],
+		example: ''
 	},
 	reservedYieldGenerator: {
 		token: 'yield *',
 		isCode: true,
 		file: 'yieldGenerator',
 		info: 'yieldGenerator',
-		examples: [],
+		example: ''
 	},
 	reservedAs: {
 		token: 'as',
 		isCode: true,
 		file: 'as',
 		info: 'as',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedConst: {
@@ -1009,10 +892,9 @@ export const signs: any = {
 		isCode: true,
 		file: 'const',
 		info: 'const',
-		examples: [
+		example:
 			`const janeiro = 1;\n` +
-			`const fevereiro = 2;`,
-		],
+			`console.log('O mês de janeiro é: ' + janeiro);`
 	},
 	/*
 	reservedIn: {
@@ -1020,7 +902,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'in',
 		info: 'in',
-		examples: [],
+		example: ''
 	},
 	*/
 	reservedLet: {
@@ -1028,11 +910,13 @@ export const signs: any = {
 		isCode: true,
 		file: 'let',
 		info: 'let',
-		examples: [
+		example:
 			`let idade = 10;\n` +
+			`console.log(idade);\n` +
 			`idade = idade + 5;\n` +
-			`idade = idade + 3;`,
-		],
+			`console.log(idade);\n` +
+			`idade = idade + 3;\n` +
+			`console.log(idade);`
 	},
 	/*
 	reservedOf: {
@@ -1040,7 +924,7 @@ export const signs: any = {
 		isCode: true,
 		file: 'of',
 		info: 'of',
-		examples: [],
+		example: ''
 	},
 	*/
 };

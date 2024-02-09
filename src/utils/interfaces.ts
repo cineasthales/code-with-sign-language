@@ -12,7 +12,7 @@ export interface ISign
     isCode: boolean;
     file: string;
     info: string;
-    examples: string[];
+    example: string;
 }
 
 export interface ISignVideos
@@ -20,7 +20,7 @@ export interface ISignVideos
     token: string;
     file: Uri;
     info: Uri | undefined;
-    examples: string[] | undefined;
+    example: string | undefined;
 }
 
 export interface ICategory 

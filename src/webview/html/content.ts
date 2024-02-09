@@ -105,7 +105,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 					</button>
 				</span>
 				<button id="updateCodeToSign" class="button infoToggle" title="Código → Libras (novamente)">
-					<i class="fa-solid fa-hands-clapping"></i>
+					<i class="fa-solid fa-file-circle-check"></i>
 				</button>
 			</section>
 		</div>
