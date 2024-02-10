@@ -98,10 +98,10 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<button id="codeToSignTooltipToggle" class="button infoToggle" title="Tooltips">
 					<i class="fa-solid fa-comment"></i>
 				</button>
-				<span id="infoContainer">
+				<span>
 					<span id="codeToSignCurrentToken"></span>
-					<button id="info" class="button" title="O que isto significa?">
-						<i class="fa-solid fa-question" id="infoIcon"></i>
+					<button id="codeToSignInfo" class="button" title="O que isto significa?">
+						<i class="fa-solid fa-question infoIcon"></i>
 					</button>
 				</span>
 				<button id="codeToSignAgain" class="button infoToggle" title="Código → Libras (novamente)">
@@ -126,7 +126,12 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<button id="signToCodeTooltipToggle" class="button infoToggle" title="Tooltips">
 					<i class="fa-solid fa-comment"></i>
 				</button>
-				<span id="signToCodeCurrentToken"></span>
+				<span>
+					<span id="signToCodeCurrentToken"></span>
+					<button id="signToCodeInfo" class="button" title="O que isto significa?">
+						<i class="fa-solid fa-question infoIcon"></i>
+					</button>
+				</span>
 				<button id="writeExampleToCode" class="button infoToggle" title="Escrever exemplo no código">
 					<i class="fa-solid fa-file-pen"></i>
 				</button>

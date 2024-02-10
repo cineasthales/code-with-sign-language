@@ -280,16 +280,17 @@ $(() =>
 
     $('#info').on('click', () =>
     {
-        if ($('#infoIcon').hasClass('fa-question'))
+        if ($('.infoIcon').hasClass('fa-question'))
         {
-            $('#infoIcon').removeClass('fa-question');
-            $('#infoIcon').addClass('fa-check');
-            $('#info').prop('title', 'Ok');
+            $('.infoIcon').removeClass('fa-question');
+            $('.infoIcon').addClass('fa-check');
+            $('#codeToSignInfo, #signToCodeInfo').prop('title', 'Ok');
             $('.infoTimeToggle').css('opacity', '0.1');
             $('.infoToggle').css('opacity', '0.1');
             $('.infoToggle').css('cursor', 'not-allowed');
             $('.infoToggle').prop('disabled', true);
             $('#codeToSignSlider').slider('disable');
+            $('#signToCodeSlider').slider('disable');
             const sufix = currentArray + '_' + currentIndex;
             $('#video_' + sufix).hide();
             $('#video_' + sufix)[0].load();
@@ -299,14 +300,15 @@ $(() =>
         }
         else
         {
-            $('#infoIcon').removeClass('fa-check');
-            $('#infoIcon').addClass('fa-question');
-            $('#info').prop('title', 'O que isto significa?');
+            $('.infoIcon').removeClass('fa-check');
+            $('.infoIcon').addClass('fa-question');
+            $('#codeToSignInfo, #signToCodeInfo').prop('title', 'O que isto significa?');
             $('.infoTimeToggle').css('opacity', '1');
             $('.infoToggle').css('opacity', '1');
             $('.infoToggle').css('cursor', 'pointer');
             $('.infoToggle').prop('disabled', false);
             $('#codeToSignSlider').slider('enable');
+            $('#signToCodeSlider').slider('enable');
             notInfo = true;
             changeCurrentVideo(currentArray, currentIndex, false);
         }
@@ -407,7 +409,7 @@ $(() =>
             $('#codeToSignCurrentToken').text(newToken);
             $('#codeToSignSlider').slider('value', currentIndex);
 
-            newVideo.info ? $('#info').show() : $('#info').hide();
+            newVideo.info ? $('#codeToSignInfo').show() : $('#codeToSignInfo').hide();
         }
         else
         {
@@ -425,6 +427,8 @@ $(() =>
                 $('#signToCodeExample').hide();
                 $('#exampleContainer').empty();
             }
+
+            newVideo.info ? $('#signToCodeInfo').show() : $('#signToCodeInfo').hide();
         }
 
         playNew ? play() : pause();
