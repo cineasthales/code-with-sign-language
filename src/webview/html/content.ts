@@ -127,7 +127,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 					<i class="fa-solid fa-comment"></i>
 				</button>
 				<span id="signToCodeCurrentToken"></span>
-				<button id="writeExampleToCode" class="button" title="Escrever exemplo no código">
+				<button id="writeExampleToCode" class="button infoToggle" title="Escrever exemplo no código">
 					<i class="fa-solid fa-file-pen"></i>
 				</button>
 			</section>
