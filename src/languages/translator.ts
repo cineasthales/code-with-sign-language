@@ -17,35 +17,6 @@ export class Translator
 		this.uri = uri;
 	}
 
-	getTooltips(): ITooltips[]
-	{
-		const tooltips: ITooltips[] = [];
-		for (let tooltip of tooltipsIds)
-		{
-			tooltips.push({
-				id: tooltip,
-				file: this.webview.asWebviewUri(
-					vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'tooltip',tooltip+'.mp4')
-				),
-			});
-		}
-		return tooltips;
-	}
-
-	getError(message: string): ISignVideos[]
-	{
-		const videos: ISignVideos[] = [];
-		videos.push({
-			token: 'Erro!',
-			file: this.webview.asWebviewUri(
-				vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'error',message+'.mp4')
-			),
-			info: undefined,
-			example: undefined,
-		});
-		return videos;
-	}
-
 	readCode(editor: vscode.TextEditor): ISignVideos[]
 	{
 		const language: string = editor.document.languageId;
@@ -102,6 +73,35 @@ export class Translator
 	{
 		const position: vscode.Position = editor.selection.active;
 		editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
+	}
+
+	getTooltips(): ITooltips[]
+	{
+		const tooltips: ITooltips[] = [];
+		for (let tooltip of tooltipsIds)
+		{
+			tooltips.push({
+				id: tooltip,
+				file: this.webview.asWebviewUri(
+					vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'tooltip',tooltip+'.mp4')
+				),
+			});
+		}
+		return tooltips;
+	}
+
+	getError(message: string): ISignVideos[]
+	{
+		const videos: ISignVideos[] = [];
+		videos.push({
+			token: 'Erro!',
+			file: this.webview.asWebviewUri(
+				vscode.Uri.joinPath(this.uri,'videos',this.signLanguage,'error',message+'.mp4')
+			),
+			info: undefined,
+			example: undefined,
+		});
+		return videos;
 	}
 
 	getCategories(language: string): ICategoryVideos[]

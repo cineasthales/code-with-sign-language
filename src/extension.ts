@@ -35,6 +35,11 @@ export function activate(context: vscode.ExtensionContext)
 
 			const translator = new Translator(signLanguage, webview, uri);
 
+			let messageType: string = 'tooltips';
+			const tooltips: ITooltips[] = translator.getTooltips();
+
+			webview.postMessage({ messageType, tooltips });
+
 			webview.html = content.getHtml(webview, uri);
 
 			webview.onDidReceiveMessage(
@@ -62,7 +67,8 @@ export function activate(context: vscode.ExtensionContext)
 
 						if (message.type)
 						{
-							const messageType = message.type;
+							messageType = message.type;
+
 							if (messageType === 'codeToSign')
 							{
 								if (vscode.languages.getDiagnostics(editor.document.uri).length > 0)
@@ -74,13 +80,24 @@ export function activate(context: vscode.ExtensionContext)
 									const videos = translator.readCode(editor);
 									if (videos && videos.length)
 									{
-										webview.postMessage({messageType, videos});
+										webview.postMessage({ messageType, videos });
 									}
 									else
 									{
 										throw new Error(errors.documentIsEmpty);
 									}
 								}
+							}
+							else if (message.type === 'signToCode' && message.text)
+							{
+								translator.writeCode(editor, message.text);
+							}
+							else if (message.type === 'getCategories')
+							{
+								const categories: ICategoryVideos[] = translator.getCategories(
+									editor.document.languageId
+								);
+								webview.postMessage({messageType, categories});
 							}
 						}
 					}
@@ -90,9 +107,9 @@ export function activate(context: vscode.ExtensionContext)
 						{
 							if (errors.hasOwnProperty(err.message))
 							{
-								const messageType = 'error';
-								const videos = translator.getError(err.message);
-								webview.postMessage({messageType, videos});
+								messageType = 'error';
+								const error = translator.getError(err.message);
+								webview.postMessage({ messageType, error });
 							}
 							else
 							{
