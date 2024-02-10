@@ -39,12 +39,12 @@ export function getHtml(webview: Webview, uri: Uri): string
 
 		<div id="initialTab">
 			<nav id="initialMenu">
-				<button id="goToCodeToSign" title="Código → Libras">
+				<button id="goToCodeToSign" class="button" title="Código → Libras">
 					<i class="fa-regular fa-file-code"></i>
 					<i class="fa-solid fa-arrow-right" id="goToCodeToSignArrow"></i>
 					<i class="fa-solid fa-hands"></i>
 				</button>
-				<button id="goToSignToCode" title="Libras → Código">
+				<button id="goToSignToCode" class="button" title="Libras → Código">
 					<i class="fa-solid fa-hands"></i>
 					<i class="fa-solid fa-arrow-right" id="goToSignToCodeArrow"></i>
 					<i class="fa-regular fa-file-code"></i>
@@ -95,7 +95,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 				</button>
 			</section>
 			<section id="codeToSignActions">
-				<button id="tooltipToggle" class="button infoToggle" title="Tooltips">
+				<button id="codeToSignTooltipToggle" class="button infoToggle" title="Tooltips">
 					<i class="fa-solid fa-comment"></i>
 				</button>
 				<span id="infoContainer">
@@ -123,7 +123,9 @@ export function getHtml(webview: Webview, uri: Uri): string
 				</button>
 			</section>
 			<section id="signToCodeActions">
-				<span>etc</span>
+				<button id="signToCodeTooltipToggle" class="button infoToggle" title="Tooltips">
+					<i class="fa-solid fa-comment"></i>
+				</button>
 				<span id="signToCodeCurrentToken"></span>
 				<button id="writeExampleToCode" class="button" title="Escrever exemplo no código">
 					<i class="fa-solid fa-file-pen"></i>

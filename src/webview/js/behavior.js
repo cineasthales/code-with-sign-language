@@ -261,11 +261,21 @@ $(() =>
         $('#autoRepeatToggle').css('background-color', autoRepeatToggle ? primaryColor : 'transparent');
     });
 
-    $('#tooltipToggle').on('click', () =>
+    $('#codeToSignTooltipToggle, #signToCodeTooltipToggle').on('click', () =>
     {
         tooltipToggle = !tooltipToggle;
-        $('#tooltipToggle').css('background-color', tooltipToggle ? primaryColor : 'transparent');
-        $('.button').tooltip(tooltipToggle ? 'enable' : 'disable');
+        if (tooltipToggle)
+        {
+            $('#codeToSignTooltipToggle').css('background-color', primaryColor);
+            $('#signToCodeTooltipToggle').css('background-color', primaryColor);
+            $('.button').tooltip('enable');
+        }
+        else
+        {
+            $('#codeToSignTooltipToggle').css('background-color', transparent);
+            $('#signToCodeTooltipToggle').css('background-color', transparent);
+            $('.button').tooltip('disable');
+        }
     });
 
     $('#info').on('click', () =>
