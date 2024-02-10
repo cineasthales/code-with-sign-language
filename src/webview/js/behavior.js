@@ -278,7 +278,7 @@ $(() =>
         }
     });
 
-    $('#info').on('click', () =>
+    $('#codeToSignInfo, #signToCodeInfo').on('click', () =>
     {
         if ($('.infoIcon').hasClass('fa-question'))
         {
