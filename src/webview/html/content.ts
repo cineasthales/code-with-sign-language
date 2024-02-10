@@ -84,8 +84,8 @@ export function getHtml(webview: Webview, uri: Uri): string
 				<button id="backward" class="button infoToggle" title="Sinal anterior">
 					<i class="fa-solid fa-backward-step"></i>
 				</button>
-				<button id="playPause" class="button" title="Reproduzir ou pausar vídeo">
-					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
+				<button id="codeToSignPlayPause" class="button" title="Reproduzir ou pausar vídeo">
+					<i class="fa-solid fa-circle-play playPauseIcon"></i>
 				</button>
 				<button id="forward" class="button infoToggle" title="Próximo sinal">
 					<i class="fa-solid fa-forward-step"></i>
@@ -117,6 +117,9 @@ export function getHtml(webview: Webview, uri: Uri): string
 			<section id="signToCodePlayer">
 				<button id="previousInCategory" class="button infoToggle" title="Sinal anterior da categoria">
 					<i class="fa-solid fa-angle-left"></i>
+				</button>
+				<button id="signToCodePlayPause" class="button" title="Reproduzir ou pausar vídeo">
+					<i class="fa-solid fa-circle-play playPauseIcon"></i>
 				</button>
 				<button id="nextInCategory" class="button infoToggle" title="Próximo sinal da categoria">
 					<i class="fa-solid fa-angle-right"></i>

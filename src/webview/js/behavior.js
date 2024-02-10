@@ -236,11 +236,11 @@ $(() =>
         changeCurrentVideo(0, previousIndex(), false);
     });
 
-    $('#playPause').on('click', () =>
+    $('#codeToSignPlayPause, #signToCodePlayPause').on('click', () =>
     {
-        if ($('#playPauseIcon').hasClass('fa-circle-play'))
+        if ($('.playPauseIcon').hasClass('fa-circle-play'))
         {
-            if (stopped)
+            if (currentArray === 0 && stopped)
             {
                 $('#rewind').trigger('click');
             }
@@ -370,15 +370,15 @@ $(() =>
     function play()
     {
         stopped = false;
-        $('#playPauseIcon').removeClass('fa-circle-play');
-        $('#playPauseIcon').addClass('fa-circle-pause');
+        $('.playPauseIcon').removeClass('fa-circle-play');
+        $('.playPauseIcon').addClass('fa-circle-pause');
         $('#' + (notInfo ? 'video_' : 'info_') + currentArray + '_' + currentIndex).trigger('play');
     }
 
     function pause()
     {
-        $('#playPauseIcon').removeClass('fa-circle-pause');
-        $('#playPauseIcon').addClass('fa-circle-play');
+        $('.playPauseIcon').removeClass('fa-circle-pause');
+        $('.playPauseIcon').addClass('fa-circle-play');
         $('#' + (notInfo ? 'video_' : 'info_') + currentArray + '_' + currentIndex).trigger('pause');
     }
 
