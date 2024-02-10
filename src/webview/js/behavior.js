@@ -326,9 +326,12 @@ $(() =>
 
     $('.categoryButton').on('click', (event) =>
     {
-        const newArray = event.target.id;
         $('.categoryButton').css('background-color', 'transparent');
-        $('#category' + newArray).css('background-color', primaryColor);
+
+        const selectedCategory = event.target.id;
+        $(selectedCategory).css('background-color', primaryColor);
+
+        const newArray = parseInt(newArray.split('_')[1]);
         changeCurrentVideo(newArray, 0, false);
     });
 
