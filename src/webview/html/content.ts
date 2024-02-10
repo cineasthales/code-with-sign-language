@@ -99,18 +99,40 @@ export function getHtml(webview: Webview, uri: Uri): string
 					<i class="fa-solid fa-comment"></i>
 				</button>
 				<span id="infoContainer">
-					<span id="currentToken"></span>
+					<span id="codeToSignCurrentToken"></span>
 					<button id="info" class="button" title="O que isto significa?">
 						<i class="fa-solid fa-question" id="infoIcon"></i>
 					</button>
 				</span>
-				<button id="updateCodeToSign" class="button infoToggle" title="Código → Libras (novamente)">
+				<button id="codeToSignAgain" class="button infoToggle" title="Código → Libras (novamente)">
 					<i class="fa-solid fa-file-circle-check"></i>
 				</button>
 			</section>
 		</div>
 
-		<div id="debug"></div>
+		<div id="signToCodeTab">
+			<section id="signToCodeCategories"></section>
+			<section id="signToCodeVideos"></section>
+			<section id="signToCodeSlider"></section>
+			<section id="signToCodePlayer">
+				<button id="previousInCategory" class="button infoToggle" title="Sinal anterior da categoria">
+					<i class="fa-solid fa-angle-left"></i>
+				</button>
+				<button id="nextInCategory" class="button infoToggle" title="Próximo sinal da categoria">
+					<i class="fa-solid fa-angle-right"></i>
+				</button>
+			</section>
+			<section id="signToCodeActions">
+				<span>etc</span>
+				<span id="signToCodeCurrentToken"></span>
+				<button id="writeExampleToCode" class="button" title="Escrever exemplo no código">
+					<i class="fa-solid fa-file-pen"></i>
+				</button>
+			</section>
+			<section id="signToCodeExample">
+				<code id="exampleContainer"></code>
+			</section>
+		</div>
 
 	</main>
 	`;

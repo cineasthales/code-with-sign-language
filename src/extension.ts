@@ -88,11 +88,11 @@ export function activate(context: vscode.ExtensionContext)
 									}
 								}
 							}
-							else if (message.type === 'signToCode' && message.text)
+							else if (messageType === 'signToCode' && message.text)
 							{
 								translator.writeCode(editor, message.text);
 							}
-							else if (message.type === 'getCategories')
+							else if (messageType === 'categories')
 							{
 								const categories: ICategoryVideos[] = translator.getCategories(
 									editor.document.languageId

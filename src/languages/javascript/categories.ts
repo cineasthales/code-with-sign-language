@@ -8,6 +8,7 @@ export const categories: ICategory[]  = [
 		icon: 'tags',
 		tooltip: 'var',
 		signs: [
+			signs.functionConsoleLog,
 			signs.reservedLet,
 			signs.reservedConst,
 			signs.assignment,

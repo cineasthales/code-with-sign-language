@@ -5,21 +5,168 @@ $(() =>
 
     let currentArray = 0,
         currentIndex = 0,
-        currentExample = 0,
         numberOfDigits = 0,
         totalDuration = 0,
         currentSpeed = 1,
-        sliderSize = 1,
+        videosGroupSize = 1,
         hasTotalDuration = false,
         stopped = false,
         autoRepeatToggle = false,
         showCodeToSignTab = true,
         tooltipToggle = true,
         notInfo = true,
-        currentLanguage = '',
         allVideos = [];
 
     allVideos.push([]);
+
+    /* VS CODE MESSAGE HANDLING */
+
+    window.addEventListener('message', event =>
+    {
+        const data = event.data;
+        switch (data.messageType) {
+            case 'error': loadErrorVideo(data.error[0].file); break;
+            case 'codeToSign': loadCodeToSignVideos(data.videos); break;
+            case 'categories': loadCategoriesVideos(data.categories); break;
+            case 'tooltips': loadTooltipsVideos(data.tooltips);
+        }
+    });
+
+    function loadErrorVideo(file)
+    {
+        $('#initialVideo').empty();
+        $('#initialVideo').append(
+            `<video type='video/mp4' muted autoplay
+                src='${file.scheme}://${file.authority}${file.path}'>
+            </video>`
+        );
+        $('#loadingTab').hide();
+        $('#initialTab').show();
+    }
+
+    function loadCodeToSignVideos(videos)
+    {
+        $('#codeToSignVideos').empty();
+
+        allVideos[0] = [];
+        updateSlider(0, videos.length);
+
+        for (let i = 0; i < videosGroupSize; i++)
+        {
+            const file = videos[i].file;
+            const info = videos[i].info;
+
+            $('#codeToSignVideos').append(
+                `<video id='video_0_${i}' type='video/mp4' muted
+                    src='${file.scheme}://${file.authority}${file.path}'>
+                </video>`
+            );
+            allVideos[0].push(videos[i]);
+
+            if (i > 0)
+            {
+                $('#video_0_' + i).hide();
+            }
+
+            if (info)
+            {
+                $('#codeToSignVideos').append(
+                    `<video id='info_0_${i}' type='video/mp4' muted
+                        src='${info.scheme}://${info.authority}${info.path}'>
+                    </video>`
+                );
+                $('#info_0_' + i).hide();
+            }
+            
+            $('#video_0_' + i).on('ended', () => {
+                if (i < videosGroupSize - 1)
+                {
+                    changeCurrentVideo(0, i + 1, true);
+                }
+                else if (autoRepeatToggle)
+                {
+                    changeCurrentVideo(0, 0, true);
+                }
+                else
+                {
+                    stopped = true;
+                    pause();
+                }
+            });
+        }
+
+        changeCurrentVideo(0, 0, false);
+    }
+
+    function loadCategoriesVideos(categories)
+    {
+        $('#signToCodeCategories').empty();
+        $('#signToCodeVideos').empty();
+
+        const numberOfCategories = categories.length;
+        for (let i = 0; i < numberOfCategories; i++)
+        {
+            const categoryIndex = i + 1;
+            const categoryTooltip = categories[i].tooltip;
+
+            $('#signToCodeCategories').append(
+                `<button id='category_${categoryIndex}' title='${categories[i].title}'
+                    class='button categoryButton infoToggle'>
+                        <i class='fa-solid fa-${categories[i].icon}'></i>
+                </button>`
+            );
+            $('#category_' + categoryIndex).tooltip({
+                content:
+                    `<video type='video/mp4' muted autoplay loop
+                        src='${categoryTooltip.scheme}://${categoryTooltip.authority}${categoryTooltip.path}'>
+                    </video>`,
+                show: {delay:500},
+            });
+            !allVideos[categoryIndex] ? allVideos.push([]) : allVideos[categoryIndex] = [];
+
+            const numberOfVideos = categories[i].videos.length;
+            for (let j = 0; j < numberOfVideos; j++)
+            {
+                const file = categories[i].videos[j].file;
+                const info = categories[i].videos[j].info;
+
+                $('#signToCodeVideos').append(
+                    `<video id='video_${categoryIndex}_${j}' type='video/mp4' muted
+                        src='${file.scheme}://${file.authority}${file.path}'>
+                    </video>
+                    <video id='info_${categoryIndex}_${j}' type='video/mp4' muted
+                        src='${info.scheme}://${info.authority}${info.path}'>
+                    </video>`
+                );
+                allVideos[categoryIndex].push(categories[i].videos[j]);
+
+                if (j > 0 || categoryIndex > 1)
+                {
+                    $('#video_' + categoryIndex + '_' + j).hide();
+                }
+                $('#info_' + categoryIndex + '_' + j).hide();
+            }
+        }
+
+        updateSlider(1, allVideos[1][0].length);
+    
+        changeCurrentVideo(1, 0, false);
+    }
+
+    function loadTooltipsVideos(tooltips)
+    {
+        for (let tooltip of tooltips)
+        {
+            const file = tooltip.file;
+            $('#' + tooltip.id).tooltip({
+                content:
+                    `<video type='video/mp4' muted autoplay loop
+                        src='${file.scheme}://${file.authority}${file.path}'>
+                    </video>`,
+                show: {delay:500},
+            });
+        }
+    }
 
     /* INITIAL TAB */
 
@@ -62,7 +209,7 @@ $(() =>
     $('#codeToSignSlider').slider(
     {
         animate: 'fast',
-        max: sliderSize - 1,
+        max: videosGroupSize - 1,
         start: (event, ui) =>
         {
             if (ui.value !== currentIndex)
@@ -155,7 +302,7 @@ $(() =>
         }
     });
 
-    $('#updateCodeToSign').on('click', () =>
+    $('#codeToSignAgain').on('click', () =>
     {
         hasTotalDuration = false;
         showCodeToSignTab = true;
@@ -165,96 +312,44 @@ $(() =>
         vscode.postMessage({ type: 'codeToSign' });
     });
 
-    /* VS CODE MESSAGE HANDLING */
+    /* SIGN TO CODE TAB */
 
-    window.addEventListener('message', event =>
+    $('.categoryButton').on('click', (event) =>
     {
-        const data = event.data;
-        switch (data.messageType) {
-            case 'error': loadErrorVideo(data.videos[0].file); break;
-            case 'codeToSign': loadCodeToSignVideos(data.videos);
-            case 'signToCode': loadSignToCodeVideos(data.videos);
-            case 'tooltips': loadTooltips(data.videos);
-        }
+        const newArray = event.target.id;
+        $('.categoryButton').css('background-color', 'transparent');
+        $('#category' + newArray).css('background-color', primaryColor);
+        changeCurrentVideo(newArray, 0, false);
     });
 
-    function loadErrorVideo(file)
+    $('#previousInCategory').on('click', () =>
     {
-        $('#initialVideo').empty();
-        $('#initialVideo').append(
-            `<video type="video/mp4" muted autoplay
-                src="${file.scheme}://${file.authority}${file.path}">
-            </video>`
-        );
-        $('#loadingTab').hide();
-        $('#initialTab').show();
-    }
+        changeCurrentVideo(currentArray, previousIndex(), false);
+    });
 
-    function loadCodeToSignVideos(videos)
+    $('#nextInCategory').on('click', () =>
     {
-        $('#codeToSignVideos').empty();
+        changeCurrentVideo(currentArray, nextIndex(), false);
+    });
 
-        allVideos[0] = [];
-        updateSlider(videos.length);
-        $('#debug').text('');
-
-        for (let i = 0; i < sliderSize; i++)
-        {
-            const file = videos[i].file;
-            const info = videos[i].info;
-
-            $('#codeToSignVideos').append(
-                `<video id="video_0_${i}" type="video/mp4" muted
-                    src="${file.scheme}://${file.authority}${file.path}">
-                </video>`
-            );
-            allVideos[0].push(videos[i]);
-
-            if (i > 0)
-            {
-                $('#video_0_' + i).hide();
-            }
-
-            if (info)
-            {
-                $('#codeToSignVideos').append(
-                    `<video id="info_0_${i}" type="video/mp4" muted
-                        src="${info.scheme}://${info.authority}${info.path}">
-                    </video>`
-                );
-                $('#info_0_' + i).hide();
-            }
-            
-            $('#video_0_' + i).on('ended', () => {
-                if (i < sliderSize - 1)
-                {
-                    changeCurrentVideo(0, i + 1, true);
-                }
-                else if (autoRepeatToggle)
-                {
-                    changeCurrentVideo(0, 0, true);
-                }
-                else
-                {
-                    stopped = true;
-                    pause();
-                }
-            });
-        }
-
-        changeCurrentVideo(0, 0, false);
-    }
+    $('#writeExampleToCode').on('click', () =>
+    {
+        vscode.postMessage({
+            type: 'signToCode',
+            text: allVideos[currentArray][currentIndex].example,
+        });
+    });
 
     /* OTHER NAMED FUNCTIONS */
 
     function previousIndex() { return currentIndex === 0 ? 0 : currentIndex - 1; }
 
-    function nextIndex() { return currentIndex === sliderSize - 1 ? currentIndex : currentIndex + 1; }
+    function nextIndex() { return currentIndex === videosGroupSize - 1 ? currentIndex : currentIndex + 1; }
 
-    function updateSlider(newSize)
+    function updateSlider(array, newSize)
     {
-        sliderSize = newSize;
-        $('#codeToSignSlider').slider('option', 'max', sliderSize - 1);
+        videosGroupSize = newSize;
+        $('#' + (array ? 'signToCode' : 'codeToSign') + 'Slider').slider('option', 'max', videosGroupSize - 1);
     }
 
     function play()
@@ -274,15 +369,15 @@ $(() =>
 
     function changeCurrentVideo(newArray, newIndex, playNew)
     {
+        const newVideo = allVideos[newArray][newIndex];
+        let newToken = newVideo.token;
+        let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+
         if (currentArray !== newArray) {
             playNew = false;
             newIndex = 0;
-            updateSlider(allVideos[newArray][newIndex].length);
+            updateSlider(newArray, newVideo.length);
         }
-
-        let newVideo = allVideos[newArray][newIndex];
-        let newToken = newVideo.token;
-        let currentVideo = '#video_' + currentArray + '_' + currentIndex;
 
         $(currentVideo).hide();
         $(currentVideo)[0].load();
@@ -296,11 +391,28 @@ $(() =>
         if (currentArray === 0)
         {
             $(currentVideo).prop('playbackRate', currentSpeed);
+            $('#codeToSignCurrentToken').text(newToken);
             $('#codeToSignSlider').slider('value', currentIndex);
-        }
 
-        newVideo.info ? $('#info').show() : $('#info').hide();
-        $('#currentToken').text(newToken);
+            newVideo.info ? $('#info').show() : $('#info').hide();
+        }
+        else
+        {
+            newToken = '(' + (currentIndex + 1) + '/' + videosGroupSize + '): ' + newToken;
+            $('#signToCodeCurrentToken').text(newToken);
+            $('#signToCodeSlider').slider('value', currentIndex);
+            
+            if (newVideo.example)
+            {
+                $('#signToCodeExample').show();
+                $('#exampleContainer').html(newVideo.example);
+            }
+            else
+            {
+                $('#signToCodeExample').hide();
+                $('#exampleContainer').empty();
+            }
+        }
 
         playNew ? play() : pause();
     }
@@ -309,7 +421,7 @@ $(() =>
     {
         if (!hasTotalDuration)
         {
-            for (let i = 0; i < sliderSize; i++)
+            for (let i = 0; i < videosGroupSize; i++)
             {
                 totalDuration += $('#video_0_' + i).prop('duration');
             }
@@ -345,4 +457,69 @@ $(() =>
         }
     }
     setInterval(updateCurrentTime, 200);
+
+    /* KEYBOARD SHORTCUTS
+
+    $('body').on('keypress', event =>
+    {
+        if (event.keyCode === 32)
+        {
+            $('#playPause').trigger('click');
+        }
+    });
+    $('body').on('keydown', event =>
+    {
+        switch (event.key)
+        {
+            case 'i':
+            case 'I':
+                $('#info').trigger('click'); break;
+            case 't':
+            case 'T':
+                $('#tooltipToggle').trigger('click');
+        }
+        
+        if (currentArray === 0)
+        {
+            switch (event.key)
+            {
+                case 'PageDown':
+                    $('#slower').trigger('click'); break;
+                case 'PageUp':
+                    $('#faster').trigger('click'); break;
+                case 'Home':
+                case 'End':
+                case 'Backspace':
+                    $('#rewind').trigger('click'); break;
+                case 'ArrowLeft':
+                    $('#backward').trigger('click'); break;
+                case 'ArrowRight':
+                    $('#forward').trigger('click'); break;
+                case 'a':
+                case 'A':
+                    $('#autoRepeatToggle').trigger('click'); break;
+                case 'r':
+                case 'R':
+                    $('#readCode').trigger('click');
+            }
+        }
+        else
+        {
+            switch (event.key)
+            {
+                case 'ArrowLeft':
+                    $('#previousInCategory').trigger('click'); break;
+                case 'ArrowRight':
+                    $('#nextInCategory').trigger('click'); break;
+                case 'PageDown':
+                    $('#previousExample').trigger('click'); break;
+                case 'PageUp':
+                    $('#nextExample').trigger('click'); break;
+                case 'w':
+                case 'W':
+                    $('#writeCode').trigger('click');
+            }
+        }
+    });
+    */
 });
