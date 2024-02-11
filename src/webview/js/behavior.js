@@ -12,11 +12,12 @@ $(() =>
         hasTotalDuration = false,
         stopped = false,
         autoRepeatToggle = false,
-        showCodeToSignTab = true,
         tooltipToggle = true,
         notInfo = true,
         allVideos = [],
-        timeInterval;
+        timeInterval,
+        showCodeToSignTab,
+        showSignToCodeTab;
 
     allVideos.push([]);
 
@@ -101,6 +102,17 @@ $(() =>
         timeInterval = setInterval(updateCurrentTime, 200);
 
         changeCurrentVideo(0, 0, false);
+
+        showCodeToSignTab = true;
+
+        $('#video_0_0').on('canplaythrough', () => {
+            if (showCodeToSignTab)
+            {
+                $('#loadingTab').hide();
+                $('#codeToSignTab').show();
+                showCodeToSignTab = false;
+            }
+        });
     }
 
     function loadCategoriesVideos(categories)
@@ -167,8 +179,16 @@ $(() =>
 
         changeCurrentVideo(1, 0, false);
 
-        $('#loadingTab').hide();
-        $('#signToCodeTab').show();
+        showSignToCodeTab = true;
+
+        $('#video_1_0').on('canplaythrough', () => {
+            if (showSignToCodeTab)
+            {
+                $('#loadingTab').hide();
+                $('#signToCodeTab').show();
+                showSignToCodeTab = false;
+            }
+        });
     }
 
     function loadTooltipsVideos(tooltips)
@@ -335,7 +355,6 @@ $(() =>
     {
         clearInterval(timeInterval);
         hasTotalDuration = false;
-        showCodeToSignTab = true;
         totalDuration = 0;
         $('#codeToSignTab').hide();
         $('#loadingTab').css('display', 'flex');
@@ -476,12 +495,6 @@ $(() =>
             if (!isNaN(currentTime))
             {
                 $('#currentTime').text(Math.floor(currentTime).toString().padStart(numberOfDigits, '0')  + 's');
-                if (showCodeToSignTab)
-                {
-                    $('#loadingTab').hide();
-                    $('#codeToSignTab').show();
-                    showCodeToSignTab = false;
-                }
             }
         }
     }
