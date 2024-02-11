@@ -17,8 +17,13 @@
     font-family: monospace;
 }
 
+body {
+    overflow-y: scroll;
+    margin-left: 0.75rem;
+}
+
 button {
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 0.5rem 1rem;
     background-color: transparent;
     border-radius: 5%;
@@ -87,7 +92,7 @@ video {
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .infoTimeToggle {
@@ -105,7 +110,7 @@ video {
 }
 
 #slower, #faster, .categories {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 #codeToSignVideos, #signToCodeVideos {
@@ -118,32 +123,47 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0 1.25rem 0;
 }
 
 #codeToSignPlayPause, #signToCodePlayPause {
-    font-size: 5.5rem;
+    font-size: 4.5rem;
 }
 
 #codeToSignActions, #signToCodeActions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 1.25rem 0;
 }
 
 #codeToSignCurrentToken, #signToCodeCurrentToken {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
+#signToCodePagination {
+    font-size: 1.5rem;
+}
+
 #codeToSignInfo, #signToCodeInfo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-left: 1rem;
 }
 
-#codeToSignTooltipToggle, #signToCodeTooltipToggle, #categoryVar {
+#codeToSignTooltipToggle, #signToCodeTooltipToggle {
     background-color: var(--primaryColor);
+}
+
+#signToCodeExample {
+    padding: 1.5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#codeContainer {
+    font-size: 1.5rem;
 }
 
 body.vscode-light button {
@@ -159,17 +179,30 @@ body.vscode-high-contrast button {
     border: var(--highContrastThemeBorder); 
 }
 
-body.vscode-light #codeToSignPlayer,
-body.vscode-light #signToCodePlayer {
-    border-bottom: var(--lightThemeBorder);
+body.vscode-light #codeToSignActions,
+body.vscode-light #signToCodeActions {
+    border-top: var(--lightThemeBorder);
 }
-body.vscode-dark #codeToSignPlayer,
-body.vscode-dark #signToCodePlayer {
-    border-bottom: var(--darkThemeBorder);
+body.vscode-dark #codeToSignActions,
+body.vscode-dark #signToCodeActions {
+    border-top: var(--darkThemeBorder);
 }
-body.vscode-high-contrast #codeToSignPlayer,
-body.vscode-high-contrast #signToCodePlayer {
-    border-bottom: var(--highContrastThemeBorder);
+body.vscode-high-contrast #codeToSignActions,
+body.vscode-high-contrast #signToCodeActions {
+    border-top: var(--highContrastThemeBorder);
+}
+
+body.vscode-light #signToCodeExample {
+    color: var(--lightThemeColor);
+    border: var(--lightThemeBorder);
+}
+body.vscode-dark #signToCodeExample {
+    color: var(--darkThemeColor);
+    border: var(--darkThemeBorder); 
+}
+body.vscode-high-contrast #signToCodeExample {
+    color: var(--highContrastThemeColor);
+    border: var(--highContrastThemeBorder); 
 }
 
 body.vscode-light .ui-tooltip,
@@ -211,7 +244,7 @@ body.vscode-high-contrast .ui-slider .ui-slider-pip .ui-slider-pip-selected-init
 }
 
 #codeToSignSlider, #signToCodeSlider {
-    margin: 1.75rem 0.75rem;
+    margin: 1.5rem 0.75rem 0.75rem 0.75rem;
 }
 
 #codeToSignSlider .ui-slider-handle,

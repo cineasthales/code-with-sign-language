@@ -105,10 +105,9 @@ export function getHtml(webview: Webview, uri: Uri): string
 					</button>
 				</span>
 				<button id="codeToSignAgain" class="button infoToggle" title="Código → Libras (novamente)">
-					<i class="fa-solid fa-file-circle-check"></i>
+					<i class="fa-solid fa-file-circle-plus"></i>
 				</button>
 			</section>
-			<section id="debug"></section>
 		</div>
 
 		<div id="signToCodeTab">
@@ -136,12 +135,13 @@ export function getHtml(webview: Webview, uri: Uri): string
 						<i class="fa-solid fa-question infoIcon"></i>
 					</button>
 				</span>
-				<button id="writeExampleToCode" class="button infoToggle" title="Escrever exemplo no código">
-					<i class="fa-solid fa-file-pen"></i>
-				</button>
+				<span id="signToCodePagination"></span>
 			</section>
 			<section id="signToCodeExample">
-				<code id="exampleContainer"></code>
+				<span id="codeContainer"></span>
+				<button id="writeExampleToCode" class="button infoToggle" title="Escrever exemplo no código">
+					<i class="fa-regular fa-paste"></i>
+				</button>
 			</section>
 		</div>
 

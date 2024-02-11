@@ -151,12 +151,11 @@ $(() =>
                 }
                 $('#info_' + categoryIndex + '_' + j).hide();
 
+                $('#video_' + categoryIndex + '_' + j).on('ended', () => { pause(); });
                 $('#info_' + categoryIndex + '_' + j).on('ended', () => { pause(); });
             }
         }
 
-        updateSlider(1, allVideos[1][0].length);
-    
         changeCurrentVideo(1, 0, false);
 
         $('#loadingTab').hide();
@@ -191,7 +190,7 @@ $(() =>
     {
         $('#initialTab').hide();
         $('#loadingTab').css('display', 'flex');
-        vscode.postMessage({ type: 'signToCode' });
+        vscode.postMessage({ type: 'categories' });
     });
 
     /* CODE TO SIGN TAB */
@@ -216,7 +215,7 @@ $(() =>
         }
     });
 
-    $('#codeToSignSlider').slider(
+    $('#codeToSignSlider, #signToCodeSlider').slider(
     {
         animate: 'fast',
         max: videosGroupSize - 1,
@@ -395,17 +394,18 @@ $(() =>
     function changeCurrentVideo(newArray, newIndex, playNew)
     {
         const newVideo = allVideos[newArray][newIndex];
-        let newToken = newVideo.token;
+        const newToken = newVideo.token;
         let currentVideo = '#video_' + currentArray + '_' + currentIndex;
+
+        $(currentVideo).hide();
 
         if (currentArray !== newArray) {
             playNew = false;
             newIndex = 0;
-            updateSlider(newArray, newVideo.length);
+            updateSlider(newArray, allVideos[newArray].length);
+        } else {
+            $(currentVideo)[0].load();
         }
-
-        $(currentVideo).hide();
-        $(currentVideo)[0].load();
 
         currentArray = newArray;
         currentIndex = newIndex;
@@ -416,26 +416,26 @@ $(() =>
         if (currentArray === 0)
         {
             $(currentVideo).prop('playbackRate', currentSpeed);
-            $('#codeToSignCurrentToken').text(newToken);
             $('#codeToSignSlider').slider('value', currentIndex);
+            $('#codeToSignCurrentToken').text(newToken);
 
             newVideo.info ? $('#codeToSignInfo').show() : $('#codeToSignInfo').hide();
         }
         else
         {
-            newToken = '(' + (currentIndex + 1) + '/' + videosGroupSize + '): ' + newToken;
-            $('#signToCodeCurrentToken').text(newToken);
             $('#signToCodeSlider').slider('value', currentIndex);
-            
+            $('#signToCodeCurrentToken').text(newToken);
+            $('#signToCodePagination').text((currentIndex + 1) + '/' + videosGroupSize);
+
             if (newVideo.example)
             {
-                $('#signToCodeExample').show();
-                $('#exampleContainer').html(newVideo.example);
+                $('#signToCodeExample').css('display', 'flex');
+                $('#codeContainer').html(newVideo.example.replaceAll('\n', '<br>'));
             }
             else
             {
                 $('#signToCodeExample').hide();
-                $('#exampleContainer').empty();
+                $('#codeContainer').empty();
             }
 
             newVideo.info ? $('#signToCodeInfo').show() : $('#signToCodeInfo').hide();
