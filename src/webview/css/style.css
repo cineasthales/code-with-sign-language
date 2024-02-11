@@ -151,7 +151,7 @@ video {
     margin-left: 1rem;
 }
 
-#codeToSignTooltipToggle, #signToCodeTooltipToggle {
+#codeToSignTooltipToggle, #signToCodeTooltipToggle, #category_1 {
     background-color: var(--primaryColor);
 }
 
