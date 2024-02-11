@@ -108,6 +108,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 					<i class="fa-solid fa-file-circle-check"></i>
 				</button>
 			</section>
+			<section id="debug"></section>
 		</div>
 
 		<div id="signToCodeTab">

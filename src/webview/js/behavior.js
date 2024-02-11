@@ -269,15 +269,15 @@ $(() =>
         tooltipToggle = !tooltipToggle;
         if (tooltipToggle)
         {
+            $('.button').tooltip('enable');
             $('#codeToSignTooltipToggle').css('background-color', primaryColor);
             $('#signToCodeTooltipToggle').css('background-color', primaryColor);
-            $('.button').tooltip('enable');
         }
         else
         {
-            $('#codeToSignTooltipToggle').css('background-color', transparent);
-            $('#signToCodeTooltipToggle').css('background-color', transparent);
             $('.button').tooltip('disable');
+            $('#codeToSignTooltipToggle').css('background-color', 'transparent');
+            $('#signToCodeTooltipToggle').css('background-color', 'transparent');
         }
     });
 
