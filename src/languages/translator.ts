@@ -71,8 +71,13 @@ export class Translator
 
 	writeCode(editor: vscode.TextEditor, text: string): void
 	{
-		const position: vscode.Position = editor.selection.active;
-		editor.edit((builder: vscode.TextEditorEdit) => { builder.insert(position, text); });
+		const selection = editor.selection;
+		const rangeToDelete: vscode.Range = new vscode.Range(selection.start, selection.end);
+		const positionToInsert: vscode.Position = editor.selection.active;
+		editor.edit((builder: vscode.TextEditorEdit) => {
+			builder.delete(rangeToDelete);
+			builder.insert(positionToInsert, text); 
+		});
 	}
 
 	getTooltips(): ITooltips[]
