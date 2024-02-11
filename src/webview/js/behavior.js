@@ -315,8 +315,8 @@ $(() =>
             $(!currentArray ? '#codeToSignSlider' : '#signToCodeSlider').slider('enable');
             $('#info_' + sufix).hide();
             $('#info_' + sufix)[0].load();
-            $('#video_' + sufix).show();
             notInfo = true;
+            changeCurrentVideo(currentArray, currentIndex, false);
         }
     });
 

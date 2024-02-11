@@ -337,16 +337,16 @@ export function getResults(text: string): ISign[]
 
 			if (text[i].match(/[a-gilonr-wy]/) && (i === 0 || !text[i-1].match(/[\w$]/)))
 			{
+				if (text.slice(i, i + 11) === 'console.log') {
+					i += 10;
+					results.push(signs.functionConsoleLog);
+					continue;
+				}
+
 				const firstWord: RegExpMatchArray | null = text.slice(i).match(/\w+\b/);
 
 				if (firstWord && firstWord.length > 0)
 				{
-					if (firstWord[0].slice(0, 11) === 'console.log') {
-						i += 10;
-						results.push(signs.functionConsoleLog);
-						continue;
-					}
-
 					if (!firstWord[0].match(/[\d_$]+/) && firstWord[0] === firstWord[0].toLowerCase())
 					{
 						let found: string | undefined = reservedWords.find(word => word === firstWord[0]);
