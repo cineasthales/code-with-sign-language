@@ -93,6 +93,8 @@ $(() =>
                     pause();
                 }
             });
+
+            $('#info_0_' + i).on('ended', () => { pause(); });
         }
 
         changeCurrentVideo(0, 0, false);
@@ -145,6 +147,8 @@ $(() =>
                     $('#video_' + categoryIndex + '_' + j).hide();
                 }
                 $('#info_' + categoryIndex + '_' + j).hide();
+
+                $('#info_' + categoryIndex + '_' + j).on('ended', () => { pause(); });
             }
         }
 
@@ -283,18 +287,16 @@ $(() =>
 
     $('#codeToSignInfo, #signToCodeInfo').on('click', () =>
     {
+        const sufix = currentArray + '_' + currentIndex;
         if ($('.infoIcon').hasClass('fa-question'))
         {
             $('.infoIcon').removeClass('fa-question');
             $('.infoIcon').addClass('fa-check');
-            $('#codeToSignInfo, #signToCodeInfo').prop('title', 'Ok');
             $('.infoTimeToggle').css('opacity', '0.1');
             $('.infoToggle').css('opacity', '0.1');
             $('.infoToggle').css('cursor', 'not-allowed');
             $('.infoToggle').prop('disabled', true);
-            $('#codeToSignSlider').slider('disable');
-            $('#signToCodeSlider').slider('disable');
-            const sufix = currentArray + '_' + currentIndex;
+            $(!currentArray ? '#codeToSignSlider' : '#signToCodeSlider').slider('disable');
             $('#video_' + sufix).hide();
             $('#video_' + sufix)[0].load();
             $('#info_' + sufix).show();
@@ -303,17 +305,18 @@ $(() =>
         }
         else
         {
+            pause();
             $('.infoIcon').removeClass('fa-check');
             $('.infoIcon').addClass('fa-question');
-            $('#codeToSignInfo, #signToCodeInfo').prop('title', 'O que isto significa?');
             $('.infoTimeToggle').css('opacity', '1');
             $('.infoToggle').css('opacity', '1');
             $('.infoToggle').css('cursor', 'pointer');
             $('.infoToggle').prop('disabled', false);
-            $('#codeToSignSlider').slider('enable');
-            $('#signToCodeSlider').slider('enable');
+            $(!currentArray ? '#codeToSignSlider' : '#signToCodeSlider').slider('enable');
+            $('#info_' + sufix).hide();
+            $('#info_' + sufix)[0].load();
+            $('#video_' + sufix).show();
             notInfo = true;
-            changeCurrentVideo(currentArray, currentIndex, false);
         }
     });
 
