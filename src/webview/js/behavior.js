@@ -499,27 +499,24 @@ $(() =>
         }
     }
 
-    /* KEYBOARD SHORTCUTS
+    /* KEYBOARD CONTROLS */
 
     $('body').on('keypress', event =>
     {
         if (event.keyCode === 32)
         {
-            $('#playPause').trigger('click');
+            if (currentArray === 0)
+            {
+                $('#codeToSignPlayPause').trigger('click');
+            }
+            else
+            {
+                $('#signToCodePlayPause').trigger('click');
+            }
         }
     });
     $('body').on('keydown', event =>
     {
-        switch (event.key)
-        {
-            case 'i':
-            case 'I':
-                $('#info').trigger('click'); break;
-            case 't':
-            case 'T':
-                $('#tooltipToggle').trigger('click');
-        }
-        
         if (currentArray === 0)
         {
             switch (event.key)
@@ -539,9 +536,19 @@ $(() =>
                 case 'a':
                 case 'A':
                     $('#autoRepeatToggle').trigger('click'); break;
+                case 't':
+                case 'T':
+                    $('#codeToSignTooltipToggle').trigger('click'); break;
+                case 'i':
+                case 'I':
+                    if (allVideos[0][currentIndex] && allVideos[0][currentIndex].info)
+                    {
+                        $('#codeToSignInfo').trigger('click');
+                    }
+                    break;
                 case 'r':
                 case 'R':
-                    $('#readCode').trigger('click');
+                    $('#codeToSignAgain').trigger('click');
             }
         }
         else
@@ -552,15 +559,16 @@ $(() =>
                     $('#previousInCategory').trigger('click'); break;
                 case 'ArrowRight':
                     $('#nextInCategory').trigger('click'); break;
-                case 'PageDown':
-                    $('#previousExample').trigger('click'); break;
-                case 'PageUp':
-                    $('#nextExample').trigger('click'); break;
-                case 'w':
-                case 'W':
-                    $('#writeCode').trigger('click');
+                case 't':
+                case 'T':
+                    $('#signToCodeTooltipToggle').trigger('click'); break;
+                case 'i':
+                case 'I':
+                    $('#signToCodeInfo').trigger('click'); break;
+                case 'e':
+                case 'E':
+                    $('#writeExampleToCode').trigger('click');
             }
         }
     });
-    */
 });
