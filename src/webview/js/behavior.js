@@ -15,7 +15,8 @@ $(() =>
         showCodeToSignTab = true,
         tooltipToggle = true,
         notInfo = true,
-        allVideos = [];
+        allVideos = [],
+        timeInterval;
 
     allVideos.push([]);
 
@@ -96,6 +97,8 @@ $(() =>
 
             $('#info_0_' + i).on('ended', () => { pause(); });
         }
+
+        timeInterval = setInterval(updateCurrentTime, 200);
 
         changeCurrentVideo(0, 0, false);
     }
@@ -322,6 +325,7 @@ $(() =>
 
     $('#codeToSignAgain').on('click', () =>
     {
+        clearInterval(timeInterval);
         hasTotalDuration = false;
         showCodeToSignTab = true;
         totalDuration = 0;
@@ -479,7 +483,6 @@ $(() =>
             }
         }
     }
-    setInterval(updateCurrentTime, 200);
 
     /* KEYBOARD SHORTCUTS
 
