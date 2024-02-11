@@ -66,7 +66,7 @@ video {
 #loadingTab {
     justify-content: center;
     align-items: center;
-    height: 20rem;
+    height: 40rem;
 }
 
 #loadingTab i {
@@ -121,7 +121,7 @@ video {
     padding: 0.75rem 0;
 }
 
-#playPause {
+#codeToSignPlayPause, #signToCodePlayPause {
     font-size: 5.5rem;
 }
 
@@ -132,17 +132,17 @@ video {
     padding: 0.75rem 0;
 }
 
-#currentToken {
+#codeToSignCurrentToken, #signToCodeCurrentToken {
     font-size: 2.5rem;
     font-weight: bold;
 }
 
-#info {
+#codeToSignInfo, #signToCodeInfo {
     font-size: 2rem;
     margin-left: 1rem;
 }
 
-#tooltipToggle, #categoryVar {
+#codeToSignTooltipToggle, #signToCodeTooltipToggle, #categoryVar {
     background-color: var(--primaryColor);
 }
 

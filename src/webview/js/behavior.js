@@ -74,7 +74,7 @@ $(() =>
                     `<video id='info_0_${i}' type='video/mp4' muted
                         src='${info.scheme}://${info.authority}${info.path}'>
                     </video>`
-                );
+                ); 
                 $('#info_0_' + i).hide();
             }
             
@@ -120,7 +120,7 @@ $(() =>
                     `<video type='video/mp4' muted autoplay loop
                         src='${categoryTooltip.scheme}://${categoryTooltip.authority}${categoryTooltip.path}'>
                     </video>`,
-                show: {delay:500},
+                show: {delay:750},
             });
             !allVideos[categoryIndex] ? allVideos.push([]) : allVideos[categoryIndex] = [];
 
@@ -151,6 +151,9 @@ $(() =>
         updateSlider(1, allVideos[1][0].length);
     
         changeCurrentVideo(1, 0, false);
+
+        $('#loadingTab').hide();
+        $('#signToCodeTab').show();
     }
 
     function loadTooltipsVideos(tooltips)
@@ -163,7 +166,7 @@ $(() =>
                     `<video type='video/mp4' muted autoplay loop
                         src='${file.scheme}://${file.authority}${file.path}'>
                     </video>`,
-                show: {delay:500},
+                show: {delay:750},
             });
         }
     }
