@@ -245,11 +245,11 @@ export const signs: any = {
 			`let idade = 5 * 4;\n` +
 			`console.log('Idade: ' + idade + ' anos');`
 	},
-	divisionOrRegex: {
+	division: {
 		token: '/',
 		isCode: true,
-		file: 'divisionOrRegex',
-		info: 'divisionOrRegex',
+		file: 'division',
+		info: 'division',
 		example:
 			`let idade = 100 / 2;\n` +
 			`console.log('Idade: ' + idade + ' anos');`

@@ -70,7 +70,7 @@ export function getResults(text: string): ISign[]
 					continue;
 				}
 				*/
-				results.push(signs.divisionOrRegex);
+				results.push(signs.division);
 				continue;
 			}
 
@@ -440,11 +440,10 @@ export function getResults(text: string): ISign[]
 				case '[': results.push(signsMisc.punctuationBracketSquareBegin); break;
 				case ']': results.push(signsMisc.punctuationBracketSquareEnd); break;	
 				case '{': results.push(signsMisc.punctuationBracketCurlyBegin); break;
-				case '}': results.push(signsMisc.punctuationBracketCurlEnd); break;
+				case '}': results.push(signsMisc.punctuationBracketCurlyEnd); break;
 				case '-': results.push(signsMisc.punctuationMinusOrHyphen); break;
 				case '+': results.push(signsMisc.punctuationPlus); break;
 				case '*': results.push(signsMisc.punctuationAsterisk); break;
-				case '=': results.push(signsMisc.punctuationEqual); break;
 				case '%': results.push(signsMisc.punctuationPercentage); break;
 				case '$': results.push(signsMisc.punctuationDollar); break;
 				case '@': results.push(signsMisc.punctuationAt); break;

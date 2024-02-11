@@ -43,7 +43,7 @@ export const categories: ICategory[]  = [
 			signs.plusOrConcat,
 			signs.minus,
 			signs.times,
-			signs.divisionOrRegex,
+			signs.division,
 			signs.modulus,
 			signs.power,
 			//signs.increment,

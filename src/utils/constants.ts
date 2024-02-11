@@ -370,10 +370,10 @@ export const signsMisc: any = {
 		file: 'punctuationBracketCurlyBegin',
 		example: undefined,
 	},
-	punctuationBracketCurlEnd: {
+	punctuationBracketCurlyEnd: {
 		token: '}',
 		isCode: false,
-		file: 'punctuationBracketCurlEnd',
+		file: 'punctuationBracketCurlyEnd',
 		example: undefined,
 	},
 	punctuationMinusOrHyphen: {
@@ -392,12 +392,6 @@ export const signsMisc: any = {
 		token: '*',
 		isCode: false,
 		file: 'punctuationAsterisk',
-		example: undefined,
-	},
-	punctuationEqual: {
-		token: '=',
-		isCode: false,
-		file: 'punctuationEqual',
 		example: undefined,
 	},
 	punctuationPercentage: {
