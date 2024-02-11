@@ -807,7 +807,7 @@ export const signs: any = {
 			`} else {\n` +
 			`\tpodeEntrar = false;\n` +
 			`}\n` +
-			`\tconsole.log('Pode entrar? ' + podeEntrar);`
+			`console.log('Pode entrar? ' + podeEntrar);`
 	},
 	/*
 	reservedTry: {

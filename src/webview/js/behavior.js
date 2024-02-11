@@ -120,6 +120,14 @@ $(() =>
                         <i class='fa-solid fa-${categories[i].icon}'></i>
                 </button>`
             );
+
+            $('#category_' + categoryIndex).on('click', () =>
+            {
+                $('.categoryButton').css('background-color', 'transparent');
+                $('#category_' + categoryIndex).css('background-color', primaryColor);
+                changeCurrentVideo(categoryIndex, 0, false);
+            });
+
             $('#category_' + categoryIndex).tooltip({
                 content:
                     `<video type='video/mp4' muted autoplay loop
@@ -127,6 +135,7 @@ $(() =>
                     </video>`,
                 show: {delay:750},
             });
+
             !allVideos[categoryIndex] ? allVideos.push([]) : allVideos[categoryIndex] = [];
 
             const numberOfVideos = categories[i].videos.length;
@@ -335,17 +344,6 @@ $(() =>
 
     /* SIGN TO CODE TAB */
 
-    $('.categoryButton').on('click', (event) =>
-    {
-        $('.categoryButton').css('background-color', 'transparent');
-
-        const selectedCategory = event.target.id;
-        $(selectedCategory).css('background-color', primaryColor);
-
-        const newArray = parseInt(newArray.split('_')[1]);
-        changeCurrentVideo(newArray, 0, false);
-    });
-
     $('#previousInCategory').on('click', () =>
     {
         changeCurrentVideo(currentArray, previousIndex(), false);
@@ -429,13 +427,16 @@ $(() =>
 
             if (newVideo.example)
             {
+                const exampleToShow = newVideo.example
+                    .replaceAll('\n', '<br>')
+                    .replaceAll('\t', '&nbsp;&nbsp;&nbsp;&nbsp;');
+                $('#codeContainer').html(exampleToShow);
                 $('#signToCodeExample').css('display', 'flex');
-                $('#codeContainer').html(newVideo.example.replaceAll('\n', '<br>'));
             }
             else
             {
-                $('#signToCodeExample').hide();
                 $('#codeContainer').empty();
+                $('#signToCodeExample').hide();
             }
 
             newVideo.info ? $('#signToCodeInfo').show() : $('#signToCodeInfo').hide();
@@ -475,7 +476,8 @@ $(() =>
             if (!isNaN(currentTime))
             {
                 $('#currentTime').text(Math.floor(currentTime).toString().padStart(numberOfDigits, '0')  + 's');
-                if (showCodeToSignTab) {
+                if (showCodeToSignTab)
+                {
                     $('#loadingTab').hide();
                     $('#codeToSignTab').show();
                     showCodeToSignTab = false;
