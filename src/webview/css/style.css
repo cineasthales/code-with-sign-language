@@ -278,3 +278,10 @@ body.vscode-high-contrast .ui-slider .ui-slider-pip .ui-slider-pip-selected-init
 #signToCodeSlider .ui-slider-pip .ui-slider-pip-selected {
     font-weight: bold;
 }
+
+#codeToSignSlider .ui-slider-pip.ui-slider-pip-last .ui-slider-line,
+#codeToSignSlider .ui-slider-pip.ui-slider-pip-first .ui-slider-line,
+#signToCodeSlider .ui-slider-pip.ui-slider-pip-last .ui-slider-line,
+#signToCodeSlider .ui-slider-pip.ui-slider-pip-first .ui-slider-line {
+    display: none;
+}
