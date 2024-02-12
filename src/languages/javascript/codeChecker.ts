@@ -441,6 +441,7 @@ export function getResults(text: string): ISign[]
 				case ']': results.push(signsMisc.punctuationBracketSquareEnd); break;	
 				case '{': results.push(signsMisc.punctuationBracketCurlyBegin); break;
 				case '}': results.push(signsMisc.punctuationBracketCurlyEnd); break;
+				case '=': results.push(signsMisc.punctuationEqual); break;
 				case '-': results.push(signsMisc.punctuationMinusOrHyphen); break;
 				case '+': results.push(signsMisc.punctuationPlus); break;
 				case '*': results.push(signsMisc.punctuationAsterisk); break;

@@ -379,6 +379,12 @@ export const signsMisc: any = {
 		file: 'punctuationBracketCurlyEnd',
 		example: undefined,
 	},
+	punctuationEqual: {
+		token: '=',
+		isCode: false,
+		file: 'punctuationEqual',
+		example: undefined,
+	},
 	punctuationMinusOrHyphen: {
 		token: '-',
 		isCode: false,
