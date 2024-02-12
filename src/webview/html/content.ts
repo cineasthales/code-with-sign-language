@@ -55,6 +55,7 @@ export function getHtml(webview: Webview, uri: Uri): string
 					src="${welcome.scheme}://${welcome.authority}${welcome.path}">
 				</video>
 			</section>
+			<section id="initialMessage">BOAS-VINDAS!</section>
 		</div>
 
 		<div id="loadingTab">

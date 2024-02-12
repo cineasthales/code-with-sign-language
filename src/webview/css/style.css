@@ -36,6 +36,7 @@ button:hover:enabled, button:active:enabled {
 
 video {
     max-width: 100%;
+    border-radius: 5%;
 }
 
 #initialTab, #loadingTab,
@@ -52,12 +53,14 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding-top: 0.75rem;
+    padding-bottom: 2rem;
 }
 
 #goToCodeToSign, #goToSignToCode {
+    padding: 1rem 2rem;
     display: flex;
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
 #goToCodeToSign i, #goToSignToCode i {
@@ -66,6 +69,14 @@ video {
 
 #goToCodeToSignArrow, #goToSignToCodeArrow {
     padding: 0 0.85rem;
+}
+
+#initialMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    font-size: 2.5em;
 }
 
 #loadingTab {

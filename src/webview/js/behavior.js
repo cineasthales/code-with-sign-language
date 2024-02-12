@@ -36,6 +36,7 @@ $(() =>
 
     function loadErrorVideo(file)
     {
+        $('#initialMessage').text('ERRO!');
         $('#initialVideo').empty();
         $('#initialVideo').append(
             `<video type='video/mp4' muted autoplay
