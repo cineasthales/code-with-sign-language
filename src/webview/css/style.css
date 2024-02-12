@@ -36,7 +36,6 @@ button:hover:enabled, button:active:enabled {
 
 video {
     max-width: 100%;
-    border-radius: 5%;
 }
 
 #initialTab, #loadingTab,
