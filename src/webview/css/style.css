@@ -23,7 +23,7 @@ body {
 }
 
 button {
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding: 0.5rem 1rem;
     background-color: transparent;
     border-radius: 5%;
@@ -57,9 +57,9 @@ video {
 }
 
 #goToCodeToSign, #goToSignToCode {
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     display: flex;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #goToCodeToSign i, #goToSignToCode i {
@@ -102,7 +102,7 @@ video {
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .infoTimeToggle {
@@ -116,11 +116,11 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 16rem;
+    min-width: 15rem;
 }
 
 #slower, #faster, .categories {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 #codeToSignVideos, #signToCodeVideos {
@@ -137,7 +137,7 @@ video {
 }
 
 #codeToSignPlayPause, #signToCodePlayPause {
-    font-size: 4.5rem;
+    font-size: 4rem;
 }
 
 #codeToSignActions, #signToCodeActions {
@@ -148,17 +148,17 @@ video {
 }
 
 #codeToSignCurrentToken, #signToCodeCurrentToken {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
 #signToCodePagination {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 #codeToSignInfo, #signToCodeInfo {
-    font-size: 1.5rem;
-    margin-left: 1rem;
+    font-size: 1rem;
+    margin-left: 0.75rem;
 }
 
 #codeToSignTooltipToggle, #signToCodeTooltipToggle, #category_1 {
@@ -173,7 +173,7 @@ video {
 }
 
 #codeContainer {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 body.vscode-light button {
