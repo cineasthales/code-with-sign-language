@@ -456,7 +456,7 @@ export const signs: any = {
 		info: 'lesser',
 		example:
 			`let idade = 24;\n` +
-			`if (idade > 25) {\n` +
+			`if (idade < 25) {\n` +
 			`\tconsole.log('Você tem menos de 25 anos!');\n` +
 			`}`
 	},
