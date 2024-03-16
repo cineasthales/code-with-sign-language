@@ -3,19 +3,19 @@ import { Webview, Uri } from 'vscode';
 export function getHtml(webview: Webview, uri: Uri): string
 {
 	const allCss: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','fontawesome.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','regular.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','icons','fontawesome','css','solid.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','libs','jquery-ui.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','libs','jquery-ui-slider-pips.css')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','css','style.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','icons','fontawesome','css','fontawesome.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','icons','fontawesome','css','regular.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','icons','fontawesome','css','solid.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','css','jquery-ui.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','css','jquery-ui-slider-pips.css')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','style.css')),
 	];
 
 	const allJs: Uri[] = [
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery-ui.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','libs','jquery-ui-slider-pips.js')),
-		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','js','behavior.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','js','jquery.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','js','jquery-ui.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','libs','js','jquery-ui-slider-pips.js')),
+		webview.asWebviewUri(Uri.joinPath(uri,'src','webview','behavior.js')),
 	];
 
 	const welcome = webview.asWebviewUri(Uri.joinPath(uri,'videos','libras','welcome.mp4'));
