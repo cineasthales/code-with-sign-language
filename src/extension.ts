@@ -99,6 +99,10 @@ export function activate(context: vscode.ExtensionContext)
 								);
 								webview.postMessage({messageType, categories});
 							}
+							else if (messageType === 'settings')
+							{
+								vscode.commands.executeCommand('workbench.action.openSettings');
+							}
 						}
 					}
 					catch (err)
